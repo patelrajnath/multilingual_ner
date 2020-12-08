@@ -1,0 +1,5 @@
+sentence-transformers
+
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch
+torchvision
