@@ -68,14 +68,30 @@ class SamplingBatcher(abc.Iterator):
             batch_labels = -1 * np.ones((len(batch_sentences), batch_max_len))
 
             # copy the data to the numpy array
+            data_len = []
             for j in range(len(batch_sentences)):
                 cur_len = len(batch_sentences[j])
+                data_len.append(cur_len)
                 batch_data[j][:cur_len] = batch_sentences[j]
                 batch_labels[j][:cur_len] = batch_tags[j]
 
             # since all data are indices, we convert them to torch LongTensors
-            batch_data, batch_labels = torch.LongTensor(batch_data), torch.LongTensor(batch_labels)
-            return batch_data, batch_labels
+            batch_data = torch.LongTensor(batch_data)
+            batch_labels = torch.LongTensor(batch_labels)
+
+            data_len = np.asarray(data_len)
+            batch_len = torch.LongTensor(data_len)
+
+            maxlen = batch_data.shape[1]
+            mask_x = torch.arange(maxlen)[None, :] < batch_len[:, None]
+
+            # reshape labels to give a flat vector of length batch_size*seq_len
+            batch_labels = batch_labels.view(-1)
+
+            # For labels we use -1 for padding
+            mask_y = (batch_labels >= 0).float()
+
+            return batch_data, batch_labels, batch_len, mask_x, mask_y
 
     def __iter__(self):
         """Gets an iterator for this iterable

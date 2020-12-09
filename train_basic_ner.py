@@ -1,4 +1,7 @@
 import ast
+import os
+import random
+
 import numpy as np
 import torch
 
@@ -7,6 +10,14 @@ import torch.nn.functional as F
 from sklearn.metrics import f1_score
 
 from batchers import SamplingBatcher
+
+
+def set_seed(seed_value=1234):
+    os.environ['PYTHONHASHSEED']=str(seed_value)
+    torch.manual_seed(seed_value)
+    np.random.seed(seed_value)
+    random.seed(seed_value)
+
 
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
@@ -17,6 +28,7 @@ with open('data/words.txt') as f:
 
 START_TAG = "<START>"
 STOP_TAG = "<STOP>"
+O_TAG = 'O'
 tag_map = {START_TAG: 0, STOP_TAG: 1}
 num_specials_tags = len(tag_map)
 with open('data/tags.txt') as f:
@@ -42,9 +54,9 @@ with open('data/nlu_train_labels.txt') as f:
         train_labels.append(l)
 
 # Sort the data according to the length
-sorted_idx = np.argsort([len(s) for s in train_sentences])
-train_sentences = [train_sentences[id] for id in sorted_idx]
-train_labels = [train_labels[id] for id in sorted_idx]
+# sorted_idx = np.argsort([len(s) for s in train_sentences])
+# train_sentences = [train_sentences[id] for id in sorted_idx]
+# train_labels = [train_labels[id] for id in sorted_idx]
 
 test_sentences = []
 test_labels = []
@@ -95,30 +107,24 @@ class Net(nn.Module):
         self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
 
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(params.embedding_dim, self.params.hidden_layer_size // 2,
-                            num_layers=1, bidirectional=True)
+        self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
+                            batch_first=True, bidirectional=True)
         # fc layer transforms the output to give the final output layer
-        self.fc = nn.Linear(params.hidden_layer_size, params.number_of_tags)
+        self.fc = nn.Linear(self.params.hidden_layer_size, self.params.number_of_tags)
 
         # Matrix of transition parameters.  Entry i,j is the score of
         # transitioning *to* i *from* j.
         self.transitions = nn.Parameter(
-            torch.randn(params.number_of_tags, params.number_of_tags))
+            torch.randn(self.params.number_of_tags, self.params.number_of_tags))
 
         # These two statements enforce the constraint that we never transfer
         # to the start tag and we never transfer from the stop tag
         self.transitions.data[tag_map[START_TAG], :] = -10000
         self.transitions.data[:, tag_map[STOP_TAG]] = -10000
 
-        self.hidden = self.init_hidden()
-
-    def init_hidden(self):
-        return (torch.randn(2, 1, self.params.hidden_layer_size // 2),
-                torch.randn(2, 1, self.params.hidden_layer_size // 2))
-
     def _forward_alg(self, feats):
         # Do the forward algorithm to compute the partition function
-        init_alphas = torch.full((1, self.params.vocab_size), -10000.)
+        init_alphas = torch.full((1, self.params.number_of_tags), -10000.)
         # START_TAG has all of the score.
         init_alphas[0][tag_map[START_TAG]] = 0.
 
@@ -128,11 +134,11 @@ class Net(nn.Module):
         # Iterate through the sentence
         for feat in feats:
             alphas_t = []  # The forward tensors at this timestep
-            for next_tag in range(self.params.vocab_size):
+            for next_tag in range(self.params.number_of_tags):
                 # broadcast the emission score: it is the same regardless of
                 # the previous tag
                 emit_score = feat[next_tag].view(
-                    1, -1).expand(1, self.params.vocab_size)
+                    1, -1).expand(1, self.params.number_of_tags)
                 # the ith entry of trans_score is the score of transitioning to
                 # next_tag from i
                 trans_score = self.transitions[next_tag].view(1, -1)
@@ -148,15 +154,30 @@ class Net(nn.Module):
         return alpha
 
     def _get_lstm_features(self, sentence):
-        self.hidden = self.init_hidden()
-        embeds = self.embedding(sentence).view(len(sentence), 1, -1)
-        lstm_out, self.hidden = self.lstm(embeds, self.hidden)
-        lstm_out = lstm_out.view(len(sentence), self.params.hidden_layer_size)
+        embeds = self.embedding(sentence)
+        lstm_out, _ = self.lstm(embeds)
+        lstm_out = lstm_out.reshape(-1, lstm_out.shape[2])
         lstm_feats = self.fc(lstm_out)
         return lstm_feats
 
+    def forward(self, s):
+        # apply the embedding layer that maps each token to its embedding
+        s = self.embedding(s)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # run the LSTM along the sentences of length batch_max_len
+        s, _ = self.lstm(s)  # dim: batch_size x batch_max_len x lstm_hidden_dim
+
+        # reshape the Variable so that each row contains one token
+        s = s.reshape(-1, s.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
+
+        # apply the fully connected layer and obtain the output for each token
+        s = self.fc(s)  # dim: batch_size*batch_max_len x num_tags
+
+        return F.log_softmax(s, dim=1)  # dim: batch_size*batch_max_len x num_tags
+
     def _score_sentence(self, feats, tags):
         # Gives the score of a provided tag sequence
+
         score = torch.zeros(1)
         tags = torch.cat([torch.tensor([tag_map[START_TAG]], dtype=torch.long), tags])
         for i, feat in enumerate(feats):
@@ -169,7 +190,7 @@ class Net(nn.Module):
         backpointers = []
 
         # Initialize the viterbi variables in log space
-        init_vvars = torch.full((1, self.tagset_size), -10000.)
+        init_vvars = torch.full((1, self.params.number_of_tags), -10000.)
         init_vvars[0][self.tag_to_ix[START_TAG]] = 0
 
         # forward_var at step i holds the viterbi variables for step i-1
@@ -178,7 +199,7 @@ class Net(nn.Module):
             bptrs_t = []  # holds the backpointers for this step
             viterbivars_t = []  # holds the viterbi variables for this step
 
-            for next_tag in range(self.tagset_size):
+            for next_tag in range(self.params.number_of_tags):
                 # next_tag_var[i] holds the viterbi variable for tag i at the
                 # previous step, plus the score of transitioning
                 # from tag i to next_tag.
@@ -223,29 +244,8 @@ class Net(nn.Module):
         score, tag_seq = self._viterbi_decode(lstm_feats)
         return score, tag_seq
 
-    def forward(self, s):
-        # apply the embedding layer that maps each token to its embedding
-        s = self.embedding(s)  # dim: batch_size x batch_max_len x embedding_dim
 
-        # run the LSTM along the sentences of length batch_max_len
-        s, _ = self.lstm(s)  # dim: batch_size x batch_max_len x lstm_hidden_dim
-
-        # reshape the Variable so that each row contains one token
-        s = s.reshape(-1, s.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
-
-        # apply the fully connected layer and obtain the output for each token
-        s = self.fc(s)  # dim: batch_size*batch_max_len x num_tags
-
-        return F.log_softmax(s, dim=1)  # dim: batch_size*batch_max_len x num_tags
-
-
-def loss_fn(outputs, labels):
-    # reshape labels to give a flat vector of length batch_size*seq_len
-    labels = labels.view(-1)
-
-    # mask out 'PAD' tokens
-    mask = (labels >= 0).float()
-
+def loss_fn(outputs, labels, mask):
     # the number of tokens is the sum of elements in mask
     num_tokens = int(torch.sum(mask).item())
 
@@ -285,7 +285,12 @@ model = Net(params=params)
 
 optimizer = torch.optim.Adam(model.parameters())
 
-batcher = SamplingBatcher(np.asarray(train_sentences), np.asarray(train_labels), batch_size=32, pad_id=vocab['PAD'])
+batcher = SamplingBatcher(np.asarray(train_sentences), np.asarray(train_labels),
+                          batch_size=32, pad_id=vocab['PAD'])
+
+
+# Set seed to have consistent results
+set_seed(seed_value=999)
 
 updates = 1
 total_loss = 0
@@ -293,14 +298,16 @@ num_epochs = 30
 for epoch in range(num_epochs):
     for batch in batcher:
         updates += 1
-        batch_data, batch_labels = batch
+        batch_data, batch_labels, batch_len, mask_x, mask_y = batch
         optimizer.zero_grad()
         # pass through model, perform backpropagation and updates
         output_batch = model(batch_data)
-        loss = loss_fn(output_batch, batch_labels)
+        loss = loss_fn(output_batch, batch_labels, mask_y)
         # loss = model.neg_log_likelihood(batch_data, batch_labels)
+
         loss.backward()
         optimizer.step()
+
         total_loss += loss.data
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Loss: {total_loss}')
@@ -314,9 +321,22 @@ with torch.no_grad():
     prediction = []
     true_labels = []
     for batch in batcher_test:
-        batch_data, batch_labels = batch
+        batch_data, batch_labels, batch_len, mask_x, mask_y = batch
         predict = model(batch_data)
         predict_labels = predict.argmax(dim=1)
-        prediction.extend(predict_labels.view(-1))
-        true_labels.extend(batch_labels.view(-1))
-    print(f1_score(prediction, true_labels, average='weighted') * 100)
+        predict_labels = predict_labels.view(-1)
+        batch_labels = batch_labels.view(-1)
+        batch_labels[batch_labels == -1] = 2
+
+        prediction.extend(predict_labels)
+        true_labels.extend(batch_labels)
+
+    t = list()
+    p = list()
+    for a, b in zip(true_labels, prediction):
+        if a == tag_map.get(O_TAG):
+            continue
+        t.append(a)
+        p.append(b)
+    print(len(t), len(p))
+    print(f1_score(t, p, average='weighted') * 100)
