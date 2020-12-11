@@ -55,15 +55,15 @@ if __name__ == '__main__':
         "config": {},
     }
 
-    with open('ent_tags-wallet.txt','r') as f:
+    with open('tag-set.txt', 'r') as f:
        ents_dict = set(ast.literal_eval(f.read()))
 
     print(ents_dict)
     # Create a NERModel
     model = NERModel('bert', 'bert-base-cased', args=args, use_cuda=False, labels=ents_dict)
 
-    model.train_model('conall_data/train-wallet.txt', eval_data='conall_data/test-wallet.txt')
+    model.train_model('sample_data/train.txt', eval_data='sample_data/test.txt')
 
-    results, model_outputs, predictions = model.eval_model('conall_data/test-wallet.txt')
+    results, model_outputs, predictions = model.eval_model('sample_data/test.txt')
 
     print(results)
