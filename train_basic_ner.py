@@ -298,7 +298,7 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 15000
+        self.max_steps = 20000
         self.patience = 1000
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
@@ -382,5 +382,5 @@ with torch.no_grad():
     print(f1_score(t, p, average='micro') * 100)
     print(f1_score(t, p, average='macro') * 100)
     print(f1_score(t, p, average='weighted') * 100)
-    print(precision_score(t, p, average='weighted') * 100)
-    print(recall_score(t, p, average='weighted') * 100)
+    print(precision_score(t, p, average='weighted', zero_division=True) * 100)
+    print(recall_score(t, p, average='weighted', zero_division=True) * 100)
