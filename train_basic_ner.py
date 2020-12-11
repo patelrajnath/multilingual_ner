@@ -8,7 +8,6 @@ import torch
 
 import torch.nn as nn
 import torch.nn.functional as F
-import tqdm
 from sklearn.metrics import f1_score
 
 from batchers import SamplingBatcher
