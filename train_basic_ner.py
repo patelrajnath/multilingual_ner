@@ -8,7 +8,7 @@ import torch
 
 import torch.nn as nn
 import torch.nn.functional as F
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, precision_score, recall_score
 
 from batchers import SamplingBatcher
 
@@ -382,3 +382,5 @@ with torch.no_grad():
     print(f1_score(t, p, average='micro') * 100)
     print(f1_score(t, p, average='macro') * 100)
     print(f1_score(t, p, average='weighted') * 100)
+    print(precision_score(t, p) * 100)
+    print(recall_score(t, p) * 100)
