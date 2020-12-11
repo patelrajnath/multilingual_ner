@@ -213,7 +213,7 @@ class Net(nn.Module):
 
         # Initialize the viterbi variables in log space
         init_vvars = torch.full((1, self.params.number_of_tags), -10000.)
-        init_vvars[0][self.tag_to_ix[START_TAG]] = 0
+        init_vvars[0][tag_map[START_TAG]] = 0
 
         # forward_var at step i holds the viterbi variables for step i-1
         forward_var = init_vvars
@@ -237,7 +237,7 @@ class Net(nn.Module):
             backpointers.append(bptrs_t)
 
         # Transition to STOP_TAG
-        terminal_var = forward_var + self.transitions[self.tag_to_ix[STOP_TAG]]
+        terminal_var = forward_var + self.transitions[tag_map[STOP_TAG]]
         best_tag_id = argmax(terminal_var)
         path_score = terminal_var[0][best_tag_id]
 
@@ -248,7 +248,7 @@ class Net(nn.Module):
             best_path.append(best_tag_id)
         # Pop off the start tag (we dont want to return that to the caller)
         start = best_path.pop()
-        assert start == self.tag_to_ix[START_TAG]  # Sanity check
+        assert start == tag_map[START_TAG]  # Sanity check
         best_path.reverse()
         return path_score, best_path
 
@@ -294,8 +294,8 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 1500
-        self.patience = 100
+        self.max_steps = 150
+        self.patience = 10
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
         self.embedding_dim = 256
@@ -303,20 +303,22 @@ class hparamset():
 
 
 params = hparamset()
+use_cuda = torch.cuda.is_available()
+device = torch.device("cuda:0" if use_cuda else "cpu")
 model = Net(params=params)
+model = model.to(device)
 
 optimizer = torch.optim.Adam(model.parameters())
 
 batcher = SamplingBatcher(np.asarray(train_sentences), np.asarray(train_labels),
                           batch_size=32, pad_id=vocab['PAD'])
 
-
 # Set seed to have consistent results
 set_seed(seed_value=999)
 
 updates = 1
 total_loss = 0
-num_epochs = 30
+num_epochs = 0
 stop_training = False
 start_time = time.time()
 for epoch in range(num_epochs):
@@ -324,10 +326,12 @@ for epoch in range(num_epochs):
         updates += 1
         batch_data, batch_labels, batch_len, mask_x, mask_y = batch
         optimizer.zero_grad()
+        batch_data = batch_data.to(device)
+        batch_labels = batch_labels.to(device)
         # pass through model, perform backpropagation and updates
-        output_batch = model(batch_data)
-        loss = loss_fn(output_batch, batch_labels, mask_y)
-        # loss = model.neg_log_likelihood(batch_data, batch_labels)
+        # output_batch = model(batch_data)
+        # loss = loss_fn(output_batch, batch_labels, mask_y)
+        loss = model.neg_log_likelihood(batch_data, batch_labels)
 
         loss.backward()
         optimizer.step()
@@ -354,9 +358,12 @@ with torch.no_grad():
     true_labels = []
     for batch in batcher_test:
         batch_data, batch_labels, batch_len, mask_x, mask_y = batch
-        predict = model(batch_data)
-        predict_labels = predict.argmax(dim=1)
-        predict_labels = predict_labels.view(-1)
+        batch_data = batch_data.to(device)
+        batch_labels = batch_labels.to(device)
+        # predict = model(batch_data)
+        # predict_labels = predict.argmax(dim=1)
+        # predict_labels = predict_labels.view(-1)
+        score, predict_labels = model.forward_crf(batch_data)
         batch_labels = batch_labels.view(-1)
         batch_labels[batch_labels == -1] = 2
 
