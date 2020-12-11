@@ -3,3 +3,4 @@ venv
 .idea
 cache
 cache_dir
+data

@@ -1,12 +1,14 @@
 import ast
 import os
 import random
+import time
 
 import numpy as np
 import torch
 
 import torch.nn as nn
 import torch.nn.functional as F
+import tqdm
 from sklearn.metrics import f1_score
 
 from batchers import SamplingBatcher
@@ -19,9 +21,10 @@ def set_seed(seed_value=1234):
     random.seed(seed_value)
 
 
+data_type = 'alliance'
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
-with open('data/words.txt') as f:
+with open('data/{}/words.txt'.format(data_type), encoding='utf8') as f:
     words = ast.literal_eval(f.read()).keys()
     for i, l in enumerate(words):
         vocab[l] = i + num_specials_tokens
@@ -31,7 +34,7 @@ STOP_TAG = "<STOP>"
 O_TAG = 'O'
 tag_map = {START_TAG: 0, STOP_TAG: 1}
 num_specials_tags = len(tag_map)
-with open('data/tags.txt') as f:
+with open('data/{}/tags.txt'.format(data_type), encoding='utf8') as f:
     words = ast.literal_eval(f.read()).keys()
     for i, l in enumerate(words):
         tag_map[l] = i + num_specials_tags
@@ -39,7 +42,7 @@ with open('data/tags.txt') as f:
 train_sentences = []
 train_labels = []
 
-with open('data/nlu_train_text.txt') as f:
+with open('data/{0}/{0}_train_text.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each token by its index if it is in vocab else use index of UNK
         s = [vocab[token] if token in vocab
@@ -47,7 +50,7 @@ with open('data/nlu_train_text.txt') as f:
             for token in sentence.strip().split()]
         train_sentences.append(s)
 
-with open('data/nlu_train_labels.txt') as f:
+with open('data/{0}/{0}_train_labels.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each label by its index
         l = [tag_map[label] for label in sentence.strip().split()]
@@ -60,24 +63,44 @@ with open('data/nlu_train_labels.txt') as f:
 
 test_sentences = []
 test_labels = []
-with open('data/nlu_test_text.txt') as f:
+with open('data/{0}/{0}_test_text.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each token by its index if it is in vocab else use index of UNK
         s = [vocab[token] if token in vocab else vocab['UNK']
              for token in sentence.strip().split()]
         test_sentences.append(s)
 
-with open('data/nlu_test_labels.txt') as f:
+with open('data/{0}/{0}_test_labels.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each label by its index
-        l = [tag_map[label] for label in sentence.strip().split()]
+        l = [tag_map.get(label, tag_map.get('O')) for label in sentence.strip().split()]
         test_labels.append(l)
 
 count = 1
+train_sentences_fixed = []
+train_labels_fixed = []
 for t, l in zip(train_sentences, train_labels):
     count += 1
     if len(t) != len(l):
         print(f'Error:{len(t)}, {len(l)}, {count}')
+    else:
+        train_sentences_fixed.append(t)
+        train_labels_fixed.append(l)
+
+train_sentences = train_sentences_fixed
+train_labels = train_labels_fixed
+
+test_sentences_fixed = []
+test_labels_fixed = []
+for t, l in zip(test_sentences, test_labels):
+    count += 1
+    if len(t) != len(l):
+        print(f'Error:{len(t)}, {len(l)}, {count}')
+    else:
+        test_sentences_fixed.append(t)
+        test_labels_fixed.append(l)
+test_sentences = test_sentences_fixed
+test_labels = test_labels_fixed
 
 
 def argmax(vec):
@@ -272,7 +295,7 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 15000
+        self.max_steps = 1500
         self.patience = 100
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
@@ -295,6 +318,8 @@ set_seed(seed_value=999)
 updates = 1
 total_loss = 0
 num_epochs = 30
+stop_training = False
+start_time = time.time()
 for epoch in range(num_epochs):
     for batch in batcher:
         updates += 1
@@ -312,6 +337,14 @@ for epoch in range(num_epochs):
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Loss: {total_loss}')
             total_loss = 0
+
+        if updates % params.max_steps == 0:
+            stop_training = True
+            break
+
+    if stop_training:
+        break
+print('Training time:{}'.format(time.time()-start_time))
 
 batcher_test = SamplingBatcher(np.asarray(test_sentences), np.asarray(test_labels),
                           batch_size=32, pad_id=vocab['PAD'])
@@ -339,4 +372,6 @@ with torch.no_grad():
         t.append(a)
         p.append(b)
     print(len(t), len(p))
+    print(f1_score(t, p, average='micro') * 100)
+    print(f1_score(t, p, average='macro') * 100)
     print(f1_score(t, p, average='weighted') * 100)
