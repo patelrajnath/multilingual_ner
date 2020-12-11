@@ -20,6 +20,9 @@ def set_seed(seed_value=1234):
     random.seed(seed_value)
 
 
+# Set seed to have consistent results
+set_seed(seed_value=999)
+np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
 data_type = 'snips'
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
@@ -286,20 +289,20 @@ class hparamset():
         self.balance_data = False
         self.output_size = None
         self.activation = 'relu'
-        self.hidden_layer_size = 512
+        self.hidden_layer_size = 1024
         self.num_hidden_layers = 1
         self.batch_size = 16
         self.dropout = 0.1
         self.optimizer = 'sgd'
-        self.learning_rate = 0.7
+        self.learning_rate = 0.01
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 1500
-        self.patience = 100
+        self.max_steps = 15000
+        self.patience = 1000
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
-        self.embedding_dim = 256
+        self.embedding_dim = 512
         self.number_of_tags = len(tag_map)
 
 
@@ -311,18 +314,14 @@ model = model.to(device)
 
 optimizer = torch.optim.Adam(model.parameters())
 
-batcher = SamplingBatcher(np.asarray(train_sentences), np.asarray(train_labels),
+batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
                           batch_size=32, pad_id=vocab['PAD'])
-
-# Set seed to have consistent results
-set_seed(seed_value=999)
 
 updates = 1
 total_loss = 0
-num_epochs = 5
 stop_training = False
 start_time = time.time()
-for epoch in range(num_epochs):
+for epoch in range(params.epochs):
     for batch in batcher:
         updates += 1
         batch_data, batch_labels, batch_len, mask_x, mask_y = batch
@@ -351,7 +350,7 @@ for epoch in range(num_epochs):
         break
 print('Training time:{}'.format(time.time()-start_time))
 
-batcher_test = SamplingBatcher(np.asarray(test_sentences), np.asarray(test_labels),
+batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object), np.asarray(test_labels, dtype=object),
                           batch_size=32, pad_id=vocab['PAD'])
 
 with torch.no_grad():
