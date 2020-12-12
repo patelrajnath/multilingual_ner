@@ -350,31 +350,32 @@ for epoch in range(params.epochs):
         break
 print('Training time:{}'.format(time.time()-start_time))
 
-batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object), np.asarray(test_labels, dtype=object),
-                          batch_size=32, pad_id=vocab['PAD'])
-
-with torch.no_grad():
-    model.eval()
-    prediction = []
-    true_labels = []
-    for batch in batcher_test:
-        batch_data, batch_labels, batch_len, mask_x, mask_y = batch
-        batch_data = batch_data.to(device)
-        batch_labels = batch_labels.to(device)
-        predict = model(batch_data)
-        predict_labels = predict.argmax(dim=1)
-        predict_labels = predict_labels.view(-1)
-        # score, predict_labels = model.forward_crf(batch_data)
-        batch_labels = batch_labels.view(-1)
-        batch_labels[batch_labels == -1] = 2
-
-        prediction.extend(predict_labels.cpu().data.tolist())
-        true_labels.extend(batch_labels.cpu().data.tolist())
+with open('label.txt', 'w') as t, open('predict.txt', 'w') as p:
+    with torch.no_grad():
+        model.eval()
+        prediction = []
+        true_labels = []
+        for text, label in zip(test_sentences, test_labels):
+            text = torch.LongTensor(text).unsqueeze(0).to(device)
+            lable = torch.LongTensor(label).unsqueeze(0).to(device)
+            predict = model(text)
+            predict_labels = predict.argmax(dim=1)
+            predict_labels = predict_labels.view(-1)
+            # score, predict_labels = model.forward_crf(batch_data)
+            lable = lable.view(-1)
+            a = predict_labels.cpu().data.tolist()
+            b = lable.cpu().data.tolist()
+            prediction.extend(a)
+            true_labels.extend(b)
+            a = [str(i) for i in a]
+            b = [str(i) for i in b]
+            t.write(' '.join(b) + '\n')
+            p.write(' '.join(a) + '\n')
 
     t = list()
     p = list()
     for a, b in zip(true_labels, prediction):
-        if a == tag_map.get(O_TAG):
+        if a == tag_map.get(O_TAG) and b == tag_map.get(O_TAG):
             continue
         t.append(a)
         p.append(b)
