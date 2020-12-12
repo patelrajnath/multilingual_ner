@@ -289,8 +289,9 @@ class hparamset():
         self.balance_data = False
         self.output_size = None
         self.activation = 'relu'
-        self.hidden_layer_size = 1024
+        self.hidden_layer_size = 512
         self.num_hidden_layers = 1
+        self.embedding_dim = 256
         self.batch_size = 16
         self.dropout = 0.1
         self.optimizer = 'sgd'
@@ -298,11 +299,10 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 20000
-        self.patience = 1000
+        self.max_steps = 1500
+        self.patience = 100
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
-        self.embedding_dim = 512
         self.number_of_tags = len(tag_map)
 
 
