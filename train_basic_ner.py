@@ -2,6 +2,7 @@ import ast
 import os
 import random
 import time
+from math import inf
 
 import numpy as np
 import torch
@@ -11,6 +12,7 @@ import torch.nn.functional as F
 from sklearn.metrics import f1_score, precision_score, recall_score
 
 from batchers import SamplingBatcher
+from model_utils import save_state, load_model_state
 
 
 def set_seed(seed_value=1234):
@@ -319,6 +321,7 @@ batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(
 
 updates = 1
 total_loss = 0
+best_loss = +inf
 stop_training = False
 start_time = time.time()
 for epoch in range(params.epochs):
@@ -340,8 +343,10 @@ for epoch in range(params.epochs):
         total_loss += loss.data
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Loss: {total_loss}')
+            if best_loss > total_loss:
+                save_state('best_model.pt', model, loss_fn, optimizer, updates)
+                best_loss = total_loss
             total_loss = 0
-
         if updates % params.max_steps == 0:
             stop_training = True
             break
@@ -349,7 +354,7 @@ for epoch in range(params.epochs):
     if stop_training:
         break
 print('Training time:{}'.format(time.time()-start_time))
-
+updates = load_model_state('best_model.pt', model)
 with open('label.txt', 'w') as t, open('predict.txt', 'w') as p:
     with torch.no_grad():
         model.eval()

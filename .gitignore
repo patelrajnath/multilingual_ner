@@ -5,3 +5,4 @@ venv
 cache
 cache_dir
 data
+*.pt
