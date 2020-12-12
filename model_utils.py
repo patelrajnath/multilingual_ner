@@ -63,27 +63,6 @@ def load_model_state(filename, model, data_parallel=False):
     return state['num_updates']
 
 
-class hparamset():
-    def __init__(self):
-        self.batchsize = 16
-        self.max_sts_score = 5
-        self.balance_data = False
-        self.output_size = None
-        self.activation = 'relu'
-        self.hidden_layer_size = 512
-        self.num_hidden_layers = 1
-        self.batch_size = 16
-        self.dropout = 0.1
-        self.optimizer = 'sgd'
-        self.learning_rate = 0.7
-        self.lr_decay_pow = 1
-        self.epochs = 100
-        self.seed = 999
-        self.max_steps = 15000
-        self.patience = 500
-        self.eval_each_epoch = True
-
-
 def set_seed(seed_value=1234):
     os.environ['PYTHONHASHSEED']=str(seed_value)
     torch.manual_seed(seed_value)

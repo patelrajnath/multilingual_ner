@@ -1,6 +1,4 @@
 import ast
-import os
-import random
 import time
 from math import inf
 
@@ -12,15 +10,7 @@ import torch.nn.functional as F
 from sklearn.metrics import f1_score, precision_score, recall_score
 
 from batchers import SamplingBatcher
-from model_utils import save_state, load_model_state
-
-
-def set_seed(seed_value=1234):
-    os.environ['PYTHONHASHSEED']=str(seed_value)
-    torch.manual_seed(seed_value)
-    np.random.seed(seed_value)
-    random.seed(seed_value)
-
+from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
 set_seed(seed_value=999)
