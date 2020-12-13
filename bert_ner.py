@@ -84,6 +84,8 @@ use_cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if use_cuda else "cpu")
 params = hparamset()
 model = Net(params)
+model = model.to(device)
+
 optimizer = torch.optim.Adam(model.parameters())
 
 data = bert_data.LearnData.create(
