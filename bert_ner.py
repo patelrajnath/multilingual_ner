@@ -77,7 +77,7 @@ class hparamset():
         self.number_of_tags = 9
 
 
-model_name='bert-base-multilingual-cased'
+model_name = 'bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
 use_cuda = torch.cuda.is_available()
@@ -94,7 +94,7 @@ data = bert_data.LearnData.create(
     valid_df_path="data/conll2003/eng.testa.dev.csv",
     idx2labels_path="data/conll2003/idx2labels2.txt",
     clear_cache=True,
-    model_name="bert-base-cased",
+    model_name="bert-base-multilingual-cased",
     batch_size=params.batch_size
 )
 
