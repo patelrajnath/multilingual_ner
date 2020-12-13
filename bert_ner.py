@@ -105,6 +105,7 @@ start = time.time()
 for epoch in range(params.epochs):
     for batch in data.train_dl:
         updates += 1
+        optimizer.zero_grad()
         input_, labels_mask, input_type_ids, labels = batch
         labels = labels.view(-1).to(device)
         labels_mask = labels_mask.view(-1).to(device)
