@@ -98,8 +98,8 @@ for epoch in range(params.epochs):
     for batch in data.train_dl:
         updates += 1
         input_, labels_mask, input_type_ids, labels = batch
-        labels = labels.view(-1)
-        labels_mask = labels_mask.view(-1)
+        labels = labels.view(-1).to(device)
+        labels_mask = labels_mask.view(-1).to(device)
         output = model(batch)
         loss = loss_fn(output, labels, labels_mask)
         loss.backward()
