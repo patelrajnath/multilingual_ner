@@ -1,0 +1,113 @@
+How can I shutdown the computer when a certain process ends ?
+Is it recommended to upgrade to Lubuntu 15.04 ?
+Problem upgrading Ubuntu 9.10
+What graphical utility can I use for Ubuntu auto shutdown ?
+How to upgrade from Ubuntu 10.10 to 11.04 ?
+How do I show grub when resuming from suspend ?
+Is there a Document scanning and archiving software ?
+Installing Epson XP-424 wireless printer
+What screenshot tools are available ?
+How to add a network printer on Ubuntu 15.10 ?
+Password Management Applications ?
+How to setup HP printer / scanner on ubuntu ?
+What IRC clients are available ?
+Is there any program for fuzzy string matching which provides a match score ?
+Upgrade from 9.10 to 11.04
+Is there a lightweight tool to crop images quickly ?
+Upgrading from Ubuntu 14.04 to 15.04
+How Do I Install Canon MF8000C Printer in Ubuntu 15.10 ?
+Upgrade 10.10 to 11.04
+Why did the upgrade from 11.10 to 12.04 ruin my system ?
+How do I install Dell 2150cdn printer
+How is rm command different from the delete button ?
+How do I fix a shutdown problem ?
+Are there any Keyboard Shortcuts to Shutdown ?
+How to upgrade from 12.10 to 14.04
+How can I highlight or annotate PDFs ?
+Shutdown problem in Ubuntu 16.04
+Upgrading from 10.04 to 11.10
+PDF to word conversion software ?
+How can I automatically shutdown the system after a specific time ?
+Which programs can I use to edit PDF files ?
+Problems upgrading from 12.04 to 14.04
+How to install a Brother MFC-5890CN network printer ?
+Do I need to backup my 12.04 system to upgrade to 12.04.1 ?
+Is there LAN topology mapping software available in Ubuntu ?
+What does my computer do when I click ' Shut Down ' ?
+How to install a Lexmark z600 series printer ?
+What IDEs are available for Ubuntu ?
+Is there any recovery software available for ext4 ?
+Any app that tells me to take regular breaks from working ?
+update - manager : upgrade to 15.04 rather than 16.04
+Are there any hardware diagnostic tools ?
+Extracting embedded images from a PDF
+No action when shutdown pressed
+Upgrading from 10.10 to 11.04 how much space is needed ?
+Installing EPSON L355 on Ubuntu 14.04
+Any command line calculator for Ubuntu ?
+What 's the best Mind Mapping Software ?
+How can i upgrade to Ubuntu 14.04 final from 14.04 Beta correctly ?
+Is there any software that will do face recognition in photos ?
+How to upgrade Ubuntu 14.04.1 to 14.04.2 ?
+How can I enable shutdown verbosity ?
+How do I install the HP F4280 printer ?
+Do I need to reinstall everything to upgrade from 13.10 to 14.10 ?
+Upgrade to 12.04 64 bit
+Is there software that can view .dwg files ?
+UPNP / DLNA ( client ) player recommendations ?
+A light alternative to gnome - system - monitor ?
+My system does n't go shutdown
+Can not setup HP All in one DJ3630
+What is the command to open the shutdown dialog ?
+How to Shut down Ubuntu by using keyboard ?
+What new games are available for Ubuntu in 2011 ?
+How do I install drivers for a Konica Minolta 200 ?
+Is there an upgrade procedure from 12.04 LTS to 14.04 LTS
+What scientific plotting software is available ?
+What 's the best Wireframing tool ?
+How to Install Brother DCP-8110DN Laser Printer on Ubuntu ?
+Upgrade 12.04 to 12.10 using startup disk
+How to upgrade from 16.04 LTS to 16.04.1 LTS
+Can not upgrade from 12.04LTS to 14.04
+Recommendation for Regex editor ?
+shut down without extra question
+What is a good MongoDB GUI client ?
+Can you recommend a good modern GUI download manager ( wget wrapper ? )
+Wubi Device /dev / loop0 full . How to get more space ?
+shutdown 5:30pm every day
+What to use to quickly cut Audio / Video
+How to upgrade from 14.04 LTS or 15.10 to 16.04 from terminal
+What developer text editors are available for Ubuntu ?
+Ubuntu Shut down app
+Please recommend a hex editor for shell
+Is any offline upgrade from 13.10 to 14.04 possible ?
+Install Canon MP560 Ubuntu 15.04
+Using 12.04 can I compile packages with gcc for 10.04 ?
+What software can I use to view epub documents ?
+Upgrading Ubuntu Server 9.10 to 10.04
+What are some good GUI binary viewers / editors ?
+Is there an SSH connection manager ?
+Upgrading from ubuntu 12.04 to 13.10
+Do I need to uninstall 10.04 to upgrade to 12.04 ?
+Ho do I update to 13.04 from the beta ?
+Is there a project management software for Ubuntu like Microsoft Project ?
+How can I make shutdown not require admin password ?
+Which is the best PDF metadata viewer for Ubuntu ?
+Can not install printer driver epson l210
+How to upgrade Ubuntu 12.04 to 14.04 if I have dual boot with windows 7 ?
+shutdown 5:30pm every day
+How to upgrade from 14.04 LTS or 15.10 to 16.04 from terminal
+Can you recommend a good modern GUI download manager ( wget wrapper ? )
+Software to read a QR code ?
+How do I install the HP F4280 printer ?
+upgrading to Ubuntu 13.10 from Ubuntu 13.04
+Tool for recovering deleted data from a flash drive
+Do I need to uninstall 10.04 to upgrade to 12.04 ?
+How to Shut down Ubuntu by using keyboard ?
+Upgrading from 10.04 to 11.10
+Is there any recovery software available for ext4 ?
+What Is The Best HDR Software ?
+Do I need to reinstall everything to upgrade from 13.10 to 14.10 ?
+What blog editor software are available ?
+How to Install a Canon MF8040Cn Printer on Ubuntu 12.04
+Upgrading from 11.10 to 12.04
