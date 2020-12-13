@@ -26,7 +26,7 @@ with open(data_dir, encoding='utf8') as f, \
                 if len(words) == 4:
                     s += words[1].strip() + ' '
                     ent = re.sub('[^A-Z-]', '', words[3].strip())
-                    e += ent + ' '
+                    e += ent.replace('-', '_') + ' '
 df = pd.DataFrame([labels_list, text_list, cls])
 df = df.transpose()
 df.to_csv('data/conll2003-de/temp.csv', index=False, sep="\t")
