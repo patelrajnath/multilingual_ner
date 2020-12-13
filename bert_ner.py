@@ -69,7 +69,7 @@ class hparamset():
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
         self.lr_decay_pow = 1
-        self.epochs = 0
+        self.epochs = 10
         self.seed = 999
         self.max_steps = 1500
         self.patience = 100
