@@ -203,7 +203,7 @@ from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens, voting_choicer
 from analyze_utils.plot_metrics import get_bert_span_report
 
-dl = get_data_loader_for_predict(data, df_path='data/conll2003/de.test.csv')
+dl = get_data_loader_for_predict(data, df_path='data/conll2003/de-test-real.csv')
 
 with torch.no_grad():
     preds = predict(dl, model, data.train_ds.idx2label)
