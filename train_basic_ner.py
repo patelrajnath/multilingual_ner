@@ -13,9 +13,14 @@ from batchers import SamplingBatcher
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
+from token_emb import Embeddings
+
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
-data_type = 'snips'
+# data_type = 'ubuntu'
+# data_type = 'accounts'
+data_type = 'nlu'
+# data_type = 'snips'
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
 with open('data/{}/words.txt'.format(data_type), encoding='utf8') as f:
@@ -122,6 +127,7 @@ class Net(nn.Module):
         self.params = params
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
+        # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
 
         # the LSTM takens embedded sentence
         self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
@@ -265,13 +271,13 @@ class Net(nn.Module):
 
 def loss_fn(outputs, labels, mask):
     # the number of tokens is the sum of elements in mask
-    num_tokens = int(torch.sum(mask).item())
+    num_labels = int(torch.sum(mask).item())
 
     # pick the values corresponding to labels and multiply by mask
     outputs = outputs[range(outputs.shape[0]), labels]*mask
 
     # cross entropy loss for all non 'PAD' tokens
-    return -torch.sum(outputs)/num_tokens
+    return -torch.sum(outputs)/num_labels
 
 
 class hparamset():
@@ -284,7 +290,7 @@ class hparamset():
         self.hidden_layer_size = 512
         self.num_hidden_layers = 1
         self.embedding_dim = 256
-        self.batch_size = 16
+        self.batch_size = 32
         self.dropout = 0.1
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
@@ -307,7 +313,7 @@ model = model.to(device)
 optimizer = torch.optim.Adam(model.parameters())
 
 batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
-                          batch_size=32, pad_id=vocab['PAD'])
+                          batch_size=params.batch_size, pad_id=vocab['PAD'])
 
 updates = 1
 total_loss = 0
@@ -332,7 +338,7 @@ for epoch in range(params.epochs):
 
         total_loss += loss.data
         if updates % params.patience == 0:
-            print(f'Epoch: {epoch}, Loss: {total_loss}')
+            print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
             if best_loss > total_loss:
                 save_state('best_model.pt', model, loss_fn, optimizer, updates)
                 best_loss = total_loss
