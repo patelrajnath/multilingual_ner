@@ -1,3 +1,5 @@
+matplotlib
+sklearn_crfsuite
 bson
 pandas
 sentence-transformers
