@@ -72,7 +72,7 @@ class hparamset():
         self.epochs = 10
         self.seed = 999
         self.max_steps = 1500
-        self.patience = 10
+        self.patience = 100
         self.eval_each_epoch = True
         self.number_of_tags = 9
 
