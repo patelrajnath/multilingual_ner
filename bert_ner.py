@@ -4,8 +4,12 @@ from math import inf
 import torch
 from torch import nn
 from torch.nn import functional as F
+
+from model_utils import set_seed
 from models import bert_data
 from models.embedders import BERTEmbedder
+
+set_seed(seed_value=999)
 
 
 class Net(nn.Module):
@@ -73,13 +77,6 @@ class hparamset():
         self.number_of_tags = 9
 
 
-data = bert_data.LearnData.create(
-    train_df_path="data/conll2003/eng.train.train.csv",
-    valid_df_path="data/conll2003/eng.testa.dev.csv",
-    idx2labels_path="data/conll2003/idx2labels2.txt",
-    clear_cache=True,
-    model_name="bert-base-cased"
-)
 model_name='bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
@@ -89,11 +86,20 @@ params = hparamset()
 model = Net(params)
 optimizer = torch.optim.Adam(model.parameters())
 
+data = bert_data.LearnData.create(
+    train_df_path="data/conll2003/eng.train.train.csv",
+    valid_df_path="data/conll2003/eng.testa.dev.csv",
+    idx2labels_path="data/conll2003/idx2labels2.txt",
+    clear_cache=True,
+    model_name="bert-base-cased",
+    batch_size=params.batch_size
+)
+
 updates = 1
 total_loss = 0
 best_loss = +inf
 stop_training = False
-
+start = time.time()
 for epoch in range(params.epochs):
     for batch in data.train_dl:
         updates += 1
@@ -118,3 +124,4 @@ for epoch in range(params.epochs):
 
     if stop_training:
         break
+print(f'Training time: {time.time() - start}')
