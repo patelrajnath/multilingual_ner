@@ -84,15 +84,7 @@ class hparamset():
 model_name = 'bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
-use_cuda = torch.cuda.is_available()
-device = torch.device("cuda:0" if use_cuda else "cpu")
 params = hparamset()
-model = Net(params)
-model = model.to(device)
-model.train()
-
-optimizer = torch.optim.Adam(model.parameters())
-
 data = bert_data.LearnData.create(
     train_df_path="data/conll2003/eng.train.train.csv",
     valid_df_path="data/conll2003/eng.testa.dev.csv",
@@ -102,6 +94,14 @@ data = bert_data.LearnData.create(
     batch_size=params.batch_size,
     markup='BIO'
 )
+params.number_of_tags = len(data.train_ds.idx2label)
+use_cuda = torch.cuda.is_available()
+device = torch.device("cuda:0" if use_cuda else "cpu")
+model = Net(params)
+model = model.to(device)
+model.train()
+
+optimizer = torch.optim.Adam(model.parameters())
 
 updates = 1
 total_loss = 0
