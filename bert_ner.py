@@ -5,9 +5,13 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from model_utils import set_seed
+from model_utils import set_seed, save_state, load_model_state
 from models import bert_data, tqdm
 from models.embedders import BERTEmbedder
+from models.bert_data import get_data_loader_for_predict
+from sklearn_crfsuite.metrics import flat_classification_report
+from analyze_utils.utils import bert_labels2tokens, voting_choicer
+from analyze_utils.plot_metrics import get_bert_span_report
 
 set_seed(seed_value=999)
 
@@ -119,6 +123,7 @@ for epoch in range(params.epochs):
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
             if best_loss > total_loss:
+                save_state('best_model.pt', model, loss_fn, optimizer, updates)
                 best_loss = total_loss
             total_loss = 0
 
@@ -198,11 +203,7 @@ def predict(dl, model, id2label, id2cls=None):
     return preds_cpu
 
 
-from models.bert_data import get_data_loader_for_predict
-from sklearn_crfsuite.metrics import flat_classification_report
-from analyze_utils.utils import bert_labels2tokens, voting_choicer
-from analyze_utils.plot_metrics import get_bert_span_report
-
+updates = load_model_state('best_model.pt', model)
 dl = get_data_loader_for_predict(data, df_path='data/conll2003-de/temp.csv')
 
 with torch.no_grad():
