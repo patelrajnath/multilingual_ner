@@ -10,7 +10,7 @@ O O B_MISC I_MISC I_MISC O O	Athletics - Berlin Grand Prix results .	False
 O O O O B_MISC I_MISC I_MISC I_MISC O	Atletismo - resultados do Grande Prêmio de Berlim .	False
 O O O O B_MISC I_MISC I_MISC I_MISC O	Athlétisme - résultats du Grand Prix de Berlin .	False
 O O O O O O B_PER O B_ORG O	"I 'm not retiring , "" Duran told Reuters ."	False
-O O O O O O O O B_PER O B_ORG O	"Ich gehe nicht in den Ruhestand , "" sagte Duran zu Reuters ."	False
-O O O O O O O O B_PER O B_ORG O	"No me voy a retirar , "" dijo Durán a Reuters ."	False
-O O O O O O O B_PER O B_ORG O	"Não estou me aposentando , "" disse Duran à Reuters ."	False
-O O O O O O O O O O B_PER O B_ORG O	"Je ne prends pas ma retraite , "" a déclaré Duran à Reuters ."	False
+O O O O O O O O B_PER O B_ORG O	"Ich gehe nicht in den Ruhestand , "" Duran erzählte Reuters ."	False
+O O O O O O O B_PER O O B_ORG O	"No me voy a retirar , "" Durán dijo a Reuters ."	False
+O O O O O O B_PER O O B_ORG O	"Não estou me aposentando , "" Duran disse à Reuters ."	False
+O O O O O O O O B_PER O O O B_ORG O	"Je ne prends pas ma retraite , "" Duran a déclaré à Reuters ."	False
