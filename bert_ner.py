@@ -99,7 +99,8 @@ data = bert_data.LearnData.create(
     idx2labels_path="data/conll2003/idx2labels2.txt",
     clear_cache=True,
     model_name="bert-base-multilingual-cased",
-    batch_size=params.batch_size
+    batch_size=params.batch_size,
+    markup='BIO'
 )
 
 updates = 1
