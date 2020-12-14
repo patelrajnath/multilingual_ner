@@ -73,9 +73,9 @@ class hparamset():
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
         self.lr_decay_pow = 1
-        self.epochs = 10
+        self.epochs = 30
         self.seed = 999
-        self.max_steps = 1500
+        self.max_steps = 15000
         self.patience = 100
         self.eval_each_epoch = True
         self.number_of_tags = 9
@@ -205,7 +205,10 @@ def predict(dl, model, id2label, id2cls=None):
 
 
 updates = load_model_state('best_model.pt', model)
-dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
+# dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
+# dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
+dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
+
 
 with torch.no_grad():
     preds = predict(dl, model, data.train_ds.idx2label)
