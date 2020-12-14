@@ -18,7 +18,7 @@ with open(data_dir, encoding='utf8') as f, \
                         len(s.strip().split()) == len(e.strip().split()):
                     text_list.append(s.strip())
                     labels_list.append(e.strip())
-                    cls.append(True)
+                    cls.append(False)
                 s = ''
                 e = ''
             else:
