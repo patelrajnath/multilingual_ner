@@ -205,7 +205,7 @@ def predict(dl, model, id2label, id2cls=None):
 
 
 updates = load_model_state('best_model.pt', model)
-dl = get_data_loader_for_predict(data, df_path='data/conll2003/multilingual.test.csv')
+dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
 
 with torch.no_grad():
     preds = predict(dl, model, data.train_ds.idx2label)
