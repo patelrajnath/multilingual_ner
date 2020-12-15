@@ -75,7 +75,7 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 30
         self.seed = 999
-        self.max_steps = 15000
+        self.max_steps = 1500
         self.patience = 100
         self.eval_each_epoch = True
         self.number_of_tags = 9
@@ -115,8 +115,10 @@ for epoch in range(params.epochs):
         input_, labels_mask, input_type_ids, labels = batch
         labels = labels.view(-1).to(device)
         labels_mask = labels_mask.view(-1).to(device)
+
         output = model(batch)
         loss = loss_fn(output, labels, labels_mask)
+
         loss.backward()
         optimizer.step()
         total_loss += loss.data
