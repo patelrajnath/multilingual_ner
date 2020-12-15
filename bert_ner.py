@@ -17,7 +17,7 @@ set_seed(seed_value=999)
 
 
 class Net(nn.Module):
-    def __init__(self, params):
+    def __init__(self, params, device):
         super(Net, self).__init__()
         self.params = params
         # maps each token to an embedding_dim vector
@@ -97,7 +97,7 @@ data = bert_data.LearnData.create(
 params.number_of_tags = len(data.train_ds.idx2label)
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if use_cuda else "cpu")
-model = Net(params)
+model = Net(params, device=device)
 model = model.to(device)
 model.train()
 
