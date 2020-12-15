@@ -89,7 +89,6 @@ class BERTEmbedder(torch.nn.Module):
             if self.config["mode"] == "weighted":
                 encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
                 encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
-            print(encoded_layers)
             for sentence, encoding in zip(missing_sentences,
                                           encoded_layers):
                 sentence_key = " ".join([str(item) for item in sentence.tolist()])
