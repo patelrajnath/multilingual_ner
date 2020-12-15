@@ -5,4 +5,5 @@ venv
 cache
 cache_dir
 data
+bert_multilingual_embeddings
 *.pt
