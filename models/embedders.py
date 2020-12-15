@@ -2,18 +2,15 @@ import logging
 import os
 import pickle
 
-import numpy
 from pytorch_pretrained_bert import BertModel
 import torch
-from torch import from_numpy
 glog = logging.getLogger(__name__)
 
 
 class BERTEmbedder(torch.nn.Module):
-    def __init__(self, model, config, cache_dir='./', encoder_id='bert_multilingual_embeddings'):
+    def __init__(self, model, config, cache_dir='./', encoder_id='bert_multilingual_embeddings', caching=False):
         super(BERTEmbedder, self).__init__()
-        self.use_cuda = torch.cuda.is_available()
-        self.device = torch.device("cuda:0" if self.use_cuda else "cpu")
+        self.caching = caching
         self.config = config
         self.model = model
         if self.config["mode"] == "weighted":
@@ -74,7 +71,7 @@ class BERTEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        if not self.use_cuda:
+        if self.caching:
             sentences = batch[0]
             missing_sentences = []
             for sentence in sentences:
