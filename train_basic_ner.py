@@ -15,12 +15,12 @@ from model_utils import save_state, load_model_state, set_seed
 # Set seed to have consistent results
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
-# data_type = 'accounts'
+data_type = 'accounts'
 # data_type = 'alliance'
 # data_type = 'wallet'
 # data_type = 'ubuntu'
 # data_type = 'snips'
-data_type = 'nlu'
+# data_type = 'nlu'
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
 with open('data/{}/words.txt'.format(data_type), encoding='utf8') as f:
@@ -46,15 +46,13 @@ train_labels = []
 with open('data/{0}/{0}_train_text.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each token by its index if it is in vocab else use index of UNK
-        s = [vocab[token] if token in vocab
-            else vocab['UNK']
-            for token in sentence.strip().split()]
+        s = [vocab[token] if token in vocab else vocab['UNK'] for token in sentence.strip().split()]
         train_sentences.append(s)
 
 with open('data/{0}/{0}_train_labels.txt'.format(data_type), encoding='utf8') as f:
     for sentence in f:
         # replace each label by its index
-        l = [tag_to_idx[label] for label in sentence.strip().split()]
+        l = [tag_to_idx.get(label, tag_to_idx.get('O')) for label in sentence.strip().split()]
         train_labels.append(l)
 
 # Sort the data according to the length
@@ -80,12 +78,12 @@ with open('data/{0}/{0}_test_labels.txt'.format(data_type), encoding='utf8') as 
 count = 1
 train_sentences_fixed = []
 train_labels_fixed = []
-for t, l in zip(train_sentences, train_labels):
+for true, l in zip(train_sentences, train_labels):
     count += 1
-    if len(t) != len(l):
-        print(f'Error:{len(t)}, {len(l)}, {count}')
+    if len(true) != len(l):
+        print(f'Error:{len(true)}, {len(l)}, {count}')
     else:
-        train_sentences_fixed.append(t)
+        train_sentences_fixed.append(true)
         train_labels_fixed.append(l)
 
 train_sentences = train_sentences_fixed
@@ -93,12 +91,12 @@ train_labels = train_labels_fixed
 
 test_sentences_fixed = []
 test_labels_fixed = []
-for t, l in zip(test_sentences, test_labels):
+for true, l in zip(test_sentences, test_labels):
     count += 1
-    if len(t) != len(l):
-        print(f'Error:{len(t)}, {len(l)}, {count}')
+    if len(true) != len(l):
+        print(f'Error:{len(true)}, {len(l)}, {count}')
     else:
-        test_sentences_fixed.append(t)
+        test_sentences_fixed.append(true)
         test_labels_fixed.append(l)
 test_sentences = test_sentences_fixed
 test_labels = test_labels_fixed
@@ -161,7 +159,7 @@ class hparamset():
         self.lr_decay_pow = 1
         self.epochs = 100
         self.seed = 999
-        self.max_steps = 3000
+        self.max_steps = 1500
         self.patience = 100
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
@@ -222,7 +220,8 @@ def idx_to_tag_labels(label_ids):
 print('Training time:{}'.format(time.time()-start_time))
 
 updates = load_model_state('best_model.pt', model)
-with open('{}_label.txt'.format(data_type), 'w') as t, open('{}_predict.txt'.format(data_type), 'w') as p:
+with open('{}_label.txt'.format(data_type), 'w') as true, \
+        open('{}_predict.txt'.format(data_type), 'w') as predicted:
     with torch.no_grad():
         model.eval()
         prediction_label_ids = []
@@ -235,25 +234,25 @@ with open('{}_label.txt'.format(data_type), 'w') as t, open('{}_predict.txt'.for
             predict_labels = predict_labels.view(-1)
             # score, predict_labels = model.forward_crf(batch_data)
             lable = lable.view(-1)
-            a = predict_labels.cpu().data.tolist()
-            b = lable.cpu().data.tolist()
-            tag_labels_a = idx_to_tag_labels(a)
-            tag_labels_b = idx_to_tag_labels(b)
-            prediction_label_ids.extend(a)
-            true_label_ids.extend(b)
-            t.write(' '.join(tag_labels_b) + '\n')
-            p.write(' '.join(tag_labels_a) + '\n')
+            predicted_labels = predict_labels.cpu().data.tolist()
+            true_labels = lable.cpu().data.tolist()
+            tag_labels_predicted = idx_to_tag_labels(predicted_labels)
+            tag_labels_true = idx_to_tag_labels(true_labels)
+            prediction_label_ids.extend(predicted_labels)
+            true_label_ids.extend(true_labels)
+            predicted.write(' '.join(tag_labels_predicted) + '\n')
+            true.write(' '.join(tag_labels_true) + '\n')
 
-    t = list()
-    p = list()
-    for a, b in zip(true_label_ids, prediction_label_ids):
-        if a == tag_to_idx.get(O_TAG) and b == tag_to_idx.get(O_TAG):
+    true = list()
+    predicted = list()
+    for p_label, t_label in zip(true_label_ids, prediction_label_ids):
+        if p_label == tag_to_idx.get(O_TAG) and t_label == tag_to_idx.get(O_TAG):
             continue
-        t.append(a)
-        p.append(b)
-    print(len(t), len(p))
+        true.append(p_label)
+        predicted.append(t_label)
+    print(len(true), len(predicted))
     # print(f1_score(t, p, average='micro') * 100)
     # print(f1_score(t, p, average='macro') * 100)
-    print(f"F accuracy: {f1_score(t, p, average='weighted') * 100}")
-    print(f"Precision score: {precision_score(t, p, average='weighted', zero_division=True) * 100}")
-    print(f"Recall score: {recall_score(t, p, average='weighted', zero_division=True) * 100}")
+    print(f"F accuracy: {f1_score(true, predicted, average='weighted') * 100}")
+    print(f"Precision score: {precision_score(true, predicted, average='weighted', zero_division=True) * 100}")
+    print(f"Recall score: {recall_score(true, predicted, average='weighted', zero_division=True) * 100}")
