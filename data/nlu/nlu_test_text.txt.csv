@@ -1,0 +1,1077 @@
+labels	text	cls
+O O O O O O O O U_place_name	what is the most current exchange rate in china	False
+O O O O U_currency_name O O O O O	if i have five dollars how many rupies is that	False
+O O O U_currency_name O O O U_currency_name	how much is dollars american worth in yen	False
+O U_currency_name O U_currency_name	convert euros to dollars	False
+O O O O U_currency_name O U_currency_name	how much is ten dollars in euros	False
+O O O B_currency_name L_currency_name O B_currency_name I_currency_name L_currency_name	how much is b. p. in u. s. d.	False
+O O O O O O U_currency_name O O U_currency_name	what 's the value of the euro relative to nzd	False
+O O O U_currency_name O U_currency_name	exchange rate of euro with dollar	False
+O O O O U_currency_name O O O O O O O U_currency_name	how much money in us would i need to have a thousand pesos	False
+B_currency_name I_currency_name L_currency_name O B_currency_name I_currency_name L_currency_name	u. s. d. to g. b. p.	False
+O O O B_currency_name L_currency_name O O B_currency_name L_currency_name O O O	i have ten us dollars how many canadian dollars do i have	False
+O O O O B_currency_name L_currency_name O O U_currency_name	how much is the us dollar worth in canada	False
+O O O O O O O U_currency_name O U_currency_name	what is the exchange rate between the us and canada	False
+O O B_currency_name L_currency_name O B_currency_name I_currency_name L_currency_name U_date	how much indian rupees per u. s. d. today	False
+O O B_currency_name I_currency_name L_currency_name O O O O O U_currency_name	how many g. b. p. can i get for one dollar	False
+O O O O O O U_currency_name O U_currency_name	give me the exchange rate for dollar in euros	False
+O O O U_currency_name O O O O O B_currency_name L_currency_name	how much australian dollars one can buy for one pound sterling	False
+O O U_currency_name O O O O O O U_currency_name	and the pound is doing how badly against the euro	False
+O O O O O O O O O B_currency_name I_currency_name L_currency_name O U_currency_name	what is the exchange rate between money i 'm the united states and switzerland	False
+O O O O U_date U_timeofday	set a reminder for tomorrow evening	False
+O O O O O O O O O O	notify me when the event is going to take place	True
+O U_person O U_person O O	add jim and jerry to event	False
+O O O O O O B_event_name L_event_name B_general_frequency L_general_frequency O U_timeofday	make a repeating reminder for my yoga practice every day at noon	False
+O O O O O U_person O B_time L_time O U_date O O O O	i have a meeting with sean at four pm on wednesday can you remind me	False
+O O O U_event_name O O U_date O O O O U_general_frequency	create an event gym day on monday and set it to repeat	False
+O O O O B_event_name L_event_name O O O U_timeofday O B_date I_date L_date	blot me all the phone calls planned for the morning of twenty three march	False
+O O O O O O U_event_name U_date	can you remind me about my meeting tomorrow	False
+O O O O O O U_event_name	repeat reminder for my schedule for christmas	False
+O O O B_event_name I_event_name L_event_name O U_date	remind me to call my grandma this Sunday	False
+B_date L_date O B_event_name L_event_name	next week my uncle birthday	False
+O U_event_name O O O O U_date	add running to my calendar for thursday	False
+O O O O B_event_name L_event_name B_date L_date O B_time L_time	i would like to attend church every sunday at eleven am	False
+O O U_person O O O O U_event_name O U_date	see if john is available for a meeting on Monday	False
+O O O O U_event_name	remind me about the meeting	False
+O O O O O O O B_time I_time L_time	set the alarm in my calendar events before five mins	False
+O O O O O O O U_event_name O	activate a one week notification before my anniversary please	False
+O O O O O U_event_name O O O	could you please schedule a meeting with this person	False
+O O O U_event_name O U_person O B_date I_date L_date O U_time	i have a meeting with al on march twenty first at ten	False
+O O B_business_name L_business_name O O B_food_type L_food_type	please call china wok and order number seven	False
+O O O U_food_type O O B_time L_time	place order to pizza takeout for seven pm	False
+O O O O	can i order out	True
+O O O B_food_type I_food_type I_food_type I_food_type I_food_type L_food_type O U_business_name	order two large pizzas and pieces of hot wings from dominoes	False
+O O O O O U_business_name O	order me a bowl from chipotle takeout	False
+O O U_food_type O O	order a pizza for me	False
+O O O O B_food_type I_food_type L_food_type O B_business_name L_business_name U_business_type	place order for a chicken manchow soup from wangs kitchen restaurant	False
+O O O B_food_type I_food_type I_food_type I_food_type L_food_type	hey order a pizza pie with extra cheese	False
+O O O O O	i want to order food	True
+O O U_order_type	call for takeout	False
+O O O O U_food_type U_order_type O O O O	is there any good chinese takeout that 's open late	False
+O O O O U_order_type O O O O O O O O	i would like to pickup a veggie sub with a cookie from subway	False
+O O O O O O O U_food_type U_business_type	pull up the menu for the closest mexican restaurant	False
+O U_order_type O O O O	what takeout places are near me	False
+O O O O U_food_type	place order of one pizza	False
+O O O O U_food_type O U_order_type	find me the nearest chinese for delivery	False
+O O U_food_type O B_business_name L_business_name	order a pizza from pizza express	False
+O O O B_food_type I_food_type I_food_type L_food_type O O O O O O O B_time L_time U_timeofday	get me a turkey jimmy johns sub and set it to be delivered at five pm tonight	False
+O O B_food_type I_food_type L_food_type O U_business_name	order a smoked meat platter from beanos	False
+O O O O O O O	tell me time of alarm you set	True
+O O O O O	list all of my alarms	True
+O O	alarm settings	True
+O O O O O U_date	what alarms are set for today	False
+O O O O O O O O O O O U_date U_timeofday	please see see for me the alarms that you have set sunday morning	False
+O O O O O O O O	tell me when the next alarms are for	True
+O O O O O O O	please tell me what alarms are on	True
+O O O O O	please list all my alarms	True
+O O O O O O	what alarms are set right now	True
+O O O O O O O O U_date U_timeofday	check whether i have set any alarms for tomorrow morning	False
+O O O O O	tell me about my alarms	True
+O O O O O O	do i have any alarms set	True
+O O O O O B_time L_time	is there an alarm at four am	False
+O O O O	show me my alarms	True
+O O O O O O	what alarm time had you set	True
+O O O O O O O O O	can you tell me what alarms i have set	True
+O O O O O U_timeofday O O O O U_time	please let me know the morning alarm time kept for weekends	False
+O O O O O O O U_date	what time is the alarm set for tomorrow	False
+O O O O O O O O	may i know the about alarm you set	True
+O O O	fantastic response .	True
+O O O O O O O O	yeap you 've gotten my instructions perfectly .	True
+O O O O	yeah wonderful response .	True
+O O O O O O O	yeah exact response to the command .	True
+O O O O O O	yeah perfect response to command .	True
+O O O	yeah excellent .	True
+O O O	yeah exactly .	True
+O O O O O	perfect response to command .	True
+O O O O O O O O	yes you have got my instructions perfectly .	True
+O O O O O O	yeah you understood command correcly .	True
+O O O O O O	yeah wonderful response to command .	True
+O O O	strongly agree .	True
+O O O O O	yeap it is confirmed .	True
+O O O O O O	you got the command right .	True
+O O O O	yeah strongly agree .	True
+O O O	yeah fantastic .	True
+O O O O O O O O	yes you 've understood my instructions exactly .	True
+O O O O O O	yeap your understanding was confirmed .	True
+O O O O O	yeah that is correct .	True
+O O O B_event_name I_event_name L_event_name O	when is the school dance junction marked	False
+O O O O O U_date	what is my schedule for tomorrow	False
+O O O O B_time L_time O U_date	am i available at five pm on sunday	False
+O O O O O O O O	do i have any notifications from social media	True
+O O O O O O B_date L_date	what do i have scheduled for next week	False
+O O O U_event_name O O O O U_date	tell me the meetings i have for the week	False
+O O O O O O O O O U_date	do i have any openings on my schedule for tomorrow	False
+O O O O O O O O O O U_date	do i need to pick up the kids from anything today	False
+O O O O O O O O O	is there anything i need to be aware of	True
+O O O O U_event_name O	do i have any undone tasks	False
+O O O O U_date	what is left for today	False
+O O O O O	list out my upcoming events	True
+B_time I_time I_time I_time I_time I_time L_time O O O O O U_event_name O B_time L_time	one thousand two hundred and thirty pm already you will have a meeting in ten mins	False
+O O U_event_name O O U_date	is the meeting scheduled for tomorrow	False
+O O U_event_name O O	when the birthday will be	False
+O O O O U_event_name O O O O O O O	when is my next appointment and who do i contact to reschedule	False
+O O O O O U_timeofday	what is the plan for tonight	False
+O O O O O O O U_event_name O O	what day of the week is my birthday this year	False
+O O O O O B_date I_date I_date I_date I_date L_date	what is my schedule for june fourteenth two thousand and seventeen	False
+O O O O O O O	remove the next event on my calendar	True
+O O O	format the calendar	True
+O O B_event_name L_event_name O O O O U_date	remove the board meeting and reschedule for next wednesday	False
+O O O O	delete event from mine	True
+O O O B_event_name I_event_name L_event_name O O O	cancel the event valentine 's day from the calendar	False
+O O U_event_name O O B_time L_time	remove my meeting today at one pm	False
+O O O O O O O U_event_name O O O O O	i no longer need to see the doctor can that event be removed	False
+O O B_date I_date L_date O O	please remove march nineteenth 's scheduled event	False
+O O O O O O O O O	make sure there is no events on my calendar	True
+O O O O O O O	remove all the events on my calendar	True
+O O U_event_name O O B_date L_date O B_time L_time	delete my meeting event for march nineteen at one pm	False
+O O O	remove upcoming task	True
+O B_person L_person U_event_name O O	remove emma 's birthday from events	False
+O O O O O O O B_event_name L_event_name O O O U_date	in my calendar delete all of my golf events for the current month	False
+O O O	erase calendar events	True
+O B_event_name L_event_name O O O	take lunch meeting off my calendar	False
+O O O O O U_date	delete all my events for tomorrow	False
+O O U_event_name O B_date L_date O O O	delete the party on june first from my calendar	False
+O O O O O O O O O	can to please clear my calendar of all events	True
+O O O O O U_transport_type O O U_place_name	where can i book a train ticket to oregon	False
+O O	navigation search	True
+O O O O U_transport_type O U_place_name	what time does the train leave philadelphia	False
+O O O O O O O U_transport_type B_transport_name L_transport_name	please let me know the time of train northern rail	False
+O O	directions please	True
+O O O O O O B_place_name L_place_name	how far away is the nearest rest stop	False
+O O O U_transport_type O O U_date	what are the train times for today	False
+O O O O B_transport_name L_transport_name O O B_place_name I_place_name L_place_name	how much long until northern rail arrives at kings cross station	False
+O O O U_transport_type O O O B_place_name I_place_name L_place_name	show me the train schedules to the metropolitan opera house	False
+O O O B_place_name L_place_name O O	get route for los angles from here	False
+O O O B_place_name L_place_name	direction to local train station	False
+O O O U_transport_type O O U_place_name	what is the train schedule to denver	False
+O O O O O O O O O O U_place_name O U_transport_type	how long does it take to get from here to chicago by train	False
+O O O O O U_place_name	when i should leave to office	False
+O O O U_transport_type O	when is the train coming	False
+O O O O O U_transport_type O O	how much time is a train to there	False
+O O B_place_name L_place_name	find nearest train station	False
+U_transport_type O	train leaving	False
+O O O O O B_place_name L_place_name	get me to the nearest train station	False
+O O O O O O	let 's start over please .	True
+O O O O O O O	please say one more time again .	True
+O O O O O O O O O O	i would like to hear that information spoken again .	True
+O O O O O O O O O O O	i would like to hear the last one spoken again .	True
+O O O O O O O O O O	i 'd like to hear the last spoke again .	True
+O O O O O O O O O O	i need to hear what you 've said again .	True
+O O O	retry please .	True
+O O O O O O O O O O O O O	will you try what i have just said one more time please .	True
+O O O O O O O O O	would you tell me one more again please .	True
+O O O O O O O	would you tell me once again .	True
+O O O O O O O O O O O O O	could you tell me the last one you just said again please .	True
+O O O O O O O	i want to hear that again .	True
+O O O O O O O	i want to hear it again .	True
+O O O O O O O O	please could you tell me once more .	True
+O O O O O O	can you try again please .	True
+O O O O O O O	say one more time again please .	True
+O O O O O O O	will you speak once again please .	True
+O O O O O O	please say it once again .	True
+O O O O O O O	please tell me it once more .	True
+O O O O O O O	what year what the eiffel tower built	True
+O O O B_event_name L_event_name O O	when does the super bowl officially start	False
+O O O O O O	how many months in a year	True
+O O O O O O O	how many pages long is harry potter	True
+O O O O O	where do cows come from	True
+O O U_place_name	where is italy	False
+O O O O O O B_person L_person	give me the birth date of mahatma gandhi	False
+O O O O O O O O O O O O	which continent has highest growth of cotton and what is average production	True
+O O B_artist_name L_artist_name U_event_name	when is shakira 's birthday	False
+O O O O O O O O U_place_name	please tell me about the historic facts about india	False
+O O O B_person L_person O O	how old is emma watson newest boyfriend	False
+O O U_person	who assassinated lincoln	False
+O O O O O O O O O O	tell me when will indians economy touch that of americas	True
+O O B_person L_person O	info on lisa ann please	False
+O O O U_place_name O B_place_name L_place_name	calculate distance from boston to new york	False
+O O O B_person L_person O O	what year did george clooney start acting	False
+O O O O O O O O O	tell me who will win the next presidential election	True
+O O O O O O O	what is the capital of new hampshire	True
+O O O O U_place_name	name the capital of nigeria	False
+O O O U_device_type O O O B_house_place L_house_place	please activate my vacuum to clean the living room	False
+O O O O U_device_type O O U_house_place	can you wake the roomba for the kitchen	False
+O O U_device_type O O B_time L_time	please have vacuum go for one hour	False
+O O U_device_type	activate the vacuum	False
+O O O O O B_device_type L_device_type	clean the sofa with the vacuum cleaner	False
+O O B_device_type L_device_type O O U_house_place	have the vacuum cleaner clean the room	False
+O O O B_device_type I_device_type L_device_type	hurriedly activates my robot vacuum cleaner	False
+O U_device_type	begin vacuum	False
+O O O B_device_type L_device_type	remove dust with vacuum cleaner	False
+O B_device_type L_device_type	start vacuum bot	False
+O O B_device_type I_device_type L_device_type O U_time O B_time L_time U_general_frequency	start my robot vacuum cleaner by ten to eleven am daily	False
+O B_device_type L_device_type	activate vacuum cleaner	False
+O O O U_device_type	turn on the roomba	False
+O O O	begin vacuum cleaning	True
+O O O O B_device_type L_device_type	please turn on my vacuum cleaner	False
+O O O O O B_device_type I_device_type L_device_type	how do you activate the robot vacuum cleaner	False
+O O O O O O O	are there any new emails from name	True
+O O O O	give me recent emails	True
+O O	refresh email	True
+O O O O O O O O O O O O O	i need to know all of the emails from contact pertaining to subject	True
+O O	open email	True
+O O O O O O O B_date I_date L_date	who has sent me an email in the past week	False
+O O O O O O U_relation	check emails for unread emails from mom	False
+O O O O O O O O B_time I_time L_time	did any emails come for me in the last five hours	False
+O O O O O O O U_email_folder O	report what is new in my email inbox please	False
+O O O O O O O O O O O O O	what is the subject and who is the sender of my last email	True
+O O O O U_person O O O O	what did i tell susan in my last email	False
+O O O O O O O	show me all the emails received recently	True
+O O O O O O U_person	do i have any emails from jessica	False
+O O O O O O	are there any recent unread emails	True
+O O O O O O O U_person	do i have any new email from ryan	False
+U_person O O O	carlos linux upgrade email	False
+O O	my mail	True
+O O O O O O	have i gotten any mail recently	True
+O O	check emails	True
+O O O O O	what events are coming up	True
+O O O O O O B_date L_date O B_place_name L_place_name	let me see cultural events for this weekend in palermo neighborhood	False
+O O O U_event_name O O	what are the concerts happening nearby	False
+O O O O O U_event_name O O O U_place_name B_date L_date	is there any type of festival going on in town this weekend	False
+O O B_event_name L_event_name O B_place_name L_place_name	show me painting exhibition in bay area	False
+O O O O O O O O U_place_name B_date L_date	are there any fun things to do in seattle this weekend	False
+O O O O	what 's going on	True
+O O O O O O O	recommend an event happening in my area	True
+O O O O B_date L_date O O O	what events are happening this weekend in my area	False
+O O O O O U_place_name B_date L_date	what 's happening at the library this month	False
+O O O O O B_place_name L_place_name O O	what is playing at the local theater right now	False
+O O O O O O O U_event_name U_place_name	what do they have going on for festivals downtown	False
+O O O O O O O B_event_name L_event_name O B_place_name L_place_name O B_date L_date	could you list out the information on book fairs in washington dc for next week	False
+O O O O O O U_place_name U_timeofday	are there any events going on downtown tonight	False
+O O O O O O O O	when is the yearly cultural event coming up	True
+O O O B_place_name L_place_name	what 's happening around town	False
+O O O O O O O U_timeofday	What event do you suggest for me tonight	False
+O O O O U_place_name U_date	what 's happening in town tonight	False
+O O O O O U_event_name O O O O O U_place_name O O	give me the list of circus shows going on in the city right now	False
+O O O O O O O O	can you remove this item from the list	True
+O O O	delete last entry	True
+O O O O	remove books from list	True
+O O O O O B_list_name L_list_name	please remove my list of favorite albums	False
+O O O O O O	please delete what i just typed	True
+O O O O O U_list_name O	take bread out from the shopping list	False
+O O O O O	change that off the list	True
+O O O O O O O O O O	remove the list of apps which started with letter a	True
+O O O O O	remove this from the list	True
+O O O O	get rid of peas	True
+O O O O O O	remove item three from the list	True
+O O O O O O O	take grocery buying off of the list	True
+O O O O O O O O O O O O O O O O O O O O O O	i do n't have enough money to buy the nintendo switch right now can you please remove it on my amazon wishlist	True
+O O O O O O O	i want to remove apples from list	True
+O O O O O O O	please remove this item from the list	True
+O O	delete item	True
+O O O	remove item four	True
+O O O B_person L_person O O O	get rid of mike stein from contacts list	False
+O O U_list_name O O O O	delete my grocery list in my notes	False
+O O O O U_general_frequency U_list_name O O O	create a list of monthly groceries to be bought	False
+O O O O U_list_name O O O	create a list of books to be ordered	False
+O O O O	create a blank list	True
+O O O	add to list	True
+O O O O O B_list_name I_list_name I_list_name I_list_name L_list_name O	add these documents to the things i need to travel with	False
+O O O O	start a new list	True
+O O O B_list_name L_list_name O	create a new to do list	False
+O O O	search the item	True
+O O O U_list_name O	create a new shopping list	False
+O O O	start new list	True
+O O O O O O O O	i need to set up a new list	True
+O O O O O O O U_list_name O	remind me to buy jeans on my shopping list	False
+O O O O O O	add cereal to my shopping list	True
+O O O O O O	i need to make a list	True
+O O O O O	please add item to list	True
+O O O O O B_list_name L_list_name	make a new list of dog breeds	False
+O O	add item	True
+O O O	make a catalogue	True
+O O O O O	put this on my list	True
+O O O O U_business_type O O O O O O O	please tell me a shop where i can find books to buy	False
+O O O O U_business_type	where is the closest restaurant	False
+O O O B_business_type L_business_type O B_place_name I_place_name L_place_name O	is there a sports bar near kansas city plaza area	False
+O O O O O U_timeofday	where should i go eat tonight	False
+O O O O O O U_business_type O O B_event_name L_event_name	i 'm looking for a casual restaurant for a dinner date	False
+O O O B_business_type L_business_type O O	where is the shopping mall for shirts	False
+O U_business_type O O O	what shops are near me	False
+O O O O U_business_type O	when does the closest bar close	False
+O O O O O O B_business_type L_business_type O O O	where can i find the nearest irish pub in my area	False
+O O O U_business_type O B_place_name I_place_name L_place_name	give me some cafes near downtown fort lauderdale	False
+O O O O O O O B_business_type L_business_type O U_place_name	where is the best place to buy party supplies in town	False
+O O O O O O O U_business_type O B_place_name L_place_name	where can i got to grab some drinks in west chester	False
+O O O O U_business_name	where is the closer starbucks	False
+O O O O B_business_type L_business_type O O	what is the best hardware store near me	False
+O O U_place_name	where is mcdo	False
+O O O O U_business_type O B_place_name L_place_name	can you recommend any pub in mg road	False
+O B_business_type L_business_type O O O O O O	find grocery store with an organic section near me	False
+O O O U_food_type O O B_place_name L_place_name	is there any chinese places in benton ar	False
+O O O O B_place_name I_place_name L_place_name O	tell me where the local shopping district is	False
+O B_app_name L_app_name	open google keep	False
+O O O O O	what is the list type	True
+O O O O O U_date	what list did i make today	False
+O O O O O O B_list_name L_list_name O	did i put toothpaste on my pick up list	False
+O O O O	please show me lists	True
+U_list_name O	groceries list	False
+O O O O	tell me my lists	True
+O O O O O O O	how many items are on my list	True
+O O O O O O O	tell me the names on the list	True
+O O O O O O O O	show the list that are available with numbers	True
+O O O O O O O O	please tell me what lists i have made	True
+O O O	most viewed list	True
+O O O O O O O O B_list_name L_list_name	what did i put down already on the walmart list	False
+O O O O O O U_date	can i see my lists for today	False
+O O O O O O U_date	is there anything on my list today	False
+O O O O O O	what open lists do i have	True
+O O O O O	what is on my playlist	True
+O O O O O	what 's on the list	True
+O O O O O U_date	what s the schedule for today	False
+O O O O O O	play a movie i 'll like	True
+O O O O O O O U_date	what time will a movie be shown tomorrow	False
+O O O O U_date	what new movies available today	False
+O O O O O O O O O	suggest a good genre movie that came out recently	True
+O O O O	please recommend a movie	True
+O O O O O O B_date L_date	what is the highest rated movie this week	False
+O O O O O	recommend a movie for me	True
+O O O O O O O O O O O O	do you recommend any movies that are currently playing in me area	True
+O O O O O O O O	what is the highest rated movie now out	True
+O O O O O O O B_date L_date	what is the best movie to watch this weekend	False
+O O O U_transport_type O O U_place_name O U_date O O U_time	book me a train ticket to chicago for tomorrow morning before ten	False
+O O O O U_transport_type O O O O O	find out the the train arrival time and book me	False
+O U_transport_type O O B_place_name L_place_name	google train tickets to washington dc	False
+O O O U_place_name O U_transport_type	book ticket for paris by train	False
+O O O U_transport_type O	book me a train ticket	False
+O O U_transport_type O O U_place_name O U_timeofday	book a train ticket to canada this evening	False
+O O O O U_transport_type O B_place_name L_place_name U_date O O B_place_name I_place_name I_place_name I_place_name I_place_name I_place_name I_place_name L_place_name	book me on a train leaving penn station tomorrow travelling to any city more than two hundred miles away	False
+O O O U_transport_type O O O O O O O U_place_name O B_time L_time	get me two train tickets from where i am now to dallas arriving before dark	False
+O O O O O U_transport_type O O U_place_name O U_date	book and pay for a train ticket to denver for saturday	False
+O O O U_transport_type O O U_place_name O U_place_name	please book a train ticket from london to manchester	False
+O O O O U_transport_type O O B_place_name L_place_name O O O O O O	google i need one train ticket to new york can you book that for me	False
+O O O O O U_transport_type O	i need to buy a train ticket	False
+O O O O O O O U_place_name O U_place_name O B_date L_date O O O O	book a ticket in irctc website from sbc to mdu on may two for stored passenger list	False
+O O O U_transport_type O	google search booking train ticket	False
+O O O O O O B_place_name I_place_name L_place_name O B_place_name L_place_name O O O B_date I_date L_date	please purchase a amtrak ticket from las vegas nevada to lakeland florida leaving on the first of april	False
+O O O O U_transport_type O O U_place_name	book the the next train ticket to chennai	False
+O O O U_transport_type O O U_place_name	find me a train ticket to boston	False
+O O O O O O O U_transport_type O U_place_name O U_place_name	get me a ride on the commuter train from nj to ny	False
+O U_app_name O O O O O O	open irctc application and go to book ticket	False
+O O O B_device_type L_device_type	please turn on all lights	False
+O O O O O	please turn on the lights	True
+O O O O O B_house_place L_house_place	it 's dark in the living room	False
+O O O O O	please tell me the date	True
+O U_date	date today	False
+O O U_date	what is today	False
+O O O O O U_place_name	what is the time in geneva	False
+O O O O O	let me know the time	True
+B_place_name L_place_name O O	new york time please	False
+O O O O O O O O U_place_name	what is the time difference between here and dakar	False
+O O O O O O U_place_name	let me know the time in india	False
+O O O O O B_time_zone I_time_zone L_time_zone	tell me the time in this time zone	False
+O O O O O U_date	which date is on next monday	False
+O O O O O O O B_place_name L_place_name	tell me what time it is in dallas texas	False
+O O O O O O B_place_name I_place_name L_place_name	what time is it in the other time zones	False
+O O O O O O O U_place_name	hey what 's the current time in austin	False
+O O O O O	hey what is the time	True
+O O O O O O O O	could you tell me what time it is	True
+O O O O O O O B_event_name L_event_name O O	what day of the week does the next holiday fall on	False
+B_date L_date O O O O O O	august fifteenth is what day of the week	False
+O O O O O O U_date	can you tell me the date today	False
+O O O B_date L_date O	hey what 's today 's date	False
+O O U_definition_word	please define forensic	False
+O O O O O O O U_definition_word	tell about the origin of the word evolution	False
+O O O O O U_definition_word	what 's the definition of diverse	False
+O O U_definition_word	what is love	False
+O O O U_definition_word	what is a trebuchet	False
+O O O O O B_definition_word I_definition_word I_definition_word L_definition_word	what do you know about the statue of liberty	False
+O O O O	google definition for me	True
+O U_definition_word	Define economics	False
+O O O O O	what does h2o stand for	True
+O O O	meaning of word	True
+O O O O O O U_definition_word	please tell me the definition of home	False
+O O O O O U_definition_word	how would you define a car	False
+O O U_definition_word O O O O O	look up animal and give me the definition	False
+O O U_definition_word	describe a rotor	False
+O B_definition_word L_definition_word O O	define the moon for me	False
+O U_definition_word	define flabbergasted	False
+O O O O U_definition_word	find the meaning of promise	False
+O U_definition_word	define rumplestiltskin	False
+O O O U_definition_word O O	what does a grapefruit look like	False
+O O O O O U_weather_descriptor O U_timeofday O	do i have to bring umbrella for tonight party	False
+O O O U_weather_descriptor U_timeofday	should i wear gloves tonight	False
+O O U_weather_descriptor O O U_timeofday	will it rain in the noon	False
+O O O O O O U_timeofday	how will be the weather at night	False
+O O U_weather_descriptor O B_weather_descriptor I_weather_descriptor L_weather_descriptor U_date	will the temperature be higher than forty tomorrow	False
+O O O O U_date U_timeofday	ask for the weather today morning	False
+O U_weather_descriptor O O	is summer going on	False
+O O O O O O U_weather_descriptor O O O O U_weather_descriptor U_timeofday O B_time L_time	do you think i can wear sandals or should i wear sneakers tonight at seven pm	False
+O O O O O O B_time I_time I_time I_time L_time	show me the weather forecast for the next three three days	False
+O O O O O O U_weather_descriptor U_date	are you sure its going to rain tomorrow	False
+O O O O B_weather_descriptor L_weather_descriptor B_timeofday L_timeofday	will i need my snow boots this afternoon	False
+O O O O O U_weather_descriptor U_date	do i need to wear sunscreen today	False
+O O O U_weather_descriptor U_date	what is the temperature today	False
+O O O O B_date L_date	what is the weather next week	False
+O O O O O U_date	what is the climate here today	False
+O O O O O O O O O O	let me know when the next cold front is expected	True
+O O O O O O U_weather_descriptor U_date B_time L_time	i am gon na need an umbrella today after sunset	False
+O O O O O O	google what is the temperature outside	True
+O O O U_weather_descriptor O U_date	are there any tornado warnings today	False
+O O	quiet please	True
+O O O O	mute sound from speakers	True
+O O O B_time L_time	please mute for five minutes	False
+O O O O O O O O O O O O O	mute my speakers for a minute here i need to make a call	True
+O O	mute speaker	True
+O O O O	silence volume on speakers	True
+O O O O	turn off media volume	True
+O O O O O O B_time L_time	i need you to be quiet until tomorrow	False
+O O O	go to sleep	True
+O O O B_time L_time	no notifications for five minutes	False
+O O O O	turn off the sound	True
+O O O	mute the music	True
+O O B_time L_time	pause for ten seconds	False
+O O O B_time L_time	set mute for twenty minutes	False
+O O O O O O	i need to mute the speaker	True
+O O O O O O O	i would not mind , olly .	True
+O O O O O O O	would n't mind for any one .	True
+O O O O O O O O	does not matter for me , olly .	True
+O O O O O O O	do n't really bother , olly .	True
+O O O O O O O	would n't really know , olly .	True
+O O O O O O O O O O O	i have no idea about what to do , olly .	True
+O O O O O O O	i do not mind for whatever .	True
+O O O O O O O	any one is good , olly .	True
+O O O O O O O O O	it does not matter to me , olly .	True
+O O O O O O O O O	i would not mind to select any one .	True
+O O O O O O O O	i do not really mind for whatever .	True
+O O O O O O	this is unimportant for me .	True
+O O O O O O O O O O O	i would not mind to select any one , olly .	True
+O O O O O O	does not matter for me .	True
+O O O O O O O	any one is good to me .	True
+O O O O O O	this is unimportant , olly .	True
+O O O O O O O	would n't really mind for whatever .	True
+O O O O O O O O O O O	have no idea regarding to what to select , olly .	True
+O O O O O O	does not matter , olly .	True
+O B_person L_person O	add dan 's email	False
+O O O O	add contacts n mail	True
+O B_email_address I_email_address L_email_address O O O O	enter atdfd@yahoo dot com into my contact list	False
+O B_email_address I_email_address L_email_address O O O	get apahelp@yahoo dot com in my contacts	False
+O O O O O O	save the email to my contact	True
+O O U_email_address O O O O	please add johndoe@yahoocom to my contact list	False
+O O O O	add this new email	True
+O O O O	add work email address	True
+O O O O O O O B_time I_time L_time	disable the alarm which is set at nine thirty pm	False
+O O O	delete scheduled alarm	True
+O O O O O	turn off my first alarm	True
+O O O O O U_date	please cancel all alarms for tomorrow	False
+O O O U_date U_timeofday O	please delete the wednesday evening alarm	False
+O O O U_timeofday O	please delete my morning alarm	False
+O O O O O	remove all of my alarms	True
+O O	cancel alarm	True
+O O O O O O	delete the alarm i just set	True
+O O O O O O O O O B_time I_time L_time	could you please remove the set of alarms between eight and nine	False
+O O O O O	please turn off the alarm	True
+O O B_device_type L_device_type	switch off main light	False
+O O O B_device_type I_device_type I_device_type I_device_type L_device_type	off all the lights on the right side	False
+O O O O U_house_place	turn off lights in bathroom	False
+U_house_place O O O	bedroom lights off now	False
+O O O O O O U_house_place	turn off the lights in the bathroom	False
+O O O O O O O U_house_place	please turn off the lights in the kitchen	False
+O O O U_house_place O	turn off the room light	False
+O O O O	power off the current	True
+O O O O U_house_place	turn off lights of kitchen	False
+O O O O	by main power off	True
+O O O O U_house_place O	turn off the upstairs bathroom light	False
+O O O O U_house_place O	please turn off my patio lights	False
+O O O O O	turn the lights off please	True
+O O O O O U_house_place O O O	can you make sure the kitchen light is off	False
+O O O O O O	could you turn the light off	True
+O O B_house_place I_house_place L_house_place O O	turn the living room 's light off	False
+O O O O	switch off the lights	True
+O O O O O B_device_type L_device_type	can you turn off my desk lamp	False
+O O B_device_type L_device_type O	turn the left light off	False
+O O O O O B_house_place L_house_place	dim the lights at the living room	False
+O O O O	lower the light intensity	True
+O O O O O O O O	hi can you please turn lower the lights	True
+O O O O	dim the lights please	True
+O O O O O	please turn down the lights	True
+O O O	lower the lights	True
+O O O O B_house_place L_house_place	lower the lights in bedroom two	False
+O O O O O O O O	i want the room to be less bright	True
+O O O O O B_change_amount L_change_amount O	hey olly make the lights a little dimmer	False
+O O O O	light is too much	True
+O O	reduce brightness	True
+O O U_house_place O O O	dim the overhead lights a tad	False
+O O O O U_transport_agency B_time I_time L_time	request a driver for uber in five minutes	False
+O O O U_transport_agency O O	order me an uber ride please	False
+O B_transport_type L_transport_type	call yellow cab	False
+O O U_transport_agency O O O O O O U_place_name O	find an uber that can get me to the airport now	False
+O O O U_transport_type O B_place_name L_place_name O U_place_name	book me a taxi from castle street to airport	False
+O O U_transport_type	call a taxi	False
+O O U_transport_type	book a taxi	False
+O O U_transport_agency O O O O O O B_place_name I_place_name L_place_name O O	book an uber to pick me up outside of long island bar right now	False
+O O U_transport_type O O O O O O	call a taxi to pick me up at work	False
+O O U_transport_agency O O O U_timeofday O B_time L_time	find an uber driver available for tonight after ten pm	False
+O O O U_transport_agency	book me an uber	False
+O O U_transport_agency O B_time L_time O U_business_name O B_place_name L_place_name	schedule an uber in twenty minutes to tesco on fifth street	False
+O O O U_transport_type O O U_place_name O O	get me a taxi to the airport right now	False
+O O U_transport_type O O O	have a taxi pick me up	False
+O O O U_transport_agency O U_date U_timeofday O B_time L_time	book me a uber for tomorrow night at six pm	False
+O O O O U_transport_agency U_transport_type O B_place_name L_place_name	book for me an uber taxi to carmen drive	False
+U_transport_agency	uber	False
+O O U_transport_type O O O O	book a taxi to start from here	False
+O O O O O O O O O O O	thanks but i think you do n't understand this correctly .	True
+O O O O O O O O O O O	sorry but i think you 've got that not right .	True
+O O O O O O	i did n't say it .	True
+O O O O O	shit , not right .	True
+O O O O O O O O	i think it is not correct response .	True
+O O O O O O O O	thanks but you have understood this wrongly .	True
+O O O O O O O O O O O	wait , i think that 's not the right answer .	True
+O O O O O	that was n't right .	True
+O O O O O O O	oops , you 're not correct .	True
+O O O O O O O O O	wait , you did not interpret command right .	True
+O O O O O O O	you have done a wrong thing .	True
+O O O O O O O O O	wait , this is not the correct answer .	True
+O O O O O O O O O O	thanks but i think you do not get me .	True
+O O O O O O O O O O O	no , this is not what i am looking for .	True
+O O O O O O	uhh no , incorrect command .	True
+O O O O O O O O O	i think you do n't get answer right .	True
+O O O O O O O O O	i think you did a task all wrong .	True
+O O O O O O O O O O O O O	uh no , you did not understand what i am searching for .	True
+O O O O O O O O O O O O O	i am sorry but i think it was not the correct answer .	True
+O O O O O O O	could you speak a little more softly	True
+O O O	turn it up	True
+O O O O O O	just increase the volume a little	True
+O O O O O	olly turn the volume up	True
+O O B_change_amount I_change_amount L_change_amount O B_device_type L_device_type	raise volume to level seven on music player	False
+O O O O O O O	i want the speakers turned up high	True
+O O	rise volume	True
+O O O O O O O B_song_name I_song_name I_song_name L_song_name	please increase the volume of the music hips do n't lie	False
+O O O O O B_device_type L_device_type B_change_amount I_change_amount L_change_amount	raise the volume of my music player by fifty percent	False
+O O O O O O	speak as loud as you can	True
+O O O	increase volume please	True
+O O O O O	make this a bit louder	True
+O O B_change_amount I_change_amount L_change_amount	increase volume to fifty percent	False
+O O B_person L_person U_personal_info	what is sarah 's number	False
+O O O O O O U_person	can you give me details on john	False
+O O O O B_event_name L_event_name	have you responded my phone calls	False
+O O B_person L_person U_personal_info	what is jeff 's number	False
+O O O O O O U_person	how many contacts are there named john	False
+O O O B_personal_info L_personal_info O O U_relation	tell me the contact details of my brother	False
+O B_personal_info L_personal_info O U_person	show mobile number of john	False
+O O U_person O O U_personal_info O O	does contact mona has an email as well	False
+O U_personal_info O O U_personal_info O U_person	show number and contact email of rehan	False
+O O O O B_personal_info L_personal_info O O B_relation L_relation	look up for the residential address of my team leader	False
+O O B_relation I_relation L_relation U_personal_info	what is my wife 's email	False
+O O O	select the contact	True
+O O O U_relation B_personal_info L_personal_info	is this my sisters cellphone number	False
+O U_personal_info O B_person L_person	how old is mary s.	False
+O U_relation O O	did mom text me	False
+O O O O O U_person O U_personal_info	please let me know where david is travelling	False
+O U_person O U_personal_info O B_place_name L_place_name	is hayden still living on turnpike lane	False
+O B_person L_person O O O O O O	add rebecca green to my list of favorite contacts	False
+O O B_person L_person B_personal_info I_personal_info L_personal_info	what is jill 's home phone number	False
+O O O B_device_type I_device_type L_device_type O O O O O O	turn on the wemo plug socket to connect my charger to it	False
+O O O U_device_type	turn on the plug	False
+O O O O O O	on all the button on dashboard	True
+O B_device_type I_device_type L_device_type O	toggle wemo plug socket on	False
+U_device_type O	wemo on	False
+O O B_device_type L_device_type	start new smart socket	False
+O O U_device_type O O	make the wemo go on	False
+O O O O O	play music i have liked	True
+O O O O O O B_music_descriptor L_music_descriptor O B_song_name I_song_name L_song_name	i would like to hear the theme song to this is us	False
+O O O O O O	play the list from my favorites	True
+O B_song_name L_song_name O B_artist_name L_artist_name O O O O O	put poker face by lady gaga next in the play queue	False
+O O O O	turn on the tunes	True
+U_music_genre	rock	False
+O U_song_name O B_artist_name I_artist_name L_artist_name	play jumper by third eye blind	False
+O O O	play music playlist	True
+O O O O O	please turn on my music	True
+O O U_music_genre O	play my rap playlist	False
+O O O O U_song_name	after this song play atmosphere	False
+O B_song_name L_song_name O	play true love next	False
+O B_music_genre L_music_genre O	play hip hop songs	False
+O O O O B_artist_name L_artist_name	hey play crazy by britney spears	False
+O B_artist_name L_artist_name B_song_name I_song_name L_song_name	play marvin gaye i want you	False
+O U_music_descriptor	play tonic	False
+O B_song_name L_song_name O	play jingle bells next	False
+O U_music_genre	open jazz	False
+O O B_artist_name L_artist_name	play all third day	False
+O O O O O O	would you confirm the question .	True
+O O O O O O O	could you check my last question .	True
+O O O O O O O O	will you check and confirm command please .	True
+O O O O O O	please will you check it .	True
+O O O O O O O O O O O	could you check and confirm what i last said please .	True
+O O O O O O	will you please check it .	True
+O O O O O O O	please can you confirm the question .	True
+O O O O O	check the details please .	True
+O O O O O	can you confirm it .	True
+O O O O O O	please can you confirm it .	True
+O O O O O O O O O	can you check and confirm the question please .	True
+O O O O O O O	i like you check question please .	True
+O O O O O O O O	did you get what just said correctly ?	True
+O O O O O O O	did you get what said correctly ?	True
+O O O O O O O O O O O O	i like you to check and confirm what i said please .	True
+O O O O O O O	would you please confirm the instruction .	True
+O O O O O O O O	check and confirm my last question please .	True
+O O O O O O O O O	will you check and confirm the instruction please .	True
+O O O O O O O O	can you check last thing said please .	True
+O O O O O O	i would like some coffee now	True
+O O O O B_time L_time	please make coffee at seven am	False
+O O O O O	make a cup of coffee	True
+O O O B_time L_time	start coffee at six am	False
+O O O O O	i want some coffee now	True
+O O O U_coffee_type O	get me some latte please	False
+O O U_coffee_type O	prepare my morning coffee	False
+O O O O O O O	prepare some cups of coffee for us	True
+O O O O O O O B_device_type L_device_type O O O O U_coffee_type O O O B_time I_time I_time L_time	can you see to it that the coffee maker is ready with my filter coffee in approximately ten minutes from now	False
+O O O O O O	i 'd like a coffee now	True
+O O O O O O B_device_type L_device_type O O O O	can you please turn on the coffee pot to make me coffee	False
+O O O	prepare coffee now	True
+O O O O O O O O	can you get me a cup of coffee	True
+O O O O O O O	make a cup of coffee for me	True
+O O O O O O O	get a cup of coffee ready now	True
+O O	coffee please	True
+O O O U_coffee_type	make me a capuccino	False
+O O O O B_time L_time	make me coffee at eight am	False
+O O O O O O	put on a pot of coffee	True
+O O O U_food_type	help me make brownies	False
+U_food_type O	crabmeat recipe	False
+O O O	it should spices	True
+O O U_ingredient O O	tell how vegetable is cooked	False
+O O O U_food_type O	learn to cut potatoes correctly	False
+O O O O O	how to cook that meal	True
+O O O O O O U_food_type	can i get a recipe for tuna	False
+O O O O U_food_type	please cook me a hamburger	False
+O O O B_ingredient L_ingredient	how to cook yellow rice	False
+O O O O O O O B_food_type L_food_type	i need to know how to make stuffed peppers	False
+O O O O U_food_type	how can i cook pasta	False
+O O O O	look for different recipes	True
+O O O O O O O U_ingredient	what ingredient can be used instead of saffron	False
+O B_food_type L_food_type O	find apple pie recipe	False
+O O O O O O O U_device_type	do i have enough ingredients in my refrigerator	False
+O O O O O	search for your favorite meal	True
+O O O O O O U_food_type O O	tell me the preparation method for chicken sixty five	False
+O O O O O O O O O O O O	i would like it to be able to find recipes i have	True
+O O O O B_ingredient L_ingredient	why do people use avocado seeds	False
+O O O O O O	add newscast time to daily schedule	True
+O O O O O O O O	what were the cities affected by the earthquake	True
+O O U_date O O	head lines today from news	False
+O O O U_place_name B_news_topic I_news_topic I_news_topic I_news_topic L_news_topic	what is the seattle city council doing about homelessness	False
+O O O O O B_media_type L_media_type O B_time I_time L_time	find me any news from so clean the last six hours	False
+O O O O O O O O U_media_type	what is the latest headline news from this newsource	False
+O O O O O O O O O O O O O O O O O O	could you please find me the latest news from a source that i do not usually go to	True
+O O O O O O B_news_topic L_news_topic O O	please keep tabs on how the presidential debates are going	False
+O O O O O U_place_name	what 's happening around the world	False
+O O O O O O O O O O O O U_place_name	i want to know everything that breaks about the dam breaking in california	False
+O O O O O O U_news_topic	what is the latest news about obamacare	False
+O O O U_news_topic	show news of migration	False
+O O U_news_topic O O O O B_media_type L_media_type	find new trump articles but not from fox news	False
+O O O O O O U_media_type	what 's the latest news from xinhua	False
+O O O O U_news_topic	find me info on cars	False
+O O O O U_media_type	Show me news from cnn	False
+O O O O O O B_news_topic L_news_topic	what is the current state of brexit negotiations	False
+O O O O O B_news_topic L_news_topic	fast me the news of academy awards	False
+O O O O O B_news_topic L_news_topic	i want the news about academy awards	False
+O O	light up	True
+O O O	lighten the light	True
+O O O O O O O O O O O U_time	i need the lights in here to be turned up to seven	False
+O O B_change_amount I_change_amount L_change_amount	increase brightness by twenty percent	False
+O O O O O U_house_place	increase the light in the room	False
+O O O O O O	can you turn up the lights	True
+O O O O O O O O O O	i would like all the lights on when i enter	True
+O O O O B_device_type L_device_type O O O	please arrange to make all lights to show brighter	False
+O B_house_place L_house_place O	brighten living room lights	False
+O O O O O	raise all the lights on	True
+O O O	raise the lights	True
+O O O B_change_amount I_change_amount L_change_amount	brighten the light at seventy percent	False
+O	increase	True
+O O O	brighten the lights	True
+O O O O	two by two is	True
+O O O	fifteen plus twenty	True
+O O O O O	divide two hundred by four	True
+O O O O O	what is one plus one	True
+O O O O O	is one divisible by three	True
+O O O O O	convert ten inches to centimeters	True
+O O O O O O O O	what is the answer to this math question	True
+O O O O O	three times two equals six	True
+O O O O O O	how many inches make one feet	True
+O O O O O O O	what is the square root of four	True
+O O O O O O O O O O O	can you add up thirteen plus five plus nine for me	True
+O O O O O O O O O	what is twenty percent of one hundred and twenty	True
+O O O O O O	what is five divided by one	True
+O O O O O O O O	what is the sum of 9 and 12	True
+O O O O O O O	what are the stock prices of target	True
+O O O O O O	fill me in on stock symbol	True
+O O O O O O O U_business_name	what is the price of stock for gm	False
+U_business_name B_business_name I_business_name L_business_name O O	google i. b. m. stock prices	False
+O O O O O O U_date	how is shell s stock doing today	False
+O O O B_business_name L_business_name	stock price for gss energy	False
+O O O O O U_business_name O O	list me the stock of apple right now	False
+O O O U_business_name	stock price for sprint	False
+O O O O O U_business_name	what is the value of apple	False
+O O O O O U_business_name O U_business_name O O O O O O O	compare the stock prices for nintendo and sony and tell me which ones are better	False
+O O O U_business_name O O O O	how much did facebook stock increase last night	False
+O O O O O O U_business_name	what is the stock information of walmart	False
+O O O O O O U_business_name	what is now stock price of tata	False
+O O O O O O U_business_name O	what is the current price of jindel stock	False
+O O B_business_name L_business_name O O U_date	how is coca cola stock doing today	False
+O O O O U_business_name O O	for how much is hp selling for	False
+O O O U_business_name O O O	what price are google stocks trading for	False
+O U_business_name O O O O O O O	is starbucks stock up or down from last quarter	False
+O O O O O O B_business_name I_business_name L_business_name	how much to buy stock in i. b. m.	False
+O O O O U_food_type O U_order_type	where can i order pizza for delivery	False
+O U_business_name O U_order_type	does pings do takeaway	False
+O O O O O B_business_name L_business_name U_order_type	i need to know if mr pizza delivers	False
+O O O O O O O O O O O O O O O O	what 's the exact time we get food delivered once we place an order for food	True
+O O O O O O O	how long until i receive my food	True
+O U_order_type O O O U_business_type	check delivery options for the restaurant	False
+O B_business_name L_business_name O O O	does louie 's do take out	False
+O O O U_order_type O	where are my takeaway order	False
+O O O O B_business_name L_business_name O	is my order at domino 's ready	False
+O O O O O O U_order_type O O	hi there do you offer home delivery for orders	False
+O O O U_order_type	can they provide takeaway	False
+U_business_type O O	restaurant order status	False
+O O O U_order_type O	when is my takeaway arriving	False
+O O O U_business_name O O	find out if kfc delivers please	False
+O O U_order_type O	do they deliver home	False
+O O O B_food_type L_food_type O U_order_type	please see if chili 's has delivery	False
+O O O O O O O O	what is the status of my order no	True
+O O O O U_business_type B_business_name L_business_name O U_order_type O O O	please see if the restaurant chili 's has delivery as an option	False
+O O O U_order_type	can they do delivery	False
+O O O O O B_game_name L_game_name	play for me the game temple run	False
+O O O O U_game_name O O	i want to play solitare with you	False
+O O O B_game_name L_game_name	can we play twenty questions	False
+O O O O O O U_game_name	give me a company for playing football	False
+O O O O O O O	my games to play in my phones	True
+O O O	let 's play	True
+O U_game_name O O	play tennis for me	False
+O O U_game_name	lets play poker	False
+O O U_game_name	anyone for tennis	False
+O U_game_name O O	play pong against me	False
+O U_game_name	play solitaire	False
+O O O U_game_name O O O	we should play nfs at high speed	False
+O O O O O O U_game_name	can we play a game of hangman	False
+O O O O O U_game_name O O	do you want to play monopoly with me	False
+O O B_game_name I_game_name L_game_name	bring up papa pear saga	False
+O U_game_name O O	play checkers with me	False
+O O O B_game_name L_game_name	fight me in street fighter	False
+B_game_name I_game_name I_game_name L_game_name	paper scissors or stone	False
+O U_game_name O O O	start poker game with me	False
+O O O O O O	save this song in my favorites	True
+O O O O O O O	please rate this song five stars please	True
+O O B_music_genre L_music_genre O	i like alt rock music	False
+O O O U_playlist_name O	add song to running list	False
+O O O O O	i like to be it	True
+O O O O U_app_name	add this channel to pandora	False
+O O O O O O O	this song should be on my playlist	True
+O O O	i like it	True
+O O O O O O	add this song to favorites playlist	True
+O O O O B_artist_name L_artist_name O O O O O	i favorite singer is arijit singh find his voice on radio	False
+O O O O O	i really enjoy this song	True
+O O O O O O O O O O O	i 'd like you to remember that i like this song	True
+O O O O O O O	what is in my favorites music folder	True
+O O O O O O O	please save the current song to favorites	True
+O O O O O O O U_music_genre	all i ever want to hear is rap	False
+O O O O O O O	the song you are playing is amazing	True
+O O O O O	please thumbs up this song	True
+O O O O O O O O O O O O	remember that this song is good but too slow to exercise to	True
+O O O O O O O O	i would like you just stop it .	True
+O O O O O O	will you please shut down .	True
+O O O O O O O O O	olly that 's enough , just stop it .	True
+O O O O O O	olly can you stop it .	True
+O O O O O O	olly please would you stop .	True
+O O O O	please shut up .	True
+O O O O O	i like you cancel .	True
+O O O O O O O	will you just stop it please .	True
+O O O O O O	would you cancel it please .	True
+O O O O O O	olly can you shut down .	True
+O O O O O O O O O	olly that is enough , just stop it .	True
+O O O O O O	olly will you cancel please .	True
+O O O O	will you stop .	True
+O O O O O O O	that 's all , cancel it .	True
+O O O O O	olly shut down please .	True
+O O O O O O	olly can you just stop .	True
+O O O O O	will you cancel it .	True
+O O O O O O O	olly please can you shut up .	True
+O O O O O O	olly i want you cancel .	True
+O O O O O O O	send a mail to whom to talk	True
+O O B_person L_person O O O O O O O O O	pull up kate 's email and write that i will let her know	False
+O O O O U_relation O O O O O O O O O O O O O O O	please reply to my boss most recent email and say that the ppt will be ready in one hour maximum	False
+O O O O U_person O O O O O O	reply the email of charles with just thank you right now	False
+O O O O B_email_address I_email_address I_email_address I_email_address I_email_address I_email_address L_email_address	send new email to jana dot litt at gmail dot com	False
+O O O O O B_person L_person O	hey please reply to last pawel 's email	False
+O O O O O O	send email to new email address	True
+O O O O O U_relation O U_event_name O	send an email to my friend say birthday wishes	False
+O O O U_relation O O O O O	send email to mom starting with the subject vacation	False
+B_email_address I_email_address L_email_address	jj.nzt@yahoo dot com	False
+O O O O O U_person	email happy new year to john	False
+O O B_person L_person O O O O O O O O O O O O	tell to joe 's email that come to my house in this moment i am alone	False
+O O O O O O O	go to email and send message to	True
+O B_person L_person	email john smith	False
+O O O O O B_person L_person	start a new email to george brown	False
+O O O O	send a replay email	True
+O O O U_person	send reply to joe	False
+O U_person O O O O O B_date L_date U_event_name	email tom the date and time of tomorrow 's meeting	False
+O O O O O O	add mail i d subject content	True
+O O O B_media_type L_media_type O O	who is doing facebook live right now	False
+O O O O O O B_media_type L_media_type	tell me what 's going on snap chat	False
+O O O O O O O O U_media_type O	what 's the most popular story on my facebook newsfeed	False
+O O O O O O O U_media_type	how many notifications do i have on facebook	False
+O O O O O O U_media_type	please check the trending topics on twitter	False
+O O O O O O O	read me new post on my feed	True
+O O O O B_person L_person U_media_type O O U_time	get me updates from kenny 's facebook from the weekend	False
+O O O B_event_name I_event_name I_event_name L_event_name O O B_relation L_relation	did anyone get engaged or give birth among my online friends	False
+O O O O O O O O	did anyone like my photo i just posted	True
+O O O O O O U_relation O O B_time L_time	show me the posts of my friends in the last hour	False
+O O O O O O O B_media_type L_media_type	may i know what is trending in social media	False
+O O O B_person L_person U_media_type O B_date I_date L_date	find updates from vicki 's facebook from mardi gras day	False
+O O O O	open social media account	True
+O O O O O U_media_type U_date	hi what is happening in twitter today	False
+O O O O O U_media_type	did anyone message me on facebook	False
+O O O O O O O	take me to the most popular post	True
+O O O O O O U_date O O U_media_type	are there any interesting stuff happened today in my twitter	False
+O O O O O U_media_type	what the highest likes on facebook	False
+O O O O O	who is the song writer	True
+O O O O O B_artist_name L_artist_name O	please give me detail of o zaalima song	False
+O O O O O B_artist_name L_artist_name	give me the details on elton john	False
+O O O O O O	what movie is this song from	True
+O O B_song_name I_song_name I_song_name I_song_name I_song_name L_song_name O O	when did pop it like it 's hot come out	False
+O O O O O O O	what is the name of the singer	True
+O O O O O	who is singing this song	True
+O O O O O O O O O O O O O O	i want to know what song has the phrase stairway to heaven in it	True
+O O O O O O	where can i find this song	True
+O O	song info	True
+O O O O O O O U_media_type O B_person L_person	what list is available for my favorite music from ed sheeran	False
+O O O	who is this	True
+O O O O B_artist_name L_artist_name O	list of playback of ar rahman collections	False
+O O O O	what music is this	True
+O O O O O O O O O O O	what music service has some soul music i can listen to	True
+O O O O O O O	which songs do i listen to most	True
+O O O O U_music_genre O O O	can you locate some gospel music for me	False
+O O O O O O O	tell me the name of this music	True
+O O	music traking	True
+U_player_setting O O	shuffle this playlist	False
+U_player_setting O O O O O	repeat this song when it ends	False
+O O O O O O	cut the songs in this musics	True
+U_player_setting O O	repeat previous song	False
+O U_player_setting O O O O U_artist_name	please repeat that music again of akon	False
+U_player_setting O O	repeat this song	False
+U_player_setting O U_media_type O O O	repeat same song for ten times	False
+O O O O O	please make the lights natural	True
+O B_change_amount I_change_amount L_change_amount	lights to fifty percent	False
+O O O O O O O O U_house_place	can you change the light colors in the house	False
+O O O O B_color_type L_color_type	turn the lights on party mode	False
+O O O O	set the mood please	True
+O O O O	change the light colors	True
+O O O O O O O U_color_type O	could you change the lights colour to green please	False
+O U_device_type O O	make curser adjustable position	False
+O O O	change light color	True
+O O O O O U_color_type	change the light color to blue	False
+O O O O O O O U_house_place	alter the color of the lights at home	False
+O O O U_color_type	change lights to blue	False
+O O O O B_house_place L_house_place O O O U_color_type O	can you change the living room lights to a softer color	False
+O O O O B_house_place L_house_place O O U_color_type	can you set the living room lights to pink	False
+O O O O O O O U_color_type	change the color of the lights to blue	False
+O O O O U_color_type O O O B_house_place L_house_place	let 's have a warm glow in the front room	False
+O O O U_color_type O	switch lights to red tone	False
+O O O O O U_color_type O O O O O U_house_place O	change my light color to blue and please turn off the kitchen light	False
+O O O O U_color_type O	all lights colour to blue please	False
+O O O O B_time L_time	set an alarm for nine am	False
+O O O O O U_time	change alarm to start at midnight	False
+O B_time L_time	alarm ten am	False
+O O O O O O U_date	set an alarm for me for tomorrow	False
+O O O O U_time	set an alarm for twelve	False
+O O O O B_time L_time B_general_frequency I_general_frequency I_general_frequency L_general_frequency	set a timer at five am seven days a week	False
+O O O O O O O O U_date O U_timeofday	i need to set an alarm for next friday at noon	False
+O O O O B_time L_time O O O O	please sound an alarm three hours before a scheduled event	False
+O O O O O O B_time L_time	can you set an alarm for seven am	False
+O O O B_time L_time O	alert me at ten am please	False
+O O O O B_time L_time O U_event_name	set the alarm to seven am for work	False
+O O O	wake up time	True
+O O O O U_time_zone O	change my alarms to mountain time	False
+O O O O O O O U_time O O O U_event_name	set up each day an alarm at ten time for my meal	False
+O O O O O O O O U_event_name O B_relation L_relation O B_time L_time O U_date	please set an alarm clock for my next meeting with the team at three pm next friday	False
+O O O O B_time L_time	set my alarm for six am	False
+O O O O O B_time I_time L_time B_timeofday L_timeofday	set an alarm for this eight hundred pm this evening	False
+O O O B_time I_time L_time	set alarm at six thirty am	False
+O O O O O O O B_time I_time I_time L_time	make me a wake up alarm for eight forty five am	False
+O O O O O O O U_place_name	is it possible to drive now in ohio	False
+O O O O O	how is traffic in city	True
+O O O O O	what is the current traffic	True
+O O O O	is there any traffic	True
+O O O O O O O O	are there are any delays on my commute	True
+O O O O O O U_place_name	what the traffic condition outside my office	False
+O U_place_name O O O O O	in jodhpur traffic level is very low	False
+O O O O	outside traffic status please	True
+O O O O O B_place_name L_place_name	show me the current traffic nearby me	False
+O O O O O O O O O	give information about the traffic near my location please	True
+O O O O O O O O	just how bad is traffic on my commute	True
+O O O O B_place_name L_place_name O O	how much traffic does atlanta georgia usually have	False
+O O O O O O O O U_place_name	what is the traffic like right now on telegraph	False
+O O O O O U_timeofday	what 's the traffic this morning	False
+O O O O	accident or normal traffic	True
+O O O O O O O O O B_place_name L_place_name O O O	how long will it take me to get to park avenue considering current traffic	False
+O O O O O O O B_place_name I_place_name I_place_name L_place_name	what are the traffic conditions on the one hundred and one	False
+O O O O U_place_name	how 's the traffic downtown	False
+O O O O O U_place_name	how is traffic on the highway	False
+O U_radio_name	play radia	False
+O B_radio_name I_radio_name I_radio_name I_radio_name L_radio_name	play nine hundred and seventy one	False
+O O O	play the radio	True
+O O O U_radio_name O	turn on the local radio	False
+O O O O O O O O U_radio_name	please turn on the sean hannity show on am	False
+O B_radio_name I_radio_name L_radio_name	play national public radio	False
+O B_radio_name I_radio_name I_radio_name I_radio_name I_radio_name L_radio_name	play one thousand and thirty seven fm	False
+O O O O O B_radio_name I_radio_name I_radio_name I_radio_name I_radio_name L_radio_name	show me upcoming programmes on one hundred and five point one	False
+O O O O O B_radio_name I_radio_name I_radio_name L_radio_name	load sirius and play a rock and roll show	False
+O O O B_radio_name I_radio_name I_radio_name L_radio_name	tune into the nearest english fm station	False
+O O O O O U_relation	please play some songs for kids	False
+O O O O O O U_app_name	find joel osteen 's broadcast on sirius	False
+O O O O B_radio_name I_radio_name I_radio_name L_radio_name O O O	please go to the local sports talk show on the radio	False
+O B_person L_person O O	play alex jones in radio	False
+O O U_radio_name	play radio javan	False
+O O O O O	press play on the radio	True
+O O U_music_genre O O U_app_name	play my rock station on pandora	False
+O O O O O	play music radio for me	True
+O O O O O O B_radio_name L_radio_name	play me a radio channel for trance music	False
+O O O O U_business_name O O O O O O	send a complaint to sony about this tv that quit working	False
+O O O U_business_name	write complaint to wallmart	False
+O U_media_type O O O O O O O O O O O	please tweet about the problem i m facing with the product of company	False
+O U_media_type O O O	open gallery post video name	False
+O O B_business_name I_business_name L_business_name O O	complain to amazon customer service for me	False
+O U_business_name O O O O O	tell comcast i am still on hold	False
+U_media_type O O O O O O O O O	tweet that there was an insect in the chocolate packet	False
+O O O	post new status	True
+O O O U_media_type	lets send a tweet	False
+O O O U_media_type O O O O O O	i want to tweet a complaint on apples phone issues	False
+U_media_type O B_business_name I_business_name L_business_name O O O O O O O O O O O	tweet to ikea costumer service the following i 'm not happy with this new klm product	False
+U_media_type O B_business_name L_business_name	tweet at quote unquote	False
+U_media_type O O O O O O O O O U_media_type O	tweet customer service not good for lpg service in my twitter account	False
+O O O O O O U_media_type O	comcast sucks put that on their twitter account	False
+U_media_type O O O U_business_name	tweet my complaint to @nsa	False
+U_media_type O O	tweet terrible service	False
+O O O O O O U_media_type	Hashtag loving this weather post to twitter	False
+O O U_media_type O U_business_name O O O O O O	send a tweet to apple that their batteries drain too fast	False
+O O U_business_name U_media_type O O O	complain to mcdonalds twitter about my burger	False
+O O O O O U_media_type	i want to hear more audiobook	False
+U_player_setting U_player_setting	pause resume	False
+U_player_setting O O O O B_audiobook_author L_audiobook_author	resume my audio book from karl pilkington	False
+U_media_type O	book please	False
+B_player_setting L_player_setting B_audiobook_name L_audiobook_name O O O O	start playing american gods where i last stopped	False
+O O O O O O B_audiobook_name L_audiobook_name	play from my last session of joes book	False
+O O O B_audiobook_name I_audiobook_name L_audiobook_name	open audio book history of rome	False
+U_player_setting U_media_type B_audiobook_name I_audiobook_name L_audiobook_name	start audiobook the time traveller	False
+U_player_setting B_audiobook_name L_audiobook_name	resume animal farm	False
+O O O U_audiobook_name	can you play file	False
+U_media_type	audio	False
+U_player_setting O O O O O B_audiobook_name L_audiobook_name	start from my last session of joes book	False
+O O O O O O U_media_type	play from this point from this audiobook	False
+U_player_setting O U_media_type O O O O	resume my audiobook where we paused last	False
+U_player_setting B_audiobook_name I_audiobook_name L_audiobook_name O O	resume the last kingdom for me	False
+B_player_setting L_player_setting O O O B_audiobook_name I_audiobook_name L_audiobook_name	end pause on audio book history of rome	False
+O O O O O O O O B_time I_time I_time I_time I_time I_time L_time O O O O O	i want to finish listening to the book one thousand nine hundred and eighty four from where i left off	False
+B_player_setting L_player_setting	keep reading	False
+O O O O O O O O U_audiobook_name	can you play my favorite audio book of tarzan	False
+O O O O O O	could you please lower the tone	True
+O O O	please talk softer	True
+O O O O	lower the speak volume	True
+O O O O O O O	it is too loud decrease the volume	True
+O O O	Turn down volume	True
+O O	reduce volume	True
+O O O B_change_amount L_change_amount	lower the volume to twenty	False
+O O B_change_amount I_change_amount L_change_amount	lower volume by fifty percent	False
+O O O O O O O O O O O O	you are my hero , thank you very much , olly .	True
+O O O O O O O O O	you have done it correctly thanks , olly .	True
+O O O O O O	ah that 's nice one .	True
+O O O O O O O O O O	you rock , thank you very much , olly .	True
+O O O O O O O	fantastic job , you did well .	True
+O O O O O O	that 's good , thanks .	True
+O O O O O O	appreciate your answers , olly .	True
+O O O O O O O O O O O O	you are my star , thank you so much , olly .	True
+O O O O O O O O	that was cool , i appreciate it .	True
+O O O O O O O O O O	fantastic job , you 've done well , olly .	True
+O O O O O O O O O	great work , you did well , olly .	True
+O O O O O O O O	that is cool , thanks , olly .	True
+O O O O O O O O	thank you for the response , olly .	True
+O O O O O O	you 've done it right .	True
+O O O O O	well done , appreciated .	True
+O O O O O O O O	excellent work , you have done well .	True
+O O O O O O O	awesome job , you did well .	True
+O O O O O O O O O O	it 's great one , thank you very much .	True
+O O O O O O	it 's helpful , appreciated .	True
+O O O O O O O O O O	would you clarify me on your answer further please .	True
+O O O O O O O O	s2 , i can not understand that .	True
+O O O O O O O	your words is not so clear .	True
+O O O O O O	s1 , explain further please .	True
+O O O O O O O O O O O O	s2 , i am unclear about what you have just said .	True
+O O O O O O O O O	please will you clarify me more on that .	True
+O O O O O O O O O O O	will you rephrase me about your response once again please .	True
+O O O O O O O	again clarify me on your answers .	True
+O O O	again elaborate .	True
+O O O O O O O O O	could n't understand what you just said now .	True
+O O O O O O O O O O	can you again clarify what you 've said please .	True
+O O O O O O O	i did n't get your response .	True
+O O O O O O O O O O O O O O	s1 , could you please again rephrase me about what you said now .	True
+O O O O O O O O	what you said now was not clear .	True
+O O O O O O	can you explain once again .	True
+O O O O O	do not get this .	True
+O O O O O O O O O O	s1 , explain me on your answer further please .	True
+O O O O O O O O O O	s2 , i do not catch up with you .	True
+O O O O O O O O	did n't understand what you said now .	True
+O O O O O O	play fishing podcasts that are favorited	True
+O O O O B_podcast_name I_podcast_name L_podcast_name	play podcast for the philadelphia eagles content	False
+O O O O O O U_podcast_name	play me the new podcast from npr	False
+B_player_setting L_player_setting O O O O	keep playing the episodes in order	False
+O B_podcast_descriptor L_podcast_descriptor	play next episode	False
+O O B_podcast_descriptor L_podcast_descriptor	play my play list	False
+O O O O O O O O O	play favorites listed in podcasts starting with first one	True
+O B_podcast_descriptor L_podcast_descriptor	play previous episode	False
+O O O O	play my favourite podcasts	True
+O O B_podcast_descriptor L_podcast_descriptor	get the next episode	False
+O O O B_podcast_descriptor I_podcast_descriptor L_podcast_descriptor	please start the next podcast episode	False
+O O O O O O	please play next episode of podcast	True
+O O O	show me podcasts	True
+O O O O O U_date	can you play back to december	False
+O O O O O O O O O O O O O O	can you please download my podcast file available in internet and play it once	True
+O O O	skip this episode	True
+U_player_setting O O	skip this one	False
+O O O O O O	what are my top played podcasts	True
+O O O B_podcast_descriptor L_podcast_descriptor O O	go back to previous episode of podcast	False
+O O O B_time L_time O O B_place_name L_place_name O O O O O B_place_name L_place_name	if it 's eight pm on the east coast what time is it in sacramento california	False
+O O O B_time L_time O U_place_name O O O O O U_place_name	if it is four pm in missouri what time is it in london	False
+O O O O O O O O U_place_name	can you please change the time zone to us	False
+O O O O O O O O O U_time_zone	which time zone are we in please change to current	False
+O O O O O U_place_name	please change time zone to canada	False
+O O O O O O O B_time L_time U_place_name U_place_name O	what time will it be locally at nine am bangalore india time	False
+O O B_time L_time O U_time_zone O O O O O O O O U_time_zone O O	it is ten am in eastern standard time what time it is now it pacific standard time	False
+O U_time_zone O O U_time_zone	change mountain standard to pacific	False
+O O U_joke_type O	tell me random joke	False
+O O O O O O U_joke_type	find me a joke related to baseball	False
+O O O O O O O O O O O O O U_joke_type O	i need to be cheered up right now can you tell me a good joke	False
+B_date L_date O	today 's jokes	False
+O O O O O	do you have a joke	True
+O O O O O	what 's your favorite joke	True
+O O O O	look for a joke	True
+O O O O O O O	do you know what a joke is	True
+O O O U_joke_type O	i want a nerd joke	False
+O O O O	what about this joke	True
+O O O	have any jokes	True
+O O	joke please	True
+O O O	deactive the socket	True
+O O O B_device_type I_device_type L_device_type	turn off the rice cooker socket	False
+O O B_device_type I_device_type L_device_type	power off wemo plug socket	False
+O O O O O B_device_type I_device_type L_device_type	please switch off on the wemo plug socket	False
+O O B_device_type L_device_type O	shut the smart socket down	False
+O O O O O O O U_device_type O	i do not want to use the socket anymore	False
+O O O B_device_type L_device_type B_time I_time L_time	turn off my smart plug in thirty minutes	False
+O O U_device_type O O O O O O O	turn off wifi when you leave home to save power	False
+O O O O B_device_type I_device_type L_device_type	please turn off my smart plug socket	False
+O O O O O O O O O O O O O O O O O	today i had a lunch with my longtime sweetheart play me a nice song to the mood	True
+O O O O	what 's on tv	True
+O O O O O O O O	is the data prefers any problems in objects	True
+O O	your salary	True
+O O	overall day	True
+O O O O O	anything i need to know	True
+O O O O O O O O O O O	is mile marker sixty five where the hanging tree is located	True
+O O O O O O O	tell me what happens when we die	True
+O O O O	what is your country	True
+O O O O O O O O U_date	do i need to spare washing my car today	False
+O O O O O O	this brings some problems to us	True
+O O O O O O O O U_place_name O O O O U_place_name	can you explain me the problems when the syria becomes more stronger than america	False
+O O O	you are chatbot	True
+O O O O O O O O	how high is the quality of this stone	True
+O O O O O O O O	can you please tell me who are you	True
+O O O O U_date	where did he was yesterday	False
+O O O O O O O	have you come across any new recipes	True
+O O O O O	how did your day go	True
+O O O O O O O O O O O	give me the product review from gamespot about the nintendo switch	True

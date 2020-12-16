@@ -1,0 +1,50 @@
+labels	text	cls
+O O O U_UbuntuVersion O O U_UbuntuVersion	upgrading to Ubuntu 13.10 from Ubuntu 13.04	False
+O O O O O O O	What are some good PHP editors ?	True
+O O O O U_UbuntuVersion O O O O	On really old Ubuntu 6.06 - How to upgrade	False
+O O O O O O U_UbuntuVersion O U_UbuntuVersion O	Is it necessary to upgrade to 15.10 from 14.04 ?	False
+O O O O O O O	What blog editor software are available ?	True
+O O O O U_UbuntuVersion O U_UbuntuVersion O O O O O O O	How to Upgrade from 11.10 to 12.04 when you 've got a problem ?	False
+O O O O B_UbuntuVersion L_UbuntuVersion O B_UbuntuVersion I_UbuntuVersion L_UbuntuVersion O	How do I update Xubuntu 11.10 to Xubuntu 12.04 LTS ?	False
+O O O O O O O O O O O	What tools do you use to monitor a web server ?	True
+O U_UbuntuVersion O U_UbuntuVersion O O	Update 11.04 to 12.04 with LiveCD	False
+O O O O B_Printer L_Printer O O O U_UbuntuVersion	How to Install a Canon MF8040Cn Printer on Ubuntu 12.04	False
+O O O O O O	How to troubleshoot slow shutdown ?	True
+O O O O O O O O O O O O O O U_UbuntuVersion O	How to setup wireless printing from a printer connected via usb on Ubuntu Server 12.10 ?	False
+O O O O O O O O O O	shutdown in specific way if no - one uses computer	True
+O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from 11.10 to 12.04	False
+O O O O O O O O O O O O O O O O O O O O O O	Is there a Linux file manager with a proper drop - down tree view ? ( like finder in OS X )	True
+O O O O O O O U_SoftwareName O O O O O	What do you use to edit Microsoft Word documents ( docx ) ?	False
+O O O O O O O O O O O O O	what is the right way to shutdown ubuntu using the command line ?	True
+O O O	Ubuntu upgrade failed	True
+O O O O O O O O O O	How do I shut down without the confirmation prompt ?	True
+O O O O O O O O O O	Is there a tool like wifi analyzer for ubuntu ?	True
+O O O O O O O O O	How to shutdown the computer after Xsession ends ?	True
+O O O O O O O O O U_UbuntuVersion O O O O O O	How do I upgrade to the release version of 16.04 if I am running Beta ?	False
+O O O O O O O O O O	How can one shutdown a PC using the keyboard ?	True
+O O B_Printer L_Printer O O U_UbuntuVersion O	Install printer Lexmark X4690 ( ubuntu 12.04 )	False
+O O O O O O O O O	Tool for recovering deleted data from a flash drive	True
+O O O O O B_Printer L_Printer O O O O	How can I install a Pantum 2502W laser printer on Ubuntu	False
+O O U_UbuntuVersion O U_UbuntuVersion O O O O	Upgrade from 12.04 to 12.10 without losing files ?	False
+O O O O O O O O O	Is there an application for reading mobi files ?	True
+O O O O O O O	Security enhancements prevent mounting /dev / sdb1	True
+O O O O O O O	Software to read a QR code ?	True
+O O O O O O O O O O O O	"What 's a simple "" colour picker "" app for GNOME ?"	True
+O O O O O O O	Can you recommend a password generator ?	True
+O O O O O U_UbuntuVersion O O U_UbuntuVersion O	How to partially upgrade Ubuntu 11.10 from Ubuntu 11.04 ?	False
+O O O O O O U_UbuntuVersion O O O B_Printer I_Printer L_Printer	No matter what I do Ubuntu 15.04 does not recognize HP LaserJet 1020	False
+O O O O O O O O	Torrent client for the command - line ?	True
+O O O O O O O O O O O O O O	Is there a software utility to adjust screen gamma / brightness / contrast ?	True
+O O U_UbuntuVersion O U_UbuntuVersion O O O O	Upgrading from 12.04 to 13.10 ( Unanswered questions )	False
+O O O O O O O O O O	How to shutdown computer when users are logged on ?	True
+O O O U_UbuntuVersion O U_UbuntuVersion	Problems upgrading Ubuntu 12.10 to 13.04	False
+O O O O O B_UbuntuVersion L_UbuntuVersion O U_UbuntuVersion	Is it worth upgrading from 12.04 LTS to 13.04	False
+O O U_UbuntuVersion O U_UbuntuVersion	Force upgrade 12.10 to 13.04	False
+O O O O O O O	What Is The Best HDR Software ?	True
+O O O B_Printer L_Printer O B_UbuntuVersion L_UbuntuVersion	How to install Canon LBP330 in Lts 16.04	False
+O O O O O	Keyboard shortcut to shutdown ?	True
+O O O O O O O	Software to create a video slideshow ?	True
+O U_SoftwareName O O O O O O O O O O O	In Unity how do I see the details of a given launcher ?	False
+U_SoftwareName O O	MySQL GUI Tools	False
+O O O O O B_Printer L_Printer O O O	How do I setup my HP C4140 printer wirelessly ?	False
+O O O O O O	How to record my screen ?	True

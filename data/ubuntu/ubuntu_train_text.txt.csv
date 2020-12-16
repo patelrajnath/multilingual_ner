@@ -1,0 +1,114 @@
+labels	text	cls
+O O O O O O O O O O O O	How can I shutdown the computer when a certain process ends ?	True
+O O O O O O B_UbuntuVersion L_UbuntuVersion O	Is it recommended to upgrade to Lubuntu 15.04 ?	False
+O O B_UbuntuVersion L_UbuntuVersion	Problem upgrading Ubuntu 9.10	False
+O O O O O O O O O O O	What graphical utility can I use for Ubuntu auto shutdown ?	True
+O O O O O U_UbuntuVersion O U_UbuntuVersion O	How to upgrade from Ubuntu 10.10 to 11.04 ?	False
+O O O O O O O O O O	How do I show grub when resuming from suspend ?	True
+O O O O O O O O O	Is there a Document scanning and archiving software ?	True
+O B_Printer L_Printer O O	Installing Epson XP-424 wireless printer	False
+O O O O O O	What screenshot tools are available ?	True
+O O O O O O O O U_UbuntuVersion O	How to add a network printer on Ubuntu 15.10 ?	False
+O O O O	Password Management Applications ?	True
+O O O O O O O O O O	How to setup HP printer / scanner on ubuntu ?	True
+O U_SoftwareName O O O O	What IRC clients are available ?	False
+O O O O O O O O O O O O O O	Is there any program for fuzzy string matching which provides a match score ?	True
+O O U_UbuntuVersion O U_UbuntuVersion	Upgrade from 9.10 to 11.04	False
+O O O O O O O O O O	Is there a lightweight tool to crop images quickly ?	True
+O O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from Ubuntu 14.04 to 15.04	False
+O O O O B_Printer L_Printer O O O U_UbuntuVersion O	How Do I Install Canon MF8000C Printer in Ubuntu 15.10 ?	False
+O U_UbuntuVersion O U_UbuntuVersion	Upgrade 10.10 to 11.04	False
+O O O O O U_UbuntuVersion O U_UbuntuVersion O O O O	Why did the upgrade from 11.10 to 12.04 ruin my system ?	False
+O O O O B_Printer L_Printer O	How do I install Dell 2150cdn printer	False
+O O O O O O O O O O	How is rm command different from the delete button ?	True
+O O O O O O O O	How do I fix a shutdown problem ?	True
+O O O O O O O O	Are there any Keyboard Shortcuts to Shutdown ?	True
+O O O O U_UbuntuVersion O U_UbuntuVersion	How to upgrade from 12.10 to 14.04	False
+O O O O O O O O	How can I highlight or annotate PDFs ?	True
+O O O B_UbuntuVersion L_UbuntuVersion	Shutdown problem in Ubuntu 16.04	False
+O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from 10.04 to 11.10	False
+O O O O O O	PDF to word conversion software ?	True
+O O O O O O O O O O O O	How can I automatically shutdown the system after a specific time ?	True
+O O O O O O O O O O	Which programs can I use to edit PDF files ?	True
+O O O U_UbuntuVersion O U_UbuntuVersion	Problems upgrading from 12.04 to 14.04	False
+O O O O B_Printer L_Printer O O O	How to install a Brother MFC-5890CN network printer ?	False
+O O O O O O U_UbuntuVersion O O O O O O	Do I need to backup my 12.04 system to upgrade to 12.04.1 ?	False
+O O O O O O O O O O	Is there LAN topology mapping software available in Ubuntu ?	True
+O O O O O O O O O O O O O	What does my computer do when I click ' Shut Down ' ?	True
+O O O O B_Printer L_Printer O O O	How to install a Lexmark z600 series printer ?	False
+O O O O O O O	What IDEs are available for Ubuntu ?	True
+O O O O O O O O O	Is there any recovery software available for ext4 ?	True
+O O O O O O O O O O O O	Any app that tells me to take regular breaks from working ?	True
+O O O O O O U_UbuntuVersion O O U_UbuntuVersion	update - manager : upgrade to 15.04 rather than 16.04	False
+O O O O O O O	Are there any hardware diagnostic tools ?	True
+O O O O O O	Extracting embedded images from a PDF	True
+O O O O O	No action when shutdown pressed	True
+O O U_UbuntuVersion O U_UbuntuVersion O O O O O O	Upgrading from 10.10 to 11.04 how much space is needed ?	False
+O B_Printer L_Printer O O U_UbuntuVersion	Installing EPSON L355 on Ubuntu 14.04	False
+O O O O O O O	Any command line calculator for Ubuntu ?	True
+O O O O O O O O	What 's the best Mind Mapping Software ?	True
+O O O O O O U_UbuntuVersion O O U_UbuntuVersion O O O	How can i upgrade to Ubuntu 14.04 final from 14.04 Beta correctly ?	False
+O O O O O O O O O O O O	Is there any software that will do face recognition in photos ?	True
+O O O O U_UbuntuVersion O U_UbuntuVersion O	How to upgrade Ubuntu 14.04.1 to 14.04.2 ?	False
+O O O O O O O	How can I enable shutdown verbosity ?	True
+O O O O O B_Printer L_Printer O O	How do I install the HP F4280 printer ?	False
+O O O O O O O O O U_UbuntuVersion O U_UbuntuVersion O	Do I need to reinstall everything to upgrade from 13.10 to 14.10 ?	False
+O O B_UbuntuVersion I_UbuntuVersion L_UbuntuVersion	Upgrade to 12.04 64 bit	False
+O O O O O O O O O	Is there software that can view .dwg files ?	True
+O O O O O O O O O	UPNP / DLNA ( client ) player recommendations ?	True
+O O O O O O O O O O	A light alternative to gnome - system - monitor ?	True
+O O O O O O	My system does n't go shutdown	True
+O O O B_Printer I_Printer I_Printer I_Printer L_Printer	Can not setup HP All in one DJ3630	False
+O O O O O O O O O O	What is the command to open the shutdown dialog ?	True
+O O O O O O O O O	How to Shut down Ubuntu by using keyboard ?	True
+O O O O O O O O O O	What new games are available for Ubuntu in 2011 ?	True
+O O O O O O O B_Printer I_Printer L_Printer O	How do I install drivers for a Konica Minolta 200 ?	False
+O O O O O O B_UbuntuVersion L_UbuntuVersion O B_UbuntuVersion L_UbuntuVersion	Is there an upgrade procedure from 12.04 LTS to 14.04 LTS	False
+O O O O O O O	What scientific plotting software is available ?	True
+O O O O O O O	What 's the best Wireframing tool ?	True
+O O O B_Printer L_Printer O O O O O	How to Install Brother DCP-8110DN Laser Printer on Ubuntu ?	False
+O U_UbuntuVersion O U_UbuntuVersion O O O	Upgrade 12.04 to 12.10 using startup disk	False
+O O O O B_UbuntuVersion L_UbuntuVersion O B_UbuntuVersion L_UbuntuVersion	How to upgrade from 16.04 LTS to 16.04.1 LTS	False
+O O O O U_UbuntuVersion O U_UbuntuVersion	Can not upgrade from 12.04LTS to 14.04	False
+O O O O O	Recommendation for Regex editor ?	True
+O O O O O	shut down without extra question	True
+O O O O U_SoftwareName O O O	What is a good MongoDB GUI client ?	False
+O O O O O O O O O O O O O O	Can you recommend a good modern GUI download manager ( wget wrapper ? )	True
+O O O O O O O O O O O O O	Wubi Device /dev / loop0 full . How to get more space ?	True
+O O O O	shutdown 5:30pm every day	True
+O O O O O O O O O	What to use to quickly cut Audio / Video	True
+O O O O B_UbuntuVersion L_UbuntuVersion O U_UbuntuVersion O U_UbuntuVersion O O	How to upgrade from 14.04 LTS or 15.10 to 16.04 from terminal	False
+O O O O O O O O O	What developer text editors are available for Ubuntu ?	True
+O O O O	Ubuntu Shut down app	True
+O O O O O O O	Please recommend a hex editor for shell	True
+O O O O O U_UbuntuVersion O U_UbuntuVersion O O	Is any offline upgrade from 13.10 to 14.04 possible ?	False
+O B_Printer L_Printer O U_UbuntuVersion	Install Canon MP560 Ubuntu 15.04	False
+O U_UbuntuVersion O O O O O O O U_UbuntuVersion O	Using 12.04 can I compile packages with gcc for 10.04 ?	False
+O O O O O O O O O O	What software can I use to view epub documents ?	True
+O O O U_UbuntuVersion O U_UbuntuVersion	Upgrading Ubuntu Server 9.10 to 10.04	False
+O O O O O O O O O O	What are some good GUI binary viewers / editors ?	True
+O O O O O O O	Is there an SSH connection manager ?	True
+O O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from ubuntu 12.04 to 13.10	False
+O O O O O U_UbuntuVersion O O O U_UbuntuVersion O	Do I need to uninstall 10.04 to upgrade to 12.04 ?	False
+O O O O O U_UbuntuVersion O O O O	Ho do I update to 13.04 from the beta ?	False
+O O O O O O O O O O U_SoftwareName O	Is there a project management software for Ubuntu like Microsoft Project ?	False
+O O O O O O O O O O	How can I make shutdown not require admin password ?	True
+O O O O O O O O O O	Which is the best PDF metadata viewer for Ubuntu ?	True
+O O O O O B_Printer L_Printer	Can not install printer driver epson l210	False
+O O O O U_UbuntuVersion O U_UbuntuVersion O O O O O O O O O	How to upgrade Ubuntu 12.04 to 14.04 if I have dual boot with windows 7 ?	False
+O O O O	shutdown 5:30pm every day	True
+O O O O B_UbuntuVersion L_UbuntuVersion O U_UbuntuVersion O U_UbuntuVersion O O	How to upgrade from 14.04 LTS or 15.10 to 16.04 from terminal	False
+O O O O O O O O O O O O O O	Can you recommend a good modern GUI download manager ( wget wrapper ? )	True
+O O O O O O O	Software to read a QR code ?	True
+O O O O O B_Printer L_Printer O O	How do I install the HP F4280 printer ?	False
+O O O U_UbuntuVersion O O U_UbuntuVersion	upgrading to Ubuntu 13.10 from Ubuntu 13.04	False
+O O O O O O O O O	Tool for recovering deleted data from a flash drive	True
+O O O O O U_UbuntuVersion O O O U_UbuntuVersion O	Do I need to uninstall 10.04 to upgrade to 12.04 ?	False
+O O O O O O O O O	How to Shut down Ubuntu by using keyboard ?	True
+O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from 10.04 to 11.10	False
+O O O O O O O O O	Is there any recovery software available for ext4 ?	True
+O O O O O O O	What Is The Best HDR Software ?	True
+O O O O O O O O O U_UbuntuVersion O U_UbuntuVersion O	Do I need to reinstall everything to upgrade from 13.10 to 14.10 ?	False
+O O O O O O O	What blog editor software are available ?	True
+O O O O B_Printer L_Printer O O O U_UbuntuVersion	How to Install a Canon MF8040Cn Printer on Ubuntu 12.04	False
+O O U_UbuntuVersion O U_UbuntuVersion	Upgrading from 11.10 to 12.04	False

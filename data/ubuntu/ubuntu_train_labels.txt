@@ -31,7 +31,7 @@ O O O O O O O O O O O O
 O O O O O O O O O O
 O O O U-UbuntuVersion O U-UbuntuVersion
 O O O O B-Printer L-Printer O O O
-O O O O O O U-UbuntuVersion O O O O - O
+O O O O O O U-UbuntuVersion O O O O O O
 O O O O O O O O O O
 O O O O O O O O O O O O O
 O O O O B-Printer L-Printer O O O
