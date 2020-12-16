@@ -118,6 +118,7 @@ updates = 1
 total_loss = 0
 best_loss = +inf
 stop_training = False
+out_dir = 'outputs'
 start = time.time()
 for epoch in range(params.epochs):
     for batch in data.train_dl:
@@ -137,7 +138,7 @@ for epoch in range(params.epochs):
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
             if best_loss > total_loss:
-                save_state('best_model_bert.pt', model, loss_fn, optimizer, updates)
+                save_state(f'{out_dir}/{data_type}_best_model_bert.pt', model, loss_fn, optimizer, updates)
                 best_loss = total_loss
             total_loss = 0
 
@@ -217,7 +218,7 @@ def predict(dl, model, id2label, id2cls=None):
     return preds_cpu
 
 
-updates = load_model_state('best_model_bert.pt', model)
+updates = load_model_state(f'{out_dir}/{data_type}_best_model_bert.pt', model)
 # dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
@@ -225,8 +226,8 @@ updates = load_model_state('best_model_bert.pt', model)
 dl = get_data_loader_for_predict(data, df_path='data/accounts/accounts_test_text.txt.csv')
 
 
-with open('{}_label_bert.txt'.format(data_type), 'w') as t, \
-        open('{}_predict_bert.txt'.format(data_type), 'w') as p:
+with open(f'{out_dir}/{data_type}_label_bert.txt', 'w') as t, \
+        open(f'{out_dir}/{data_type}_predict_bert.txt', 'w') as p:
     with torch.no_grad():
         preds = predict(dl, model, data.train_ds.idx2label)
         pred_tokens, pred_labels = bert_labels2tokens(dl, preds)

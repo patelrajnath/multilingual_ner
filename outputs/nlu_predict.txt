@@ -3,14 +3,14 @@ O O O O O O O U-currency_name O O
 O O O U-currency_name L-currency_name O O U-currency_name
 O U-currency_name O U-currency_name
 O O O O U-currency_name O U-currency_name
-O O O B-currency_name L-currency_name O B-currency_name I-currency_name L-currency_name
-O O O O O O U-currency_name O O B-place_name
+O O O O L-currency_name O B-currency_name I-currency_name L-currency_name
+O O O O O O U-currency_name O O U-place_name
 O O O U-currency_name O U-currency_name
-O O O O U-currency_name O O O O O O U-coffee_type U-currency_name
+O O O O U-currency_name O O O O O O U-coffee_type U-date
 B-currency_name I-currency_name L-currency_name O B-currency_name I-currency_name L-currency_name
 O O O O O O O B-currency_name L-currency_name O O O
 O O O O B-currency_name L-currency_name O O U-currency_name
-O O O O O O O U-currency_name O U-currency_name
+O O O O O O O B-currency_name O U-currency_name
 O O B-currency_name L-currency_name O B-currency_name I-currency_name L-currency_name U-date
 O O B-currency_name I-currency_name L-currency_name O O O O O U-currency_name
 O O O O O O U-currency_name O U-currency_name
@@ -19,42 +19,42 @@ O O U-currency_name O O O O O O U-currency_name
 O O O O O O O O O O O I-currency_name O I-currency_name
 O O O O U-date U-timeofday
 O O O O O O O O O O
-O U-person O O O O
+O O O O O O
 O O O O O O O L-event_name B-general_frequency L-general_frequency O U-timeofday
 O O O U-event_name O U-person O B-time L-time O U-date O O O O
 O O O O O O U-date O O O O O
-O O O O B-personal_info O O O O U-timeofday O I-date I-time L-date
+O O O O B-personal_info O O O O U-timeofday I-date I-date I-time L-date
 O O O O O O U-event_name U-date
-O O O O O O B-list_name
+U-player_setting O O O O O B-list_name
 O O O O O U-relation B-date L-date
-B-date L-date O B-event_name L-event_name
+B-podcast_descriptor L-date O B-event_name U-event_name
 O O O O O O U-date
-O O O O O U-event_name B-general_frequency L-event_name O B-time L-time
-O O U-person O O O O U-event_name O U-date
+O O O O O O B-general_frequency L-general_frequency O B-time L-time
+O O U-person O O O O U-event_name O B-date
 O O O O U-event_name
 O O O O O O O B-time I-time I-time
 O O B-time L-time O O O O O
 O O O O O U-event_name O O O
 O O O U-event_name O U-person O B-date I-date L-date O U-time
-O O B-business_name L-business_name O O L-personal_info L-food_type
-O O O U-food_type O O B-time L-time
+O O B-business_name L-business_name I-business_name O I-business_name L-food_type
+O O O U-food_type U-order_type O B-time L-time
 O O O L-order_type
-O O O B-food_type I-food_type I-food_type O I-food_type L-food_type O B-business_name
-O O O O O U-business_name L-business_name
+O O O U-food_type I-food_type B-food_type O I-food_type L-food_type O B-business_name
+O O O B-food_type O U-business_name U-order_type
 O O U-food_type O O
 O O O O B-food_type I-food_type L-food_type O B-business_name L-business_name U-business_type
-O O O U-food_type L-food_type O I-food_type L-food_type
+O O O U-food_type I-food_type I-food_type I-food_type L-food_type
 O O O O O
 O O U-order_type
 O O O O U-food_type O O O O O
-O O O O O O B-business_type L-business_type O O U-food_type O U-place_name
+O O O O O O B-business_type L-food_type O O O O U-business_name
 O O O O O O O U-food_type U-business_type
 O U-order_type O O O O
 O O O O U-food_type
 O O O O U-food_type O U-order_type
 O O U-food_type O B-business_name L-business_name
-O O O B-event_name L-event_name B-date L-business_type O O O O O O O B-time L-time U-timeofday
-O O B-food_type I-food_type L-food_type O B-business_name
+O O O B-event_name I-food_type O L-business_type O O O O O O O B-time L-time U-timeofday
+O O B-food_type B-food_type L-food_type O B-business_name
 O O O O O O O
 O O O O O
 O O
@@ -71,7 +71,7 @@ O O O O O B-time L-time
 O O O O
 O O O O O O
 O O O O O O O O O
-O O O O O U-timeofday O O O O B-time
+O O O O O U-timeofday O O O O U-time
 O O O O O O O U-date
 O O O O O O O O
 O O O
@@ -93,7 +93,7 @@ O O O
 O O O O O O O O
 O O O O O O
 O O O O O
-O O O B-date O L-business_name B-date
+O O O B-date I-news_topic L-business_name L-business_type
 O O O O O U-date
 O O O O B-time L-time O U-date
 O O O O O O B-media_type L-media_type
@@ -102,10 +102,10 @@ O O O U-event_name O O O O U-time
 O O O O O O O O O U-date
 O O O O O O O O O O U-date
 O O O O O O O O O
-O O O O U-weather_descriptor L-event_name
+O O O O B-business_type L-business_type
 O O O O U-date
 O O O O O
-O O I-date I-time I-time I-time L-time O O O O O U-event_name O O B-transport_descriptor
+O O I-date I-time I-time I-time L-time O O O O O U-event_name O B-time B-transport_descriptor
 O O U-event_name O O U-date
 O O U-event_name O O
 O O O O U-event_name O O O O O O O
@@ -114,20 +114,20 @@ O O O O O O O U-event_name B-date L-date
 O O O O O B-date I-date I-date I-date I-date L-date
 O O O O O O O
 O O O
-O O B-event_name L-event_name O O O O U-date
-O O O B-date
+O O B-event_name U-event_name O O O O U-date
+O O O B-business_name
 O O O B-date I-event_name L-event_name O O O
 O O U-event_name U-date O B-time L-time
 O O O O O O O O O O O O O
-O O B-date I-date L-date O O
+O O B-date L-date L-date O O
 O O O O O O O O O
 O O O O O O O
 O O U-event_name O O B-date L-date O B-time L-time
-O O O
+O O B-event_name
 O B-person L-person U-event_name O O
-O O O O O O O O O O O O L-date
+O O O O O O O O O O O B-date L-date
 O O O
-O U-meal_type L-event_name O O O
+O U-meal_type U-event_name O O O
 O O O O O U-date
 O O U-event_name O B-date L-date O O O
 O O O O O O O O O
@@ -136,9 +136,9 @@ B-business_type O
 O O O O U-transport_type O U-place_name
 O O O O O O O U-transport_type L-place_name O
 O O
-O O O O O O B-date O
+O O O O O O L-place_name L-date
 O O O U-transport_type O O U-date
-O O O O O O O O B-place_name I-place_name L-place_name
+O O O O U-food_type O O O B-place_name I-place_name L-place_name
 O O O U-transport_type O O O U-place_name L-place_name L-place_name
 O O O B-place_name L-place_name O O
 O O O U-transport_type L-place_name
@@ -146,7 +146,7 @@ O O O U-transport_type O O U-place_name
 O O O O O O O O O O U-place_name O U-transport_type
 O O O O O O
 O O O U-transport_type O
-O O O O O U-transport_type O O
+O O O O O U-transport_type O B-place_name
 O O U-transport_type L-place_name
 U-transport_type O
 O O O O O U-transport_type L-place_name
@@ -169,45 +169,45 @@ O O O O O O O
 O O O O O O O
 O O O O O O
 O O O O O O O
-O O O O O O L-business_type
+O O O O B-business_type O L-business_type
 O O O O O B-business_type O
 O O O O O O
-O O O O O B-person L-person
+O O U-food_type O O B-person I-news_topic
 O O O O O
 O O B-person
-O O O O O O O O
+O O O O O O U-time_zone L-place_name
 O O O O O O U-place_name O O O O O
 O O B-person L-person U-event_name
-O O O O O O O O B-news_topic
+O O O O O O L-business_type O U-place_name
 O O O B-person L-person O B-date
-O B-radio_name L-person
-O O O O B-event_name O O O O U-place_name
+O O L-radio_name
+O O O O O O O O O U-place_name
 O O O O O
 O O O U-place_name O B-place_name L-place_name
-O O O U-person L-person O B-person
-O O O O O O O O U-place_name
-O O O O O B-place_name L-place_name
+O O O B-person L-person O B-date
+O O O O O O O U-movie_type U-news_topic
+O O O O O B-place_name B-business_type
 O O O O B-game_name
 O O O U-device_type O O O B-house_place L-house_place
 O O O O U-device_type O O U-house_place
-O O U-device_type O O B-time L-time
-O O U-device_type
+O O O O O B-time L-time
+O O B-device_type
 O O O O O B-device_type L-device_type
 O O B-device_type L-device_type O O U-house_place
 O O O B-device_type I-device_type L-device_type
-O U-device_type
+O B-device_type
 O O O B-device_type L-device_type
-O U-device_type I-device_type
-O O B-device_type I-device_type L-device_type O U-time O B-time L-time U-general_frequency
+O B-device_type I-device_type
+O O B-device_type I-device_type L-device_type O O O B-time L-time U-general_frequency
 O B-device_type L-device_type
 O O O U-device_type
-O U-device_type O
+O O O
 O O O O B-device_type L-device_type
 O O O O O B-device_type I-device_type L-device_type
 O O O O O O B-person
 O O O O
 O O
-O O O O O O O O O O U-person O O
+O O O O O O O O O O L-person O O
 O O
 O O O O O O O O B-time I-date
 O O O O O O U-relation
@@ -219,12 +219,12 @@ O O O O O O O
 O O O O O O U-person
 O O O O O O
 O O O O O O O U-person
-B-business_type B-business_type U-date O
+O B-business_type U-date O
 O O
 O O O O O O
 O O
 O O O O O
-O O O O O O B-date L-date O B-place_name L-place_name
+O O O O O O B-date U-time O U-place_name L-place_name
 O O O O O O
 O O O O O O O O O U-place_name B-date L-date
 O O O L-event_name O B-place_name L-place_name
@@ -232,16 +232,16 @@ O O O O O O O O U-place_name B-date L-date
 O O O O
 O O O O O O O
 O O O O B-date L-date O O O
-O O O O O U-place_name B-date L-date
+O O O O O B-place_name B-date L-date
 O O O O O O O O O
 O O O O O O O B-date U-place_name
-O O O O O O O O O O B-place_name L-place_name O B-date L-date
+O O O O O O O B-date L-event_name O B-place_name L-place_name O B-date L-date
 O O O O O O U-place_name U-timeofday
 O O O O O O O O
 O O O O U-place_name
 O O O O O O O U-timeofday
 O O O O U-place_name U-timeofday
-O O O O O B-list_name L-business_name O O O O O O O
+O O O O O B-list_name L-list_name O O O O O O O
 O O O O O O O O
 O O O
 O O O O
@@ -249,25 +249,25 @@ O O O O O B-list_name L-list_name
 O O O O O B-date
 O O O O O U-list_name O
 O O O O O
-O O O O U-list_name O O O O O
+O O O O U-list_name O L-list_name O O O
 O O O O O
 O O O B-definition_word
 O O O O O O
 O O O O O O O
-O O O O O O O O O O O O O O O O O O O O O B-transport_descriptor
+O O O O O O O O O O O O O O O O O O O O U-relation L-place_name
 O O O O O O O
 O O O O O O O
 O O
 O O O
 O O O B-person L-person O O O
-O O U-list_name O O O O
-O O O O B-list_name L-list_name O O O
+O O U-list_name O O O U-list_name
+O O O O B-list_name L-list_name O O I-list_name
 O O O O O O I-list_name I-list_name
 O O O O
 O O O
-O O U-person O O O O O O I-list_name O
+O O O O O O O O O I-list_name I-event_name
 O O O O
-O O O B-list_name L-list_name O
+O O O O L-list_name O
 O O O
 O O O U-list_name O
 O O O
@@ -280,29 +280,29 @@ O O O O O B-list_name L-list_name
 O O
 O O O
 O O O O O
-O O O O O O O O O O O U-place_name
+O O O O O O O O O O O B-place_name
 O O O O U-business_type
-O O O B-event_name U-business_type O B-place_name O I-place_name L-place_name
+O O O B-event_name U-business_type O B-place_name L-place_name I-place_name O
 O O O O O U-timeofday
-O O O O O U-food_type U-business_type O O U-meal_type L-event_name
-O O O U-list_name L-event_name O U-date
+O O O O O U-food_type U-business_type O O U-meal_type O
+O O O U-list_name L-business_type O B-date
 O U-business_type O O O
-O O O O U-business_type O
+O O O O U-business_type U-business_type
 O O O O O O B-business_type U-business_type O O O
-O O O U-food_type O U-place_name I-food_type I-food_type
-O O O O O O B-business_type O O O O
-O O O O O U-person O L-business_type O B-place_name L-place_name
+O O O U-food_type O U-place_name I-food_type L-place_name
+O O O O O O B-business_type O O O U-place_name
+O O O O O U-place_name O L-business_type O B-place_name L-place_name
 O O O O U-business_name
-O O O O O O O O
+O O O O B-business_type L-business_type O O
 O O U-place_name
 O O O O U-business_type O B-place_name L-place_name
-O B-business_type O O O O O O O
+O B-business_type L-business_type O O O O O O
 O O O U-food_type L-business_type O B-place_name L-place_name
 O O O O O B-business_type L-business_type O
 O B-app_name I-game_name
-O O O O O
+O O O O B-list_name
 O O O O O U-date
-O O O O O O O O O
+O O O U-person O O O O O
 O O O O
 O O
 O O O O
@@ -311,7 +311,7 @@ O O O O O O O
 O O O O O O O B-list_name
 O O O O O O O O
 O B-business_type O
-O O O O O O O O U-place_name O
+O O O O O O O O U-business_name O
 O O O O O O U-date
 O O O O O O U-date
 O O O O O O
@@ -319,12 +319,12 @@ O O O O O
 O O O O O
 O O O O O U-date
 O O O O O O
-O O O O O O U-weather_descriptor U-date
+O O O O O O U-place_name U-date
 O O O O U-date
 O O O O O O O O O
 O O O U-event_name
 O O O B-joke_type O O B-date L-date
-O O O O O
+O O U-event_name O O
 O O O O O O O O O O O O
 O O O B-joke_type O O O O
 O O O O O O O B-date L-date
@@ -334,21 +334,21 @@ O U-transport_type O O B-place_name L-place_name
 O O O U-place_name O U-transport_type
 O O O U-transport_type O
 O O U-transport_type O O U-place_name B-date U-timeofday
-O O O O U-transport_type O O O U-date O O O O O O O O O O
+O O O O U-transport_type O O O U-date O O O O O O I-time I-time O O
 O O O U-transport_type O O O O O O O U-place_name O B-place_name L-place_name
 O O O O O U-transport_type O O U-place_name O U-date
 O O O U-transport_type O O U-place_name O U-place_name
 O O O O U-transport_type O O B-place_name L-place_name O O O O O O
 O O O O O U-transport_type O
-O O O O O O O U-place_name O U-place_name O B-date L-date O O B-date O
+O O O O O O O U-place_name O U-place_name O B-date L-date O I-date B-date O
 O O O U-transport_type O
-O O O O O O B-place_name L-place_name L-place_name O B-place_name L-place_name O O O O O I-date
+O O O O O O B-place_name L-place_name L-place_name O B-place_name L-place_name O O O O I-date L-date
 O O O O U-transport_type O O U-place_name
 O O O U-transport_type O O U-place_name
 O O O O O O U-date U-transport_type O U-place_name O U-place_name
 O O O O O O O O
 O O O O L-device_type
-O O O O O
+O O O O U-device_type
 O O O O O B-house_place L-house_place
 O O O O O
 O U-date
@@ -356,17 +356,17 @@ O O U-date
 O O O O O U-place_name
 O O O O O
 B-place_name L-place_name O O
-O O O O O O O O U-place_name
+O O O O O O O O B-place_name
 O O O O O O U-place_name
 O O O O O B-time_zone I-time_zone L-time_zone
-O O O O O U-date
+O O O O B-date U-date
 O O O O O O O U-place_name L-place_name
-O O O O O O O O U-time_zone
+O O O O O O O O L-place_name
 O O O O O O O U-place_name
 O O O O O
 O O O O O O O O
 O O O O O O O B-date L-date O O
-B-date L-date O O O O O O
+O U-date O O O O O I-date
 O O O O O O U-date
 O O O B-date L-date O
 O O U-definition_word
@@ -374,7 +374,7 @@ O O O O O O O U-definition_word
 O O O O O U-definition_word
 O O U-definition_word
 O O O U-definition_word
-O O O O O O O O O
+O O O O O O O O L-definition_word
 O O O O
 O B-date
 O O U-definition_word O O
@@ -395,22 +395,22 @@ O O O O O O B-place_name
 O O U-weather_descriptor O O O O U-date
 O O O O U-date U-timeofday
 O O O O
-O O O O O O O O O O O O U-timeofday O B-time L-time
-O O O O O O O B-time I-time I-time L-time
+O O O O O O B-business_type O O O O U-food_type U-timeofday O B-time L-time
+O O O O O O O B-time I-time I-time L-date
 O O O O O O U-weather_descriptor U-date
-O O O O U-weather_descriptor L-weather_descriptor B-timeofday L-timeofday
-O O O O O U-weather_descriptor U-date
+O O O O U-weather_descriptor L-weather_descriptor B-date L-timeofday
+O O O O O O U-date
 O O O U-weather_descriptor U-date
 O O O O O L-date
 O O O O O U-date
 O O O O O O B-event_name O O O
-O O O O O O U-weather_descriptor U-date O O
-O O O O U-weather_descriptor O
+O O O O O O U-weather_descriptor U-date B-time I-time
+O O O O U-weather_descriptor L-weather_descriptor
 O O O B-business_type L-business_type U-date
 O O
-O O O O
+O O O U-place_name
 O O O B-time L-time
-O O O O O O O O O O O O O
+O O O O O O O O O O O O B-food_type
 O O
 O O O O
 O O O O
@@ -418,9 +418,9 @@ O O O O O O O U-date
 O O U-place_name
 O O O B-time L-time
 O O O B-house_place
-O O O
-O O B-time L-time
-O O O B-time L-time
+O O B-device_type
+U-player_setting O B-time L-time
+O O O B-date L-time
 O O O O O O
 O O O O O O O
 O O O O O O O
@@ -451,14 +451,14 @@ O O O O
 O O O O
 O O O O O O O B-time I-time L-time
 O O O
-O O O B-transport_descriptor O
+O O O O O
 O O O O O U-date
-O O O U-date U-timeofday O
-O O O U-timeofday O
+O O O U-list_name U-timeofday O
+O O O U-timeofday I-event_name
 O O O O O
 O O
 O O O O O O
-O O O O O O O O O B-time I-time L-time
+O O O O O O O O O B-time I-time I-time
 O O O O O
 O O B-device_type L-device_type
 O O O O O O O L-house_place
@@ -466,19 +466,19 @@ O O O O U-house_place
 U-house_place O O O
 O O O O O O U-house_place
 O O O O O O O U-house_place
-O O O U-house_place L-device_type
+O O O U-house_place O
 O O O O
 O O O O U-house_place
 O O O O
 O O O O U-house_place O
-O O O O U-house_place L-device_type
+O O O O U-house_place O
 O O O O O
 O O O O O U-house_place O O O
 O O O O O O
 O O B-house_place L-house_place L-house_place O O
 O O O O
-O O O O O B-device_type I-device_type
-O O B-device_type L-device_type O
+O O O O O B-device_type L-device_type
+O O O O O
 O O O O O B-house_place L-house_place
 O O O O
 O O O O O O O O
@@ -487,10 +487,10 @@ O O O O O
 O O O
 O O O O U-house_place U-house_place
 O O O O O O O O
-O O O O O B-change_amount I-change_amount L-change_amount
+O O O O O O O O
 O O O O
 O O
-O O O O B-change_amount B-color_type
+O O O O O B-color_type
 O O O O U-transport_agency O B-time L-time
 O O O U-transport_agency O O
 O U-person U-transport_type
@@ -499,10 +499,10 @@ O O O U-transport_type O B-place_name L-place_name O U-place_name
 O O U-transport_type
 O O U-transport_type
 O O U-transport_agency O O O O O O O O O O O
-O O U-transport_type O O O O O B-place_name
-O O U-transport_agency U-transport_agency O O U-timeofday B-time B-time L-time
+O O U-transport_type O O O O O O
+O O U-transport_agency O O O U-timeofday B-time I-time L-time
 O O O U-transport_agency
-O O U-transport_agency O B-time L-time O L-time O L-date L-date
+O O U-transport_agency O B-date L-time O L-time O L-date L-date
 O O O U-transport_type O O U-place_name O O
 O O U-transport_type O O O
 O O O U-transport_agency O U-date U-time O B-time L-time
@@ -530,12 +530,12 @@ O O O O O O O O O O O O O
 O O O O O O O O O O O O O
 O O O O O O L-change_amount
 O O O
-O O O O O O
+O O O O B-change_amount I-change_amount
 O O O O O
-O O O O L-change_amount O B-device_type L-device_type
+O O O O O O B-device_type L-device_type
 O O O O O O O
 L-news_topic O
-O O O O O O O B-song_name I-song_name I-song_name L-song_name
+O O O O O O B-device_type B-song_name I-song_name I-song_name I-song_name
 O O O O O B-device_type L-device_type B-change_amount I-change_amount L-change_amount
 O O O O O O
 O O O
@@ -543,21 +543,21 @@ O O O O O
 O O B-change_amount I-change_amount L-change_amount
 O O B-person L-person L-personal_info
 O O O O O O B-person
-O O O O U-device_type O
+O O O O U-device_type L-device_type
 O O B-person L-person L-personal_info
 O O O O O O B-person
 O O O O O O O U-relation
-O B-device_type L-personal_info O U-person
-O B-business_name U-person O O O O O
-O O O O O O U-person
-O O O O B-food_type O O O U-relation L-relation
+O O L-personal_info O U-person
+O O L-business_name O O O O O
+O O O O O O B-person
+O O O O B-food_type L-personal_info O O U-relation L-relation
 O O O B-relation L-relation U-personal_info
 O O O
 O O O B-relation L-movie_type L-personal_info
 O O O B-person L-person
 O U-relation O O
-O O O O O B-person O B-news_topic
-O B-business_name O O O B-date L-date
+O O O O O U-food_type O B-place_name
+O B-person O O O B-date L-date
 O O O O O O O O L-list_name
 O O B-person L-person B-personal_info I-personal_info L-personal_info
 O O O B-device_type I-device_type L-device_type O O O L-device_type O O
@@ -567,19 +567,19 @@ B-business_type B-device_type I-device_type L-device_type O
 U-device_type O
 O O B-device_type L-device_type
 O O U-device_type O O
-O O B-song_name O B-music_genre
+O O O O B-music_genre
 O O O O O O L-song_name O O O O B-currency_name
 O O O O O O
-O B-event_name O O B-artist_name I-business_name O O O O U-game_name
+O U-game_name O O B-artist_name L-artist_name O O O O U-game_name
 O O O B-device_type
 L-music_genre
-O B-game_name O B-artist_name L-artist_name L-artist_name
+O B-game_name O B-artist_name L-artist_name I-radio_name
 O O O
 O O O O B-device_type
 O O U-music_genre L-playlist_name
 O O O O B-game_name
 O B-song_name I-song_name B-podcast_descriptor
-O B-playlist_name L-music_genre L-music_descriptor
+O B-song_name L-music_genre L-music_descriptor
 O O B-game_name O B-artist_name L-artist_name
 O B-game_name L-game_name O O O
 O B-game_name
@@ -607,15 +607,15 @@ O O O O O O O O O
 O O O O O O O O
 O O O O O O
 O O O O B-time L-time
-O O O O O
+O O O O B-coffee_type
 O O O B-time L-time
 O O O O O
 O O O O O
-O O U-timeofday U-timeofday
+O O U-timeofday B-device_type
 O O O O O O B-food_type
-O O O O O O O B-device_type L-device_type O O O O U-coffee_type O O B-time I-time L-time O L-time
+O O O O O O O B-device_type L-device_type O O O O B-relation O O B-business_name I-time L-time O L-time
 O O O O O O
-O O O O O O B-device_type L-device_type O O O O
+O O O O O O B-device_type L-device_type O O O B-device_type
 O O O
 O O O O O O O B-coffee_type
 O O O O O O O
@@ -625,90 +625,90 @@ O O O U-coffee_type
 O O O O B-time L-time
 O O O O O B-device_type
 O O O U-food_type
-U-food_type O
+O O
 O O U-weather_descriptor
 O O O O B-place_name
 O O O I-place_name I-place_name
 O O O O B-food_type
 O O O O O O B-food_type
-O O O O U-coffee_type
-O O O U-food_type L-food_type
-O O O O O O O B-food_type B-food_type
 O O O O U-food_type
+O O O B-food_type L-food_type
+O O O O O O O B-food_type B-food_type
+O O O U-cooking_type U-food_type
 O O O O
 O O O O O O O B-ingredient
-O O L-business_name O
+O U-business_name L-business_name O
 O O O O O O O U-list_name
 O O O O O
-O O O O O O B-food_type I-food_type O
+O O O B-business_type O O B-food_type O O
 O O O O O O O O O O O O
 O O O O B-business_type B-business_type
 O O O O U-place_name O
-O O O B-weather_descriptor O O O L-ingredient
-U-player_setting O U-date O B-media_type
-O O O O O O O O B-place_name
+O O O O L-person O O B-change_amount
+O O U-date O B-media_type
+O O O O O B-business_type O O B-place_name
 O O O O O O O O O B-time L-time
-O O O O O O O B-date B-media_type
+O O O O O O O B-timeofday B-media_type
 O O O O O O O O O O O O O O O O O O
-O O O O O O B-news_topic I-news_topic O O
+O O O O O O B-news_topic L-place_name O O
 O O O O O U-place_name
 O O O O O O O O O O O O U-place_name
 O O O O O O B-news_topic
-O O O B-place_name
+O O O U-place_name
 O O U-person O O O O B-media_type L-media_type
 O O O O O O B-media_type
-O O O O O
+O O O O B-date
 O O O O U-media_type
-O O O O B-personal_info O B-business_name I-business_name
-O O O O O B-business_name L-place_name
+O O O O B-personal_info O B-person I-person
+O O O O O U-place_name L-place_name
 O O O O O B-news_topic L-news_topic
 O O
 O O O
-O O O O O O O O O O O L-change_amount
+O O O O O O O O O O O B-time
 O O B-change_amount I-change_amount L-change_amount
-O O O O O U-house_place
+O O O O O L-house_place
 O O O O O O
 O O O O O O O O O O
 O O O O O O O O O
 O B-house_place L-house_place O
 O O O O O
 O O O
-O O O O B-place_name L-change_amount
+O O O O O L-change_amount
 O
 O O O
 O O O O
-B-time O O
+O O O
 O O O O O
 O O O O O
 O O O O O
 O O B-transport_descriptor O U-place_name
 O O O O O O O O
-O O O O B-time
+O O O O L-time
 O O O O O U-food_type
 O O O O O O O
 O O O O O O O O O O O
 O O O O O O O O O
 O O O O O O
-O O O O O O O U-food_type
-O O O O O O O
+O O O O O U-food_type O B-business_type
+O O O O O O U-business_name
 O O O O B-news_topic O
-O O O O O O O U-business_name
+O O O O O O O B-food_type
 B-business_name B-business_name I-business_name L-business_name O O
 O O O O O O U-date
 O O O B-business_name L-business_name
 O O O O O U-business_name O O
 O O O U-business_name
 O O O O O U-business_name
-O O O O O O O O O O O O O O O
-O O O U-business_name O O O I-timeofday
+O O O O O U-business_name O O O O O O O O O
+O O O U-business_name O O O O
 O O O O O O U-business_name
 O O O O O O U-business_name
 O O O O O O U-business_name O
-O O B-business_name L-business_name O O U-date
+O O O L-person O O U-date
 O O O O U-business_name L-person O
-O O O O O O O
-O U-business_name O O O O O B-timeofday L-date
-O O O O O O B-place_name I-business_name L-business_name
+O O O U-business_name O O O
+O U-business_name O O O O O B-date L-date
+O O O O O O U-business_name I-business_name L-business_name
 O O O O U-food_type O U-order_type
 O U-business_name O U-order_type
 O O O O O B-business_name L-business_name U-order_type
@@ -717,7 +717,7 @@ O O O O O O O
 O U-order_type O O O U-business_type
 O B-business_name L-business_name O B-order_type L-order_type
 O O O U-order_type O
-O O O O B-business_name L-business_name O
+O O O O B-business_name L-business_name L-business_name
 O O O O O O U-order_type O O
 O O O U-order_type
 U-business_type O O
@@ -725,38 +725,38 @@ O O O U-order_type O
 O O O B-business_name O O
 O O U-order_type O
 O O O B-business_name L-business_name O U-order_type
-O O O O O O O O
+O O O O O O O L-order_type
 O O O O U-business_type B-business_name L-business_name O U-order_type O O O
 O O O U-order_type
 O O O O O B-game_name L-game_name
 O O O O B-game_name O I-game_name
-O O O B-song_name I-game_name
+O O O B-game_name L-game_name
 O O O O O O B-food_type
-O O O O O O O
-O O O
-O O O O
+O O O O O O B-relation
+O O B-game_name
+O U-game_name O O
 O O U-game_name
-O O O
+O O B-time
 O U-game_name O O
 O U-game_name
-O O O U-game_name O O U-audiobook_name
-O O O O B-game_name O B-game_name
+O O O B-game_name O O I-audiobook_name
+O O O O O O B-game_name
 O O O O O U-game_name O O
 O O B-game_name I-game_name L-game_name
 O U-game_name O O
 O O O U-place_name L-place_name
-O O O B-person
+O I-time O B-artist_name
 O U-game_name O O O
 O O O O O O
 O O O O O O O
 O O B-music_genre L-music_genre O
-O O O B-playlist_name B-list_name
+O O O U-artist_name L-list_name
 O O O O O
 O O O O U-app_name
 O O O O O O O
 O O O
 O O O O O O
-O O O O B-artist_name L-artist_name O O O O O
+O O O O B-person L-person O O O O B-radio_name
 O O O O O
 O O O O O O O O O O O
 O O O O O O O
@@ -786,182 +786,182 @@ O O O O O O O
 O O O O O O
 O O O O O O O
 O O B-person L-person O O O O O O O O O
-O O O O U-relation O O O O O O O O O O O O B-time L-time O
+O O O O U-relation O O O O O O O O O O O O B-time L-time L-time
 O O O O U-person O O O O O O
-O O O O B-email_address I-email_address O O O I-email_address L-email_address
-O O O O B-date I-list_name L-date O
+O O O O B-email_address I-email_address L-person O O I-email_address L-email_address
+O O O O B-date I-list_name L-date U-personal_info
 O O O O O O
-O O O O O U-relation O U-relation O
+O O O O O U-relation U-relation U-event_name U-relation
 O O O U-relation O O O O U-relation
 B-business_type I-email_address L-email_address
 O O O O O U-person
 O O B-person L-person O O O O O O O O O O O O
 O O O O O O O
 O U-person L-person
-O O O O O U-person L-person
+O O O O O B-person L-person
 O O O O
 O O O B-person
 O U-person O O O O O B-date L-date U-event_name
 O O O O O O
 O O O U-media_type O O O
-O O O O O O B-place_name L-place_name
-O O O O O O O O U-media_type U-media_type
+O O O O O O U-news_topic B-date
+O O O O O O O O U-media_type L-news_topic
 O O O O O O O U-media_type
 O O O O O O U-media_type
 O O O O O O O
-O O O O B-artist_name L-business_name U-media_type O O U-time
-O O O O O O O O O O O
+O O O O B-business_name I-business_name U-media_type O O U-time
+O O O O O O O O O O U-relation
 O O O O O O O O
 O O O O O O U-relation O O B-time L-time
 O O O O O O O B-media_type L-media_type
-O O O B-person L-person U-media_type O B-business_name I-place_name L-general_frequency
+O O O B-person L-person U-media_type O B-date B-date L-general_frequency
 O O O O
 O O O O O U-media_type U-date
 O O O O O U-media_type
-O O O O O O O
+O O O O O O L-media_type
 O O O O O O U-date O O U-media_type
 O O O O O U-media_type
 O O O O U-artist_name
-O O O O O B-definition_word L-person O
+O O O O O B-person L-person O
 O O O O O B-date L-person
 O O O O O O
 O O U-person O O O O O O O
 O O O O O O O
 O O O O O
-O O O O O O O O O O O O O O
+O O O O O O O O O U-food_type O O O O
 O O O O O O
 O O
 O O O O O O O O O U-person I-business_name
 O O O
-O O B-list_name I-list_name L-list_name L-list_name L-list_name
+O O B-list_name I-list_name I-list_name L-list_name L-list_name
 O O O O
 O O O O O O O O O O O
-O O O O O O O
+O O O O O O U-artist_name
 O O O O O O O O
 O O O O O O O
 O B-game_name
 U-player_setting O O
+U-player_setting O O O O O
 O O O O O O
-O O O O O O
-O O O
-O O O O O O U-coffee_type
-O O O
-O O O O O O
+U-player_setting O O
+O U-player_setting O O O O B-game_name
+U-player_setting O O
+U-player_setting O O O O O
 O O O O B-color_type
-O B-change_amount I-change_amount L-change_amount
+O O I-change_amount L-change_amount
 O O O O O O O O U-house_place
-O O O O B-radio_name L-player_setting
+O O O O U-color_type L-player_setting
 O O O O
 O O O O
 O O O O O O O U-color_type O
-O B-food_type B-transport_descriptor U-food_type
+O B-food_type U-food_type U-food_type
 O O O
 O O O O O U-color_type
 O O O O O O O U-house_place
 O O O U-color_type
-O O O O B-house_place L-house_place O O B-change_amount I-change_amount O
+O O O O B-house_place L-house_place O O O B-color_type O
 O O O O B-house_place L-house_place O O U-color_type
 O O O O O O O U-color_type
-O O O O O O O O B-house_place L-house_place
+O O O O O O O O U-place_name L-house_place
 O O O U-color_type L-color_type
-O O O O O U-color_type O O O O O U-house_place L-device_type
+O O O O O U-color_type O O O O O U-house_place O
 O O O O U-color_type O
 O O O O B-time L-time
 O O O O O U-time
 O B-time L-time
 O O O O O O U-date
 O O O O B-time
-O O O O B-time L-time I-time L-time O L-time
-O O O O O O O O U-date O U-timeofday
-O O O O B-time O O O O O
+O O O O B-time L-time B-time L-time O L-time
+O O O O O O O B-date U-date O U-timeofday
+O O O O B-time I-time O O O O
 O O O O O O B-time L-time
 O O O B-time L-time O
 O O O O B-time L-time O O
-O L-alarm_type O
+O O O
 O O O O O O
-O O O O O O O U-time O O O O
-O O O O O O O O U-event_name O O U-relation O B-time L-time O U-date
+O O O O O O O U-time O O O U-relation
+O O O O O O O O U-event_name O O U-relation O B-time L-time I-time U-date
 O O O O B-time L-time
 O O O O O B-time I-time L-time B-date U-timeofday
 O O O B-time I-time L-time
-O O O B-alarm_type L-alarm_type O O B-time I-time I-time L-time
+O O O O L-alarm_type O O B-time I-time I-time L-time
 O O O O O O O U-place_name
 O O O O U-place_name
 O O O O O
 O O O O
-O O O O O O O O
+O O O O O O O U-media_type
 O O O O O O U-place_name
 O U-place_name O O O O O
 O O O O
 O O O O O O O
 O O O O O O O O O
+O O O O O O O B-place_name
 O O O O O O O O
-O O O O U-business_name O O O
 O O O O O O O O B-place_name
 O O O O O U-timeofday
 O O U-person O
-O O O O O O O O O U-place_name L-place_name B-date O O
-O O O O O O O B-place_name I-place_name I-place_name L-place_name
+O O O O O O O O O U-place_name B-transport_descriptor B-date O O
+O O O O O O O B-place_name I-place_name I-place_name I-time
 O O O O U-place_name
 O O O O B-place_name L-place_name
-O U-radio_name
+O B-game_name
 O B-radio_name I-radio_name I-radio_name I-radio_name I-radio_name
 O O O
 O O O B-radio_name L-radio_name
 O O O O B-radio_name L-device_type O O B-radio_name
-O B-audiobook_name I-business_name I-radio_name
-O B-radio_name I-radio_name I-radio_name I-radio_name L-radio_name L-radio_name
-O O O O O O I-date I-radio_name I-radio_name O O
-O O O O O U-music_genre I-playlist_name I-music_genre O
-O O O O B-business_type I-radio_name L-radio_name
+O B-game_name I-game_name L-radio_name
+O B-radio_name I-radio_name I-radio_name I-radio_name I-radio_name L-radio_name
+O O O O O B-date I-date I-date I-time I-radio_name I-time
+O O O O O U-music_genre I-playlist_name I-game_name I-playlist_name
+O O O O I-place_name L-radio_name L-radio_name
 O O O O O U-artist_name
 O B-business_type B-business_type L-person O O U-app_name
-O O O O O L-radio_name O O O O O
-O B-game_name L-date O O
-O B-radio_name L-radio_name
+O O O O O L-place_name O O O O O
+O B-game_name L-date O B-radio_name
+O B-radio_name I-radio_name
 O O O O O
-O O U-music_genre L-radio_name O U-app_name
+O O B-radio_name L-radio_name O U-app_name
 O O O O O
 O O O O O O B-date L-radio_name
-O O O O U-business_name O O O O O O
+O O O O B-business_name O O O O O O
 O O O B-place_name
-O U-media_type O O O O O O O O O O O
+O U-media_type O O O O O O O O O O B-food_type
 O B-game_name O O O
 O O B-business_name I-business_name L-business_name O O
-O U-business_name O O O O B-game_name
+O U-business_name O O O O B-news_topic
 U-media_type O O O O O O O B-place_name L-place_name
 O O O
 O O O U-media_type
 O O O U-media_type O O O O O O
-U-media_type O B-business_name O L-business_name O O O O O O O O O O O
+U-media_type O B-business_name L-business_name L-business_name O O O O O O O O O O O
 U-media_type O B-business_name L-business_name
-U-media_type B-business_name L-business_name O O O B-business_name L-business_name O O U-media_type O
+U-media_type B-business_name O O O O O L-business_name O O U-media_type O
 O O O O O O U-media_type O
 U-media_type O O O B-business_name
 U-media_type B-business_name L-business_name
-B-business_type O O O O O U-media_type
+O O O O O O U-media_type
 O O U-media_type O U-business_name O O O O O B-food_type
 O O U-business_name U-media_type O O O
 O O O O I-song_name I-playlist_name
 U-player_setting U-player_setting
-U-player_setting O B-media_type L-media_type O B-audiobook_name I-business_name
+U-player_setting O B-media_type L-media_type O B-business_name L-media_type
 O O
-O L-player_setting B-audiobook_name L-audiobook_name O O O O
-O O O O O O B-playlist_name L-audiobook_name
-O B-media_type L-media_type B-audiobook_name O L-audiobook_name
-O O O I-audiobook_name I-audiobook_name
+O O B-audiobook_name L-audiobook_name O O O I-podcast_descriptor
+O O O O O O L-audiobook_name L-audiobook_name
+O B-media_type L-media_type B-audiobook_name I-audiobook_name L-audiobook_name
+O U-media_type O I-audiobook_name I-audiobook_name
 U-player_setting B-audiobook_name L-audiobook_name
 O O O B-game_name
 B-media_type
-O O O O O O L-audiobook_name L-audiobook_name
-O O B-date I-radio_name O I-date U-media_type
-U-player_setting O U-media_type O O O O
-U-player_setting O O L-audiobook_name O O
-O U-player_setting O B-media_type L-media_type B-audiobook_name I-audiobook_name L-audiobook_name
-O O O O O O O O O I-radio_name I-radio_name I-radio_name I-radio_name I-radio_name L-radio_name O O O O O
+O O O O O O I-audiobook_name L-audiobook_name
+O O O I-radio_name O B-date U-media_type
+U-player_setting O U-media_type O O O B-date
+U-player_setting O O O O O
+O O O B-media_type L-media_type B-audiobook_name I-audiobook_name L-audiobook_name
+O O O O O O O O B-radio_name I-radio_name I-radio_name I-radio_name I-radio_name I-radio_name L-radio_name O O O O O
 B-player_setting L-player_setting
-O O O O O O O O B-audiobook_name
-O O O O O O
+O O O O O O L-media_type O B-audiobook_name
+O O O O O U-color_type
 O O B-game_name
 O O O O
 O O O O O O O
@@ -1007,25 +1007,25 @@ O O O O O
 O O O O O O O O O O
 O O O O O O O O O O
 O O O O O O O O
-O O O O O O
-O O O O B-podcast_name L-podcast_descriptor O
+O B-game_name O O O O
+O O O O B-podcast_name L-podcast_descriptor L-podcast_name
 O O O O O O B-podcast_name
 O O O L-audiobook_name O O
 O B-podcast_descriptor L-podcast_descriptor
-O O O B-playlist_name
-O O O O U-media_type O O B-transport_descriptor I-radio_name
+O O B-playlist_name B-playlist_name
+O O O O U-media_type O O I-date I-date
 O B-podcast_descriptor L-podcast_descriptor
-O O U-podcast_descriptor U-podcast_descriptor
+O O B-relation I-playlist_name
 O O B-podcast_descriptor L-podcast_descriptor
-O O O B-podcast_descriptor I-podcast_descriptor L-podcast_descriptor
-O O B-podcast_descriptor L-podcast_descriptor O O
+O O O B-podcast_descriptor L-podcast_descriptor L-podcast_descriptor
+O O B-podcast_descriptor L-podcast_descriptor O B-podcast_name
 O O U-weather_descriptor
-O O O O O U-podcast_name
-O O O O O O O O O O O O O O
+O O O O O B-audiobook_name
+O O O O O O O O O U-place_name O O O O
 O O O
 O O O
-O O O O O O
-B-player_setting O O B-podcast_descriptor L-podcast_descriptor O O
+O O O O O B-podcast_descriptor
+B-player_setting O O B-podcast_descriptor L-podcast_descriptor O L-podcast_descriptor
 O O O B-time L-time O O B-time_zone L-time_zone O O O O O U-place_name L-place_name
 O O O B-time L-time O U-place_name O O O O O U-place_name
 O O O O O O O O U-place_name
@@ -1035,14 +1035,14 @@ O O O O O O O B-time L-time U-place_name U-place_name O
 O O B-time L-time O U-time_zone O O O O O O O O O O O
 O O O O U-time_zone
 O O O O
-O O O O O O L-ingredient
-O O O O O O O O O O O O O O O
-B-date L-date O
+O O O O O O B-food_type
+O O O O O O O O O O O O O U-joke_type O
+B-date L-date L-date
 O O O O O
 O O O O O
 O O O O
 O O O O O O O
-O O O B-radio_name O
+O O O U-joke_type O
 O O O O
 O O O
 O O
@@ -1055,22 +1055,22 @@ O O O O O O O O O
 O O O B-device_type L-device_type O B-time L-time
 O O O O O O O O O O
 O O O O B-device_type I-device_type L-device_type
-U-date O O O O O O O O O O O O O O O O
-O O O B-date
-O O O O O O O B-place_name
+U-date O O O U-meal_type O O O O O O O O O O O O
+O O O B-person
+O O O O O O O U-place_name
 O B-date
-B-date I-date
+B-date L-general_frequency
 O O O O O
 O O B-date O O O O O O O O
-O O O O O O O
-O O O O
-O O O O U-weather_descriptor L-weather_descriptor O U-transport_type U-date
+O O O O O O I-person
+O O O B-personal_info
+O O O O U-weather_descriptor B-date O U-transport_type U-date
 O O O O O U-place_name
-O O O O O O O O O B-date O B-transport_descriptor O U-place_name
+O O O O O O O O O B-date O B-transport_descriptor O L-transport_descriptor
 O O U-food_type
 O O O O O O O B-food_type
 O O O O O O O O
 O O O O U-date
 O O O O O O O
 O O O O O
-O O O O O O U-place_name O O U-date I-time
+O O O O O O U-place_name O O B-date I-time

@@ -18,8 +18,8 @@ from model_utils import save_state, load_model_state, set_seed
 # Set seed to have consistent results
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
-# data_type = 'accounts'
-data_type = 'alliance'
+data_type = 'accounts'
+# data_type = 'alliance'
 # data_type = 'wallet'
 # data_type = 'ubuntu'
 # data_type = 'snips'
@@ -157,7 +157,7 @@ class hparamset():
         self.hidden_layer_size = 512
         self.num_hidden_layers = 1
         self.embedding_dim = 256
-        self.batch_size = 32
+        self.batch_size = 8
         self.dropout = 0.1
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
@@ -186,6 +186,7 @@ updates = 1
 total_loss = 0
 best_loss = +inf
 stop_training = False
+out_dir = 'outputs'
 start_time = time.time()
 for epoch in range(params.epochs):
     for batch in batcher:
@@ -207,7 +208,7 @@ for epoch in range(params.epochs):
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
             if best_loss > total_loss:
-                save_state('best_model.pt', model, loss_fn, optimizer, updates)
+                save_state(f'{out_dir}/{data_type}_best_model.pt', model, loss_fn, optimizer, updates)
                 best_loss = total_loss
             total_loss = 0
         if updates % params.max_steps == 0:
@@ -216,6 +217,8 @@ for epoch in range(params.epochs):
 
     if stop_training:
         break
+
+print('Training time:{}'.format(time.time()-start_time))
 
 
 def get_idx_to_tag(label_ids):
@@ -226,18 +229,15 @@ def get_idx_to_word(words_ids):
     return [idx_to_word.get(idx) for idx in words_ids]
 
 
-print('Training time:{}'.format(time.time()-start_time))
-
-updates = load_model_state('best_model.pt', model)
+updates = load_model_state(f'{out_dir}/{data_type}_best_model.pt', model)
 
 ne_class_list = set()
 true_labels_for_testing = []
 results_of_prediction = []
 nlp_blank = spacy.blank('en')
-
-with open('{}_label.txt'.format(data_type), 'w', encoding='utf8') as t, \
-        open('{}_predict.txt'.format(data_type), 'w', encoding='utf8') as p, \
-        open('{}_text.txt'.format(data_type), 'w', encoding='utf8') as textf:
+with open(f'{out_dir}/{data_type}_label.txt', 'w', encoding='utf8') as t, \
+        open(f'{out_dir}/{data_type}_predict.txt', 'w', encoding='utf8') as p, \
+        open(f'{out_dir}/{data_type}_text.txt', 'w', encoding='utf8') as textf:
     with torch.no_grad():
         model.eval()
         prediction_label_ids = []
