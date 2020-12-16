@@ -7,12 +7,14 @@ from eval.biluo_from_bio import get_biluo
 data_type = 'accounts'
 nlp_blank = spacy.blank('en')
 
-with open('{}_label.txt'.format(data_type), 'r') as t, open('{}_predict.txt'.format(data_type), 'r') as p:
+with open('{}_label.txt'.format(data_type), 'r') as t, \
+        open('{}_predict.txt'.format(data_type), 'r') as p, \
+        open('{}_text.txt'.format(data_type), 'r') as textf:
     df = pandas.read_csv('data/{0}/{0}_test_text.txt.csv'.format(data_type), encoding='utf8', sep='\t')
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
-    for text, true_labels, predicted_labels in zip(df.text.tolist(), t, p):
+    for text, true_labels, predicted_labels in zip(textf, t, p):
         doc = nlp_blank(text.strip())
         true_labels = true_labels.strip().replace('_', '-').split()
         predicted_labels = predicted_labels.strip().replace('_', '-').split()

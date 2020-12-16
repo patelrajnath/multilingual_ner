@@ -3,13 +3,16 @@ import time
 from math import inf
 
 import numpy as np
+import spacy
 import torch
 
 import torch.nn as nn
 import torch.nn.functional as F
 from sklearn.metrics import f1_score, precision_score, recall_score
+from spacy.gold import offsets_from_biluo_tags
 
 from batchers import SamplingBatcher
+from eval.biluo_from_bio import get_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
@@ -27,6 +30,8 @@ with open('data/{}/words.txt'.format(data_type), encoding='utf8') as f:
     words = ast.literal_eval(f.read()).keys()
     for i, l in enumerate(words):
         vocab[l] = i + num_specials_tokens
+
+idx_to_word = {vocab[key]: key for key in vocab}
 
 START_TAG = "<START>"
 STOP_TAG = "<STOP>"
@@ -78,12 +83,12 @@ with open('data/{0}/{0}_test_labels.txt'.format(data_type), encoding='utf8') as 
 count = 1
 train_sentences_fixed = []
 train_labels_fixed = []
-for true, l in zip(train_sentences, train_labels):
+for t, l in zip(train_sentences, train_labels):
     count += 1
-    if len(true) != len(l):
-        print(f'Error:{len(true)}, {len(l)}, {count}')
+    if len(t) != len(l):
+        print(f'Error:{len(t)}, {len(l)}, {count}')
     else:
-        train_sentences_fixed.append(true)
+        train_sentences_fixed.append(t)
         train_labels_fixed.append(l)
 
 train_sentences = train_sentences_fixed
@@ -91,12 +96,12 @@ train_labels = train_labels_fixed
 
 test_sentences_fixed = []
 test_labels_fixed = []
-for true, l in zip(test_sentences, test_labels):
+for t, l in zip(test_sentences, test_labels):
     count += 1
-    if len(true) != len(l):
-        print(f'Error:{len(true)}, {len(l)}, {count}')
+    if len(t) != len(l):
+        print(f'Error:{len(t)}, {len(l)}, {count}')
     else:
-        test_sentences_fixed.append(true)
+        test_sentences_fixed.append(t)
         test_labels_fixed.append(l)
 test_sentences = test_sentences_fixed
 test_labels = test_labels_fixed
@@ -157,7 +162,7 @@ class hparamset():
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
         self.lr_decay_pow = 1
-        self.epochs = 100
+        self.epochs = 0
         self.seed = 999
         self.max_steps = 1500
         self.patience = 100
@@ -213,46 +218,86 @@ for epoch in range(params.epochs):
         break
 
 
-def idx_to_tag_labels(label_ids):
+def get_idx_to_tag(label_ids):
     return [idx_to_tag.get(idx) for idx in label_ids]
+
+
+def get_idx_to_word(words_ids):
+    return [idx_to_word.get(idx) for idx in words_ids]
 
 
 print('Training time:{}'.format(time.time()-start_time))
 
 updates = load_model_state('best_model.pt', model)
-with open('{}_label.txt'.format(data_type), 'w') as true, \
-        open('{}_predict.txt'.format(data_type), 'w') as predicted:
+
+ne_class_list = set()
+true_labels_for_testing = []
+results_of_prediction = []
+nlp_blank = spacy.blank('en')
+
+with open('{}_label.txt'.format(data_type), 'w') as t, \
+        open('{}_predict.txt'.format(data_type), 'w') as p, \
+        open('{}_text.txt'.format(data_type), 'w') as textf:
     with torch.no_grad():
         model.eval()
         prediction_label_ids = []
         true_label_ids = []
         for text, label in zip(test_sentences, test_labels):
-            text = torch.LongTensor(text).unsqueeze(0).to(device)
+            text_tensor = torch.LongTensor(text).unsqueeze(0).to(device)
             lable = torch.LongTensor(label).unsqueeze(0).to(device)
-            predict = model(text)
+            predict = model(text_tensor)
             predict_labels = predict.argmax(dim=1)
             predict_labels = predict_labels.view(-1)
-            # score, predict_labels = model.forward_crf(batch_data)
             lable = lable.view(-1)
+
             predicted_labels = predict_labels.cpu().data.tolist()
             true_labels = lable.cpu().data.tolist()
-            tag_labels_predicted = idx_to_tag_labels(predicted_labels)
-            tag_labels_true = idx_to_tag_labels(true_labels)
-            prediction_label_ids.extend(predicted_labels)
-            true_label_ids.extend(true_labels)
-            predicted.write(' '.join(tag_labels_predicted) + '\n')
-            true.write(' '.join(tag_labels_true) + '\n')
+            tag_labels_predicted = get_idx_to_tag(predicted_labels)
+            tag_labels_true = get_idx_to_tag(true_labels)
+            text_ = get_idx_to_word(text)
 
-    true = list()
-    predicted = list()
-    for p_label, t_label in zip(true_label_ids, prediction_label_ids):
-        if p_label == tag_to_idx.get(O_TAG) and t_label == tag_to_idx.get(O_TAG):
-            continue
-        true.append(p_label)
-        predicted.append(t_label)
-    print(len(true), len(predicted))
-    # print(f1_score(t, p, average='micro') * 100)
-    # print(f1_score(t, p, average='macro') * 100)
-    print(f"F accuracy: {f1_score(true, predicted, average='weighted') * 100}")
-    print(f"Precision score: {precision_score(true, predicted, average='weighted', zero_division=True) * 100}")
-    print(f"Recall score: {recall_score(true, predicted, average='weighted', zero_division=True) * 100}")
+            tag_labels_predicted = ' '.join(tag_labels_predicted)
+            tag_labels_true = ' '.join(tag_labels_true)
+            text_ = ' '.join(text_)
+            p.write(tag_labels_predicted + '\n')
+            t.write(tag_labels_true + '\n')
+            textf.write(text_ + '\n')
+
+            doc = nlp_blank(text_)
+            tag_labels_true = tag_labels_true.strip().replace('_', '-').split()
+            tag_labels_predicted = tag_labels_predicted.strip().replace('_', '-').split()
+            biluo_tags_true = get_biluo(tag_labels_true)
+            biluo_tags_predicted = get_biluo(tag_labels_predicted)
+
+            offset_true_labels = offsets_from_biluo_tags(doc, biluo_tags_true)
+            offset_predicted_labels = offsets_from_biluo_tags(doc, biluo_tags_predicted)
+
+            ent_labels = dict()
+            for ent in offset_true_labels:
+                start, stop, ent_type = ent
+                ent_type = ent_type.replace('_', '')
+                ne_class_list.add(ent_type)
+                if ent_type in ent_labels:
+                    ent_labels[ent_type].append((start, stop))
+                else:
+                    ent_labels[ent_type] = [(start, stop)]
+            true_labels_for_testing.append(ent_labels)
+
+            ent_labels = dict()
+            for ent in offset_predicted_labels:
+                start, stop, ent_type = ent
+                ent_type = ent_type.replace('_', '')
+                if ent_type in ent_labels:
+                    ent_labels[ent_type].append((start, stop))
+                else:
+                    ent_labels[ent_type] = [(start, stop)]
+            results_of_prediction.append(ent_labels)
+
+
+from eval.quality import calculate_prediction_quality
+print(ne_class_list)
+f1, precision, recall, results = \
+    calculate_prediction_quality(true_labels_for_testing,
+                                 results_of_prediction,
+                                 tuple(ne_class_list))
+print(f1, precision, recall, results)
