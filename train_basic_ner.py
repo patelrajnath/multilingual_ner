@@ -235,9 +235,9 @@ true_labels_for_testing = []
 results_of_prediction = []
 nlp_blank = spacy.blank('en')
 
-with open('{}_label.txt'.format(data_type), 'w') as t, \
-        open('{}_predict.txt'.format(data_type), 'w') as p, \
-        open('{}_text.txt'.format(data_type), 'w') as textf:
+with open('{}_label.txt'.format(data_type), 'w', encoding='utf8') as t, \
+        open('{}_predict.txt'.format(data_type), 'w', encoding='utf8') as p, \
+        open('{}_text.txt'.format(data_type), 'w', encoding='utf8') as textf:
     with torch.no_grad():
         model.eval()
         prediction_label_ids = []

@@ -1,0 +1,2804 @@
+Why does HwOneHopSdk display an error message when I edit code in the app ?
+Could a non - resident receive payments for a product released in the Chinese mainland without having to open a bank account in China ?
+How does the OAID value change happen ?
+When I was about to submit my app media for review , it appears there 's a problem . Why ?
+When could I get my revenue from my apps and games that have accessed the HuaweI IAP ?
+Operation Step in use for HuaweI Preload
+While an ability is in review , can it be tested ?
+Why was Multi - Screen Collaboration launched , but the actual function did n't show up during the NFC test ?
+Caas Kit Lite phone requirements .
+Could you tell me what DevEco IDE is ?
+Ways to join HUAWEI HiAI .
+What is the procedure I have to follow to integrate the HuaweI Ads SDK ?
+How may themes be uploaded ?
+What purpose does HuaweI EMUI theme cooperation serve ?
+How would I connect with the ecosystem via HuaweI Ability Gallery ?
+Which libraries need to be imported when connecting to HuaweI IAP ?
+Can developers monetize traffic with HuaweI Ads Kit ?
+Do I need to have a disclaimer if I need to distribute apps in Mainland China ?
+I want to call obtainOwnedPurchases API , when 's the best time ?
+How to report data to AppsFlyer while using DTM ?
+In what guides can you sign HuaweI AppTouch Joint Operations Service Agreement online ?
+When is the expiration for the purchase token in the API system called by your server to check the validity of the purchase token ?
+Is the DeviceVirtualization Kit dependent on the internet ?
+HuaweI Themes Design Specification function
+Why did the screen on my HuaweI device become black and I ca n't use it ?
+What EMUI versions and phone models are required to use the activity recognition function ?
+What is HuaweI EMUI Theme cooperation 's intended function ?
+I 'd like to integrate games with IAP payments in APP TOUCH .
+Why would you use CaaS Kit ?
+In what ways does payment in the sandbox testing environment differ from payment for the formal environment test ?
+How can I sign HuaweI HuaweI AppTouch Joint Operations Service Agreement ?
+How can I protect my account ?
+Should an ability be tested while it 's being reviewed ?
+How do getVirtualDevicesList API and startDiscovery API differ ?
+Ways to stop seeing personalized ads .
+What are the UNK requirements when releasing an app outside China ?
+Why do I see fewer services displayed than the account holder ?
+Is the tool supported by multiple modules ?
+I have got status code 10010 , 10011 , and 10012 , what does it mean when a function is called ?
+Am I able to shift between landscape and portrait modes on a real device during debugging ?
+How may I find HuaweI HiHealth Download Center ?
+The query results , after writing multiple data with overlapping time intervals , do not match what has been written . What happened ?
+Is it possible to use HuaweI Identity Kit but not integrate HuaweI Account Kit into my app ?
+How should I fix error code 6 when the web API is called ?
+How should I get a DUNS number ?
+What are the statuses before and after the release of an app ?
+What should I do to apply for permissions ?
+What is the expiration date of the validity of the purchase token in the API called by your server to check the validity of the purchase token ?
+Where may I find reported events ?
+When the IAP function is enabled on the HuaweI console , a message is displayed , indicating that the merchant authentication fails and you need to contact the merchant representative . Why does this issue occur and what can I do ?
+New app names have to end with @huawei.com to be integrated with HMS Core .
+In what ways are the getVirtualDevicesList API and the startDiscovery API different ?
+When will my invoice end ?
+How to enlist in HUAWEI HiAI ?
+Why do I get an UNK version immediately after removing version successfully on Cloud Hosting ?
+What are the essentials for content rating ?
+What files can be uploaded to Drive ?
+What are the steps for naming an app ?
+Ways to use apI console .
+I 'm trying to avoid a conflict when I reference the android support library after integrating the BioAuthn - AndroidX SDK .
+What are the directions in using DeviceVirtualization Kit ?
+Can you show me where to download Huawei 's vendor contract ? may I have it stamped ?
+Can ads be displayed on non - HuaweI or non - Honor phones ?
+Can I improve the headset monitoring effect ?
+Do I need merchant service ?
+Can the app review process take a lot of time ?
+Are there any format requirements for APKs that need to integrate Share Kit ?
+What would I do if error code 907135003 is returned when I call HMS Core ( APK ) ?
+The quick app report in HuaweI Developer is opened a number of times . What does it mean ?
+When shall I be able to receive revenue from my apps or games that have accessed HuaweI Pay ?
+Should you introduce AudioKit ?
+While there is no preview , or if the preview blackscreens , what does it mean ?
+I wish to integrate the Share Kit . What are the format requirements for APKs ?
+What information do I need to provide to register an overseas app ?
+What is the timeframe for integrating an ability to HUAWEI Ability Gallery ?
+What will be the next step if the application for integrating DTM SDK 4.0.0.300 is rejected ?
+When will my invoice become invalid ?
+I want to stop seeing personalized ads .
+What do I do to complain about a pirated app ?
+UNK UNK heard about Joint Operation Services ?
+If " Invalid Credentials " message is given when calling an API , what could I do next ?
+How can I fix an app rejected due to virus issues ?
+Am I capable of doing a signature verification without the SHA-256 certificate ?
+What are the steps for creating a theme ?
+How to register for a level 1 operation account ?
+DTM supports AppsFlyer tags . If I 'm looking to report data to AppsFlyer while using DTM , do I need to integrate the AppsFlyer SDK locally ?
+What kind of features are UNK OneHop ?
+How am I supposed to make the system allow me to create a promotion task in the paid promotion service ?
+Would HuaweI Location Kit be utilized on non - HuaweI phones ?
+What makes me UNK to verify my identity ?
+I want to top up and request for invoice using my level 1 account .
+What types of files are okay to be uploaded to Drive ?
+I have a level 1 account . How shall do I top up and request for invoice ?
+How should I deal with an exception that occurs during HuaweI Awareness Kit call ?
+How should I configure the activity link to the main page of an ability ? What is the link used for ?
+I have multiple addresses , can I add them to HUAWEI Identity Kit ?
+Are cross - platform IDEs capable of being used with HMS Core Toolkit ?
+I would like to use devicevizualization kit . How may I do that ?
+Which business partners can make use of HuaweI HiHealth platform ?
+Why would you use Quick app ?
+How may I download Huawei 's merchant contract ? am I allowed to have my contract stamped ?
+How may you have HUAWEI Ads SDK integrated ?
+I would like to use card abilities . How to utilize them ?
+What is the reason for which there are fewer services displayed compared to the account holder ?
+How do I improve the headset monitoring effect ?
+How to register for a level 2 operation account ?
+May I complain about pirated apps ? How to do that ?
+How can a DUNS number be applied for ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Will this have any affect on my app ?
+What are the concepts for displaying the product price and unit on a player 's mobile phone ? Based on the player 's location ?
+Does my top - up amount take long to be credited to my account ?
+Why is the version staying on Removing on Cloud Hosting ?
+How do the rewarded videos work ?
+The payment page can not be displayed on a non - HuaweI mobile phone , and error code 1 or 907135003 is returned . What could I do in this case ?
+What is the function of CaaS Kit ?
+Why ca n't I get automatic read permissions for SMS in HMS Core ( APK ) downloaded from Google Play ?
+What is the UNK of " deeplink " in App Ability ?
+Is it possible to change languages in Console after registering an account on the HuaweI Developer English site ?
+I am using a HuaweI device , but the screen becomes black and I can not use it . What can I do to solve this problem ?
+Can I gather different card abilities with a grid template ?
+How is obtaining a high - precision location limited ?
+What can I do if a message showing failure to connect to the server is displayed whilst I view achievements , leaderboards , or saved games in HuaweI Assistant ?
+ICustomVariable and ICustomTag , how does it work ?
+Why is the content of the old version still shown after I open the new version of the quick app ?
+How do I enroll in HUAWEI HiAI ?
+What types of files do Drive support ?
+Will the apps I uploaded from non - Chinese developers be UNK on the Chinese version of the AppGallery client ?
+UNK of using ICustomVariable and ICustomTag .
+How to verify my identity ?
+Will we have to wait long for the settlement sheet ?
+What is the use of AppTouch ?
+Where can I contact the account holder ?
+How can I update themes ?
+Do I need to learn how to integrate HMS SDK into my app so that it can use Drive capabilities ?
+Sharing proportion , what does it do ?
+What are the guides for creating a theme ?
+I would like to use card abilities . How to do that ?
+How to add on app and unit ?
+Can users be guided to use the new feature ?
+How could I change the company name ?
+HuaweI AppTouch Channel Guide
+What is the purpose of Card Ability ?
+What should I do to not get Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document ?
+How do you use DeviceVirtualization Kit ?
+Can developers customize the integration of CaaS Kit Lite service to meet UX requirements ?
+When running a test , how many device models could I select ?
+How to improve the headset monitoring effect ?
+Could I issue advertising invoices if I do n't have the necessary credentials ?
+I do n't have my own AI model , how would I leverage HuaweI device ’s AI capabilities ?
+Can you tell me who can enable a Team account ?
+As a developer , what do I need to do to edit authorization status of client accounts ?
+Can a developer deal with an app rejected due to virus issues ?
+Explain HuaweI Watch Face Design Specification .
+How are quick apps and abilities different ?
+What purpose does HuaweI Watch Face Design Specification serve ?
+I 'd like to fix " HiHealthError . ERR_SCOPE_EXCEPTION " ?
+How UNK do the Drive functions depend on HuaweI ID ?
+Meaning of app ability deeplink
+How may I update themes ?
+How can I fix r-classes.jar conflicts ?
+Can ability cards redirect users ?
+How should I top up ?
+What does " deeplink " mean in App Ability ?
+Must app icons , screenshots , names , versions , features , and other app information have consistency with the audited app information ?
+Am I allowed to change the identity verification information that is under review ?
+What should I do when signature verification fails ?
+What is the next step when you get an error in your transaction stating that it is rejected and may try again later when using a bank card to pay for a transaction on the client ?
+Would you get an empty result with getDeviceList ?
+Error code 50005 is returned to indicate an unknown authentication error when calling an API . What should I do ?
+How long would a testing task take ?
+DevEco IDE , what is it ?
+What is the UNK version of HuaweI AppGallery with quick apps ?
+Would I be able to access App Ability in HuaweI web browser ?
+When could I receive revenue from my apps or games that have accessed the HuaweI IAP ?
+What are the specifications for naming an app ?
+What would a developer do if an app is not accepted because of viruses ?
+What is the UNK UNK reason for app rejection ?
+Is it possible to get Code - Samples of HuaweI HiHealth ?
+How do I get to Theme Service Specification ?
+Why can TransFile not send files ?
+App Ability function
+How do I know the cause the version stays on Releasing on Cloud Hosting ?
+Where can I see the policies of HuaweI Ads ?
+Can HuaweI Ability Gallery collect data from apps ?
+Would developers customize the integration of CaaS Kit Lite service to meet UX requirements ?
+How should I use DeviceVirtualization Kit ?
+Ways to fix error 50005 .
+What should HuaweI Cast+ Kit do ?
+How can I change to another language in IDE ?
+When could I see and download bills ?
+Could I make a signing certificate change during app version update ?
+What UNK an individual developer from an enterprise one ?
+Can you define Team account ?
+How am I able to manage team accounts ?
+Where to download SDK from ?
+When can we expect the settlement sheet ?
+What are the directions in viewing and exporting reports of revenue ?
+Is it necessary for me to have a disclaimer if I 'd like to distribute apps in Mainland China ?
+How long will I have to wait for HuaweI Developers to review my documents ?
+The payment page can not be displayed on a non - HuaweI mobile phone , and error code 1 or 907135003 is returned . What could be done in this case ?
+How could I get HuaweI AppTouch Channel Guide ?
+Where do I check service country / region ?
+Can a related card ability be left intact while doing a quick app upgrade in HuaweI AppGallery ?
+Ways to make a new theme .
+The algorithm for the signature certificate of my app is SHA1withRSA . Would I be able to use it ?
+How to design themes ?
+What would I do if I get error code 907135003 when I call HMS Core ( APK ) ?
+Can the Bluetooth on my phone detect a Bluetooth headset if it is not enabled ?
+Where shall I be able to read about the process of settlement ?
+When I compile XMS adapter code separately , HMS Core Toolkit displays a message indicating that I do not have static or dynamic permissions . What should I do ?
+Could a test be done on an ability that is being reviewed ?
+Why are some apps on HuaweI AppTouch , despite failing to comply to its standards , while mine is rejected ?
+I need to verify my identity .
+Will there be any fees if non - subscriptions are purchased in the sandbox testing environment ?
+What should I do if after creating version successfully on Cloud Hosting , the version remains unchanged ?
+Is there a guideline to transfer the app from Account A to Account B ?
+May several apps use the DV kit simultaneously ?
+What are the regulations for calculating the storage space on Cloud Hosting ?
+How can HUAWEI Ability Gallery decide which services a user intent gets ?
+What are the phone specifications for the usage of CaaS UNK Lite ?
+I 've been trying to submit tests but it 's blocked , what could be the problem ?
+I want to check whether my smartphone supports the NPU .
+What are the UNK on using FIDO2 ?
+I ca n't locate the data in the event analysIs report for the day HuaweI Analytics Kit was integrated in my app , why should that be the case ?
+How come a code can not discover other devices but can run during development and debugging ?
+What is the size limit of cache files of a quick app ?
+Shall a signature be verified on the server ?
+Why are some non compliant apps still on HuaweI AppTouch , while mine has been rejected ?
+Define HuaweI Cloud Testing .
+How will I find my device 's basic information while Settings is shielded for the Cloud Debugging ?
+I am trying to verify my identity .
+If the signature algorithm of the app signature certificate is SHA1withRSA , will this impact the app in any ways ?
+What are the prerequisites of HuaweI Identity Kit for mobile phones and software ?
+When the files are stored in Drive , are they encrypted ?
+Operation Guideline used for HuaweI Preload
+Is submitting my app a requirement when UNK Abilities on HuaweI Ability Gallery ?
+In the API called by your server to check the validity of the purchase token , when is the purchase token considered invalid ?
+How should I select between sync or async APIs ?
+How many hours will I have to wait for HuaweI Developer to review my documents ?
+I 'd like to submit an app for review .
+I would like to modify some settings of my remote device and test my app . However , when I open settings on my device , settings exits unexpectedly . Why does this happen ?
+Can I access HuaweI Account Kit to allow users to sign in to my app using their HuaweI IDs even if I have my own account management service ?
+Why can not I set a new password in Cast+ Kit ?
+Is more than one module supported by the tool ?
+Shall Quick App Center be automatically upgraded when a new version is available ?
+Does HMS UNK support automatic download of the AppGallery Connect configuration file from AppGallery Connect to a project directory ?
+Why ca n't I invoke the API ?
+I need to learn how to use the tool for conversion of Firebase services .
+Would I be able to use non - HuaweI phones for testing ?
+How can you introduce AudioKit ?
+Why does account holder display more services ?
+Could the company information be edited ?
+If error code 907135702 appears when connecting to HMS Core , what should I do next ?
+Is Quick App Center automatically upgraded when a new version is available ?
+What are the guides in installing HMS Core Toolkit ?
+Am I allowed to revise the disclaimer for an app to be released in Mainland China ?
+I UNK that there are fewer services displayed compared to the account holder , why ?
+How can I release Quick Game ?
+Means to use Customer Service .
+Can you have more than one geofence ?
+How can I prove myself ?
+I have uploaded an app using account a , and then uploaded the same app using account b , and the system prompts me that the app package name exists / Is duplicate . What can I do ?
+Can HuaweI HiAI Engine be introduced ?
+Where could I find my bank information ?
+Could a link 's function be modified , for a link connecting to the main page of an ability ? What is the function of the link ?
+How can I use my own AI model ?
+What should I do if a 6003 error occurs when I try to connect to HMS Core ?
+Should you launch HuaweI Themes ?
+Should I be able to issue advertising invoices if I do n't have the necessary credentials ?
+Where am I able to get quick app IDE ?
+How would I be able to make the system allow me to create a promotion task in the paid promotion service ?
+How am I able to access HuaweI AppTouch Channel Guide ?
+What is the network port priority that HuaweI Cast+ Kit uses to obtain a device IP address ?
+I want to change languages in console after creating an account on the HuaweI Developer English site .
+UNK though I successfully deleted site on Cloud Hosting , the version remains unchanged .
+Can you tell me the AppGallery Review Guidelines ?
+Ways to find my app ID .
+Are HuaweI Game Service and AppGalleryKit Game UNK different ?
+How may I edit the basic information ?
+Does HuaweI Ability Gallery join together data from apps ?
+What are the guidelines to release Quick Game ?
+I 'm trying to find the AppGallery Review Guidelines .
+Would I be able to collect different card abilities with a grid template ?
+I have registered my account on the HuaweI Developer English site , can I switch languages in Console ?
+May changes in APK signature upgrade my app ?
+How can I check the comments of the users of my app ?
+Team account function
+What do you call the number of quick app reports opened in HuaweI Developer ?
+What should I do if my testing task is stuck in a queue ?
+I 'd like to report data to AppsFlyer while using DTM .
+Ways to oversee ads .
+What UNK does an OAID have ?
+What is the relationship between HuaweI Game Service and AppGalleryKit Game ?
+Share Kit function
+How can I change the company information ?
+Why would you use HuaweI Cloud Testing ?
+Is the user meant to log in to my app using a HuaweI ID ? should other accounts be used ?
+Can you tell me if there are any input requirements for DMSDP virtualization service ?
+New app names ( ending with @huawei.com ) are required for the integration with HMS Core .
+Why am I getting error uploading more than 5 screenshots in developer console ?
+How do I enable a team account ?
+How long can the authorization code obtained by using the account.authorize ( ) API be used for ?
+What are the differences in the OAID when it is obtained by integrating the SDK and by calling the AIDL API ?
+Is there anything to be done if your test is being executed ?
+What is HuaweI Ads ' intended function ?
+Am I able to complete the verification process if I do n't have access to the phone numbers of the location I selected ?
+What do business partners have to do after UNK user data ?
+What are the ways to get Code - Samples for HuaweI HiHealth ?
+What is the definition of the number of times that a quick app report is started in HuaweI Developer ?
+How do I avoid the settings from crashing when I modify my remote device and test my app ?
+What can I do if a message showing failure to connect to the server is displayed when I view achievements , leaderboards , or saved games in HuaweI Assistant ?
+Why is TransFile not UNK files ?
+How can I make use of merchant service ?
+Why is it warning me that the name of the APK I 'm uploading is already in use ?
+For how long is the authorization code gathered using the account.authorize ( ) API valid ?
+What restrictions are there on maximum payments in HuaweI IAP ?
+App approval is released , but I still ca n't find the app on the AppGallery . Why is that ?
+How could I change the sign in account ?
+What is HuaweI Ads intended for ?
+Can the public payment key be shown on the app ?
+What are the possible ways to have your app approval go as smoothly as possible ?
+How would I calculate the storage space on Cloud Hosting ?
+HuaweI Ads meaning
+Could the app name be changed ?
+In what case the OAID value of a device will change ?
+Are there any qualifications the service makes on the running environment ?
+What functions does HuaweI AR have ?
+How do I become a member account ?
+Are more than two modules supported by the tool ?
+What port is used when obtaining a device 's IP address with HuaweI Cast+ Kit ?
+How come the real - time heart rate data and RRI data are not continuous ?
+If the product price and unit on a player 's mobile phone needs to be displayed , what are the principles ? Will it be based on the location of the player ?
+How could I improve the headset monitoring effect ?
+Would I be able to do signature verification without the SHA-256 certificate ?
+What are the steps for sharing my app ?
+My configurations are correct , but I 'm getting a " 400 bad request invalidArgument " message , why ?
+How can services and their orders in HuaweI Assistant be changed ?
+How is getting a high - precision location limited ?
+To connect to HuaweI IAP , which libraries are required ?
+Can fees be charged when non - subscription purchases are made in the sandbox testing environment ?
+Is there an additional price for using Cloud Debugging ?
+What UNK of card dimensions are considered normal ?
+Who can make a Team account enabled ?
+How may I know the difference in modes of CameraKit ?
+I ca n't present my app media for review , can you tell me why ?
+What UNK of phones can support HuaweI AR Engine ?
+I want to publish a new app .
+Does an OAID reset automatically take effect on all of my devices or not ?
+Who among the developer environments can support API ?
+When shall I be able to view and download bills ?
+Could client accounts be handled by level 2 account users ?
+What is Quick game 's intended function ?
+Could I register multiple accounts with the same phone number or email address ?
+Reasons for Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document .
+Should I wait long for my top - up amount to be credited to my account ?
+What should I do to set a new password in Cast+ Kit ?
+What are the troubleshooting guidelines when there is no preview , or if the preview blackscreens ?
+Is a privacy policy link mandatory for developers UNK to release an app outside China ?
+UNK the purchase token verification process , can I request access tokens without any restrictions ?
+My location is not in the list when I try to verify my identity . What could I do ?
+How to improve the activity recognition success rate ?
+What are the guidelines in using DeviceVirtualization Kit ?
+Can you explain what NFC is ?
+Data on the day HuaweI Analytics Kit is integrated into my app can not be found in the events analysIs report , why is it ?
+In Cast+ Kit , how to change my password ?
+Do I need to learn how to use registerOneHop ( ) before invoking other APIs ?
+If I were to release security - based apps outside China , are there any limitations ?
+A display message is asking me to download the APK when I use the HMS SDK to access HuaweI account kit on a mobile phone without hms core ( APK ) . How would I be able to make my app support sign - in with HuaweI ID even without downloading the APK ?
+Can a theme package be distributed simultaneously to Mainland China and other regions ?
+Which awareness capabilities are required for cloud capabilities ?
+Explain Content Ability .
+What version is the HMS Core ( APK ) ?
+Would the Bluetooth on my phone detect a Bluetooth headset if it is disabled ?
+What should I do before using the merchant service ?
+UNK there a development guide for HuaweI AR ?
+How long does AppGallery Connect support comments for ?
+How can I get development guide for HuaweI AR ?
+Can I gather other card abilities with a grid template ?
+Would the merchant service be enabled if the location of identity verification is not the same as the location of the company ’s public account ?
+The code can not discover other devices , but it can run during development and debugging . Why ?
+Can business partners contact HuaweI for cooperation ?
+Cloud Debugging meaning
+Are there any restrictions when a security - based app is released outside China ?
+Could there be a category added when creating an ability ?
+What can be done with HuaweI AR ?
+What time could I get the top - up invoice for this month ?
+What is necessitated for the documents submitted ?
+What are the qualifications on using FIDO2 ?
+What restrictions are there in using FIDO2 ?
+Could I test an ability that is being reviewed ?
+I need to learn how to use HuaweI QuickApp IDE .
+Was the revenue laid out in the report on the HuaweI Ads Publisher Console the amount after or before revenue sharing ?
+Using my level 1 operation account , how would I be able to manage funds ?
+When adding money to the promotion account , can the names of the bank account used and verified company name be different ?
+What could I do when an empty response body is always returned when calling the read method of DataManager or DataController ?
+How to handle ad unit ?
+How do I look at the operations data ?
+What will differentiate using a HuaweI ID to sign in to a non - game app with using a HuaweI ID to sign in to a game app ?
+Are HMS Core ( APK ) downloaded from Google Play having issues getting automatic read permissions for SMS ?
+What requirements does the service need from the running environment ?
+May I use my level 1 operation account to handle a client account ?
+What am I able to do to enhance the activity recognition success rate ?
+Why am I UNK that the name of the APK I 'm uploading is already in use ?
+After changing the APK package name , could I still use it to update the corresponding application ?
+Why is it saying my app gets rejected ?
+Why do I have to verify my identity ?
+Could an OAID reset work on all of a user 's devices ?
+What distinctions are there between Authorization Code - based integration and ID Token - based integration ?
+What number of device models may I select when running a test ?
+After creating version successfully , why is the version still unchanged ?
+Could the identity verification information that is under review be revised ?
+After changing the APK package name , can I still use it to update the corresponding application ?
+Why do I get warning code 60055 returned when the app calls the createPurchaseIntentWithPrice API ?
+For the integration with HMS Core new app names ( ending with @huawei.com ) are required .
+I seek to reset my password .
+What am I supposed to do if my testing task is stuck in a queue ?
+How do I configure the activity link to the main page of an ability ? What is the function of the link ?
+What am I allowed to do with unused funds in my advertiser account ?
+For how long is the permission code collected using the account.authorize ( ) API valid ?
+How do I get to Huawei 's Theme Service Specification ?
+How would I submit an app for review ?
+How would I be able to get a HuaweI AR development guide ?
+Do I have to pay for cloud debugging ?
+Means to analyze ad effectiveness ?
+How am I able to see my app in HuaweI store ?
+Are there any restrictions if I were to release security - based apps outside China ?
+Can the name of a quick game package be the same as that of an online game package ?
+Can a developer release an app outside of China without providing a privacy policy link ?
+Can I transfer apps to another developer account ?
+Ways to analyze ad effectiveness ? .
+I want to receive the ability statistics through the developer portal .
+Why is it not letting me submit tests ?
+What function does the AppGallery badge service provide ?
+Would the CaaS Kit Lite utilize the video data as the source for video calls ?
+Would you tell us about HuaweI HiAI Engine ?
+How can you view and export reports of revenue ?
+How could I integrate the HuaweI Ads SDK ?
+What are the functions of HuaweI AR ?
+When could I use merchant service ?
+What can I do to view and download the service agreement ?
+Should I receive revenue from my apps or games that have accessed HuaweI Pay ?
+When error code 1 or 907135003 is returned it means that the payment page can not be displayed on a non - HuaweI mobile phone . What do I want to do in this case ?
+I want to fix slow or unsuccessful recognition of planes .
+I 'm trying to alter the company name . Can you help me ?
+When applying for paid promotion tests for apps / games , what details are required ?
+Can a level 1 operation account be used to manage a client account ?
+Is .huawei the required ending to operation apps ?
+Shall a free subscription be used for a while ?
+What shall be done if the current capabilities of HuaweI Awareness Kit can not meet my requirements ?
+How to integrate the HuaweI Ads SDK ?
+I got unable to access the hosted static page while version in Released state on Cloud Hosting . What do I do now ?
+How are rewarded videos different from regular videos ?
+What conditions are there before and after the release of an app ?
+How does quick app IDE work ?
+Can the merchant service 's contact information be updated ?
+Are the members qualified for UNK ?
+How am I supposed to see my app in HuaweI store ?
+What is the geofence 's recommended radius ?
+What should I do if r-classes.jar conflict occurs ?
+How to spot the differences between HuaweI Game Service and AppGalleryKit Game ?
+When data reporting fails and the server returns error code 402 , what could I do next ?
+Can AppGallery Connect support comments for more than 30 days at a time ?
+What should I do if I ca n't find my location when trying to have my identity verified ?
+What should I do to get my HUAWEI 's merchant contract ? am I allowed to have it stamped ?
+Do NFC tags need to be handled by app developers ?
+Can I pick multiple sizes when creating an ad unit ?
+Why do I get " HiHealthError . ERR_SCOPE_EXCEPTION " ?
+In what ways do the sandbox testing environment and the formal environment test differ from each other in payment ?
+Which requirements are there for HuaweI Identity Kit to work on mobile phones and software ?
+How can I get a DUNS number ?
+Is there a limit on the number of geofences ?
+How long is the authorization code achieved using the account.authorize ( ) API valid for ?
+Why it is returning " HiHealthError . ERR_SCOPE_EXCEPTION " ?
+What do I need to know about the sharing proportion ?
+Are there any differences between abilities and quick apps ?
+Could you distribute a theme package to Mainland China and other countries at the same time ?
+What may I do if a 6003 error occurs when I connect to HMS core ?
+Can you tell me the differences between abilities and quick apps ?
+Could I sign a joint operations service agreement ?
+What shall I do to protect my account ?
+From what period of time can you view comments stored in AppGallery Connect ?
+If I do not have the credentials for issuing advertising invoices such as for advertising service fees and advertising fees , what shall I do ?
+Can you tell me what DeviceVirtualization Kit is used for ?
+My app on http://app.hicloud.com can not be found , what could be the problem ?
+What specifications should a phone have to be able to use Caas Kit Lite ?
+Is there a guide to transfer the app from Account A to Account B ?
+What is the earliest version of HuaweI AppGallery you can find quick apps in ?
+Why is n't GetAvailableDevice obtaining any devices ?
+Does HMS Core Toolkit support cross - platform IDE , for UNK , Flutter or Xamarin ?
+Is this the only one payment UI available ? Is there any different payment UI available ?
+What will prove my identity ?
+Why do I get error code 60055 returned when the app calls the createPurchaseIntentWithPrice API ?
+When should I call init API for initialization after starting a game ?
+I 'd like to access third - party services or apps in the HuaweI Health app .
+What am I supposed to do if my test is being executed ?
+Can you explain what HuaweI Ads Publisher is ?
+What would the format of an OAID be ?
+What can I do to enhance the activity recognition success rate ?
+How can I find my bank information ?
+How should I use AudioKit ?
+How should I cancel my HuaweI ID ?
+What is the difference between the getVirtualDevicesList API and the startDiscovery API ?
+If the application for integrating DTM SDK 4.0.0.300 was turned down , what am I supposed to do next ?
+Why am I unable to upload more than 5 screenshots in developer console ?
+How would I establish joint operations ?
+When can I get my revenue from my apps and games that have accessed the HuaweI IAP ?
+How does HuaweI Ads Publisher work ?
+How can I access quick app IDE ?
+The signature algorithm of the app signature certificate is SHA1withRSA . Does this have any impact on the app ?
+How to hide personalized ads ?
+What is the prerequisites for UNK ?
+How can I resolve error code 502 ?
+Why am I getting a different price specified by amount compared to the actual price when the createPurchaseIntentWithPrice API is called for payment ?
+How may I acquire SDK and Shell Tools ?
+Can you tell me what HuaweI Cast+ Kit is used for ?
+New app names are required to end with @huawei.com to integrate with HMS Core .
+Shall a joint operations service agreement be signed ?
+Should I be able to separately adjust the version numbers of the quick app and the card engine ?
+Do developers handle NFC tags ?
+Do I need to have a disclaimer if I wish to distribute apps in Mainland China ?
+I 'm trying to stop " null " return when the user makes the query and tries to read data .
+How would I be able to fix common signature verification problems ?
+What is required in order to integrate the HUAWEI Ads SDK ?
+Can I choose the services or change the order of the services in HuaweI Assistant ?
+What must be done for the documents submitted ?
+What detail is required when registering an overseas app ?
+What purpose does HMS Core Toolkit serve ?
+I would like to use my own AI model . How may I do that ?
+Are rewarded ads an option in landscape orientation ?
+How is my identity verified ?
+How am I supposed to change to another language in IDE ?
+What are merchant service 's prerequisites ?
+What 's the default value of a card 's width ?
+What does HUAWEI Ability Gallery use to determine which services to present to a user intent ?
+Am I able to customize my user role ?
+What are the payments required to release an app ?
+Can there be any difference between the name of the bank account used to add money to the promotion account and the verified company name ?
+Define Team account .
+Where am I able to get the operations report about the quick app since its release ?
+Can there be a revision of the category of my app / game after it has been released ?
+When the app calls for the createPurchaseIntentWithPrice API , why do I get error code 60055 ?
+I am unable to create new version while version is in Releasing state on Cloud Hosting .
+Can one account be used for debugging on multiple devices at the same time ?
+How do I fix a 6003 error connecting to HMS core ?
+What is the requirements for the content rating ?
+How to avoid " null " return when the user makes the query and tries to read data ?
+UNK using a HuaweI ID to sign in to a non - game app and using a HuaweI ID to sign in to a game app . What are the differences ?
+How is ad effectiveness analyzed ?
+What can I do if I can not find my bank information on the merchant service page ?
+Operation Step connected to HuaweI Preload
+I have to check whether my smartphone supports the NPU ?
+How do I query which capabilities the kit supports ?
+Which events are sent to HuaweI Analytics ?
+How can I change my role and permissions ?
+Do I want to have an internet connection for using the DeviceVirtualization Kit ?
+How does HuaweI Themes Design Specification work ?
+Can a quick app background account be used in HuaweI background ?
+How can I change my signing certificate ?
+May I sign a joint operations service agreement ?
+What are the steps to integrate the HUAWEI Ads SDK ?
+May I modify the disclaimer for an app to be launched in Mainland China ?
+Can the tool be used to convert Firebase services ?
+Is it required to sign a joint operations service agreement required ?
+How should I be able to view the version of HMS Core ( APK ) ?
+What service does the AppGallery badge provide ?
+What can I do when signature verification fails ?
+Can level 2 account users handle client accounts ?
+How may I check service country / region ?
+What is the restriction limit on maximum payment amounts in HuaweI IAP ?
+How am I able to check the names of the app IDs and app packages ?
+How can I get the Ability statistics through the developer portal ?
+What can I do to get quick app IDE ?
+How to check the basic information about my device since Settings is shielded for the Cloud Debugging ?
+What is the timeframe to integrate an ability to HUAWEI Ability Gallery ?
+How may I use DeviceVirtualization Kit ?
+I 'm trying to find my app ID . Where can I find it ?
+When data reporting fails and the server returns error code 402 , what can I do next ?
+Does HuaweI help APK extension files supported by Google Play Store ?
+Should we integrate HMS SDK with my app so Drive capabilities can be used ?
+Am I able to give only one invoice for multiple settlement sheets ?
+What happens if you use the functions provided by HuaweI Identity Kit without signing in with a HuaweI ID ?
+For how long is the purchase token valid in the API called by your server to check the validity of the purchase token ?
+Why ca n't I create a new version while version is in Releasing state on Cloud Hosting ?
+How would I be able to view the version of HMS Core ( APK ) ?
+What is wrong when there is no preview , or if the preview blackscreens ?
+Am I supposed to make ConfirmRecvFile able to receive files ?
+How should I sign up for an account ?
+Would an individual developer activate the payment service ?
+Could I do an app transfer ?
+Could HuaweI Themes be introduced ?
+Is the tool supported only by a single module ?
+How may I view my app in HuaweI store ?
+How can I change languages in console after creating an account on the HuaweI Developer English site ?
+Why do I get error code -1 returned when the app calls the createPurchaseIntentWithPrice API ?
+How would I be able to get a member account ?
+Can the HuaweI Kits ' APIs be identified by tool - based conversion ?
+Which phones are able to run HuaweI AR Engine ?
+Is there any specific requirement of HuaweI Identity Kit for mobile phones and services ?
+Why is automatic read permissions for SMS with HMS Core ( APK ) downloaded from Google Play is not working on my phone ?
+Why is the content of the old version still UNK after I open the new version of the quick app ?
+How are themes updated ?
+What is the use of paid promotion ?
+Which business partners can access the HuaweI HiHealth platform ?
+Have you got HuaweI AR development guide ?
+Are Flutter , Xamarin and other cross - platform IDEs compatible with HMS Core Toolkit ?
+Ways to apply for settlement .
+What is the function of Quick app ?
+What is the purpose of DeviceVirtualization Kit ?
+How am I able to change the basic information ?
+How may I make my app support sign - in with HuaweI ID without downloading the APK when I use the HMS SDK to access HuaweI account kit on a mobile phone without hms core ( APK ) , i 'll see a message , asking me to download the APK ?
+Can I switch between landscape and portrait modes on a real device during debugging ?
+Do geofences have a number limit ?
+May CaaS Kit Lite use video data as the video source for video calls ? Are there any data restrictions ?
+Which of the events can I find HuaweI Analytics ?
+Which security measures does HuaweI AppTouch have listed ?
+Why can not I change the version right after deleting site successfully on Cloud Hosting ?
+Are there requirements on permission configurations for the use of DeviceVirtualization Kit ?
+What permissions are compulsory to apply for ?
+Am I able to update my app if I modify the APK signature ?
+Why do I see the content of the old version still displayed after I open the new version of the quick app ?
+Supported Unity releases
+What are the steps in the process of settlement ?
+When can I receive revenue from my apps or games that have accessed HuaweI IAP ?
+Can an online game package 's name be the same as a quick game package 's ?
+Where can I access quick app IDE ?
+What do I do if the system tells me the app package name exists after having uploaded the same app from two different accounts ?
+How do I sign up for an account ?
+Is the HMS SDK integration into my app required so that it can use Drive capabilities ?
+Does each developed card need to have a separately UNK RPK package ?
+How do I choose the services or change the order of the services in HuaweI Assistant ?
+Where should I be able to see the policies of HuaweI ads ?
+Why how come I ca n't see any data on the app debugging page after HuaweI Analytics Kit is integrated ?
+How are services presented to a user by HUAWEI Ability Gallery UNK ?
+I see fewer services displayed compared to the account holder , why ?
+What southbound devices are possible to use ?
+Why is it UNK me that the name of the APK I 'm uploading is already in use ?
+I 'd like to transform dp and sp into px .
+How may I change the basic information ?
+Where can I resolve errors that happen during HuaweI Awareness Kit call ?
+I need to learn how to design themes .
+I got unable to access the hosted static page while version in Released state on Cloud Hosting . Why ?
+How to avoid Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document ?
+Could I use a credit card to top up a paid promotion account ?
+What would I use App Ability for ?
+Do I have to configure a result callback address ?
+I need to integrate HuaweI Cast+ Kit . What are the format requirements for APKs ?
+The algorithm for the signature certificate of my app is SHA1withRSA . Should I be able to use it ?
+Why did not my app pass the review ?
+Am I allowed to use the tool to convert Firebase services ?
+Where to download HuaweI Themes Tool ?
+What process does the HUAWEI Ability Gallery use to find services to present to a user intent ?
+Why ca n't I send files through TransFile ?
+May a category be added when creating an ability ?
+Give me all the Unity versions that are supported .
+How do developers get paid ?
+Am I able to use a free subscription for a certain time ?
+In the context of App Ability , what does " deeplink " mean ?
+How many team members are allowed on my team ?
+What are the standards for calculating the storage space on Cloud Hosting ?
+What does status code 10010 , 10011 , and 10012 mean when a function is called ?
+Can an alias be placed and shown on the AppGallery client ?
+What is the purpose of HuaweI Ads Publisher ?
+Are software similar to Flutter and Xamarin supported by HMS Core Toolkit ?
+What could I do if a message indicating error to connect to the server is displayed when I view achievements , leaderboards , or saved games in HuaweI Assistant ?
+Will the members be invited ?
+Quick app IDE meaning
+IDE supports which programming languages ?
+What may be done if a site can not be reached on Cloud Hosting ?
+Can HuaweI HiHealth be introduced ?
+Is there a consequence if the user UNK to use the functions given by HUAWEI Identity Kit but did not sign in using HUAWEI ID ?
+Is the user meant to log in to my app using a HuaweI ID ? How can other accounts be used ?
+6003 error pops up when trying to connect to HMS Core , what should I do ?
+I want to create a theme . How to do that ?
+May I manage a client account using my level 1 operation account ?
+ConfirmRecvFile wo n't receive files . What should I do ?
+Which Unity version are UNK by support ?
+What is the procedure to know access_token and refresh_token total length ?
+Can I get help in paid themes ?
+Where am I able to see the policies of HuaweI ads ?
+Why am I seeing the error message " Application package name provided by un - trusted source " when trying to create data ?
+How am I capable of get a member account ?
+What are the restrictions on the number of geo - fences on HuaweI Awareness Kit ?
+Do I want to submit my app to release Abilities on HuaweI Ability Gallery ?
+Could I edit the permissions granted to my role ?
+UNK is in Releasing state on Cloud Hosting , ca n't create a new version .
+What modification is there in the OAID when it is obtained by integrating the SDK and by calling the AIDL API ?
+How should I use HiAI foundation tool ?
+What data is required when registering an overseas app ?
+Can the DV kit be used at the same time by multiple apps ?
+Could one invoice be issued for multiple settlement sheets ?
+Can I change the classification after the app / game is released ?
+How much do I need to pay for cloud debugging ?
+As long as the version is in Released state on Cloud Hosting , unable to access the hosted static page .
+Can I get rewarded ads in landscape orientation ?
+May I register numerous accounts with the same phone number or email address ?
+Could I switch between landscape and portrait modes during debugging ?
+Can you tell me what is AppTouch used for ?
+In order for cloud capabilities , which awareness capabilities are required ?
+What are the steps to report data to AppsFlyer with DTM ?
+How many addresses can a user have for HUAWEI Identity Kit ?
+How to use unused funds in my advertiser account ?
+What are the rules for setting passwords in Cast+ Kit ?
+How can you introduce HuaweI HiHealth ?
+I need to determine the correct tax qualification .
+I need to learn how to choose tax qualifications .
+What am I supposed to do when I get the message on the HuaweI console that the merchant authentication fails and I need to contact the merchant representative ?
+What are the security regulations of HuaweI AppTouch ?
+What may I do if the version does n't change as soon as I create version successfully on Cloud Hosting ?
+Is the conversion environment capable of UNK any AI model into HiAI models ?
+What are the steps I need to take to view my app in HuaweI store ?
+Why would you use AppTouch ?
+Means to find the HMS menu on the HMS Core ToolKit plugin ?
+If I 'm a user , how will HUAWEI Ability Gallery know what to present me with ?
+Code can not discover devices , but runs during development and debugging . Why ?
+Can I confirm if Quick App Center will be automatically upgraded when a new version is available ?
+When do I need merchant service ?
+Is an internet connection mandatory if I want to use the DeviceVirtualization Kit ?
+When connecting to HuaweI IAP , which libraries do I need to import ?
+I 'm trying to set font - weight .
+Can HuaweI Ads Kit be used by developers to monetize traffic ?
+Can error 60055 repeat during testing ?
+What is done to user data after it 's sent to business partners ?
+Why are the real - time heart rate data and RRI data UNK ?
+What is required to apply for permissions ?
+Why are Quick App Scenarios UNK ?
+Should an alias be set and displayed on the AppGallery client ?
+Can you tell me how operations data of a released ability can be viewed ?
+Is the UNK shown in the report on the HuaweI Ads Publisher Console the amount after or before revenue sharing ?
+I have uploaded an app using account A , and then uploaded the same app using account B , and the system prompts me that the app package name exists / Is duplicate . What should I do ?
+Ways to enable the merchant service .
+Is .huawei the mandatory ending for joint operation apps ?
+What can I do to solve faults that UNK during HuaweI Awareness Kit ?
+For paid promotion tests for apps / games , what detail is required when applying ?
+Can you explain what HuaweI EMUI theme cooperation is ?
+What should I do if error code 907135702 appears when connecting to HMS Core ?
+I 'm trying to configure the function of compiling a project with multiple app packages .
+How long is the authorization code obtained using the account.authorize ( ) API valid for ?
+I wish to calculate the storage space on Cloud Hosting .
+How do developers gain financially ?
+Could you introduce AudioKit ?
+I want to learn how to get HuaweI Themes .
+Could traffic be monetized by developers with HuaweI Ads Kit ?
+Where can I set font weight ?
+Could I switch between landscape and portrait modes on a real device during debugging ?
+How long would I wait to receive the verification code during HuaweI registration ?
+Should the app review process take too long ?
+I want information about Ad Slots .
+Can you define Content Ability ?
+What shall be done if I have n't received payment from HuaweI 30 days after the settlement sheet has been confirmed ?
+What is required for the documents submitted ?
+SHA1withRSA is the algorithm for the signature certificate of my app . Could I use it ?
+NFC meaning
+When will I see my top - up amount applied to my account ?
+As long as the version is in Releasing state on Cloud Hosting , not being able to create new version .
+Once they get user data , what do business partners do with it ?
+What is the function of Content Ability ?
+How can I switch off personalized ads ?
+Why has ConfirmRecvFile failed to receive files ?
+Could you tell me the uses of the resolutions in getCameraInfo and getCameraParameters ?
+What will I do when the HMS Core Toolkit displays a message indicating that I do not have static or dynamic permissions when I compile the XMS adapter code separately ?
+Why are many tests submitted blocked ?
+What is the reason for which I ca n't call the API ?
+Is there a difference between an individual developer and an enterprise developer ?
+If the signature is confirmed invalid on the server 's side , what may I do ?
+Define Share Kit .
+How can I use HiAI foundation tool ?
+Could the server execute a signature verification ?
+How can I get help in paid themes ?
+Where do I UNK personalized ads ?
+How should I redeem leftover funds in my advertiser account ?
+The code runs during development and debugging , but does not discover other devices ?
+What should I do next when the HMS Core Toolkit displays a message indicating that I do not have static or dynamic permissions when I compile the XMS adapter code separately ?
+UNK geofences , is there a number limit ?
+How may I know the statuses before and after the release of an app ?
+Can I upload the same app from two different accounts without getting the system message that the package name exists / Is duplicate ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Shall this affect my app ?
+Does the AppGallery badge service provide a lot of functions ?
+Why is " null " always given when the user is making the query and trying to read data ?
+What measures should be take if a site on Cloud Hosting is inaccessible ?
+Could I configure a result callback address ?
+What information about Ad Slots is there ?
+How to access third - party services or apps in the HuaweI Health app ?
+Are the signature and signature verification algorithms different in any way ?
+Can I check service country / region ?
+How should I complain about pirated apps ?
+Can you offer HuaweI HiAI Engine ?
+How to develop your quick app ?
+What are the differences between signature algorithm and signature verification algorithm , if any ?
+When am I able to get the top - up invoice for this month ?
+What are the terms on using FIDO2 ?
+I 'm trying to set up joint operations .
+Is it possible to get information about Ad Slots ?
+What can I do if I ca n't receive the verification code when registering a HuaweI ID ?
+Ways to manage ad unit .
+How to use HuaweI Ability Gallery to interact with the ecosystem ?
+I 'm trying to modify some settings of my remote device and test my app . However , when I open settings on my device , settings exits unexpectedly . Why does this problem occur ?
+I would like to use card abilities . How do I do that ?
+I 'm looking to get HuaweI Themes Tool .
+What should I do to view and download the service agreement ?
+Should init API be executed when starting a game ?
+A team can have how many members ?
+Is a privacy statement mandatory ? How do I go about preparing and releasing the privacy statement ?
+How would I update themes ?
+Should I be able to do signature verification without the SHA-256 certificate ?
+What are the guidelines in using card abilities ?
+Where are ability cards users be taken to ?
+Should developers provide a privacy policy link for an app if they want to release it outside China ?
+Where may I access the service agreement ?
+How can I change my signing certificate ?
+What purpose does HuaweI Ads Publisher serve ?
+How do I contact the account holder ?
+What can be done if the app is not listed on http://app.hicloud.com ?
+If the request for a rewarded ad fails , what steps should I take on the media client ?
+What is the maximum length of the IAP public key received on the console ?
+Of the awareness capabilities , which require cloud capabilities ?
+Could I access HuaweI Account Kit to let users sign in to my app using their HuaweI IDs even if I have my own account management service ?
+Why is it saying I can not find my bank information on the merchant service page ?
+How do I know if a file is encrypted or not in Drive ?
+What differences are there in individual developers and enterprise developers ?
+Can HuaweI Awareness Kit be used with a smart watch ?
+What 's hindering me from uploading more than 5 screenshots in developer console ?
+Does DeviceVirtualization Kit support HuaweI phones only ?
+What is the process to apply for a settlement ?
+Why am I not able to find the app on the AppGallery after the app approval has been released ?
+Is it possible to switch an app from one account to another ?
+How can I find my App ID ?
+How would I get a DUNS number ?
+How can a HuaweI Developer account be registered ?
+Why are there fewer services displayed compared to the account holder ?
+May the server execute a signature verification ?
+What are the possibilities if the recognition of planes is slow or unsuccessful ?
+When a new version is available , would it be possible to have Quick App Center automatically upgraded ?
+What can I do to disable personalized ads ?
+How could I alter the headset monitoring effect ?
+Why am I not allowed to use the API ?
+Do UNK to learn how to enable Bluetooth on my phone in order for it to detect a Bluetooth headset ?
+If signature verification fails , what should I do ?
+Would I configure a result callback address ?
+Will my ID card , passport , driver 's license , or bank card be needed for identity verification ?
+What do I need to set up a level 1 operation account ?
+What is the maximum length of the IAP public key acquired on the console ?
+How am I supposed to view my app in HuaweI store ?
+How can I know the reasons the version stays on Releasing on Cloud Hosting ?
+Could developers use HuaweI Ads Kit to monetize traffic ?
+What is HuaweI Ads Publisher intended for ?
+How do I view and export reports of revenue ?
+Could multiple sizes be selected when creating an ad unit ?
+I want to run initialization using InitShareKit .
+How would I check the comments of the users of my app ?
+I want to locate a problem such as crash or ANR detected during a stability test .
+List of supported Unity versions .
+Could you tell us about HuaweI HiAI Engine ?
+Can I get capability objects ?
+I received Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document . Why ?
+Can I use another UNK 's bank account to add money to the promotion account that has a different verified company name ?
+Is there a cost for DevEco IDE ?
+Do you have a HuaweI HiHealth Code - Sample ?
+DTM supports AppsFlyer tags . If I 'm trying to report data to AppsFlyer while using DTM , do I need to integrate the AppsFlyer SDK locally ?
+Do I need to complete the Cyber Security and Protection Due Diligence ?
+Could I still use UNK APK name if changed , to update the corresponding application ?
+Why did my app fail review when a lot of others were accepted , even though they are inferior in quality ?
+Is there only one payment UI ? Is there any other payment UI ?
+I would like to use AudioKit . How do I do that ?
+Would non - HuaweI phones use the HuaweI Location Kit ?
+Currently , the Add HMS API scheme is used in most cases . How do I ensure success of tool - based conversion ?
+Are there limitations for how much storage space ( GB ) it can use ?
+How do I fix error code -1 when the app calls the createPurchaseIntentWithPrice API ?
+How do I apply for settlement ?
+Where am I supposed to fix error code -1 when the app calls the createPurchaseIntentWithPrice API ?
+What can I do if the recognition of planes is slow or unsuccessful ?
+Ways to change the app name .
+Is there a reason why the content of the old version is still displayed after I open the new version of the quick app ?
+What files would be uploaded to drive ?
+Ways to set the version number of the quick app and the version number of the card engine separately .
+How can I view my app in HuaweI store ?
+If the signature is confirmed invalid on the server 's side , what can I do ?
+Do I need to have any permission configurations in order to use DeviceVirtualization Kit ?
+I 'm trying to select the sync or async APIs .
+I want to configure a gift .
+I would like to manage level 2 accounts and I have a level 1 operation account . Could I do that ?
+If some non - compliant apps can still be found on HuaweI AppTouch , why was mine rejected ?
+What information do we need when registering an overseas app ?
+Can the public payment key be exposed on the app ?
+How do I reset my password ?
+How do I release Quick Game ?
+What 's the problem with referencing the Android support library after integrating the BioAuthn - AndroidX SDK ?
+How shall I be able to check app IDs and app package names ?
+When executing a payment service , what should be done UNK ?
+What does CaaS Kit do ?
+What are the reasons I 'm seeing a " 400 bad request invalidArgument " message even though the configurations are correct ?
+May a joint operations service agreement be signed ?
+What can you tell me about DevEco IDE ?
+What is the use of HuaweI Media Service Usage Agreement ?
+Have you got a HuaweI HiHealth Code - Sample ?
+As a developer , how should I edit authorization status of client accounts ?
+What are the ways for calculating the storage space on Cloud Hosting ?
+Why am I unable to access the mock mode ?
+Does HuaweI support the same APK extension files supported by Google Play Store ?
+HuaweI Themes Design Specification , how do I use it ?
+Ways to deal with an exception that occurs during HuaweI Awareness Kit call .
+What is paid promotion ?
+Shall ads be visible on non - HuaweI or non - Honor phones ?
+I need to enable the merchant service .
+Could you tell us about HuaweI Themes ?
+May I use non - HuaweI phones for testing ?
+Is it the user 's storage space ?
+I would like to use my own AI model . How can I do that ?
+I ca n't invoke the API , what could be the problem ?
+Am I able to distribute apps in Mainland China without a disclaimer ?
+An error 907135702 code appears when I connect to HMS Core , what would I do ?
+How do I solve the version staying on Releasing on Cloud Hosting ?
+What phones can run HuaweI AR Engine ?
+What could I do during test execution ?
+How may you sign HuaweI AppTouch Joint Operations Service Agreement online ?
+How may a business get in touch with Huawei ?
+Why are real - time heart rate data and RRI data UNK ?
+Where am I able to get the HuaweI ar engine sdk ?
+Will my phone be able to detect a Bluetooth headset if the Bluetooth is disabled ?
+Could I verify my identity when I do n't have the phone number of the region that I selected ?
+Caas Kit Lite can be used in which phone models ?
+How long until we receive the settlement sheet ?
+When calling the read method of DataManager or DataController , I always get an empty response body returned . What is the best thing to do ?
+When using a HuaweI ID , what differences exist to sign in to a non - game app and to sign in to a game app ?
+What UNK the southbound devices ?
+When can I call obtainOwnedPurchases API ?
+HuaweI HiAI Mobile Computing Platform meaning
+Can I use the DeviceVirtualization Kit without an internet connection ?
+If I wish to pay for Cloud Debugging , how much is the charge ?
+How do I find HuaweI Themes Cooperation Agreement ?
+Shoulda disabled Bluetooth from a phone detect a Bluetooth headset ?
+Why ca n't I access my app on http://app.hicloud.com ?
+Can an app still be released outside of China even if it 's developer does n't provide a privacy policy link ?
+How do I complain about pirated apps ?
+What language requirements are there when releasing an app outside China ?
+How do I apply for merchant service ?
+Why is response code 60055 returning when the app calls the createPurchaseIntentWithPrice API ?
+When calling an API , what should I do if the message says " Invalid Credentials " ?
+Why is n't there any data on the app debugging page after HuaweI Analytics Kit is integrated ?
+Why does GetAvailableDevice not obtain any device ?
+Would I be able to search for apps I uploaded from non - Chinese developers on the Chinese version of the AppGallery client ?
+How many different user addresses does HUAWEI Identity Kit allow for a user ?
+How long is it required to check a media application ?
+Does a media application take a while to be reviewed ?
+What does Quick game do ?
+What steps are required before using merchant service ?
+What 's the best way to top up ?
+Is support for the virtualized cameras offered by Android native capabilities ?
+Can the compiling function be modified ?
+How can I share my app ?
+May only choose provinces in mainland China when I sign in to https://developer.huawei.com/consumer/en/ for identity verification ?
+How would I be able to check the names of the app IDs and app packages ?
+What are the requirements for setting up a HuaweI Developer account ?
+What are the requirements for using DeviceVirtualization Kit ?
+What can I do if a message indicating failure to connect to the server is displayed when I view saved games in HuaweI Assistant ?
+Could quick app background account be used in HuaweI background ?
+For how long does a media application get reviewed ?
+How do I find out which capabilities are supported by a certain product ?
+How can I get the account UNK contact details ?
+How may I get a member account ?
+Which development languages are supported currently ? Is there any plan to support React Native ?
+Operation Direction for HuaweI Preload
+Could developers endorse other apps ?
+Where may I get information whether a product supports certain capabilities ?
+What are the ways for creating an ad ?
+For documents submitted , what are the requirements ?
+What should I be able to do if I have n't received payment from HuaweI 30 days after the settlement sheet has been confirmed ?
+What is required for HuaweI Identity Kit to work on mobile phones and software ?
+What are the differences between quick apps and abilities ?
+I wish to use paid promotion .
+What could I do if I ca n't receive the verification code when registering a HuaweI ID ?
+Why do I get error code 6 when the web API is called ?
+UNK read permissions for SMS with HMS Core ( APK ) is not working on my Android , what can I do ?
+How can I be invited as a member ?
+Define Card Ability .
+Where can I read HuaweI Themes Cooperation Agreement ?
+How should I be able to get a HuaweI AR development guide ?
+How am I supposed to establish my merchant service ?
+Would I only be able to see MeeTime contacts on MeeTime ?
+Why am I getting that the version is unchanged immediately after deleting version successfully on Cloud Hosting ?
+Who can enable a Team account ?
+Is there any limit on the size of cache files of a quick app ?
+An error message occurs when a user uses a bank card to pay for a transaction on the client , and it says that the transaction is rejected and the user needs to try again later . Why is this error showing ?
+What can I do if I get error code 907135003 when I call HMS Core ( APK ) ?
+Would I be able to change the category after the app / game is released ?
+I 'd like to reset my password .
+Which developer environments offer support for the API ?
+When getting a device 's IP address , which port is used by HuaweI Cast+ Kit ?
+What can I perform if a site is disabled on Cloud Hosting ?
+Can you tell me what is App Ability used for ?
+Ways to get SDK and Shell Tools .
+Would a signature be verified on the server ?
+How do businesses UNK user data after obtaining it ?
+How long does it take for HuaweI Developers to review my documents ?
+Could you find the policies of HuaweI ads ?
+How many members can a team have ?
+Can the geofence function be used only outdoor ?
+Where can I see Privacy Protection Due Diligence ?
+UNK UNK UNK , UNK , and UNK UNK
+How could I set up an account on HuaweI Developer ?
+Quick game , what does it do ?
+How are user UNK presented with services by the HUAWEI Ability Gallery ?
+What am I supposed to do if I ca n't find my location when trying to have my identity verified ?
+I want to fix " application package name provided by un - trusted source " message .
+How would I be able to establish my merchant service ?
+Are Flutter , Xamarin , and similar software capable of being used with HMS Core Toolkit ?
+Why can I see the content of the old version still displayed after I open the new version of the quick app ?
+Application problems with http://app.hicloud.com ?
+I need to fix " application package name provided by un - trusted source " message .
+What are the phone requirements for using CaaS Kit Lite ?
+How can my app in HuaweI store be viewed ?
+What is the work of Joint Operation Services ?
+Is consistency with the app icons , screenshots , names , versions , features , and other app information required with the audited app information ?
+Can I change the category after the app / game is released ?
+How do I submit an app for review ?
+May the identity verification information that is under review be modified ?
+How should I configure the function of compiling a project with multiple app packages ?
+I would like to know what documents are needed to verify my identity .
+What will verify my identity ?
+What is the function of HuaweI Watch Face Design Specification ?
+How do I use apI console ?
+Are Drive functions UNK based on HuaweI ID ?
+What change is there in the OAID when it is obtained by integrating the SDK and by calling the AIDL API ?
+What are the max lengths of access_token and refresh_token ?
+How should I manage team accounts ?
+What is HuaweI Ads Publisher 's intended function ?
+May other apps be recommended by developers ?
+Could I convert dp and sp to px ?
+Could sync or async apIs be selected ?
+How do I UNK UNK My Smartphone UNK the NPU ?
+When will the obtainOwnedPurchases API called ?
+Which developer environments maintain support for API ?
+With the audited app information , should the app icons , screenshots , names , versions , features , and other app information be consistent ?
+How can I modify the cyber security due diligence
+Am I allowed to register a few accounts with the same phone number or email address ?
+Shall I use registerOneHop ( ) to invoke other APIs ?
+Do I want to have any permission configurations in order to use DeviceVirtualization kit ?
+What should I do if I ca n't find the HMS menu on the Android Studio menu bar after installing the HMS Core Toolkit plugin ?
+How can I tell the differences between HuaweI Game Service and AppGalleryKit Game ?
+What are the means to use HiAI foundation tool ?
+Where am I supposed to fix error code 6 when the web API is called ?
+Would there be any restrictions on the release of security - related apps outside China ?
+Are cross platform IDEs compatible with HMS Core Toolkit ?
+The event analysIs report on the day when HuaweI Analytics Kit is integrated into my app is n't showing data , why is it ?
+What do you have to do for your app approval to go as smoothly as possible ?
+Would you take me to the download page of HuaweI ar engine sdk ?
+How to add new contact to the merchant service ?
+I need to configure a gift .
+How should I publish a new app ?
+How can I get HuaweI AppTouch Channel Guide ?
+How do I proceed with the media client if the request for a rewarded ad fails ?
+Can I have games with IAP payments in APP TOUCH ?
+Ways to upload themes .
+When will we be issued the settlement sheet ?
+Is the user meant to log in to my app using a HuaweI ID ? may other accounts be used ?
+Am I able to do signature verification without the SHA-256 certificate ?
+What is required to use the merchant service ?
+What are the guides in using paid promotion ?
+Would I be able to add a category when creating an ability ？
+What is UNK in the revenue displayed in the report on the HuaweI Ads Publisher Console ?
+How to use API Console ?
+Is the payment in sandbox testing environment different than in the formal environment test ?
+Using my level 1 account , how can I top up and request for invoice ?
+Are there any differences between individual and enterprise developers ?
+How should I be able to fix the HwOneHopSdk error message that shows when I edit code in the app ?
+Should a result callback address be configured ?
+What are the reasons for real - time heart rate data and RRI data UNK ?
+How may I operate console ?
+Is an Internet connection required for using the DeviceVirtualization Kit ?
+Shall the geofence function be used both indoor and outdoor ?
+Where can I find my HUAWEI 's merchant contract ? Can I get it stamped ?
+My location is not in the list when I try to verify my identity . What shall I do ?
+What is the next guideline if the signature fails to be verified on the server 's side ?
+How can I analyze ad effectiveness ?
+Can I update my app if its APK signature is modified ?
+What are the steps in using Paid Promotion ?
+When the app calls the payment API , it shows " Ca n't get applicationInfo by applicationId " . What should I do when this happens ?
+Can the CaaS Kit Lite utilize the video data as the source for video calls ?
+How can a link 's function be modified , for a link connecting to the main page of an ability ? What is the function of the link ?
+How to make a signing certificate change ?
+Does HuaweI support APK extension files UNK by Google Play Store ?
+What do I need to know about the JSON file update policy ?
+Give me the recommended radius for a geofence .
+When can I make a signing certificate change ?
+How to select Sync or Async APIs ?
+Can the developers be helped in any direction to improve the ranking of their apps in HuaweI AppGallery ?
+Would I be able to have games with IAP payments in APP TOUCH ?
+How can I do a paid promotion ?
+Am I able to test an ability that is being reviewed ?
+How do I handle error 50005 ?
+Are other payment UIs an option ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Can this affect my app ?
+Why ca n't TransFile deliver the files ?
+If I want to use virtualized cameras with the Android native capabilities , can I do that ?
+How can I alter the basic information ?
+How can I know cause the version stays on Releasing on Cloud Hosting ?
+What can I do when data reporting fails and the server returns error code 402 ?
+What are the programming languages the IDE is supporting ?
+What is the difference between ID Token - based integration and Authorization Code - based integration ?
+Could the CaaS Kit Lite utilize the video data as the source for video calls ?
+Can a non - resident receive payments for a product released in the Chinese mainland without having to open a bank account in China ?
+Ca n't upload 6 screenshots in developer console , what to do ?
+What radius Should a geofence have ?
+How many device models may I select when running a test ?
+Should an online game package 's name be the same as a quick game package 's ?
+Is there a limit on the frequency of access token requests while purchase token is being verified ?
+Are members not invited ?
+Could I give only one invoice for multiple settlement sheets ?
+May I select multiple sizes when creating an ad unit ?
+Why does identity verification require my ID card , passport , driver ’s license , or bank card ?
+In what ways can themes be updated ?
+Give me the list of the current development languages are that being supported . Will they be supporting React Native as UNK ?
+How do I remove my HuaweI ID ?
+I am a developer . How should I edit authorization status of client accounts ?
+I seek to learn the different modes of CameraKit .
+After changing the APK package name , am I able to still use it to update the corresponding application ?
+I want to get capability objects .
+Could a quick app be upgraded in HuaweI AppGallery , without affecting the related card ability ?
+Can user data in the HuaweI Health app be read when the device screen is locked ?
+Should I configure a result callback address ?
+How may I operate AudioKit ?
+How many characters of the IAP public key obtained on the console ?
+What are the statuses before and after the UNK of an app ?
+Could other apps be suggested by developers ?
+Would I be able to set separate version numbers for the quick app and for the card engine ?
+Could I register a level 1 operation account ?
+How may I use Customer Service ?
+How long to consolidate an ability to HUAWEI Ability Gallery ?
+What would I use Card Ability for ?
+What is required when executing a payment service ?
+What are the guidelines in using paid promotion ?
+Can you tell me what Sharing proportion is used for ?
+How am I able to get the ability statistics through the developer portal ?
+Is it required from the app developers to handle NFC tags themselves ?
+What do I need to do to apply for permissions ?
+Who can make use of the HuaweI HiHealth platform among the business partners ?
+What specific information is required when registering an overseas app ?
+What are the UNK of abilities and quick apps ?
+How to operate ads ?
+What are the UNK between HuaweI Game Service and AppGalleryKit ?
+When could I receive revenue from my games and applications that have accessed HuaweI Pay ?
+May an ability be tested while it 's being reviewed ?
+What can I do when the message " Ca n't get applicationinfo by applicationid " is displayed when the app calls the payment API ?
+Does HuaweI Ability gallery input data from apps ?
+How can I add contact information in the merchant service ?
+Where to find instructions for SDK download ?
+Why ca n't I locate the HMS menu on the Android Studio menu ?
+Why does referencing the Android support library cause a conflict when done after integrating the BioAuthn - AndroidX SDK ?
+What limitations are there on the size of cache files of a quick app ?
+Explain Cloud Debugging .
+What will cause failure to app review ?
+When should I start up the SDK ?
+Could an alias be set and be visible on the AppGallery client ?
+What am I supposed to do when I get the message on the HuaweI console that the merchant authentication fails and I 'd like to contact the merchant representative ?
+Shall distribution to Mainland China and other countries be done at the same time if it 's just one theme package ?
+When should I launch the SDK ?
+How may developers interact with the ecosystem through the HuaweI Ability Gallery ?
+I 'm trying to use the API but it 's not letting me . What could be the problem ?
+Why am I getting error code 60055 returned when the app calls the createPurchaseIntentWithPrice API ?
+Can AudioKit be introduced ?
+When is the top - up invoice for this month ?
+Can I get information on the promotion strategy for HMS Core Toolkit ?
+Could I change the disclaimer for an app to be released in Mainland China ?
+Where can you find the policies of HuaweI Ads ?
+Can the category of my app / game be changed after it has been released ?
+Why does settings exist on its own when I 'm trying to modify some settings of my remote device and test my app ?
+Shall ads be displayed on non - HuaweI or non - Honor phones ?
+Can I convert dp and sp to px ?
+What is " deep link " in App Ability for ?
+What can I do if a site is down on Cloud Hosting ?
+What UNK Ability do ?
+How can I use a free subscription for a certain time ?
+Where can I connect with the account holder ?
+Is there a UNK on the number of geo - fences on HuaweI Awareness Kit ?
+How would I be able to check app IDs and app package names ?
+How am I supposed to make GetAvailableDevice obtain a device ?
+Can one know of Joint Operation Services ?
+How may I find my app ID ?
+Ways to stop HwOneHopSdk from displaying an error message when I edit code in the app .
+What is the purpose of HuaweI Cloud Testing ?
+Would I use HMS ToolKit to automatically save AppGallery Connect configuration file to my project directory ?
+What shall I do if the signature fails to be verified on the server 's side ?
+Do I have to submit my app to release Abilities on HuaweI Ability Gallery ?
+What may I do when data reporting fails and the server returns error code 402 ?
+What number of device models am I able to select when running a test ?
+Why would you use Sharing proportion ?
+Can you suggest the different uses of the resolutions in getCameraInfo and getCameraParameters ?
+How should I integrate the HuaweI Ads SDK ?
+How to edit information about the company ?
+Differences between CameraKit modes .
+Do I need to have a disclaimer if I 'm trying to distribute apps in Mainland China ?
+Am I allowed to choose multiple sizes when creating an ad unit ?
+Could I obtain a query of capabilities that the kit supports ?
+Can I put my quick app background account in HuaweI background ?
+How could the HuaweI Kits ' APIs be identified by tool - based conversion ?
+What are the main steps for creating a theme ?
+Is only one payment UI supported ?
+How should I alter the basic information ?
+How would I proceed with the media client if the request for a rewarded ad fails ?
+Are we allowed to know about Joint Operation Services ?
+Should I be able to reload my paid promotion account with credit card ?
+I need to learn how to use paid promotion .
+What is Cloud Debugging 's intended function ?
+HuaweI Analytics are to be seen in which event ?
+The signature algorithm of the app signature certificate is SHA1withRSA . Can the app be impacted by this in any ways ?
+What is the use of Quick app ?
+How can I get information on the promotion strategy for hms core toolkit ?
+What is the requirement when applying for paid promotion tests for apps / games ?
+How long does an invoice last ?
+How will success be ensured when you use tool - based conversion ?
+It 's not letting me submit tests , what could be the problem ?
+I want to release an app outside China . Are there any language requirements ?
+Definition of the number of times that a quick app report is opened in HuaweI Developer .
+Would I be able to access HuaweI Account Kit to enable users to sign in to my app using their HuaweI IDs even if I have my own account management service ?
+Why do I need to prove my identity ?
+Why does verifying my identity UNK ?
+I want to fix error code -1 when the app calls the createPurchaseIntentWithPrice API .
+Can you take me to the download page of HuaweI AR Engine SDK ?
+Will Drive capabilities work if I integrated my app into HMS SDK ?
+What are UNK 's most prominent features ?
+Could I do signature verification without the SHA-256 certificate ?
+How to cancel my HuaweI ID ?
+How to handle when my location ca n't be found in the list when trying to verify identity ?
+Could a HuaweI personal Developer account be updated into an enterprise account with the same contact information ?
+How to work with console ?
+Can you explain what HuaweI Cast+ Kit is ?
+How long is the process for reviewing apps ?
+What are getCameraInfo and getCameraParameters resolutions used for ?
+Can you tell me about any DMSDP virtualization service input requirements ?
+Which libraries are required to connect to HuaweI IAP ?
+Can I select sync or async APIs ?
+When I use the HMS SDK to access HuaweI account kit on a mobile phone without hms core ( APK ) , i 'll see a message , asking me to download the APK . How should I be able to make my app support sign - in with HuaweI ID if I do not download the APK ?
+Does HuaweI help APK extension information supported by Google Play Store ?
+For cloud capabilities , which awareness capabilities are required ?
+Can you know what is done to user data after it 's sent to business partners ?
+What should I be aware of when entering merchant information ?
+How am I supposed to top up ?
+What 's the number of supported modules by the tool ?
+I have a level 1 account . How can I top up and request for invoice ?
+Are there any language requirements when releasing an app outside China ?
+Where would I be able to get the HuaweI ar engine sdk ?
+What differences are there between ID Token - based integration and Authorization Code - based integration ?
+Do developers need to handle NFC tags ?
+Can you read the HuaweI Health app 's user data on a locked screen ?
+Is there a specific tax qualification I should choose ?
+How do I make the price specified by amount the same as the actual price when the createPurchaseIntentWithPrice API is called for payment ?
+I 'm trying to increase the activity recognition success rate .
+Ways to adapt my AI model to the accepted HiAI model format .
+How can I avoid the version staying on Removing on Cloud Hosting ?
+Can I run a test with more than one device model ?
+If an app fails the review , what 's the reason most of the time ?
+How would I be able to fix an app rejected due to virus issues ?
+What is recommended for the documents submitted ?
+What are the restrictions when releasing security - based apps outside China ?
+How do I operate AudioKit ?
+Would I be able to gather different card abilities with a grid template ?
+What is the geofence range ?
+How do I use HuaweI Ability Gallery to interact with the ecosystem ?
+What are the UNK differences between the sandbox testing environment and the formal environment test ?
+UNK the FIDO2 error codes Fido2Status and CtapStatus , what are the differences ?
+How can I adjust my signing certificate ?
+If I have a smart watch , can I use it with HuaweI Awareness Kit ?
+When I sign in to HuaweI Developer , a dialog box is displayed , requesting that I perform security evaluation and submit a report . Where shall I be able to submit the report ?
+Should I have HuaweI Account Kit in my app to use HuaweI Identity Kit ?
+Which languages are currently supported ? Are they UNK to support React Native ?
+Are Drive functions strongly subjected on HuaweI ID ?
+Am I allowed to request a refund in the background after payment ?
+Am I able to choose the services or change the order of the services in HuaweI Assistant ?
+Is it required that the ending of joint operation apps is .huawei ?
+Ways to set font - weight .
+I 'm trying to share my app .
+How do I make a new theme ?
+Should I use HMS ToolKit to automatically save AppGallery Connect configuration file to my project directory ?
+How may I register for an account on HuaweI Developer ?
+Why is it when I sign in to https://developer.huawei.com/consumer/en/ for identity verification , I shall only choose provinces in mainland China ?
+Is MeeTime only showing MeeTime contacts ?
+What are status code 10010 , 10011 , and 10012 whilst a function is called ?
+Am I able to use other phones for testing besides Huawei ?
+What 's the definition of JSON file update policy ?
+For testing , may I use non - HuaweI phones ?
+What purpose does CaaS Kit serve ?
+How can I get hold of the account holder ?
+When calling the read method of DataManager or DataController , I always get an empty response body returned . What could I do ?
+Why does n't TransFile work ?
+How am I supposed to fix error code -1 when the app calls the createPurchaseIntentWithPrice API ?
+How do I prevent the version from staying on Releasing on Cloud Hosting ?
+Can ads be visible on non - HuaweI or non - Honor phones ?
+Could you launch HuaweI HiHealth ?
+Share Kit , how do I use it ?
+It 's not letting me use mock mode , what could be the problem ?
+Shall HuaweI HuaweI AppTouch Joint Operations Service Agreement be signed ?
+Which events are being UNK to HuaweI Analytics ?
+Would I be able to change the category of my app / game after it has been released ?
+Do any differences exist between individual and enterprise developers ?
+How to change my role and permissions ?
+HuaweI HiHealth Code - Sample , how to get it ?
+HuaweI Preload Operation Guide
+When I use the HMS SDK to access HuaweI Account Kit on a mobile phone without HMS Core ( APK ) , I 'll see a message , asking me to download the APK . How can I make my app support sign - in with HuaweI ID if I do not download the APK ?
+When calling the read method of DataManager or DataController , I always get an empty response body returned . What should I do ?
+How can I get rewarded ads in landscape orientation ?
+Why am I told my test is being executed ?
+How is font - weight set ?
+Quick App Scenarios , how do they work ?
+How would I change the company name ?
+What are Quick App Scenarios ' key features ?
+What would I use Sharing proportion for ?
+How long will it take for HuaweI Developer to examine my documents ?
+How do I know whether a product supports a certain capability ?
+Explain HuaweI Themes Design Specification .
+Is it necessary for the developer to provide a privacy policy link for an app to be released outside China ?
+What would I use HuaweI Ads for ?
+What will happen if you attempt to use the functions offered by HuaweI Identity Kit without signing in using a HuaweI ID ?
+What are the directions in using apI console ?
+How may you guide users to use the new feature ?
+Shall you tell me what DevEco IDE is ?
+How do I access DevEco IDE ?
+Can a business do to UNK with Huawei ?
+Would error 60055 resurface when testing ?
+How am I supposed to avoid " null " return when the user makes the query and tries to read data ?
+What should be done if a 6003 error occurs when I connect to HMS Core ?
+At what point do I need the payment service ?
+Can I leave the related card ability intact while upgrading the quick app in HuaweI AppGallery ?
+What do HuaweI Game Service and AppGalleryKit Game have in common ?
+What security measures are there for HuaweI AppTouch ?
+I want to access quick app UNK .
+Could n't use the mock mode
+What should I do with unused funds in my advertiser account ?
+Am I able to manage a client account using my level 1 operation account ?
+What is error code 60055 and why do I get it when the app calls the createPurchaseIntentWithPrice API ?
+How can I change the sign in account ?
+How can I look at the version of HMS Core ( APK ) ?
+Could a joint operations service agreement be signed ?
+What do I do to fix errors that happen when calling HuaweI Awareness Kit ?
+Am I allowed to upload the same app from two different accounts without getting the system message that the package name exists / Is duplicate ?
+What are the instructions for making a new theme ?
+Should I manage team accounts ?
+Where can I find the operations data of a released ability ?
+Why am I told I do not have the hq phone number and work phone number of the country / region that I selected when I try to get my identity verified ?
+What is DevEco IDE ?
+What do Quick App Scenarios mean ?
+How do I integrate the HUAWEI Ads SDK ?
+How do I fix testing task stuck in a queue ?
+What 's hindering me from submitting app media for review ?
+How should I analyze ad effectiveness ?
+What am I supposed to do if I can not find my bank information on the merchant service page ?
+How do I view the basic information about my device since Settings is shielded for the Cloud Debugging ?
+Are the apps I uploaded from non - Chinese developers UNK on the Chinese version of the AppGallery client ?
+How can advertising invoices be issued without the necessary credentials ?
+How does the OAID format work ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Can this affect my app ?
+What would I be aware of when entering merchant information ?
+I 'd like to submit my app to release Abilities on HuaweI Ability Gallery .
+Could a team account be set up ?
+As a developer , how would I edit authorization status of client accounts ?
+I did an OAID reset . Will it apply to the UNK of my devices ?
+May level 2 account users manage client accounts ?
+Could you take me to HuaweI ability gallery from the console ?
+What are the steps in using my own AI model ?
+Can only one invoice be issued for several settlement sheets ?
+May HuaweI Location Kit be utilized on non - HuaweI phones ?
+I want to fix error 50005 .
+I would like to use HiAI Foundation Tool . How do I do that ?
+Do you need to limit the number of geofences ?
+I 'm unable to submit tests , what could be the issue ?
+Could the DV kit be used by more than one app at a time ?
+Is there a limit on the debugging time with Cloud Debugging ?
+I have questions about different modes of CameraKit .
+Would I be able to choose the services or change the order of the services in HuaweI Assistant ?
+I could n't upload more than 5 screenshots in developer console ?
+I 'm trying to check service country / region .
+How can one learn about rewarded videos working ?
+What can I do if I need to transfer an app to another developer account ?
+Can I collect different card abilities with a grid template ?
+How can I find the location of a problem detected during a stability test ?
+The cache files of a quick app , is there a limit on size ?
+What is HuaweI OneHop intended for ?
+Can you do anything specific to get your app approval go as smoothly as possible ?
+Why does it say I still have n't received payment from HuaweI 30 days after the settlement sheet has been confirmed ?
+How do I top up and request an invoice using my level 1 account ?
+I seek to know the languages supported by HMS SDK .
+I have files stored in Drive , are they encrypted ?
+Can you tell me what is Cloud Debugging used for ?
+I changed the APK package name . Can I still use it to update the corresponding application ?
+Would I be able to modify the classification after the app / game is released ?
+Reason behind identity verification requiring my ID card , passport , driver ’s license , or bank card ?
+What is the specification for content rating ?
+Can I learn how rewarded videos work ?
+Is it necessary to have a privacy statement ? How do I prepare and release the privacy statement ?
+How can I view operations data of a released ability ?
+How am I supposed to publish a new app ?
+Is the user data of the HuaweI Health app UNK on a locked screen ?
+Are Google Play Store supported APK extension information supported on Huawei ?
+How can I acquire SDK and Shell Tools ?
+Should the rewarded ads be available in landscape orientation ?
+In what context do I need payment service ?
+How do rewarded videos work ?
+I 'd like to publish a new app .
+Can I do an app transfer ?
+Why is there a need for my ID card , passport , driver ’s license , or bank card for identity verification ?
+What sort of devices can run HuaweI AR Engine ?
+Is it a must to have any permission configurations in order to use DeviceVirtualization kit ?
+How to use HuaweI QuickApp IDE ?
+How do I know if the tool supports multiple modules ?
+I need to release an app outside China . Are there any language requirements ?
+Could you offer HuaweI HiAI Engine ?
+How can I avoid a conflict when I reference the Android support library after integrating the BioAuthn - AndroidX SDK ?
+What are the uses of HuaweI AR ?
+May I sign HuaweI HuaweI AppTouch Joint Operations Service Agreement ?
+Can several devices debug simultaneously using one account ?
+If version is in Releasing state on Cloud Hosting , I am unable to create new version .
+Can you explain what DeviceVirtualization Kit is ?
+What could I find out from the number of times that a quick app report is opened in HuaweI Developer ?
+How can themes be uploaded ?
+How could I separately set the version number of the UNK app and the version number of the card engine ?
+Would I convert dp and sp to px ?
+Does HuaweI Awareness Kit have a number UNK of geo - fences ?
+Why am I seeing a " 400 Bad Request invalidArgument " message returned when the configurations are correct ?
+As a developer , how am I able to edit authorization status of client accounts ?
+Means to fix r-classes.jar conflicts ?
+May I modify the disclaimer for an app to be released in mainland China ?
+UNK who has the ability to enable a Team account
+Am I going to have an automatic upgrade for Quick App Center when a new version is available ?
+How may you install HMS Core Toolkit ?
+How do I work with ad unit ?
+How can I hand in an app for review ?
+Could you show me the download page of HuaweI ar engine sdk ?
+How can I learn the difference in modes of CameraKit ?
+How can I get information about Ad Slots ?
+Can I use wearable devices with HuaweI Awareness Kit ?
+Where is HuaweI HiHealth Download Center ?
+How to fix error code 6 when the web API is called ?
+How long does it take for HuaweI Developers to check my documents ?
+Would the geofence function be used only outdoor ?
+My app has been rejected . Why ?
+UNK - UNK , how different are the sandbox testing environment and the formal environment test ?
+I want to manage funds using my level 1 operation account .
+Can I view App Ability if I 'm using HuaweI web browser ?
+How can I UNK out the full length of access_token and refresh_token ?
+Could I access third - party services or apps through the HuaweI Health app ?
+I 've failed the app review , can you tell me why ?
+The payment page can not be displayed on a non - HuaweI mobile phone , and error code 1 or 907135003 is returned . What should be done in this case ?
+Why am I unable to create a new version while the version is in Release state on Cloud Hosting ?
+What do I do after unable to access the hosted static page while version in Released state on Cloud Hosting is returned ?
+After doing an OAID reset , will all of my devices be affected ?
+Can you explain what quick app IDE is ?
+Can you tell us about AudioKit ?
+What are the statuses after the release of an app ?
+HuaweI Cast+ Kit , how do I use it ?
+How may I use AudioKit ?
+How do I get rid of my HuaweI ID ?
+May ads be displayed on non - HuaweI or non - Honor phones ?
+Where could I view and download the service agreement ?
+How long do I have before my invoice expires ?
+How to receive ability statistics through the developer portal ?
+How may I sign HuaweI HuaweI AppTouch Joint Operations Service Agreement ?
+How do I operate ads ?
+Can I be an account holder ?
+How to share my app ?
+Why am I not seeing any data on the app debugging page after HuaweI Analytics Kit is integrated ?
+I 'd like to run initialization using InitShareKit .
+Can you define HuaweI HiAI Mobile Computing Platform ?
+How may I access HuaweI HiHealth Download Center ?
+UNK though my configurations are correct , a " 400 bad request invalidArgument " message is present , why ?
+How can I solve the version not changing immediately after deleting version successfully on Cloud Hosting ?
+If a user does an OAID reset , will it UNK on all of hIs devices ?
+What are the steps in using card abilities ?
+http://app.hicloud.com is not listing my app , why ?
+How dependent are the Drive functions on HuaweI ID ?
+Can you explain what HuaweI OneHop is ?
+When are bills available to view and download ?
+How can I fix error code -1 when the app calls the createPurchaseIntentWithPrice API ?
+Where can I get paid for my developer services ?
+Will ads be displayed on a non - HuaweI or non - Honor phones ?
+Does registering an overseas app require any specific information ?
+What are the UNK on using FIDO2 ?
+What does HuaweI Watch Face Design Specification do ?
+How can I manage team accounts ?
+How can I edit the basic information ?
+Can the tool aid with conversion of Firebase services ?
+I 'm trying to make the price specified by amount the same as the actual price when the createPurchaseIntentWithPrice API is called for payment .
+Could I gather different card abilities with a grid template ?
+How may I oversee ads ?
+Many of the tests submitted are blocked , what could be the problem ?
+Can I register a level 2 operation account ?
+For testing , shall I be able to use non - HuaweI phones ?
+How would I sign HuaweI AppTouch Joint Operations Service Agreement online ?
+How to integrate HuaweI Cast+ Kit ? What are the format requirements for APKs ?
+Ways to stop " null " return when the user makes the query and tries to read data .
+I would like to manage funds and I have a level 1 operation account . How can I do that ?
+What could I do if an " application package name ( xxx ) provided by un - trusted source . " message is returned when creating data ?
+When will the use of the payment service be needed ?
+What types of files can be uploaded to Drive ?
+How can I set up a level 1 operation account ?
+Where am I able to find the operations data about the quick app after it is released ?
+I 'm trying to do SDK download .
+How can I perform app sharing ?
+How can I resolve status code 10010 , 10011 , and 10012 when I am calling a function ?
+Define HuaweI EMUI theme cooperation .
+Sharing proportion meaning
+UNK the privacy protection due diligence
+How to keep my account UNK ?
+Is only one payment UI accepted ?
+How can I use Ability Gallery on my device ?
+How shall I be able to make the system allow me to create a promotion task in the paid promotion service ?
+Define Quick game .
+Could n't HMS Core ( APK ) downloaded from Google Play get automatic read permissions for SMS ?
+What could I do to check viruses on an app ?
+Should I pay a specific amount when releasing an app ?
+What purpose does Quick app serve ?
+Which configurations does an OAID support ?
+SHA1withRSA is the algorithm for the signature certificate of my app . Can I use it ?
+Where can I find the operations data about the quick app after it is released ?
+How should I be able to top up ?
+Is there a way to make the actual function during the NFC test show up when multi - screen collaboration is launched ?
+How can success be ensured when tool - based conversion is used ?
+Can a file stored in Drive be encrypted or not ?
+How would I be able to download Huawei 's merchant contract ? am I allowed to have my contract stamped ?
+How does Quick game work ?
+Can I add a category when creating an ability ？
+Shall the geofence function be used only outdoor ?
+How may I manage console ?
+Is there any impact in the OAID when it is obtained by integrating the SDK and by calling the AIDL API ?
+What does Card Ability do ?
+The payment page can not be displayed on a non - HuaweI mobile phone , and error code 1 or 907135003 is returned . In this case , what should I do ?
+Would I be able to use one account to debug on two computers at once ?
+In order to check the validity of the purchase token , how long is the purchase token valid in the API called by your server ?
+Where can ability cards users be taken to ?
+Who has UNK to enable a Team account ?
+Am I able to develop multiple cards and generate a single rpk package ?
+Ways to use paid promotion .
+Do apps share files with HuaweI Ability Gallery ?
+Can changes in APK signature upgrade my app ?
+The version is not changed immediately after deleting site successfully on Cloud Hosting .
+I 'd like to fix a 6003 error connecting to HMS core .
+Would I be able to check whether my smartphone is compatible with the NPU ?
+When compiling XMS adapter code separately , the HMS Core Toolkit shows a message saying that I do not have static or dynamic permissions , what should I do then ?
+Ways to integrate the HUAWEI Ads SDK .
+How am I able to find out which capabilities are supported by a certain product ?
+How fast is the process for reviewing apps ?
+How am I supposed to change my password ?
+Is it possible to fix when the web API is called ?
+What port should I use when checking a device 's IP address with HuaweI Cast+ Kit ?
+What are the steps for installing HMS Core Toolkit ?
+How can I only see MeeTime contacts on MeeTime ?
+Am I able to view or access App Ability if I 'm using HuaweI web browser ?
+How may I benefit from using paid promotions ?
+How can I use merchant service ?
+How can I put together a gift ?
+I am a developer . How can I edit authorization status of client accounts ?
+In HuaweI IAP , is there any restriction on the maximum payment amount ?
+Why am I not finding the app on the AppGallery client after the app approval is released ?
+What can I do if the " Invalid Credentials " message is returned when calling an API ?
+What does r-classes.jar conflict mean ?
+When applying for paid promotion tests for apps / games , what details are needed ?
+Means to help your app approval go as smoothly as possible .
+The screen of my HuaweI device becomes black and I can not use it . How to solve this problem ?
+Does the service have any conditions on the running environment ?
+What to do when error code 50005 is returned from calling an API ?
+May I do an app transfer ?
+Where can I find Theme Service Specification ?
+How should I establish my payment service ?
+How can the company information be edited ?
+What are the restrictions on obtaining high - precision locations ?
+If I do not download the hms core ( APK ) , how can I make my app support sign - in if I 'm working on a mobile phone without hms core ( APK ) ?
+Is it possible to change my role and permissions ?
+I want to add app and unit . How can I do that ?
+Can you explain why an error message occurred when a user uses a bank card to pay for a transaction on the client ? It says that the transaction is rejected and the user needs to try again later .
+How many members can I have on my team ?
+How may I get HuaweI Themes Tool ?
+Does the signature algorithm SHA1withRSA have any effect on the app ?
+What storage space does the Drive utilize ?
+What are the key features of OneHop ?
+Operation Guide for HuaweI Preload
+Should I call init API when starting a game ?
+How do I get paid for my developer services ?
+Where are policies of HuaweI UNK placed ?
+How can I operate HiAI foundation tool ?
+How do I view user comments on AppGallery Connect after 30 days ?
+Would developers revise the integration of CaaS Kit Lite service to meet UX requirements ?
+How to upload themes ?
+When will the payment service be required ?
+How should I make a new ad ?
+What are the UNK for content rating ?
+When will my invoice be UNK ?
+What does it mean that the name of the APK I 'm uploading is already in use ?
+Who among the business partners have access to the HuaweI HiHealth platform ?
+How may I use HuaweI QuickApp IDE ?
+When could I receive revenue from my apps and games that have accessed HuaweI Pay ?
+What is HuaweI EMUI theme cooperation ?
+Are there any restrictions on getting high - precision locations ?
+Would level 2 account users be in charge for client accounts ?
+What characteristics of the startDiscovery API and the getVirtualDevicesList API sets them apart ?
+I 'm trying to run initialization using InitShareKit .
+How may I operate apI console ?
+Sharing proportion function
+Where would I be able to find the process of settlement ?
+How am I supposed to get paid for my developer services ?
+What reasons are most often to UNK when an app fails the review ?
+Can developers suggest other apps ?
+What I have to be aware of when entering merchant information ?
+An empty response body is always returned when calling the read method of DataManager or DataController . What do I need to do ?
+What happened for the query results not to match what has been written , after writing multiple data with overlapping time intervals ?
+Which is the list of HuaweI AppTouch security measures ?
+How can MeeTime only show MeeTime contacts ?
+My location is not in the list when I try to verify my identity . What may I do ?
+Would you take me to my app users ' comments ?
+What are the refund options in the background after payment ?
+DeviceVirtualization Kit function
+How can I get capability objects ?
+I ca n't find the app on the AppGallery client after the app approval is released
+I need to access third - party services or apps in the HuaweI Health app .
+What contingencies does the service need from the running environment ?
+Ability cards can redirect users how ?
+How do I register for a level 2 operation account ?
+How can I see the basic information about my device since Settings is shielded for the Cloud Debugging ?
+Is DevEco IDE free ? I want to get it .
+Must joint operation apps end with .huawei ?
+I want to report data to AppsFlyer while using DTM .
+How may I work with ad unit ?
+How does using a HuaweI ID to sign in to a non - game app different from using a HuaweI ID to sign in to a game app ?
+Are Drive functions strongly dependent on HuaweI ID ?
+What purpose does HuaweI OneHop serve ?
+How would I set up a team account ?
+How UNK are the maximum payment amounts in HuaweI IAP ?
+When should I be able to view and download bills ?
+Quick app , how do I use it ?
+Are there means to make the actual function during the NFC test show up when multi - screen collaboration is launched ?
+An empty response body is always returned when calling the read method of DataManager or DataController . What can I do ?
+How should I make the price specified by amount the same as the actual price when the createPurchaseIntentWithPrice API is called for payment ?
+Using my level 1 operation account , how can I manage level 2 accounts ?
+Ways to aid your app approval go as smoothly as possible .
+How am I able to add app and unit ?
+What will be the next step if error code 907135702 appears when connecting to HMS Core ?
+Is support for wearable devices like smart watches available on HuaweI Awareness Kit ?
+How can I manage level 2 accounts if I have a level 1 operation account ?
+Can I interchange between landscape and portrait modes on a real device during debugging ?
+When a user is presented with services by HUAWEI Ability Gallery , how does it decide what to present ?
+What are the ways I can download SDK ?
+Why am I not able to see any data on the app debugging page after HuaweI Analytics Kit is integrated ?
+When may I make a signing certificate change ?
+Why am I having an issue submitting my app media for review ?
+How does DeviceVirtualization Kit work ?
+What is the UNK version of HuaweI AppGallery I can use quick apps in ?
+I 'm trying to use the tool for conversion of Firebase services .
+How do I operate ad unit ?
+How can the merchant service be enabled if the location of identity verification is not the same as the location of the company ’s public account ?
+What can I do to view the basic information about my device since Settings is shielded for the Cloud Debugging ?
+Can the developers be helped in any ways to improve the ranking of their apps in HuaweI AppGallery ?
+How can I start using the payment service ?
+What are the developer environments that support the API ?
+Where can I see event reports ?
+If I have HuaweI Awareness Kit , can I use my smart watch with it ?
+Reason why an approved app is not showing on the AppGallery client after its release
+What are the events that can be found at the HuaweI Analytics ?
+Can I register multiple accounts with the same phone number or email address ?
+What is the common width of a card ?
+If I am not from China and I want to release a product there , do I need to have a bank account in China in order to receive payments ?
+How will HMS Core Toolkit be promoted ?
+Where can I find Huawei 's Theme Service Specification ?
+How does HuaweI Identity Kit for mobile phones and software work ?
+How do I change my HuaweI Developer individual account to an enterprise account without changing the email address or phone number used for registration ?
+Does the init API need to be called for initialization when a game is started ?
+How can I prevent the version from staying on Removing on Cloud Hosting ?
+How to operate Paid Promotion ?
+What is the standard for using merchant service ?
+Would you show me my app users ' comments ?
+Ways of using the getCameraInfo and getCameraParameters resolutions .
+Under which conditions does the OAID value of a device change ?
+Would I be able to use my level 1 operation account to handle a client account ?
+What should be done to determine the principles for displaying the product price and unit on a player 's mobile phone ? Is it based on location of the player ?
+Am I able to switch between landscape and portrait modes on a real device during debugging ?
+What 's needed for giving an app a name ?
+I want to apply for settlement .
+I want to change the company name ? How will I do that ?
+I want to check service country / region .
+How am I able to get paid for my developer services ?
+What would I use Share Kit for ?
+Means of fixing " application package name provided by un - trusted source " message ?
+What should I do if I 'm looking to change my signing certificate during game version update ?
+What can a business do to partner with Huawei ?
+Does HMS SDK have to be integrated into my app so that it can use Drive capabilities ?
+Drive support which types of files ?
+Where should I be able to get the HuaweI ar engine sdk ?
+What could cause the query results not to match what has been written , after writing multiple data with overlapping time intervals ?
+I got an empty result with getDeviceList . What should I do ?
+What differences are there between using a HuaweI ID to sign in to a non - game app and using a HuaweI ID to sign in to a game app ?
+How do we guide the users to use the new feature ?
+What is the maximum radius for a geofence ?
+How many members can a team have at most ?
+Are cross - platform IDEs compatible with HMS Core Toolkit ?
+What is the use of Quick game ?
+If the signature algorithm of the app signature certificate is SHA1withRSA , does this have any impact on the app ?
+How do I remove the version staying on Removing on Cloud Hosting ?
+Do I have to generate a separate RPK package for every developed card ?
+How can I secure my account ?
+I 'm a business partner , can I use HuaweI HiHealth platform ?
+Ca n't get applicationinfo by applicationid appears whenever the app calls the payment API . What will be the next ways when this occurs ?
+Means to make the fonts larger on the hms core toolkit ?
+What do we use getCameraInfo and getCameraParameters resolutions for ?
+Should MeeTime only show MeeTime contacts ?
+May the DV kit be used by more than one app at a time ?
+Could I update from an individual into an enterprise account while keeping my phone number ?
+HuaweI Cast + Kit gets an IP address using which port ?
+What do you do to promote HMS Core Toolkit ?
+How do I get SDK and Shell Tools ?
+I have a level 1 operation account . Can I manage funds ?
+How can I find the AppGallery Review Guidelines ?
+What are the guidelines for setting passwords in Cast+ Kit ?
+Would my app be updated if I modify its APK signature ?
+Why is initialization failing when using InitShareKit ?
+I wish to find the AppGallery Review Guidelines .
+How may I oversee console ?
+How could I edit information about the company ?
+Where can I access HuaweI Ability Gallery from the console ?
+Can DeviceVirtualization Kit be used even if you do n't have a HuaweI device ?
+What shall I do if my testing task is stuck in a queue ?
+Can I alter the category of my app / game after it has been released ?
+How to fix when there is no preview , or if the preview blackscreens ?
+Do I integrate the HuaweI Account Kit to my app to use HuaweI Identity Kit ?
+Team account intended use
+How does one change the OAID of a device ?
+UNK on HMS Core Toolkit promotion strategy .
+TransFile fails to send files .
+Why did my app fail review when a lot of others were accepted , even though my quality is better ?
+How can you have HUAWEI Ads SDK integrated ?
+What phone models and EMUI versions do I need to use the activity recognition function ?
+Could you show me my service agreement and download it for me ?
+Why is the version remains the same immediately after deleting site successfully on Cloud Hosting ?
+Could I manage team accounts ?
+What could I do to view and download the service agreement ?
+Could developers utilize the HuaweI Ads Kit to monetize traffic ?
+What is the reason I got unable to access the hosted static page while version in Released state on Cloud Hosting ?
+What are the directions to have your app approval go as smoothly as possible ?
+Should I wait long for my top - up amount to be added to my account ?
+Why are there errors when I reference the Android support library after integrating the BioAuthn - AndroidX SDK ?
+How can I run initialization using InitShareKit ?
+Do I need to have a privacy statement ? How can I prepare and release the privacy statement ?
+If I do not have the credentials for issuing advertising invoices such as for advertising service fees and advertising fees , what should I do ?
+How much do I need to pay when releasing an app outside China ?
+Can you tell us about HuaweI Themes ?
+What should I do if the signature fails to be authenticated on the server 's side ?
+How may I sign up for an account ?
+What should I do if I ca n't verify my signature ?
+Why can a code run during development and debugging , but can not discover other devices ?
+Do virtualized cameras have Android native capabilities ?
+How to change to another language in IDE ?
+How can I guide users to use the new feature ?
+When should I be able to get the top - up invoice for this month ?
+How do you use the IDE system ?
+Where could I find reported events ?
+What shall I be aware of when entering merchant information ?
+How does CaaS Kit work ?
+In what ways are enterprise developers and individual developers different ?
+How do I delete my HuaweI ID ?
+How may I create a theme ?
+What is the function of AppTouch ?
+I 'd like to modify some settings of my remote device and test my app . However , when I open settings on my device , settings exits unexpectedly . Why does this problem occur ?
+Why is n't the OAID value of my device changing ?
+By what means can you sign HuaweI AppTouch Joint Operations Service Agreement online ?
+What is Card Ability intended for ?
+I 'd like to configure the function of compiling a project with multiple app packages .
+I need to learn how to fix error code -1 when the app calls the createPurchaseIntentWithPrice API .
+How do I change to another language in IDE ?
+Can I fix signature verification problems ?
+What is the reason it UNK me to show my ID card , passport , driver 's license , or bank card for identity verification ?
+Why is it when I sign in to https://developer.huawei.com/consumer/en/ for identity verification , I could only choose provinces in Mainland China ?
+What are the strategies for promoting the HMS Core Toolkit ?
+What are the security measures of HuaweI AppTouch ?
+I want to release Quick Game , how can I do that ?
+Can you explain the JSON file update policy ?
+Could I add a category when creating an ability ？
+Is it possible to have multiple accounts with the same phone number or email address ?
+HuaweI EMUI theme cooperation meaning
+Would a media application be reviewed ?
+I seek to integrate the Share Kit . What are the format requirements for APKs ?
+Could I simultaneously debug on two computers with the same account ?
+What kind of payment requirements are there when releasing an app ?
+I wish to get help in paid themes .
+What are Joint Operations Services ?
+How to increase the activity recognition success rate ?
+The algorithm for the signature certificate of my app is SHA1withRSA . Can I use it ?
+How do I access HuaweI AppTouch Channel Guide ?
+Where could I send the report when I sign in to HuaweI Developer and a dialog box indicates that I should perform security evaluation and asked to submit a report ?
+I would like to use HuaweI QuickApp IDE . How do I do that ?
+I wish to analyze ad effectiveness . How can I do that ?
+Which awareness capabilities require cloud capabilities ? why are the cloud capabilities required ?
+What 's the UNK time for the app review process ?
+What should I do if the name of the APK I 'm uploading is already in use ?
+I want to convert dp and sp to px .
+Ways to start joint operations .
+Why ca n't I utilize the API ?
+Why is it saying the application for integrating DTM SDK 4.0.0.300 is not accepted ?
+I have questions about the different CameraKit modes .
+UNK of Unity supported
+How do I find the location of a problem detected during a stability test ?
+To calculate the storage space on Cloud Hosting , what rules are needed ?
+Are joint operation apps supposed to end with .huawei ?
+What should DeviceVirtualization Kit do ?
+How would I be able to configure a gift ?
+How can I leave the related card ability intact while upgrading the quick app in HuaweI AppGallery ?
+How could I fix common signature verification problems ?
+What are the application functions and scenarios of ICustomVariable and ICustomTag ?
+Where may I send the report when I sign in to HuaweI Developer and a dialog box indicates that I should perform security evaluation and asked to submit a report ?
+Is there a way to change languages in Console for an account registered on the HuaweI Developer English site ?
+I 'm trying to set up an account on HuaweI Developer .
+Could CaaS Kit Lite use video data as the video source for video calls ? Are there any data restrictions ?
+What can ICustomVariable and ICustomTag do to my app ?
+Means to fix an app rejection ?
+How long does it take to integrate an ability to HUAWEI Ability Gallery ?
+I want to register for an account on HuaweI Developer .
+How should I fix " application package name provided by un - trusted source " message ?
+Shall I be able to request a refund in the background after payment ?
+What is the use of HuaweI Cast+ Kit ?
+What is HuaweI OneHop ?
+Does only one payment UI exist ? Does any other payment UI exist ?
+I 'd like to apply for a DUNS number .
+What requirements do I need for content rating ?
+Does HuaweI Awareness Kit have a limit on the number of geo - fences ?
+Am I able to modify the identity verification information that is under review ?
+In terms of payment , how are the differences between the sandbox testing environment and the formal environment test ?
+Can I complete the verification process if I 'm not able to have access to the phone numbers of the location I selected ?
+Do I want to configure a result callback address ?
+What could I do if a 6003 error occurs when I connect to HMS core ?
+How can error 60055 recur during testing ?
+Can I select several sizes when creating an ad unit ?
+Why after writing multiple data with overlapping time intervals , the query results do not match what has been written ?
+Can I access HuaweI Account Kit to let users sign in to my app using their HuaweI IDs even if I have my own account management service ?
+Is it possible to edit and configure the function of compiling , when compiling a project with multiple app packages ?
+Means to release an app outside China . Are there any language requirements ?
+Means to fix HwOneHopSdk error message when I edit the app code ?
+Can you tell me what HMS Core Toolkit is used for ?
+How could I use Customer Service ?
+Do you need a HuaweI phone to use DeviceVirtualization Kit ?
+What is the amount of team members for a team ?
+Currently , the Add HMS API scheme is used in most cases . How would I ensure success of tool - based conversion ?
+Why am I not able to see the actual function during the NFC test when multi - screen collaboration is launched ?
+Unable to create new version as long as the version is in Releasing state on Cloud Hosting .
+Where can I register a level 2 operation account ?
+Can getDeviceList give an empty result ?
+Do I need to learn how to submit my app to release Abilities on HuaweI Ability Gallery ?
+I want to set font - weight .
+If " Invalid Credentials " message is given when calling an API , what should I do next ?
+I wish to reset my password .
+Could I analyze ad effectiveness ?
+What can I do to check viruses on an app ?
+Can I find out whether a product supports certain capabilities ?
+How am I supposed to complain about pirated apps ?
+May developers endorse other apps ?
+What should I do if I have n't received payment from HuaweI 30 days after the settlement sheet has been confirmed ?
+In what ways do virtualized cameras support the Android native capabilities ?
+What is the difference between Authorization Code - based integration and ID Token - based integration ?
+Am I able to issue only one invoice for various settlement sheets ?
+The screen of my HuaweI device becomes black and I can not use it . How can I solve this problem ?
+Is there a way to transfer the app from Account A to Account B ?
+HuaweI OneHop function
+If I have developed multiple cards , do I need to learn how to generate rpk packages for them separately ?
+Why is GetAvailableDevice unable to obtain any device ?
+How to initiate joint operations ?
+Are there any regulations on the release of security - related apps outside China ?
+How many addresses can a user have with HUAWEI Identity Kit ?
+Would error 60055 be replicated during testing ?
+Can you explain what HuaweI Watch Face Design Specification is ?
+How to administer team accounts ?
+After 30 days from the settlement sheet being confirmed , there is still no payment from Huawei , why ?
+I 'm trying to query which capabilities the kit supports .
+How to apply for merchant service ?
+Can success be ensured when tool - based conversion is used ?
+I wish to use registerOneHop ( ) before invoking other APIs .
+How can the developers using HuaweI AppGallery be helped in improving the ranking of their apps ?
+Why did Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document appear ?
+On the running environment , what contingencies are required from the service ?
+What can I do if a message indicating failure to connect to the server is displayed while I view saved games in HuaweI Assistant ?
+What is Content Ability ?
+Can you tell me who are the persons capable of enabling a Team account ?
+Can you define HuaweI Ads ?
+Could the video data be used as the video source for video calls in CaaS Kit Lite ?
+Is there any UNK cost for Cloud Debugging ?
+I 'm trying to get merchant service . How do I do that ?
+How am I supposed to fix HwOneHopSdk error message when I edit code in the app ?
+What are the guides in viewing and exporting reports of revenue ?
+My application is not on http://app.hicloud.com , why ?
+Must app icons , screenshots , names , versions , features , and other app information be consistent with the audited app information ?
+UNK the event analysIs data report on the day I integrated HuaweI Analytics Kit into my app , why is this ?
+Why ca n't I receive files via ConfirmRecvFile ?
+What are the ways to upload themes ?
+How can I make different themes ?
+What is considered a normal width of a card ?
+I would like to use apI console . How can I do that ?
+What version of HuaweI AppGallery is required to have access to quick apps ?
+It 's been 30 days since the settlement sheet UNK , why have n't I received any payment from HuaweI yet ?
+What are the default dimensions of a card ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Will this affect my app ?
+Is there a default width of a card and what is it ?
+Why ca n't I view AppGallery Connect comments after 30 days ?
+I 'd like to know the languages supported by HMS SDK .
+When will my invoice be no UNK valid ?
+When is the obtainOwnedPurchases API called ?
+I 'd like to verify my identity but my location ca n't be found in the list . What to do ?
+Can I connect with the ecosystem via HuaweI Ability Gallery ?
+What 's prohibiting me from using mock mode ?
+What would happen if you did not sign in in a HuaweI ID and the user UNK to use the functions provided by HuaweI Identity Kit ?
+What are the payment service prerequisites ?
+Why ca n't I see the actual function during the NFC test when Multi - Screen Collaboration is launched ?
+Can you explain what HMS Core Toolkit is ?
+How to view and export reports of revenue ?
+Is DevEco IDE free ? How do I get it ?
+Is there a way for HuaweI Awareness Kit to meet my requirements ?
+Could user data in the HuaweI Health app be read when the device screen is locked ?
+In order for cloud capabilities , which awareness capabilities are necessary ?
+Do I need to have a bank account in China in order to receive payments for products that I released there ?
+How would I deal with an exception that occurs during HuaweI Awareness Kit call ?
+Can a disabled Bluetooth from a phone detect a Bluetooth headset ?
+How could I get capability objects ?
+I do n't have my own AI model , can I leverage HuaweI device ’s AI capabilities ?
+What is HMS Core Toolkit 's intended function ?
+When a new version is available , will Quick App Center be upgraded on its own ?
+I 'm looking to integrate the Share Kit . What are the format requirements for APKs ?
+How do I know what the differences between signature algorithm and signature verification algorithm are ?
+What is the function of HuaweI Ads ?
+What is HuaweI HiAI Mobile Computing Platform 's intended function ?
+How are ads managed ?
+What UNK can you use in installing HMS Core Toolkit ?
+Could error 60055 repeat during testing ?
+Why can the code run during development and debugging , but can not discover other devices ?
+Shall I use Customer Service ?
+How can you read the user data of the HuaweI Health app on a locked screen ?
+What is the maximum number of geofences ?
+Can the server verify a signature ?
+In GB , how much storage space can it use ?
+Am I able to modify the classification after the app / game is released ?
+Is App Ability available in HuaweI web browser ?
+Which development languages are being supported currently ? Is React Native going to be supported ?
+What should I do to get to HuaweI HiHealth Download Center ?
+How am I supposed to call the API ?
+Why do I see the version stay on Releasing on Cloud Hosting ?
+I 'm trying to download HuaweI Themes Tool .
+How do you guide users to use the new feature ?
+Where can I see the comments of the users of my app ?
+What purpose does Cloud Debugging serve ?
+I 'm trying to enable the payment service .
+Is it allowed to add a category when creating an ability ?
+Are Ability statistics available through the developer portal ?
+New app names ( ending with @huawei.com ) are necessary for the integration with HMS Core .
+How could I register a level 1 operation account ?
+As a developer , how could I edit authorization status of client accounts ?
+How do I run initialization using InitShareKit ?
+How long is the range of the IAP public key obtained on the console ?
+Why is verifying my identity necessary ?
+Why is ConfirmRecvFile unable receive files ?
+How do I obtain capability objects ?
+In the Chinese version of the AppGallery client , am I allowed to search for apps I uploaded from non - Chinese developer accounts ?
+Why is TransFile not sending the documents ?
+Where will the report be submitted when I sign in to HuaweI Developer and a dialog box shows , UNK that I perform security evaluation and asked to submit a report ?
+When may I receive revenue from my apps or games that have accessed HuaweI Pay ?
+I 'd like to fix a 6003 error connecting to HMS core .
+How should I fix testing task stuck in a queue ?
+Could I complete the verification process if I do n't have access to the phone numbers of the location I selected ?
+While purchase token is being verified , are there any restrictions on the frequency of access token requests ?
+Where do ability cards redirect users ?
+How do I set up a level 1 operation account ?
+How do I alter the company name ?
+When the app calls the payment API , it shows " Ca n't get applicationinfo by applicationid " . What shall I do when this happens ?
+Why am I obliged to verify my identity ?
+What happens when error code 907135003 is returned when I call HMS Core ( APK ) ?
+Where may I see event reports ?
+Does HuaweI support APK extension accounts supported by Google Play Store ?
+Would I be able to alter language settings in console after creating an account on the HuaweI Developer English site ?
+When may I get the top - up invoice for this month ?
+How may I find my Huawei 's merchant contract ? Can I get it stamped ?
+Can you take me to Theme Introduction Specification ?
+Can I guide users to use the new feature ?
+Could there be any difference between the name of the bank account used to add money to the promotion account and the verified company name ?
+Are there differences in the usage of UNK in getCameraInfo and getCameraParameters ?
+Will the HuaweI Ads Publisher Console UNK take into account revenue sharing ?
+What are the requirements for naming an app ?
+When applying for paid promotion tests for apps / games , what details are necessary ?
+Why am I told that I still have n't received payment from HuaweI 30 days after the settlement sheet has been confirmed ?
+How to do SDK download ?
+How may I get rid of my HuaweI ID ?
+What 's JSON file policy updates ?
+Can you tell me what HuaweI Themes Design Specification is used for ?
+What southbound devices are approved ?
+How would I make the fonts larger on the hms core toolkit ?
+I 'm stuck with an error that occurs when I reference the Android support library after integrating the BioAuthn - AndroidX SDK . What do I do ?
+Explain Team account .
+Does HuaweI Awareness Kit monitor the amount of geo - fences ?
+Are NFC tags handled by app developers or UNK UNK ?
+Can I make a signing certificate change during app version update ?
+How ca n't I locate an app on the AppGallery client after the app 's approval has been released ?
+How may I check the comments of the users of my app ?
+How can I download SDK .
+Could an individual developer activate the payment service ?
+How long does the app review process take ?
+Can I request a refund in the background after payment ?
+How does OneHop work ?
+Can I separately adjust the version numbers of the quick app and the card engine ?
+What are ICustomVariable and ICustomTag responsible for when it comes to applications ?
+May I have games with IAP payments in APP TOUCH ?
+If I am not from China and I need to release a product there , do I need to have a bank account in China in order to receive payments ?
+What I 'd like to be aware of when entering merchant information ?
+What should I do when the system informs me that I do n't have permission to create a promotion task , when using the paid promotion service ?
+How to use card abilities ?
+How can my app fail review while others that do not comply with standards are still on HuaweI AppTouch ?
+When 's the best time to call obtainOwnedPurchases API ?
+Way to make the fonts larger on the hms core toolkit ?
+When compiling xms adapter code separately , the hms core toolkit shows a message saying that I do not have static or dynamic permissions , what could I do then ?
+Right after deleting site successfully on Cloud Hosting , the version is unchanged .
+How do I fix slow or unsuccessful recognition of planes ?
+Can the merchant service be enabled if the location of identity verification is not the same as the location of the company ’s public account ?
+What are the OneHop 's characteristics ?
+What is HuaweI Cloud Testing 's intended function ?
+How do I get merchant service ?
+How can I oversee console ?
+Why can not I use the mock mode ?
+Why do I see the version stay on Removing on Cloud Hosting ?
+What kind of wearable devices can be used with HuaweI Awareness Kit ?
+Is there a requirement for the SHA-256 certificate for signature verification ?
+Why ca n't I modify some settings of my remote device and test my app without Settings crashing ?
+May I know what DevEco IDE is ?
+Could the identity verification information that is under review be changed ?
+What phones are DeviceVirtualization Kit available for ?
+Why does the RRI data vary ?
+Can you tell me what quick app IDE is used for ?
+Can I obtain a query of capabilities that the kit supports ?
+When is it necessary to use the payment service ?
+What is the use of Team account ?
+I 'm looking to integrate HuaweI Cast+ Kit . What are the format requirements for APKs ?
+Can you introduce HuaweI HiHealth ?
+May quick app background account be used in HuaweI background ?
+Define HMS Core Toolkit .
+What is the amount of UNK user addresses by HUAWEI Identity Kit for a user ?
+After a successful version change , the version remains unchanged on Cloud Hosting . What should I do ?
+How can I bring back a site that is down on Cloud Hosting ?
+When should my top - up amount get credited to my account ?
+Do I want to sign HuaweI HuaweI AppTouch Joint Operations Service Agreement ?
+How to enable payment service ?
+Are there any payment requirements when launching an app outside China ?
+Can you present HuaweI Themes ?
+Can HuaweI Ability Gallery gather files from apps ?
+How can I use HuaweI Identity Kit without having HuaweI Account Kit ?
+The signature algorithm for the app signature certificate is SHA1withRSA . Would this affect my app ?
+Is HuaweI the only brand supported by DeviceVirtualization Kit ?
+How can I use registerOneHop ( ) to invoke other APIs ?
+Could HuaweI Location Kit be applied on non - HuaweI phones ?
+May client accounts be managed by level 2 account users ?
+Are there any differences between FIDO2 error codes Fido2Status and CtapStatus ?
+How can I solve the version staying on Releasing on Cloud Hosting ?
+When may I see and download bills ?
+Can you show me my app users ' comments ?
+How much does Cloud Debugging cost ?
+I want to know the usual radius for a geofence .
+Ways to publish a new app .
+What libraries do I have to get UNK in order to link to HuaweI IAP ?
+I need to use registerOneHop ( ) before invoking other APIs .
+Is accessing App Ability possible in HuaweI web browser ?
+What is necessary in order to use the merchant service ?
+Can other apps be recommended by developers ?
+Why is the version still the same after updating Cloud Hosting ?
+How to stop " null " return when the user makes the query and tries to read data ?
+What may I do to protect my account ?
+In the Chinese version of the AppGallery client , can I search for apps I uploaded from non - Chinese developer accounts ?
+Do I need to provide any iNPUts for using the DMSDP virtualization service ?
+Would the developers using HuaweI AppGallery be helped in improving the ranking of their apps ?
+What should I do if I get error code 907135003 when I call HMS Core ( APK ) ?
+UNK the cyber security due diligence
+By what means can you install HMS Core Toolkit ?
+Where could I access the service agreement ?
+How do I make new themes ?
+Is the revenue amount in the report on the HuaweI Ads Publisher Console the amount before or after revenue sharing ?
+If the current capabilities of HuaweI Awareness Kit can not meet my requirements , what should I do ?
+How should I be able to use Customer Service ?
+What may a business do to partner with Huawei ?
+What are the conditions on using FIDO2 ?
+I want to use HuaweI Identity Kit but I do n't want to integrate HuaweI Account Kit into my app . Can it be done ?
+What is the registration process for a level 2 operation account ?
+Do the app icons , screenshots , names , versions , features , and other app information must be consistent with the audited app information ?
+Is it the app developers who need to handle NFC tags ?
+What are the UNK total lengths of access_token and refresh_token ?
+Where am I allowed to apply for merchant service ?
+What are the directions for sharing my app ?
+I need to check whether my smartphone supports the NPU .
+Is a fee deducted when you purchase non - subscriptions in the sandbox testing environment ?
+Do I have to integrate HMS SDK into my app so that it can use Drive capabilities ?
+I 'd like to make the actual function during the NFC test show up when multi - screen collaboration is launched .
+Shall the geofence function be utilized both indoor and outdoor ?
+Am I able to revise the disclaimer for an app to be released in Mainland China ?
+How can you find the policies of HuaweI ads ?
+UNK the purchase token verification , does the restriction on the frequency of access token requests exist ?
+How does error code 502 show up ?
+How many hours will it take to review a media application ?
+How do I adapt my AI model to the accepted HiAI model format ?
+What can I do with unused funds in my advertiser account ?
+I do n't have my own AI model but I need to learn how to leverage HuaweI device 's AI capabilities . How can I do that ?
+If I do not have the credentials for issuing advertising invoices such as for advertising service fees and advertising fees , what can I do ?
+Where am I supposed to see event reports ?
+Can tool - based conversion become successful ?
+How should I be able to configure a gift ?
+What can I do to get to HuaweI HiHealth Download Center ?
+What are the formats that an OAID has ?
+How to fix a 6003 error connecting to HMS Core ?
+Means to fix error code 6 when the web API is called ?
+How is the OAID different when it is obtained by integrating the SDK and by calling the AIDL API ?
+How could I publish a new app ?
+How can the merchant service 's contact information be updated ?
+I need information about Ad Slots .
+Does HuaweI Ability Gallery gather data from apps ?
+What southbound devices are UNK ?
+Means to find my app ID .
+Could I check whether my smartphone is compatible with the NPU ?
+What are the changes in the OAID when it is acquired by integrating the SDK and by calling the AIDL API ?
+App Ability , how do I use it ?
+I 'm looking to reset my password .
+How do I use AudioKit ?
+Am I able to have games with IAP payments in APP TOUCH ?
+Why does my app get rejected ?
+When could my revenue from my apps and games that have accessed HuaweI IAP be obtained ?
+How can the signature algorithm for the app signature certificate , SHA1withRSA , affect my app in any ways ?
+I want to create an ad . What are the steps ?
+Is the amount shown in the revenue report of the HuaweI Ads Publisher Console presented before or after sharing of revenue ?
+How do I locate a problem such as crash or ANR detected during a stability test ?
+When shall I get revenue from applications and games that utilize HuaweI Pay ?
+How to use the activity recognition function ?
+Using my level 1 account , how should I top up and request for invoice ?
+UNK app name
+Where do I locate bank information on merchant service pages ?
+How to change the name of an app ?
+I have a smart watch , can it be used with HuaweI Awareness Kit ?
+How many device models am I allowed to select when running a test ?
+Means to use HuaweI QuickApp IDE ?
+What steps should I follow if a site is inaccessible on Cloud Hosting ?
+May you read the HuaweI Health app 's user data on a locked screen ?
+What will happen if you use the functions provided by HuaweI Identity Kit without signing in with a HuaweI ID ?
+What is the purpose of Share Kit ?
+Could getDeviceList give an empty result ?
+How shall I be able to check the names of the app IDs and app packages ?
+Should the signature algorithm for the app signature certificate , SHA1withRSA , affect my app in any ways ?
+How to troubleshoot slow or unsuccessful recognition of planes ?
+When was the activity recognition function first available ?
+How UNK are the size of cache files of a quick app ?
+When should I UNK - start the SDK ?
+Can app sharing be done by the user ?
+Do any differences exist between the getVirtualDevicesList API and the startDiscovery API ?
+What do ICustomVariable and ICustomTag do ?
+What should I do if my test is being executed ?
+How to oversee ad unit ?
+Can you explain what is CaaS Kit ?
+Would I be able to customize my user role ?
+Does the service have any requirements on the running environment ?
+Shall I request a refund in the background after payment ?
+Is there a limit to the number of members a team can have ?
+Why is GetAvailableDevice not obtaining any device ?
+Could the tool identify APIs of these Kits ?
+Who can access the HuaweI HiHealth platform ?
+Why did my app not make the review ?
+How to handle ads ?
+What happens on the media client if the request for a rewarded ad fails ?
+How do I access quick app IDE ?
+How is user data UNK of by business partners ?
+How to use HMS Toolkit to store AppGallery Connect configuration file to a project directory ?
+Are my permissions configured in such a way to use DeviceVirtualization Kit ?
+What are OneHop 's main features ?
+What does it mean that the signature fails to be authenticated on the server 's side ?
+Can you UNK me to Huawei 's Theme Service Specification ?
+Could HuaweI Location Kit be used on non - HuaweI phones ?
+Can the public payment key be visible on the app ?
+How do I see a released ability 's operations data ?
+The authorization code obtained using the account.authorize ( ) API is valid for how long ?
+When the app calls the payment API , the message " Ca n't get applicationinfo by applicationid " is displayed . Why does this issue occur and what shall I do ?
+What can I do to fix the version not changing immediately after deleting version successfully on Cloud Hosting ?
+When shall I be able to get the top - up invoice for this month ?
+May I utilize my quick app background account in HuaweI background ?
+What are the possible reasons why I ca n't submit app media for review ?
+Ways to configure the activity link to the main page of an ability ? What is the function of the link .
+What purpose does HuaweI Media Service Usage Agreement serve ?
+What does a content rating require ?
+Should the geofence function be used only outdoor ?
+Why can an app fail the review ?
+Why is it necessary to provide my ID card , passport , driver ’s license , or bank card for identity verification ?
+Can an app be submitted for review ?
+Would the integration of CaaS Kit Lite service to meet UX requirements be customized by developers ?
+Am I allowed to add a category when creating an ability ？
+How can I top up ?
+What functions does HuaweI AR offer ?
+Where does my data go to once a business partner gets it ?
+What support does the AppGallery badge service provide ?
+How much storage space does Drive use ?
+I have a level 1 operation account . How do I manage funds ?
+When would I be able to receive revenue from my apps or games that have accessed HuaweI IAP ?
+What could I be aware of when entering merchant information ?
+Am I required to have any permission configurations in order to use DeviceVirtualization Kit ?
+How does HuaweI HiAI Mobile Computing Platform work ?
+How should I be able to access the operations data about the quick app after its release ?
+How could I locate a problem such as crash or ANR detected during a stability test ?
+How to avoid getting the version unchanged immediately after deleting version successfully on Cloud Hosting ?
+Define NFC .
+For the API called by your server to check the validity of the purchase token , how long it is valid ?
+Shall I be able to avoid having the public payment key be exposed on the app ?
+Where could I see event reports ?
+I seek to get help in paid themes .
+Ways to sign HuaweI AppTouch Joint Operations Service Agreement online .
+What can I do if the present capabilities of HuaweI Awareness Kit can not meet my requirements ?
+When could I receive the top - up invoice for this month ?
+I want to know the languages that are supported by HMS SDK .
+How could I start joint operations ?
+How do you use HuaweI QuickApp IDE ?
+How may I upload themes ?
+Can I request access tokens without any restrictions during the purchase token verification ?
+What kind of format does an OAID have ?
+I wish to see HuaweI Themes Cooperation Agreement .
+How long should it take to integrate an ability to HUAWEI Ability Gallery ?
+Ways to fix an app rejection ? .
+What happened to the data that is supposed to be on the app debugging page , after HuaweI Analytics Kit is integrated ?
+How may I add new contact to the merchant service ?
+Ways to integrate the Share Kit . What are the format requirements for APKs ? .
+How can I add app and unit ?
+What are the format requirements for APKs that need to integrate HuaweI Cast+ Kit ?
+I want to enable the merchant service .
+How to be an account holder ?
+How is signature algorithm different from signature verification algorithm ?
+How do I find the HMS menu on the HMS Core ToolKit plugin ?
+How could I be an account holder ?
+Where would I be able to view the version of HMS Core ( APK ) ?
+How can I access the operations data about the quick app after its release ?
+What are the measures needed before executing a payment service ?
+What to do to see operations data for a released ability ?
+Does the user have to log in to my app using a HuaweI ID ? Can other accounts be used ?
+The API ca n't be UNK , why ?
+Ways to fix " HiHealthError . ERR_SCOPE_EXCEPTION " .
+Can the developers be helped in any step to improve the ranking of their apps in HuaweI AppGallery ?
+When am I able to see and download bills ?
+DeviceVirtualization Kit , what does it do ?
+I 'd like to configure the activity link to the main page of an ability ? What is the function of the link .
+How would I be able to receive the ability statistics through the developer portal ?
+Where can I find HuaweI HiHealth Download Center ?
+I want to find my app ID .
+Would I leave the related card ability intact while upgrading the quick app in HuaweI AppGallery ?
+Can I know why are the real - time heart rate data and RRI data not continuous ?
+A user can have how many addresses in HUAWEI Identity Kit ?
+How can we interchange apps between accounts ?
+How would I fix UNK fonts ?
+Where do I go to find the process of settlement ?
+I have to submit an app for review .
+If the message says " Invalid Credentials " when calling an API , what will be the next step ?
+For the cache files of a quick app , are there size UNK ?
+Would developers alter the integration of CaaS Kit Lite service to meet UX requirements ?
+What permissions are required when it comes to application ?
+What tax qualification shall I choose ?
+Steps for making a new ad .
+What do I do if I want to include games with IAP payments in APP TOUCH ?
+Am I able to reload my paid promotion account with credit card ?
+Why do I have to show proof to verify my identity ?
+Can developers UNK the integration of CaaS Kit Lite service to meet UX requirements ?
+What is the maximum length of the IAP license key received on the console ?
+I have registered my account on the HuaweI Developer English site , may I switch languages in console ?
+May I get help in paid themes ?
+How do I get the ability statistics through the developer portal ?
+Using my level 1 operation account , can I manage level 2 accounts ?
+How may I complete the Cyber Security and Protection Due Diligence ?
+How am I able to update my HuaweI individual Developer account into an enterprise account without changing any of the contact information ?
+Why ca n't I invoke the API ?
+Could my paid promotion account be UNK up with credit card ?
+How can you install HMS Core Toolkit ?
+How can I benefit from HuaweI AR ?
+If the current capabilities of HuaweI Awareness Kit can not meet my requirements , what shall I do ?
+When calling an API , what may I do if the message says " Invalid Credentials " ?
+Am I able to use one account to debug on two computers at once ?
+What is the next step when you get an error in your transaction stating that it is rejected and can try again later when using a bank card to pay for a transaction on the client ?
+If there are any differences between signature and signature verification algorithms , what are they ?
+How can I update from an individual into an enterprise account while keeping my phone number ?
+Can I register numerous accounts with the same phone number or email address ?
+I would like to use my own AI model . How am I able to do that ?
+Why am I not able to get any data on the app debugging page after HuaweI Analytics Kit is integrated ?
+What does it mean that I need to contact the merchant representative after merchant authentication fails on the HuaweI console with the IAP function enabled ?
+The DevEco IDE , how can I access it ?
+Where may I find the operations data about the quick app after it is released ?
+Should I be able to use the tool to convert Firebase services ?
+When were quick apps first introduced to HuaweI AppGallery ?
+In what ways could the developers be helped to improve the ranking of their apps in HuaweI AppGallery ?
+When will I see my top - up amount added to my account ?
+What are the principles for displaying the product price and unit on a player 's mobile phone ? Based on the player 's location ?
+Does HuaweI Awareness Kit have a maximum number of geo - fences ?
+In the moment of deleting site successfully on Cloud Hosting , the version is unchanged .
+What could have gone wrong that UNK with problems when registering a HuaweI ID ?
+How does integrating the SDL and calling the AIDL API change the OAID ?
+What would I do when the system informs me that I do n't have permission to create a promotion task , when using the paid promotion service ?
+How do I download SDK .
+How can I check whether my smartphone is able to handle the new NPU ?
+How much storage space ( GB ) does it UNK ?
+How do I operate console ?
+Why is the price specified by amount different from the actual price when the createPurchaseIntentWithPrice API is called for payment ?
+How can I choose a tax qualification ?
+Who can support API from the list of developer environments ?
+When should I turn on the SDK ?
+Am I able to request a refund in the background after payment ?
+Could error 60055 recur during testing ?
+Am I able to get a list of capabilities supported by the kit ?
+What rules are needed to calculate the storage space on Cloud Hosting ?
+Does HuaweI Identity Kit for mobile phones and software have any specific requirements ?
+How could I improve the activity recognition success rate ?
+When a user uses a bank card to pay for a transaction on the client , an error message is displayed , indicating that the transaction is rejected and the user needs to try again later . Why does this issue occur ?
+Where am I able to find the process of settlement ?
+When you do an OAID reset , does it take effect on all your devices ?
+May a quick game package 's name be the same as an online game package 's name ?
+What are the functions of FIDO2 error codes Fido2Status and CtapStatus ?
+How would I apply for settlement ?
+I want to use UNK UNK . Is it possible to do that with Android native capabilities ?
+What does the DeviceVirtualization Kit require ?
+Could HuaweI Location Kit be utilized on non - HuaweI phones ?
+Is there a problem in mock mode ?
+Do separate RPK packages have to be UNK for multiple cards ?
+In what ways do the FIDO2 error codes differ from Fido2Status and CtapStatus ?
+How should I get development guide for HuaweI AR ?
+What is the purpose of HuaweI Cast+ Kit ?
+How is a team account enabled ?
+What is the restriction on the maximum payment amount in HuaweI IAP ?
+Can distribution to Mainland China and other countries be done at the same time if it 's just one theme package ?
+I 'm trying to redeem leftover funds in my advertiser account .
+How am I supposed to get HuaweI AppTouch Channel Guide ?
+Are there any input requirements to use the DMSDP virtualization service ?
+How does the AppGallery badge services operate ?
+I 'm trying to apply for settlement .
+When obtaining a device 's IP address , which port is used by HuaweI Cast+ Kit ?
+May the AppGallery client place and show an alias ?
+I want to build and configure the AI model conversion environment to convert my own AI model to HiAI format .
+The version is not changed immediately after creating version successfully on Cloud Hosting .
+Do I need to have a privacy statement ? How to prepare and release the privacy statement ?
+What does it mean when there is no preview , or if the preview blackscreens ?
+I am having UNK submitting my app media for review , why ?
+What does IDE support ?
+What can I use to identify myself ?
+How do you show users the new feature ?
+I want to do paid promotion .
+If requesting a rewarded ad fails , what could I do on the media client ?
+What is the max length of the IAP public key acquired on the console
+Shall an individual developer turn on the payment service ?
+List of languages the IDE supports
+Are Drive functions strongly relying on HuaweI ID ?
+Means of adding app and unit ?
+What should I do if error code 907135003 is returned when I call HMS Core ( APK ) ?
+The payment page can not be displayed on a non - HuaweI mobile phone , and error code 1 or 907135003 is returned . In this case , what could I do ?
+How can CaaS Kit Lite use video data as the video source for video calls ? Are there any data restrictions ?
+What are the common reasons for inability to invoke the API ?
+How quickly is the app review process done ?
+I want to release Quick Game , how may I do that ?
+How can I select between sync or async APIs ?
+Which devices are able to run HuaweI AR Engine ?
+May I modify the identity verification information that is under review ?
+Based on the player 's location , what are the principles for displaying the product price and unit on a player 's mobile phone ?
+Does the DMSDP virtualization service require any iNPUts ?
+Could you launch AudioKit ?
+Could I access HuaweI Account Kit to enable users to log in to my app using their HuaweI IDs even if I have my own account management service ?
+I modified the APK package name . May I still use it to update the corresponding application ?
+Are there payment requirements when an app is released outside China ?
+APKs that need to integrate Huawei Cast+ Kit need to satisfy which format requirements ?
+May a free subscription be used for a while ?
+What are the requirements for the activity recognition function ?
+What will happen if a user attempts to use the functions that 's offered by HuaweI Identity Kit without signing in using a HuaweI ID ?
+I 'm trying to integrate the HuaweI Ads SDK .
+I 'm trying to make the fonts larger on the hms core toolkit .
+How to enable the payment service ?
+What is the difference between the signature and signature verification algorithms ?
+What is the total length for access_token and refresh_token ?
+How to fix a 6003 error connecting to HMS Core ?
+Why does the version remain the same instantly after erasing version successfully on Cloud Hosting ?
+What is the next directive if the signature fails to be verified on the server 's side ?
+How am I capable of using Customer Service ?
+HuaweI AR Engine is supported by what phones ?
+What steps are essential before making a payment service ?
+What should I do with status code 10010 , 10011 , and 10012 when a function is called ?
+Would I call init API when starting a game ?
+Would success be ensured when tool - based conversion is used ?
+Developer environments that support API
+Will I be able to see contacts from outside UNK on MeeTime ?
+Resolutions in getCameraInfo and getCameraParameters , where are they used ?
+Does apps released outside of China must have a privacy policy link provided by it 's developer ?
+Is it possible to get an empty result with getDeviceList ?
+Which languages does the HMS SDK support ?
+Why would you use Share Kit ?
+Is registerOneHop ( ) required to invoke other APIs ?
+Should you introduce HuaweI HiHealth ?
+What should I do if I 'm trying to change my signing certificate during app version update ?
+How to change the app name ?
+What happens when there is no preview , or if the preview blackscreens ?
+The support covers what versions of Unity ?
+Are rewarded ads available in landscape orientation ?
+How would I verify my identity ?
+Ways to enable a team account .
+What should I do if I do not have the HQ phone number and work phone number of the country / region that I selected when I try to get my identity verified ?
+What could be the reasons why I ca n't use the API ?
+Can I read about the process of settlement ?
+Unity versions supported
+How does using a HuaweI ID to sign in to a non - game app different with using a HuaweI ID to sign in to a game app ?
+What is the list of languages supported by HMS SDK ?
+Why has my app been rejected ?
+How much is the price for cloud debugging ?
+Can I use HMS Toolkit to automatically save AppGallery Connect configuration file to my project directory ?
+I seek to fix a 6003 error connecting to HMS core ?
+How can I fix the version staying on Removing on Cloud Hosting ?
+Could a media application be reviewed immediately ?
+CaaS Kit , what does it do ?
+How do I stop HwOneHopSdk displaying an error message when I edit code in the app ?
+I want to contact the account holder .
+In the Chinese version of the AppGallery client , would I be able to search for apps I uploaded from non - Chinese developer accounts ?
+Should the public payment key be exposed on the app ?
+What are the UNK of the FIDO2 error codes Fido2Status and CtapStatus ?
+What can I do when I call the apI and then the message says " Invalid Credentials " ?
+What are the work UNK of rewarded videos ?
+What could I do to get to HuaweI HiHealth Download Center ?
+Why does a " 400 Bad Request invalidArgument " message return when the configurations are correct ?
+What shall I do if my test is being executed ?
+What may I do if a 6003 error occurs when I connect to HMS core ?
+Under what circumstances is the payment service needed ?
+UNK IDE supports
+What are the UNK options after using the free debugging time on Cloud Debugging ?
+Can the payment service be enabled by an individual developer ?
+What would I use HuaweI Cloud Testing for ?
+What is the purpose of HuaweI OneHop ?
+What is the wait time for HuaweI Developer to review my documents ?
+What steps could I take on the media client if the request for a rewarded ad fails ?
+What could I do if the current capabilities of HuaweI Awareness Kit can not meet my requirements ?
+How do I UNK the public payment key on the app ?
+I want to communicate with the account holder .
+Can non - HuaweI phones be used for testing ?
+Can I use my quick app background account in HuaweI background ?
+What is HuaweI Themes Design Specification ?
+What are the requirements for releasing Abilities on HuaweI Ability Gallery ?
+When I sign in to HuaweI Developer and a dialog box indicates that I should perform security evaluation and asked me to submit a report , where can I send the report ?
+How can I associate with the ecosystem using HuaweI Ability Gallery ?
+Do I need to have HuaweI Account Kit in my app to use HuaweI Identity Kit ?
+How do I apply for permissions ?
+How to operate HuaweI QuickApp IDE ?
+What is the price of applying for more time after the free debugging time is used up ?
+Is there a fee for purchasing non - subscriptions in the sandbox testing environment ?
+The signature algorithm for the app signature certificate is SHA1withRSA . May this have any effect on my app ?
+Is there any limit on the maximum payment amount in HuaweI IAP ?
+What does NFC do ?
+Does HUAWEI Identity Kit allow for adding different user addresses ?
+What do I need to do to fix my HuaweI device ? UNK the screen becomes black and I can not use it .
+How do I fix an app rejection ?
+How can I establish my payment service ?
+What purpose does Team account serve ?
+Why am I UNK that the name of the APK I 'm uploading is already being used ?
+After my app / game has been released , am I able to change the category ?
+What development languages can I use right now ? Are they considering to support React Native in the future ?
+Might I use the algorithm for the signature certificate of my app , SHA1withRSA ?
+Could I change the category of my app / game after it has been released ?
+An error 907135702 code appears when I connect to HMS Core , what shall I do ?
+Ways to protect my account .
+What are the procedures for naming an app ?
+What is the meaning of Quick App Scenarios ?
+Explain Quick app .
+What does ICustomVariable and ICustomTag do to applications ?
+How can I register a level 2 operation account ?
+Could the AppGallery client place and show an alias ?
+Define AppTouch .
+How do virtualized cameras use Android native capabilities ?
+How can HuaweI HuaweI AppTouch Joint Operations Service Agreement be signed ?
+How much is the fee for UNK non - subscriptions in the sandbox testing environment ?
+What concepts are used to display the player 's mobile phone 's product price and unit based on their location ?
+I wish to choose a different sign in account . How will I do that ?
+In landscape orientation , are rewarded ads available ?
+Am I obliged to have a privacy statement ? How to prepare and release the privacy statement ?
+Why is it when I sign in to https://developer.huawei.com/consumer/en/ for identity verification , I should only choose provinces in mainland China ?
+Are there any payments needed when releasing an app in other foreign countries ?
+How am I able to cancel my HuaweI ID ?
+Should I still see the content of the old version still displayed after I open the new version of the quick app ?
+Where can I get a DUNS number ?
+I seek to release an app outside China . Are there any language requirements ?
+How to obtain capability objects ?
+There is no data in the event analysIs report for the day of HuaweI Analytics Kit integration to the app , what 's the reason ?
+I need to make the fonts larger on the hms core toolkit .
+Where do I see the service country / region ?
+Would a theme package be distributed simultaneously to Mainland China and other regions ?
+When I compile xms adapter code separately , hms core toolkit displays a message indicating that I do not have static or dynamic permissions . What would I do ?
+What is Quick app ?
+Do you have a Code - Sample of HuaweI HiHealth ?
+What is HuaweI Themes Cooperation Agreement ?
+How do I select sync or async APIs ?
+What EMUI versions and phone models are supporting the activity recognition function ?
+How can I enroll in HUAWEI HiAI ?
+When will the settlement sheet be released ?
+Would a result callback address be configured ?
+What 's the usual radius for a geofence ?
+What do I do if a " 400 Bad Request invalidArgument " message returned when the configurations are correct ?
+Where would I be able to find reported events ?
+Could an individual developer enable the payment service ?
+" deep link " meaning App Ability
+What could I do if a site is unable to connect to Cloud Hosting ?
+What is quick app IDE 's intended function ?
+Would this error code reoccur for testing again ?
+I 'm unable to use mock mode , what 's causing it ?
+Does Drive automatically encrypt files stored in it ?
+What do I need to do if the application for integrating DTM SDK 4.0.0.300 is UNK ?
+Ways to enlist in HUAWEI HiAI .
+Will HuaweI Kits support tool - based conversion ?
+How does HuaweI Media Service Usage Agreement work ?
+What could Joint Operations Services presented as ?
+Can you tell me what NFC is used for ?
+When in developer console , why ca n't I upload screenshots UNK 5 ?
+I would like to add app and unit . What are the steps ?
+HMS Core Toolkit , how do I use it ?
+How do I benefit from using paid promotions ?
+Which business associates are able to access HuaweI HiHealth platform ?
+What could I do when data reporting fails and the server returns error code 402 ?
+Is the user meant to log in to my app using a HuaweI ID ? How may other accounts be used ?
+How should I sign HuaweI apptouch joint operations service agreement online ?
+Will the name of the bank account used to UNK funds to the promotion account be the same as the verified company name ?
+What happened to the app debugging page after HuaweI Analytics Kit was integrated ?
+Could multiple settlement sheets be issued with only one invoice ?
+Where do I go to read the HuaweI Themes Cooperation Agreement ?
+How do I check app IDs and app package names ?
+The application for integrating DTM SDK 4.0.0.300 is rejected , what do I have to do ?
+What steps shall I follow to design themes ?
+How do I configure the function of compiling a project with multiple app packages ?
+May I run a test with more than one device model ?
+May I access App Ability in HuaweI web browser ?
+Would I be able to access HuaweI Account Kit to let users sign in to my app using their HuaweI IDs even if I have my own account management service ?
+May a paid promotion account be reloaded with credit card ?
+What southbound devices are eligible ?
+Could I have more information about error code 502 ?
+What am I supposed to do if r-classes.jar conflict occurs ?
+How to make GetAvailableDevice obtain any device ?
+What could I do if r-classes.jar conflict occurs ?
+UNK when are quick apps available in HuaweI AppGallery ?
+Where am I able to access HuaweI ability gallery from the console ?
+When should I UNK the SDK ?
+How to UNK HiAI Foundation Tool ?
+Can I use HuaweI Account Kit to let users sign in to my app using their HuaweI IDs even if I have my own account management service ?
+Do you have information of Ad Slots ?
+What is the UNK time I can use Cloud Debugging UNK ?
+Are the members invited ?
+After modifying the APK package name , would I be able to still use it to update the corresponding application ?
+How would I be able to integrate the HuaweI Ads SDK ?
+How should I fix slow or unsuccessful recognition of planes ?
+How am I able to find the AppGallery Review Guidelines ?
+When you purchase non - subscription in the sandbox testing environment , is there a fee deducted ?
+Could you tell me about AudioKit ?
+Would the signature verification be executed on the server ?
+When the app calls the payment API , it shows " Ca n't get applicationinfo by applicationid " . What can I do when this happens ?
+If a developer in UNK outside China UNK to release hIs or UNK product in the Chinese mainland , is it necessary to have a bank account in China to receive payments ?
+Could n't find data in the event analysIs report on the day when HuaweI Analytics Kit is integrated into my app ?
+Would tool - based conversion identify APIs on HuaweI Kits ?
+How would I change the company information ?
+Would ability cards redirect users ?
+UNK on using FIDO2 .
+I 'm looking to know the languages supported by HMS SDK .
+Explain App Ability .
+Am I required to pay when releasing an app ?
+Can you show me how to access HuaweI Ability Gallery from my device ?
+How can I read HuaweI Themes Cooperation Agreement ?
+What documents do I need to verify my identity ?
+What to do when merchant authentication fails on HuaweI console and I 'd like to contact the merchant representative ?
+How is taking a high - precision location limited ?
+Can you define HuaweI Media Service Usage Agreement ?
+Can the rewarded ads be available in landscape orientation ?
+How can third - party partners access third - party services or apps in the HuaweI Health app ?
+What would I use HuaweI HiAI Mobile Computing Platform for ?
+Could you introduce HuaweI HiAI Engine ?
+What would I use HuaweI Watch Face Design Specification for ?
+What was needed for my app to pass the review ?
+Is there a restriction on the number of geo - fences on HuaweI Awareness Kit ?
+What has been written , after writing multiple data with overlapping time intervals , and the query results do not match . Why ?
+How can the Bluetooth on my phone detect a Bluetooth headset if it is not enabled ?
+What UNK is needed for my identity ?
+Could I update the merchant service 's contact information ?
+Can you tell me who can activate a Team account ?
+How would I upgrade a quick app in HuaweI AppGallery but not the related card ability ?
+Is the tool supporting many different modules ?
+What UNK are sent to HuaweI Analytics ?
+Are FIDO2 error codes Fido2Status and CtapStatus similar ?
+How may I complain about pirated apps ?
+When the IAP function is enabled on the HuaweI console , a message is displayed , indicating that the merchant authentication fails and you need to contact the merchant representative . Why does this issue occur and what should I do ?
+What kind of libraries will I have to import , if I wanted to connect to HuaweI IAP ?
+What is the function of Quick game ?
+Content Ability function
+How would I make the system allow me to create a promotion task in the paid promotion service ?
+How can I integrate the Share Kit ? What are the format requirements for APKs ?
+What to do to connect with the ecosystem via HuaweI Ability Gallery .
+Is there a way for third - party partners to access third - party services and apps in the HuaweI Health app ?
+I need to learn how to build and configure the AI model conversion environment to convert my own AI model to HiAI format .
+May you distribute a theme package to regions such as Mainland China and other countries all at once ?
+I am in the process of purchasing token verification . Is there a limit on the frequency of access token requests during this time ?
+How could I apply for merchant service ?
+Could my app be updated if I modify its APK signature ?
+Does the limit on the number of geofences exist ?
+How come a code can run during development and debugging , but can not discover other devices ?
+May level 2 account users handle client accounts ?
+How should I change the company name ?
+I want to switch languages in IDE . Can you tell me how ?
+How can I improve the headset monitoring effect ?
+Could an alias be placed and shown on the AppGallery client ?
+Does DeviceVirtualization Kit support other phones besides Huawei ?
+Where are users taken to by ability cards ?
+How to handle team accounts ?
+How to query which capabilities the kit supports ?
+May I choose multiple sizes when creating an ad unit ?
+It 's not letting me use the API , what could be the problem ?
+How to set a new password in Cast+ Kit ?
+How does Card Ability work ?
+Am I allowed to issue advertising invoices if I do n't have the necessary credentials ?
+Should I expect an OAID reset to take effect on all of my devices ?
+I would like to manage level 2 accounts and I have a level 1 operation account . How am I able to do that ?
+Does HuaweI Ability gallery input details from apps ?
+For content rating , what do I need to submit ?
+What are the ways to resolve error code 502 ?
+Are there any payment requirements when releasing an app outside UNK country ?
+May developers monetize traffic with HuaweI Ads Kit ?
+How can I utilize the AppGallery badge ?
+When should I be able to make a signing certificate change ?
+Does HuaweI help APK extension accounts supported by Google Play Store ?
+What happens if you try to use the functions provided by HuaweI UNK Kit without signing in using a HuaweI ID ?
+For the documents submitted , what should I do ?
+Could you read the user data of the HuaweI Health app on a locked screen ?
+Can I use a credit card to top up a paid promotion account ?
+Can a user use a free subscription for a period of time ?
+Is it required for the names of the bank account used and verified company name be the same when adding money to the promotion account ?
+Are there any requirements in calling obtainOwnedPurchases API ?
+Can I get the information on JSON file update policy ?
+What caused the query results not to match what has been written , after writing multiple data with overlapping time intervals ?
+Google Play downloaded HMS Core ( APK ) SMS automatic read permission not working
+How am I supposed to make the price specified by amount the same as the actual price when the createPurchaseIntentWithPrice API is called for payment ?
+Would verification of signature be done on the server ?
+Ways to top up .
+Shall I be able to choose the services or change the order of the services in HuaweI Assistant ?
+Shall I only choose provinces in mainland China when I sign in to https://developer.huawei.com/consumer/en/ for identity verification ?
+What do you UNK by Quick App Scenarios ?
+Could several devices debug simultaneously using one account ?
+Would other apps be suggested by developers ?
+How can I make a new ad ?
+What to do when merchant authentication fails on HuaweI console and I need to contact the merchant representative ?
+A display message is asking me to download the APK when I use the HMS SDK to access HuaweI account kit on a mobile phone without hms core ( APK ) . How am I able to make my app support sign - in with HuaweI ID even without downloading the APK ?
+Is there a difference between the getVirtualDevicesList API and the startDiscovery API ?
+What distinctions are there between ID Token - based integration and Authorization Code - based integration ?
+Are there AppGallery Review Guidelines ?
+What is the role of Quick App Scenarios ?
+How are themes uploaded ?
+How would I view and export reports of revenue ?
+Using a HuaweI ID , what differences will there be between to sign in to a non - game app and to sign in to a game app ?
+Would I be able to top up my paid promotion account with credit card ?
+What am I supposed to do if the application for integrating DTM SDK 4.0.0.300 is rejected ?
+Where can I find stability test error messages ?
+What are the directions in setting up a HuaweI Developer account ?
+Why are n't the real - time heart rate data and RRI data on a continuous scale ?
+Would I be able to issue only one invoice for various settlement sheets ?
+Would I be able to have the public payment key be exposed on the app ?
+How may I get help in paid themes ?
+How can I set font - weight ?
+Could tool - based conversion identify APIs on HuaweI Kits ?
+How much time should I wait to receive the verification code during HuaweI registration ?
+How may themes be updated ?
+What are the required versions of HuaweI Identity Kit for mobile phones and software ?
+Why did my app fail the review ?
+Can a user use a subscription for free for a period of time ?
+How do I manage level 2 accounts using my level 1 operation account ?
+What is required for a phone in order to use Caas Kit Lite ?
+May I check service country / region ?
+What do I need UNK for naming an app ?
+To integrate with HMS Core , new app names ending with @huawei.com are a requirement .
+What does AppTouch do ?
+What southbound devices are compatible ?
+Can getDeviceList produce no results ?
+May we use the merchant service if the identity verification 's location is different from the company 's ?
+If error code 907135702 appears when connecting to HMS Core , what could I do next ?
+What is the purpose of quick app IDE ?
+Why ca n't I find the location of the HMS menu on the Android Studio menu ?
+What are the ways to add app and unit ?
+Does it take long for an ability to integrate to HUAWEI Ability Gallery ?
+What happened to get Rejection : Lack of Disclaimer , Copyright Certificate or Computer Software Copyright Registration Document ?
+Where may I access HuaweI ability gallery from the console ?
+When does the OAID value of a device change ?
+Is DevEco IDE free ? I seek to get it .
+UNK to integrate HuaweI Cast+ Kit . What are the format requirements for APKs ?
+What is the maximum payment amount in HuaweI IAP ?
+Do joint operation apps need to end with .huawei ?
+Can you launch HuaweI Themes ?
+When I store a file in Drive , is it encrypted ?
+May an individual developer activate the payment service ?
+It is understood that new app names ( ending with @huawei.com ) are necessary for the integration with HMS Core .
+What sort of developer environments that support API ?
+Why do the query results and what is written not match , even after writing multiple data with overlapping time intervals ?
+Do I need to have a disclaimer if I have to distribute apps in Mainland China ?
+What does Cloud Debugging do ?
+Can you explain what HuaweI HiAI Mobile Computing Platform is ?
+How to make a new ad ?
+What do I do if I will use my own AI model ?
+Can I manage a client account using my level 1 operation account ?
+Would I be able to change the classification after the app / game is released ?
+How to change the sign in account ?
+How should I know the languages supported by HMS SDK .
+Where could I get the operations report about the quick app since its release ?
+Right after creating version successfully on Cloud Hosting , the version is unchanged .
+Means to integrate the Share Kit . What are the format requirements for APKs ?
+Using my level 1 operation account , can I manage funds ?
+Why was my app not able to pass the review ?
+How should I view the version of HMS Core ( APK ) ?
+How do I UNK UNK My Smartphone UNK the NPU ?
+I do n't have my own AI model , how may I leverage HuaweI device ’s AI capabilities ?
+How may I use merchant service ?
+Would the DV kit be used at the same time by multiple apps ?
+I have questions about the CameraKit modes .
+Can I get a member account ?
+How do I turn on a team account ?
+Reasons why API is not usable .
+How would I get HuaweI Themes Tool ?
+How can I fix " HiHealthError . ERR_SCOPE_EXCEPTION " ?
+Is consistency with the app icons , screenshots , names , versions , features , and other app information necessary with the audited app information ?
+Can there be any restrictions on the release of security - related apps outside China ?
+How do I establish joint operations ?
+Is there a way of UNK how a rewarded video works ?
+What is HuaweI Media Service Usage Agreement ?
+Could I transfer apps to another developer account ?
+Can HuaweI AppTouch have its security measures listed ?
+Ways for integrating the HUAWEI Ads SDK ?
+Why am I not seeing the HMS menu on the Android Studio menu ?
+How could I find out whether a product supports certain capabilities ?
+Fix error 50005
+My HuaweI device 's screen becomes black and I can not use it . What should I do to resolve this ?
+Could HuaweI HiHealth be introduced ?
+What should I do if I want to change my signing certificate during game version update ?
+Shall a user log in to my app using a HuaweI ID ? may other accounts be used ?
+What should I be able to find out from the number of times that a quick app report is opened in HuaweI Developer ?
+Why is develop console not letting me add more screenshots ?
+Is it limited to get high - precision locations ?
+Can you transfer an app from one account to another ?
+What is HuaweI Watch Face Design Specification ?
+How can the name of an app be changed ?
+Do the cache files of a quick app have a size limitation ?
+How am I supposed to choose a tax qualification ?
+What can I do if a message indicating failure to connect to the server is displayed when I look at achievements , leaderboards , or saved games in HuaweI Assistant ?
+How could I auto download AppGallery Connect configuration file to a project directory using HMS ToolKit ?
+Shall I get a member account ?
+When entering merchant information , what do I need to be aware of ?
+How to get SDK and Shell Tools ?
+What should HuaweI Cloud Testing do ?
+Why is it only provinces in Mainland China is displaying when I sign in to https://developer.huawei.com/consumer/en/ for identity verification ?
+What is the process of changing the sign in account ?
+Why am I seeing the error code 502 ?
+What information am I capable of having about DevEco IDE ?
+Could I update my app if its APK signature is modified ?
+How can I enter HUAWEI HiAI ?
+How should I deal with error 50005 ?
+What should I do to change the sign in account ?
+I 'm looking to use registerOneHop ( ) before invoking other APIs .
+Can an online game package have the same name as a quick game package ?
+When to depend on merchant service ?
+What information is necessary when applying for paid promotion tests for apps / games ?
+I do n't have my own AI model but I want to leverage HuaweI device 's AI capabilities . Can I do that ?
+What can a business do to UNK with Huawei ?
+What are the meanings of status codes 10010 , 10011 , and 10012 when a function is called ?
+How long will we have to wait for the settlement sheet to be issued ?
+Can I modify the disclaimer for an app to be released in Mainland China ?
+For how long is the permission code obtained using the account.authorize ( ) API valid ?
+When the server error code 402 shows and the data reporting fails , what may I do ?
+Can a HuaweI personal Developer account be updated into an enterprise account with the same contact information ?
+I always get an empty response body when calling the read method of DataManager or DataController . What should I do ?
+Would several apps use the DV kit simultaneously ?
+Do I need to have a privacy statement ? How should I prepare and release the privacy statement ?
+What is defined by the JSON file update policy ?
+Define HuaweI Media Service Usage Agreement .
+After a game is started , would the init API be called for initialization ?
+When should I UNK the SDK ?
+An error message is showing when a user uses a bank card to pay for a transaction on the client , and it says that the transaction is rejected and the user needs to try again later . Why is this error happening ?
+Ways to establish my merchant service .
+Would getDeviceList produce no results ?
+How can my identity be UNK ?
+Would the merchant service be enabled if the location of identity verification is not the same as the location of the company ’s ?
+Are user comments and rating query supported by AppGallery Connect for more than 30 days ?
+How do Token - based integration and Authorization Code - based integration differ from each other ?
+I need to learn how to get paid for my developer services .
+How much time for debugging do I have with Cloud Debugging ?
+Why ca n't ConfirmRecvFile receive files ?
+Will I have to pay anything when I release an app ?
+Which development languages can I use currently ? Is there any plan to support React Native ?
+What if I do n't receive the verification code during HuaweI ID registration ?
+What are quick apps ?
+Where would I be able to send the report when I sign in to HuaweI Developer and a dialog box indicates that I should perform security evaluation and asked to submit a report ?
+Please explain JSON file update policy .
+What are the reasons for receiving error code 502 ?
+Is there any payment needed in order to release an app ?
+Unable to access the hosted static page while version in Released state on Cloud Hosting was returned . What should I do ?
+How can I get SDK and Shell Tools ?
+How can I verify my identity when I do n't have the phone number of the region that I selected ?
+I do n't have my own AI model . What are the steps I can take to leverage HuaweI device 's AI capabilities ?
+How am I supposed to adapt my AI model to the accepted HiAI model format ?
+What purpose does Content Ability serve ?
+How may I release Quick Game ?
+What should HuaweI EMUI theme cooperation do ?
+What situations are there before and after the release of an app ?
+Is there a means to help developers using HuaweI AppGallery improve the ranking of their apps ?
+I am having a problem with my HuaweI device . Its screen becomes black and I can not use it . How can I solve this problem ?
+Should a quick game package 's name be the same as an online game package 's name ?
+I have a level 1 operation account . How would I be able to manage level 2 accounts ?
+How can we use the merchant service if the identity verification 's location is different from the company 's ?
+When carrying out a payment service , what measures are to be taken in UNK ?
+I 'd like to switch languages in IDE . How do I do that ?
+I need to learn how to fix " HiHealthError . ERR_SCOPE_EXCEPTION " ?
+How do I view my device 's basic information while Settings is shielded for the Cloud Debugging ?
+Should I be able to test an ability that is being reviewed ?
+Can I separately set the version number of the UNK app and the version number of the card engine ?
+What are the restrictions on taking high - precision locations ?
+I need to transform dp and sp into px .
+How do I know if the DMSDP virtualization service has any input requirements ?
+How would I bypass the package name exists / Is duplicate message if I uploaded the same app from more than one account ?
+How to UNK out access_token and refresh_token full length ?
+What is the use of NFC ?
