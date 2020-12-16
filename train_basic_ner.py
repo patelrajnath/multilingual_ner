@@ -18,8 +18,8 @@ from model_utils import save_state, load_model_state, set_seed
 # Set seed to have consistent results
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
-data_type = 'accounts'
-# data_type = 'alliance'
+# data_type = 'accounts'
+data_type = 'alliance'
 # data_type = 'wallet'
 # data_type = 'ubuntu'
 # data_type = 'snips'
@@ -295,7 +295,6 @@ with open('{}_label.txt'.format(data_type), 'w') as t, \
 
 
 from eval.quality import calculate_prediction_quality
-print(ne_class_list)
 f1, precision, recall, results = \
     calculate_prediction_quality(true_labels_for_testing,
                                  results_of_prediction,
