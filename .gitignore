@@ -5,6 +5,6 @@ venv
 cache
 cache_dir
 data
-#outputs
+outputs
 bert_multilingual_embeddings
 *.pt
