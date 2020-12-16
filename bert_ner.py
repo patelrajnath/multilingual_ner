@@ -76,7 +76,7 @@ class hparamset():
         self.epochs = 0
         self.seed = 999
         self.max_steps = 1500
-        self.patience = 100
+        self.patience = 10
         self.eval_each_epoch = True
         self.number_of_tags = 9
 
@@ -85,15 +85,26 @@ model_name = 'bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
 params = hparamset()
+# data = bert_data.LearnData.create(
+#     train_df_path="data/conll2003/eng.train.train.csv",
+#     valid_df_path="data/conll2003/eng.testa.dev.csv",
+#     idx2labels_path="data/conll2003/idx2labels2.txt",
+#     clear_cache=True,
+#     model_name="bert-base-multilingual-cased",
+#     batch_size=params.batch_size,
+#     markup='BIO'
+# )
+data_type = 'accounts'
 data = bert_data.LearnData.create(
-    train_df_path="data/conll2003/eng.train.train.csv",
-    valid_df_path="data/conll2003/eng.testa.dev.csv",
-    idx2labels_path="data/conll2003/idx2labels2.txt",
+    train_df_path="data/accounts/accounts_train_text.txt.csv",
+    valid_df_path="data/accounts/accounts_test_text.txt.csv",
+    idx2labels_path="data/accounts//idx2labels2.txt",
     clear_cache=True,
     model_name="bert-base-multilingual-cased",
     batch_size=params.batch_size,
     markup='BIO'
 )
+
 params.number_of_tags = len(data.train_ds.idx2label)
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if use_cuda else "cpu")
@@ -126,7 +137,7 @@ for epoch in range(params.epochs):
         if updates % params.patience == 0:
             print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
             if best_loss > total_loss:
-                save_state('best_model.pt', model, loss_fn, optimizer, updates)
+                # save_state('best_model.pt', model, loss_fn, optimizer, updates)
                 best_loss = total_loss
             total_loss = 0
 
@@ -208,17 +219,22 @@ def predict(dl, model, id2label, id2cls=None):
 
 updates = load_model_state('best_model.pt', model)
 # dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
-dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
+# dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003-de/deuutf.testa.dev.csv')
+dl = get_data_loader_for_predict(data, df_path='data/accounts/accounts_test_text.txt.csv')
 
 
-with torch.no_grad():
-    preds = predict(dl, model, data.train_ds.idx2label)
-    pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
-    true_tokens, true_labels = bert_labels2tokens(dl, [x.bert_labels for x in dl.dataset])
-    # print(true_tokens, true_labels)
-    assert pred_tokens == true_tokens
-    tokens_report = flat_classification_report(true_labels, pred_labels,
-                                               labels=data.train_ds.idx2label[4:], digits=4)
-    print(tokens_report)
+with open('{}_label.txt'.format(data_type), 'w') as t, \
+        open('{}_predict.txt'.format(data_type), 'w') as p:
+    with torch.no_grad():
+        preds = predict(dl, model, data.train_ds.idx2label)
+        pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
+        true_tokens, true_labels = bert_labels2tokens(dl, [x.bert_labels for x in dl.dataset])
+        # print(true_tokens, true_labels)
+        assert pred_tokens == true_tokens
+        tokens_report = flat_classification_report(true_labels, pred_labels,
+                                                   labels=data.train_ds.idx2label[4:], digits=4)
+        print(tokens_report)
+        t.write('\n'.join([' '.join([item for item in t_label]) for t_label in true_labels]) + '\n')
+        p.write('\n'.join([' '.join([item for item in p_label]) for p_label in pred_labels]) + '\n')
