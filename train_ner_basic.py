@@ -18,12 +18,12 @@ from model_utils import save_state, load_model_state, set_seed
 # Set seed to have consistent results
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
-data_type = 'accounts'
+# data_type = 'accounts'
 # data_type = 'alliance'
 # data_type = 'wallet'
 # data_type = 'ubuntu'
 # data_type = 'snips'
-# data_type = 'nlu'
+data_type = 'nlu'
 vocab = {'UNK': 0, 'PAD': 1}
 num_specials_tokens = len(vocab)
 with open('data/{}/words.txt'.format(data_type), encoding='utf8') as f:
@@ -157,15 +157,15 @@ class hparamset():
         self.hidden_layer_size = 512
         self.num_hidden_layers = 1
         self.embedding_dim = 256
-        self.batch_size = 8
+        self.batch_size = 32
         self.dropout = 0.1
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
         self.lr_decay_pow = 1
-        self.epochs = 0
+        self.epochs = 100
         self.seed = 999
-        self.max_steps = 1500
-        self.patience = 100
+        self.max_steps = 15000
+        self.patience = 500
         self.eval_each_epoch = True
         self.vocab_size = len(vocab)
         self.number_of_tags = len(tag_to_idx)
