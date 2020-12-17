@@ -13,6 +13,7 @@ from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens, voting_choicer
 from analyze_utils.plot_metrics import get_bert_span_report
+from options.model_params import HParamSet
 
 set_seed(seed_value=999)
 
@@ -59,33 +60,10 @@ def loss_fn(outputs, labels, mask):
     return -torch.sum(outputs)/num_labels
 
 
-class hparamset():
-    def __init__(self):
-        self.batchsize = 16
-        self.max_sts_score = 5
-        self.balance_data = False
-        self.output_size = None
-        self.activation = 'relu'
-        self.hidden_layer_size = 1024
-        self.num_hidden_layers = 1
-        self.embedding_dim = 768
-        self.batch_size = 32
-        self.dropout = 0.1
-        self.optimizer = 'sgd'
-        self.learning_rate = 0.01
-        self.lr_decay_pow = 1
-        self.epochs = 0
-        self.seed = 999
-        self.max_steps = 1500
-        self.patience = 10
-        self.eval_each_epoch = True
-        self.number_of_tags = 9
-
-
 model_name = 'bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
-params = hparamset()
+params = HParamSet()
 # data = bert_data.LearnData.create(
 #     train_df_path="data/conll2003/eng.train.train.csv",
 #     valid_df_path="data/conll2003/eng.testa.dev.csv",
