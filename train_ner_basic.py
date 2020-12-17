@@ -18,13 +18,6 @@ from prepare_data import prepare
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 
-# data_type = 'accounts'
-# data_type = 'alliance'
-# data_type = 'wallet'
-data_type = 'ubuntu'
-# data_type = 'snips'
-# data_type = 'nlu'
-
 
 def train(options):
     idx_to_word, idx_to_tag, train_sentences, train_labels, test_sentences, test_labels = prepare(options)
@@ -55,7 +48,7 @@ def train(options):
         os.makedirs(out_dir)
     except:
         pass
-
+    data_type = options.train_text.split('_')[0]
     start_time = time.time()
     for epoch in range(params.epochs):
         for batch in batcher:
