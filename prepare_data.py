@@ -2,16 +2,13 @@ import ast
 import os
 
 
-def prepare(data_dir, train_text, train_label,
-            test_text=None, test_label=None,
-            dev_text=None, dev_label=None,
-            vocab=None, tag_set=None):
-    train_path_text = os.path.join(data_dir, train_text)
-    train_path_label = os.path.join(data_dir, train_label)
-    test_path_text = os.path.join(data_dir, test_text)
-    test_path_label = os.path.join(data_dir, test_label)
-    vocab_path = os.path.join(data_dir, vocab)
-    tag_path = os.path.join(data_dir, tag_set)
+def prepare(options):
+    train_path_text = os.path.join(options.data_dir, options.train_text)
+    train_path_label = os.path.join(options.data_dir, options.train_label)
+    test_path_text = os.path.join(options.data_dir, options.test_text)
+    test_path_label = os.path.join(options.data_dir, options.test_label)
+    vocab_path = os.path.join(options.data_dir, options.vocab)
+    tag_path = os.path.join(options.data_dir, options.tag_set)
 
     vocab = {'UNK': 0, 'PAD': 1}
     num_specials_tokens = len(vocab)

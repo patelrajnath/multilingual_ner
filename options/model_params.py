@@ -1,26 +1,21 @@
 class HParamSet(object):
-    def __init__(self, max_sts_score=5, balance_data=False, output_size=None,
-                 activation='relu', hidden_layer_size=512, num_hidden_layers=1,
-                 embedding_dim=256, batch_size=32, dropout=0.1, optimizer='sgd',
-                 learning_rate=0.01, lr_decay_pow=1, epochs=100, seed=999,
-                 max_steps=1500, patience=100, eval_each_epoch=True, number_of_tags=0,
-                 vocab_size=0):
-        self.max_sts_score = max_sts_score
-        self.balance_data = balance_data
-        self.output_size = output_size
-        self.batch_size = batch_size
-        self.activation = activation
-        self.hidden_layer_size = hidden_layer_size
-        self.num_hidden_layers = num_hidden_layers
-        self.embedding_dim = embedding_dim
-        self.dropout = dropout
-        self.optimizer = optimizer
-        self.learning_rate = learning_rate
-        self.lr_decay_pow = lr_decay_pow
-        self.epochs = epochs
-        self.seed = seed
-        self.max_steps = max_steps
-        self.patience = patience
-        self.eval_each_epoch = eval_each_epoch
-        self.number_of_tags = number_of_tags
-        self.vocab_size = vocab_size
+    def __init__(self, options):
+        self.max_sts_score = options.max_sts_score
+        self.balance_data = options.balance_data
+        self.output_size = options.output_size
+        self.batch_size = options.batch_size
+        self.activation = options.activation
+        self.hidden_layer_size = options.hidden_layer_size
+        self.num_hidden_layers = options.num_hidden_layers
+        self.embedding_dim = options.embedding_dim
+        self.dropout = options.dropout
+        self.optimizer = options.optimizer
+        self.learning_rate = options.learning_rate
+        self.lr_decay_pow = options.lr_decay_pow
+        self.epochs = options.epochs
+        self.seed = options.seed
+        self.max_steps = options.max_steps
+        self.patience = options.patience
+        self.eval_each_epoch = options.eval_each_epoch
+        self.number_of_tags = 0
+        self.vocab_size = 0
