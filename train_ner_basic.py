@@ -18,10 +18,10 @@ from prepare_data import prepare
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 
-data_type = 'accounts'
+# data_type = 'accounts'
 # data_type = 'alliance'
 # data_type = 'wallet'
-# data_type = 'ubuntu'
+data_type = 'ubuntu'
 # data_type = 'snips'
 # data_type = 'nlu'
 
