@@ -1,4 +1,5 @@
 import ast
+import os
 import time
 from math import inf
 
@@ -186,6 +187,11 @@ total_loss = 0
 best_loss = +inf
 stop_training = False
 out_dir = 'outputs'
+try:
+    os.makedirs(out_dir)
+except:
+    pass
+
 start_time = time.time()
 for epoch in range(params.epochs):
     for batch in batcher:
