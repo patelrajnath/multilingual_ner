@@ -12,7 +12,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 from spacy.gold import offsets_from_biluo_tags
 
 from batchers import SamplingBatcher
-from eval.biluo_from_bio import get_biluo
+from eval.biluo_from_predictions import get_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results

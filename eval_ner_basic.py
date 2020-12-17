@@ -2,7 +2,7 @@ import pandas
 import spacy
 from spacy.gold import offsets_from_biluo_tags
 
-from eval.biluo_from_bio import get_biluo
+from eval.biluo_from_predictions import get_biluo
 
 data_type = 'accounts'
 nlp_blank = spacy.blank('en')
