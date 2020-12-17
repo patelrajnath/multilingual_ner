@@ -1,16 +1,11 @@
 import pandas
-import spacy
-from spacy.gold import offsets_from_biluo_tags
-
 from eval.biluo_from_predictions import get_biluo
+from eval.iob_utils import Doc, offset_from_biluo
 
+out_dir = 'outputs'
 data_type = 'accounts'
-nlp_blank = spacy.blank('en')
-
 # with open('{}_label_bert_biluo.txt'.format(data_type), 'w') as t_write, \
 #         open('{}_predict_bert_biluo.txt'.format(data_type), 'w') as p_write:
-out_dir = 'outputs'
-
 with open(f'{out_dir}/{data_type}_label_bert.txt', 'r') as t, \
         open(f'{out_dir}/{data_type}_predict_bert.txt', 'r') as p:
     df = pandas.read_csv('data/{0}/{0}_test_text.txt.csv'.format(data_type), encoding='utf8', sep='\t')
@@ -18,7 +13,6 @@ with open(f'{out_dir}/{data_type}_label_bert.txt', 'r') as t, \
     true_labels_for_testing = []
     results_of_prediction = []
     for text, true_labels, predicted_labels in zip(df.text.tolist(), t, p):
-        doc = nlp_blank(text.strip())
         true_labels = true_labels.strip().replace('_', '-').split()
         predicted_labels = predicted_labels.strip().replace('_', '-').split()
         biluo_tags_true = get_biluo(true_labels)
@@ -27,8 +21,9 @@ with open(f'{out_dir}/{data_type}_label_bert.txt', 'r') as t, \
         # t_write.write(' '.join(biluo_tags_true) + '\n')
         # p_write.write(' '.join(biluo_tags_predicted) + '\n')
 
-        offset_true_labels = offsets_from_biluo_tags(doc, biluo_tags_true)
-        offset_predicted_labels = offsets_from_biluo_tags(doc, biluo_tags_predicted)
+        doc = Doc(text.strip())
+        offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
+        offset_predicted_labels = offset_from_biluo(doc, biluo_tags_predicted)
 
         ent_labels = dict()
         for ent in offset_true_labels:

@@ -20,9 +20,10 @@ class Doc(object):
     def get_tokens(sentence: str):
         words = sentence.split()
         tokens = []
+        start = 0
         for i, word in enumerate(words):
-            idx = sentence.index(word)
-            tokens.append(Token(word, idx, i))
+            tokens.append(Token(word, start, i))
+            start += len(word) + 1 # +1 for white space
         return tokens
 
     def __iter__(self):
@@ -180,8 +181,10 @@ def tags_to_entities(tags: Iterable[str]) -> List[Tuple[str, int, int]]:
 
 
 if __name__ == '__main__':
-    input_text = 'Unable to register an account using a mobile number or email address'
-    tags = "O O O O U-hms_service O O B-user_info L-user_info O B-user_info L-user_info".split()
+    # input_text = 'Unable to register an account using a mobile number or email address'
+    # tags = "O O O O U-hms_service O O B-user_info L-user_info O B-user_info L-user_info".split()
+    input_text = "Is UNK UNK update UNK my UNK ?"
+    tags = "O O O O O O U-request O".split()
     docs = Doc(input_text)
     ent = offset_from_biluo(docs, tags)
     print(ent)

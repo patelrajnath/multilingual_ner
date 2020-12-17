@@ -1,11 +1,7 @@
-import pandas
-import spacy
-from spacy.gold import offsets_from_biluo_tags
-
 from eval.biluo_from_predictions import get_biluo
+from eval.iob_utils import Doc, offset_from_biluo
 
 data_type = 'accounts'
-nlp_blank = spacy.blank('en')
 out_dir = 'outputs'
 
 with open(f'{out_dir}/{data_type}_label.txt', 'r') as t, \
@@ -15,14 +11,14 @@ with open(f'{out_dir}/{data_type}_label.txt', 'r') as t, \
     true_labels_for_testing = []
     results_of_prediction = []
     for text, true_labels, predicted_labels in zip(textf, t, p):
-        doc = nlp_blank(text.strip())
         true_labels = true_labels.strip().replace('_', '-').split()
         predicted_labels = predicted_labels.strip().replace('_', '-').split()
         biluo_tags_true = get_biluo(true_labels)
         biluo_tags_predicted = get_biluo(predicted_labels)
 
-        offset_true_labels = offsets_from_biluo_tags(doc, biluo_tags_true)
-        offset_predicted_labels = offsets_from_biluo_tags(doc, biluo_tags_predicted)
+        doc = Doc(text.strip())
+        offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
+        offset_predicted_labels = offset_from_biluo(doc, biluo_tags_predicted)
 
         ent_labels = dict()
         for ent in offset_true_labels:

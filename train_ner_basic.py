@@ -3,16 +3,14 @@ import time
 from math import inf
 
 import numpy as np
-import spacy
 import torch
 
 import torch.nn as nn
 import torch.nn.functional as F
-from sklearn.metrics import f1_score, precision_score, recall_score
-from spacy.gold import offsets_from_biluo_tags
 
 from batchers import SamplingBatcher
 from eval.biluo_from_predictions import get_biluo
+from eval.iob_utils import Doc, offset_from_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
@@ -162,7 +160,7 @@ class hparamset():
         self.optimizer = 'sgd'
         self.learning_rate = 0.01
         self.lr_decay_pow = 1
-        self.epochs = 100
+        self.epochs = 0
         self.seed = 999
         self.max_steps = 1500
         self.patience = 100
@@ -234,7 +232,6 @@ updates = load_model_state(f'{out_dir}/{data_type}_best_model.pt', model)
 ne_class_list = set()
 true_labels_for_testing = []
 results_of_prediction = []
-nlp_blank = spacy.blank('en')
 with open(f'{out_dir}/{data_type}_label.txt', 'w', encoding='utf8') as t, \
         open(f'{out_dir}/{data_type}_predict.txt', 'w', encoding='utf8') as p, \
         open(f'{out_dir}/{data_type}_text.txt', 'w', encoding='utf8') as textf:
@@ -242,7 +239,9 @@ with open(f'{out_dir}/{data_type}_label.txt', 'w', encoding='utf8') as t, \
         model.eval()
         prediction_label_ids = []
         true_label_ids = []
+        cnt = 0
         for text, label in zip(test_sentences, test_labels):
+            cnt += 1
             text_tensor = torch.LongTensor(text).unsqueeze(0).to(device)
             lable = torch.LongTensor(label).unsqueeze(0).to(device)
             predict = model(text_tensor)
@@ -263,14 +262,14 @@ with open(f'{out_dir}/{data_type}_label.txt', 'w', encoding='utf8') as t, \
             t.write(tag_labels_true + '\n')
             textf.write(text_ + '\n')
 
-            doc = nlp_blank(text_)
             tag_labels_true = tag_labels_true.strip().replace('_', '-').split()
             tag_labels_predicted = tag_labels_predicted.strip().replace('_', '-').split()
             biluo_tags_true = get_biluo(tag_labels_true)
             biluo_tags_predicted = get_biluo(tag_labels_predicted)
 
-            offset_true_labels = offsets_from_biluo_tags(doc, biluo_tags_true)
-            offset_predicted_labels = offsets_from_biluo_tags(doc, biluo_tags_predicted)
+            doc = Doc(text_)
+            offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
+            offset_predicted_labels = offset_from_biluo(doc, biluo_tags_predicted)
 
             ent_labels = dict()
             for ent in offset_true_labels:
