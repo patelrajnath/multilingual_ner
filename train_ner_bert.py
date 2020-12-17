@@ -13,6 +13,7 @@ from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens, voting_choicer
 from analyze_utils.plot_metrics import get_bert_span_report
+from options.args_parser import get_training_options
 from options.model_params import HParamSet
 
 set_seed(seed_value=999)
@@ -63,26 +64,31 @@ def loss_fn(outputs, labels, mask):
 model_name = 'bert-base-multilingual-cased'
 mode="weighted"
 is_freeze=True
-params = HParamSet()
-# data = bert_data.LearnData.create(
-#     train_df_path="data/conll2003/eng.train.train.csv",
-#     valid_df_path="data/conll2003/eng.testa.dev.csv",
-#     idx2labels_path="data/conll2003/idx2labels2.txt",
-#     clear_cache=True,
-#     model_name="bert-base-multilingual-cased",
-#     batch_size=params.batch_size,
-#     markup='BIO'
-# )
-data_type = 'accounts'
+
+parser = get_training_options()
+args = parser.parse_args()
+params = HParamSet(args)
+
+data_type = 'conll2003'
 data = bert_data.LearnData.create(
-    train_df_path="data/accounts/accounts_train_text.txt.csv",
-    valid_df_path="data/accounts/accounts_test_text.txt.csv",
-    idx2labels_path="data/accounts//idx2labels2.txt",
+    train_df_path="data/conll2003/eng.train.train.csv",
+    valid_df_path="data/conll2003/eng.testa.dev.csv",
+    idx2labels_path="data/conll2003/idx2labels2.txt",
     clear_cache=True,
     model_name="bert-base-multilingual-cased",
     batch_size=params.batch_size,
     markup='BIO'
 )
+# data_type = 'accounts'
+# data = bert_data.LearnData.create(
+#     train_df_path="data/accounts/accounts_train_text.txt.csv",
+#     valid_df_path="data/accounts/accounts_test_text.txt.csv",
+#     idx2labels_path="data/accounts//idx2labels2.txt",
+#     clear_cache=True,
+#     model_name="bert-base-multilingual-cased",
+#     batch_size=params.batch_size,
+#     markup='BIO'
+# )
 
 params.number_of_tags = len(data.train_ds.idx2label)
 use_cuda = torch.cuda.is_available()
@@ -205,9 +211,9 @@ def predict(dl, model, id2label, id2cls=None):
 updates = load_model_state(f'{out_dir}/{data_type}_best_model_bert.pt', model)
 # dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
-# dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
+dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
 # dl = get_data_loader_for_predict(data, df_path='data/conll2003-de/deuutf.testa.dev.csv')
-dl = get_data_loader_for_predict(data, df_path='data/accounts/accounts_test_text.txt.csv')
+# dl = get_data_loader_for_predict(data, df_path='data/accounts/accounts_test_text.txt.csv')
 
 
 with open(f'{out_dir}/{data_type}_label_bert.txt', 'w') as t, \
