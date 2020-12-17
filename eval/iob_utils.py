@@ -1,55 +1,7 @@
 from typing import Iterable, Tuple, Union, List
 
-
-class Token(object):
-    def __init__(self, text, idx, i):
-        self.text = text
-        self.idx = idx
-        self.i = i
-
-    def __str__(self):
-        return self.text
-
-
-class Doc(object):
-    def __init__(self, sentence):
-        self.text = sentence
-        self.tokens = self.get_tokens(sentence)
-
-    @staticmethod
-    def get_tokens(sentence: str):
-        words = sentence.split()
-        tokens = []
-        start = 0
-        for i, word in enumerate(words):
-            tokens.append(Token(word, start, i))
-            start += len(word) + 1 # +1 for white space
-        return tokens
-
-    def __iter__(self):
-        return iter(self.tokens)
-
-    def __str__(self):
-        return self.text
-
-    def get_token(self, idx):
-        return self.tokens[idx]
-
-
-class Span(object):
-    def __init__(self, doc: Doc, s, e, label):
-        self.start_char = self.get_start_char(doc, s)
-        self.end_char = self.get_end_char(doc, e)
-        self.label_ = label
-
-    @staticmethod
-    def get_start_char(doc, start):
-        return doc.get_token(start).idx
-
-    @staticmethod
-    def get_end_char(doc, end):
-        token = doc.get_token(end)
-        return token.idx + len(token.text)
+from document.doc import Doc
+from document.span import Span
 
 
 def biluo_from_offset(doc: Doc, entities: Iterable[Tuple[int, int, Union[str, int]]], missing: str = 'O'):

@@ -9,8 +9,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from batchers import SamplingBatcher
+from document.doc import Doc
 from eval.biluo_from_predictions import get_biluo
-from eval.iob_utils import Doc, offset_from_biluo
+from eval.iob_utils import offset_from_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results

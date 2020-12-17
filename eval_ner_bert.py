@@ -1,6 +1,8 @@
 import pandas
+
+from document.doc import Doc
 from eval.biluo_from_predictions import get_biluo
-from eval.iob_utils import Doc, offset_from_biluo
+from eval.iob_utils import offset_from_biluo
 
 out_dir = 'outputs'
 data_type = 'accounts'
