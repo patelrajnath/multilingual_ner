@@ -7,8 +7,8 @@ from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens, voting_choicer
 from analyze_utils.plot_metrics import get_bert_span_report
-from models.ner_bert import loss_fn, BertNER
-from options.args_parser import get_training_options, get_training_options_bert
+from models.ner_bert import BertNER
+from options.args_parser import get_training_options_bert
 from options.model_params import HParamSet
 
 set_seed(seed_value=999)
@@ -103,12 +103,18 @@ def decode(options):
             return preds_cpu, preds_cpu_cls
         return preds_cpu
 
+    # Load the trained model
     updates = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', model)
-    dl = get_data_loader_for_predict(data, df_path=os.path.join(options.data_dir, options.test))
 
-    with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
-            open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
-            open(f'{output_dir}/{prefix}_text_bert.txt', 'w') as textf:
+    # Get the prefix from test-file
+    test_file = os.path.basename(options.test)
+    prefix_text = test_file.split('_')[0] if len(test_file.split('_')) > 1 \
+        else test_file.split('.')[0]
+    dl = get_data_loader_for_predict(data, df_path=options.test)
+
+    with open(f'{output_dir}/{prefix_text}_label_bert.txt', 'w') as t, \
+            open(f'{output_dir}/{prefix_text}_predict_bert.txt', 'w') as p, \
+            open(f'{output_dir}/{prefix_text}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
             preds = predict(dl, model, data.train_ds.idx2label)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
