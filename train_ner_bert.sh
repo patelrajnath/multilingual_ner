@@ -6,7 +6,9 @@ python train_ner_bert.py \
     --test eng.testa.dev.csv \
     --embedding 768 \
     --hidden_layer_size 1024 \
-    --max_steps 15000
+    --num_hidden_layers 2 \
+    --max_steps 15000 \
+    --epochs 30
 #     --data_dir data/conll2003-de \
 #     --train deuutf.train.train.csv \
 #     --test deuutf.testa.dev.csv \
