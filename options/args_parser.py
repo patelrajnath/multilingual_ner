@@ -47,6 +47,7 @@ def add_training_args(parser):
     group.add_argument('--model_name', type=str, default='distilbert-base-multilingual-cased')
     group.add_argument('--mode', type=str, default='weighted')
     group.add_argument('--is_freeze', type=bool, default=True)
+    group.add_argument('--output_dir', type=str, default='outputs')
 
     return group
 

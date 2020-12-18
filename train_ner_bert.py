@@ -18,7 +18,6 @@ set_seed(seed_value=999)
 
 def train(options):
     model_params = HParamSet(options)
-    data_type = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(options.data_dir, options.train),
         valid_df_path=os.path.join(options.data_dir, options.test),
@@ -42,11 +41,13 @@ def train(options):
     total_loss = 0
     best_loss = +inf
     stop_training = False
-    out_dir = 'outputs'
+    out_dir = options.out_dir
     try:
         os.makedirs(out_dir)
     except:
         pass
+
+    prefix = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
 
     start = time.time()
     for epoch in range(model_params.epochs):
@@ -67,7 +68,7 @@ def train(options):
             if updates % model_params.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
-                    save_state(f'{out_dir}/{data_type}_best_model_bert.pt', model, loss_fn, optimizer, updates)
+                    save_state(f'{out_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
 
@@ -144,16 +145,12 @@ def train(options):
             return preds_cpu, preds_cpu_cls
         return preds_cpu
 
-    updates = load_model_state(f'{out_dir}/{data_type}_best_model_bert.pt', model)
-    # dl = get_data_loader_for_predict(data, df_path='multilingual.test.csv')
-    # dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testb.dev.csv')
-    dl = get_data_loader_for_predict(data, df_path='data/conll2003/eng.testa.dev.csv')
-    # dl = get_data_loader_for_predict(data, df_path='data/conll2003-de/deuutf.testa.dev.csv')
-    # dl = get_data_loader_for_predict(data, df_path='data/accounts/accounts_test_text.txt.csv')
+    updates = load_model_state(f'{out_dir}/{prefix}_best_model_bert.pt', model)
     dl = get_data_loader_for_predict(data, df_path=os.path.join(options.data_dir, options.test))
 
-    with open(f'{out_dir}/{data_type}_label_bert.txt', 'w') as t, \
-            open(f'{out_dir}/{data_type}_predict_bert.txt', 'w') as p:
+    with open(f'{out_dir}/{prefix}_label_bert.txt', 'w') as t, \
+            open(f'{out_dir}/{prefix}_predict_bert.txt', 'w') as p, \
+            open(f'{out_dir}/{prefix}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
             preds = predict(dl, model, data.train_ds.idx2label)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
@@ -165,6 +162,7 @@ def train(options):
             print(tokens_report)
             t.write('\n'.join([' '.join([item for item in t_label]) for t_label in true_labels]) + '\n')
             p.write('\n'.join([' '.join([item for item in p_label]) for p_label in pred_labels]) + '\n')
+            textf.write('\n'.join([' '.join([item for item in t_token]) for t_token in true_tokens]) + '\n')
 
 
 if __name__ == '__main__':
