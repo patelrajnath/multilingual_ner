@@ -34,14 +34,3 @@ class BertNER(nn.Module):
         s = self.fc(s)  # dim: batch_size*batch_max_len x num_tags
 
         return F.log_softmax(s, dim=1)  # dim: batch_size*batch_max_len x num_tags
-
-
-def loss_fn(outputs, labels, mask):
-    # the number of tokens is the sum of elements in mask
-    num_labels = int(torch.sum(mask).item())
-
-    # pick the values corresponding to labels and multiply by mask
-    outputs = outputs[range(outputs.shape[0]), labels]*mask
-
-    # cross entropy loss for all non 'PAD' tokens
-    return -torch.sum(outputs)/num_labels

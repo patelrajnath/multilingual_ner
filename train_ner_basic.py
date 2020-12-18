@@ -7,10 +7,10 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
-from models.model_utils import save_state, load_model_state, set_seed
+from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
-from models.ner import BasicNER, loss_fn
+from models.ner import BasicNER
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
 from datautils.prepare_data import prepare
