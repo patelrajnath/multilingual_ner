@@ -41,9 +41,9 @@ def train(options):
     total_loss = 0
     best_loss = +inf
     stop_training = False
-    out_dir = options.out_dir
+    output_dir = options.output_dir
     try:
-        os.makedirs(out_dir)
+        os.makedirs(output_dir)
     except:
         pass
 
@@ -68,7 +68,7 @@ def train(options):
             if updates % model_params.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
-                    save_state(f'{out_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
+                    save_state(f'{output_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
 
@@ -145,12 +145,12 @@ def train(options):
             return preds_cpu, preds_cpu_cls
         return preds_cpu
 
-    updates = load_model_state(f'{out_dir}/{prefix}_best_model_bert.pt', model)
+    updates = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', model)
     dl = get_data_loader_for_predict(data, df_path=os.path.join(options.data_dir, options.test))
 
-    with open(f'{out_dir}/{prefix}_label_bert.txt', 'w') as t, \
-            open(f'{out_dir}/{prefix}_predict_bert.txt', 'w') as p, \
-            open(f'{out_dir}/{prefix}_text_bert.txt', 'w') as textf:
+    with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
+            open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
+            open(f'{output_dir}/{prefix}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
             preds = predict(dl, model, data.train_ds.idx2label)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)

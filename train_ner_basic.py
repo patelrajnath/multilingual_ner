@@ -43,9 +43,9 @@ def train(options):
     best_loss = +inf
     stop_training = False
 
-    out_dir = options.out_dir
+    output_dir = options.output_dir
     try:
-        os.makedirs(out_dir)
+        os.makedirs(output_dir)
     except:
         pass
 
@@ -70,7 +70,7 @@ def train(options):
             if updates % params.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
-                    save_state(f'{out_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer, updates)
+                    save_state(f'{output_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
             if updates % params.max_steps == 0:
@@ -88,13 +88,13 @@ def train(options):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-    updates = load_model_state(f'{out_dir}/{prefix}_best_model.pt', model)
+    updates = load_model_state(f'{output_dir}/{prefix}_best_model.pt', model)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
-    with open(f'{out_dir}/{prefix}_label.txt', 'w', encoding='utf8') as t, \
-            open(f'{out_dir}/{prefix}_predict.txt', 'w', encoding='utf8') as p, \
-            open(f'{out_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
+    with open(f'{output_dir}/{prefix}_label.txt', 'w', encoding='utf8') as t, \
+            open(f'{output_dir}/{prefix}_predict.txt', 'w', encoding='utf8') as p, \
+            open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
             model.eval()
             prediction_label_ids = []
