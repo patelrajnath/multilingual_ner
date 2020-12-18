@@ -16,7 +16,7 @@ from options.model_params import HParamSet
 set_seed(seed_value=999)
 
 
-def train(options):
+def decode(options):
     model_params = HParamSet(options)
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(options.data_dir, options.train),
@@ -128,4 +128,4 @@ def train(options):
 if __name__ == '__main__':
     parser = get_training_options_bert()
     args = parser.parse_args()
-    train(args)
+    decode(args)
