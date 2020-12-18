@@ -32,63 +32,65 @@ def prepare(options):
 
     train_sentences = []
     train_labels = []
+    if os.path.exists(train_path_text) and os.path.exists(train_path_label):
+        with open(train_path_text, encoding='utf8') as f:
+            for sentence in f:
+                # replace each token by its index if it is in vocab else use index of UNK
+                s = [vocab[token] if token in vocab else vocab['UNK'] for token in sentence.strip().split()]
+                train_sentences.append(s)
 
-    with open(train_path_text, encoding='utf8') as f:
-        for sentence in f:
-            # replace each token by its index if it is in vocab else use index of UNK
-            s = [vocab[token] if token in vocab else vocab['UNK'] for token in sentence.strip().split()]
-            train_sentences.append(s)
+        with open(train_path_label, encoding='utf8') as f:
+            for sentence in f:
+                # replace each label by its index
+                l = [tag_to_idx.get(label, tag_to_idx.get('O')) for label in sentence.strip().split()]
+                train_labels.append(l)
 
-    with open(train_path_label, encoding='utf8') as f:
-        for sentence in f:
-            # replace each label by its index
-            l = [tag_to_idx.get(label, tag_to_idx.get('O')) for label in sentence.strip().split()]
-            train_labels.append(l)
+        count = 1
+        train_sentences_fixed = []
+        train_labels_fixed = []
+        for t, l in zip(train_sentences, train_labels):
+            count += 1
+            if len(t) != len(l):
+                print(f'Error:{len(t)}, {len(l)}, {count}')
+            else:
+                train_sentences_fixed.append(t)
+                train_labels_fixed.append(l)
 
-    # Sort the data according to the length
-    # sorted_idx = np.argsort([len(s) for s in train_sentences])
-    # train_sentences = [train_sentences[id] for id in sorted_idx]
-    # train_labels = [train_labels[id] for id in sorted_idx]
+        train_sentences = train_sentences_fixed
+        train_labels = train_labels_fixed
+
+        # Sort the data according to the length
+        # sorted_idx = np.argsort([len(s) for s in train_sentences])
+        # train_sentences = [train_sentences[id] for id in sorted_idx]
+        # train_labels = [train_labels[id] for id in sorted_idx]
 
     test_sentences = []
     test_labels = []
-    with open(test_path_text, encoding='utf8') as f:
-        for sentence in f:
-            # replace each token by its index if it is in vocab else use index of UNK
-            s = [vocab[token] if token in vocab else vocab['UNK']
-                 for token in sentence.strip().split()]
-            test_sentences.append(s)
+    if os.path.exists(test_path_text) and os.path.exists(test_path_label):
+        with open(test_path_text, encoding='utf8') as f:
+            for sentence in f:
+                # replace each token by its index if it is in vocab else use index of UNK
+                s = [vocab[token] if token in vocab else vocab['UNK']
+                     for token in sentence.strip().split()]
+                test_sentences.append(s)
 
-    with open(test_path_label, encoding='utf8') as f:
-        for sentence in f:
-            # replace each label by its index
-            l = [tag_to_idx.get(label, tag_to_idx.get('O')) for label in sentence.strip().split()]
-            test_labels.append(l)
+        with open(test_path_label, encoding='utf8') as f:
+            for sentence in f:
+                # replace each label by its index
+                l = [tag_to_idx.get(label, tag_to_idx.get('O')) for label in sentence.strip().split()]
+                test_labels.append(l)
 
-    count = 1
-    train_sentences_fixed = []
-    train_labels_fixed = []
-    for t, l in zip(train_sentences, train_labels):
-        count += 1
-        if len(t) != len(l):
-            print(f'Error:{len(t)}, {len(l)}, {count}')
-        else:
-            train_sentences_fixed.append(t)
-            train_labels_fixed.append(l)
-
-    train_sentences = train_sentences_fixed
-    train_labels = train_labels_fixed
-
-    test_sentences_fixed = []
-    test_labels_fixed = []
-    for t, l in zip(test_sentences, test_labels):
-        count += 1
-        if len(t) != len(l):
-            print(f'Error:{len(t)}, {len(l)}, {count}')
-        else:
-            test_sentences_fixed.append(t)
-            test_labels_fixed.append(l)
-    test_sentences = test_sentences_fixed
-    test_labels = test_labels_fixed
+        test_sentences_fixed = []
+        test_labels_fixed = []
+        count = 0
+        for t, l in zip(test_sentences, test_labels):
+            count += 1
+            if len(t) != len(l):
+                print(f'Error:{len(t)}, {len(l)}, {count}')
+            else:
+                test_sentences_fixed.append(t)
+                test_labels_fixed.append(l)
+        test_sentences = test_sentences_fixed
+        test_labels = test_labels_fixed
 
     return idx_to_word, idx_to_tag, train_sentences, train_labels, test_sentences, test_labels
