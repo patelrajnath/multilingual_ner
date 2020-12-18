@@ -18,7 +18,7 @@ def decode(options):
     model_params = HParamSet(options)
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(options.data_dir, options.train),
-        valid_df_path=os.path.join(options.data_dir, options.test),
+        valid_df_path=os.path.join(options.data_dir, options.dev),
         idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
         clear_cache=True,
         model_name=options.model_name,
