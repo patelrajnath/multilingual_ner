@@ -8,7 +8,7 @@ from models import bert_data, tqdm
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
-from models.ner_bert import BertNER
+from models.ner_bert import BertNER, AttnBertNER
 from options.args_parser import get_training_options_bert
 from options.model_params import HParamSet
 
@@ -30,7 +30,8 @@ def train(options):
     model_params.number_of_tags = len(data.train_ds.idx2label)
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
-    model = BertNER(model_params, options, device=device)
+    # model = BertNER(model_params, options, device=device)
+    model = AttnBertNER(model_params, options, device=device)
     model = model.to(device)
     model.train()
 

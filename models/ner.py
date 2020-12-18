@@ -48,7 +48,7 @@ class AttnNER(nn.Module):
         # the LSTM takens embedded sentence
         self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
-        self.attn = TransformerBlock(self.params.embedding_dim, heads=4, multihead_shared_emb=True)
+        self.attn = TransformerBlock(self.params.hidden_layer_size, heads=4, multihead_shared_emb=True)
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.params.hidden_layer_size, self.params.number_of_tags)
 
@@ -59,12 +59,11 @@ class AttnNER(nn.Module):
         # run the LSTM along the sentences of length batch_max_len
         s, _ = self.lstm(s)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
+        # Apply attn to get better word dependencies
+        s = self.attn(s)
+
         # reshape the Variable so that each row contains one token
         s = s.reshape(-1, s.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
-
-        s = self.attn(s)
-        print(s.shape)
-        exit()
 
         # apply the fully connected layer and obtain the output for each token
         s = self.fc(s)  # dim: batch_size*batch_max_len x num_tags

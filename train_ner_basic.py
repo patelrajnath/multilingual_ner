@@ -10,7 +10,7 @@ from datautils.iob_utils import offset_from_biluo
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
-from models.ner import BasicNER
+from models.ner import BasicNER, AttnNER
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
 from datautils.prepare_data import prepare
@@ -30,7 +30,8 @@ def train(options):
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
-    model = BasicNER(params=params)
+    # model = BasicNER(params=params)
+    model = AttnNER(params=params)
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters())
