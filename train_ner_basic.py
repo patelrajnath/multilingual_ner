@@ -11,6 +11,7 @@ from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
 from models.ner import BasicNER, AttnNER
+from models.optimization import BertAdam
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
 from datautils.prepare_data import prepare
@@ -24,20 +25,22 @@ def train(options):
     word_to_idx = {idx_to_word[key]: key for key in idx_to_word}
     tag_to_idx = {idx_to_tag[key]: key for key in idx_to_tag}
 
-    params = HParamSet(options)
-    params.vocab_size = len(idx_to_word)
-    params.number_of_tags = len(idx_to_tag)
+    model_params = HParamSet(options)
+    model_params.vocab_size = len(idx_to_word)
+    model_params.number_of_tags = len(idx_to_tag)
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
     # model = BasicNER(params=params)
-    model = AttnNER(params=params)
+    model = AttnNER(params=model_params)
     model = model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters())
+    # optimizer = torch.optim.Adam(model.parameters())
+    betas = [0.8, 0.9]
+    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1])
 
     batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
-                              batch_size=params.batch_size, pad_id=word_to_idx['PAD'])
+                              batch_size=model_params.batch_size, pad_id=word_to_idx['PAD'])
 
     updates = 1
     total_loss = 0
@@ -54,7 +57,7 @@ def train(options):
         else options.train_text.split('.')[0]
 
     start_time = time.time()
-    for epoch in range(params.epochs):
+    for epoch in range(model_params.epochs):
         for batch in batcher:
             updates += 1
             batch_data, batch_labels, batch_len, mask_x, mask_y = batch
@@ -69,13 +72,13 @@ def train(options):
             optimizer.step()
 
             total_loss += loss.data
-            if updates % params.patience == 0:
+            if updates % model_params.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
                     save_state(f'{output_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
-            if updates % params.max_steps == 0:
+            if updates % model_params.max_steps == 0:
                 stop_training = True
                 break
 

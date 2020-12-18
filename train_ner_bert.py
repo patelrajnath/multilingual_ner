@@ -9,6 +9,7 @@ from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
 from models.ner_bert import BertNER, AttnBertNER
+from models.optimization import BertAdam
 from options.args_parser import get_training_options_bert
 from options.model_params import HParamSet
 
@@ -35,7 +36,9 @@ def train(options):
     model = model.to(device)
     model.train()
 
-    optimizer = torch.optim.Adam(model.parameters())
+    # optimizer = torch.optim.Adam(model.parameters())
+    betas = [0.8, 0.9]
+    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1])
 
     updates = 1
     total_loss = 0
