@@ -5,7 +5,7 @@ from eval.biluo_from_predictions import get_biluo
 from eval.iob_utils import offset_from_biluo
 
 out_dir = 'outputs'
-data_type = 'accounts'
+data_type = 'ubuntu'
 # with open('{}_label_bert_biluo.txt'.format(data_type), 'w') as t_write, \
 #         open('{}_predict_bert_biluo.txt'.format(data_type), 'w') as p_write:
 with open(f'{out_dir}/{data_type}_label_bert.txt', 'r') as t, \
