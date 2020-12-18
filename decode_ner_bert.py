@@ -1,6 +1,4 @@
 import os
-import time
-from math import inf
 import torch
 
 from model_utils import set_seed, save_state, load_model_state
