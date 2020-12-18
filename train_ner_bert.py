@@ -37,8 +37,9 @@ def train(options):
     model.train()
 
     # optimizer = torch.optim.Adam(model.parameters())
-    betas = [0.8, 0.9]
-    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1])
+    betas = (0.9, 0.999)
+    eps = 1e-8
+    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
     updates = 1
     total_loss = 0

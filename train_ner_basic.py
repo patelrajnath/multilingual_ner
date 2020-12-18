@@ -36,8 +36,9 @@ def train(options):
     model = model.to(device)
 
     # optimizer = torch.optim.Adam(model.parameters())
-    betas = [0.8, 0.9]
-    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1])
+    betas = (0.9, 0.999)
+    eps = 1e-8
+    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
     batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
                               batch_size=model_params.batch_size, pad_id=word_to_idx['PAD'])

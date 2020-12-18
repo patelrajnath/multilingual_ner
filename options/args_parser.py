@@ -37,7 +37,7 @@ def add_training_args(parser):
     group.add_argument('--embedding_dim', type=int, default=256)
     group.add_argument('--dropout', type=float, default=0.1)
     group.add_argument('--optimizer', type=str, default='sgd')
-    group.add_argument('--learning_rate', type=float, default=0.001)
+    group.add_argument('--learning_rate', type=float, default=0.0025)
     group.add_argument('--lr_decay_pow', type=int, default=1)
     group.add_argument('--epochs', type=int, default=100)
     group.add_argument('--seed', type=int, default=999)
