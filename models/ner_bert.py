@@ -1,27 +1,28 @@
-import numpy as np
 import torch
+from torch import nn
 
-import torch.nn as nn
-import torch.nn.functional as F
+from models.embedders import BERTEmbedder
+from torch.nn import functional as F
 
 
-class BasicNER(nn.Module):
-    def __init__(self, params):
-        super(BasicNER, self).__init__()
-        self.params = params
+class BertNER(nn.Module):
+    def __init__(self, model_params, options, device):
+        super(BertNER, self).__init__()
+        self.model_params = model_params
         # maps each token to an embedding_dim vector
-        self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
-        # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
+        # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
+        self.embeddings = BERTEmbedder.create(model_name=options.model_name,
+                                              device=device, mode=options.mode, is_freeze=options.is_freeze)
 
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.model_params.embedding_dim, self.model_params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
         # fc layer transforms the output to give the final output layer
-        self.fc = nn.Linear(self.params.hidden_layer_size, self.params.number_of_tags)
+        self.fc = nn.Linear(self.model_params.hidden_layer_size, self.model_params.number_of_tags)
 
     def forward(self, s):
         # apply the embedding layer that maps each token to its embedding
-        s = self.embedding(s)  # dim: batch_size x batch_max_len x embedding_dim
+        s = self.embeddings(s)  # dim: batch_size x batch_max_len x embedding_dim
 
         # run the LSTM along the sentences of length batch_max_len
         s, _ = self.lstm(s)  # dim: batch_size x batch_max_len x lstm_hidden_dim

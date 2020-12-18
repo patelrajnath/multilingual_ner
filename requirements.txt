@@ -2,8 +2,8 @@ matplotlib
 sklearn_crfsuite
 bson
 pandas
+transformers
 sentence-transformers
-pytorch-pretrained-bert
 
 --find-links https://download.pytorch.org/whl/torch_stable.html
 

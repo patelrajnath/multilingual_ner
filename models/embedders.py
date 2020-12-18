@@ -2,7 +2,7 @@ import logging
 import os
 import pickle
 
-from pytorch_pretrained_bert import BertModel
+from transformers import BertModel
 import torch
 glog = logging.getLogger(__name__)
 
@@ -39,7 +39,7 @@ class BERTEmbedder(torch.nn.Module):
             "mode": mode,
             "is_freeze": is_freeze
         }
-        model = BertModel.from_pretrained(model_name)
+        model = BertModel.from_pretrained(model_name, output_hidden_states=True)
         model.to(device)
         model.train()
         self = cls(model, config)
@@ -82,11 +82,11 @@ class BERTEmbedder(torch.nn.Module):
                 glog.info(f"{len(sentences) - len(missing_sentences)} cached "
                           f"sentences will not be encoded")
             if missing_sentences:
-                encoded_layers, _ = self.model(
+                encoded_layers = self.model(
                     input_ids=batch[0],
                     token_type_ids=batch[2],
-                    attention_mask=batch[1],
-                    output_all_encoded_layers=self.config["mode"] == "weighted")
+                    attention_mask=batch[1])
+                encoded_layers = encoded_layers[-1]
                 if self.config["mode"] == "weighted":
                     encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
                     encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
@@ -100,11 +100,11 @@ class BERTEmbedder(torch.nn.Module):
                                           for sentence in sentences])
             return encoded_layers
         else:
-            encoded_layers, _ = self.model(
+            encoded_layers = self.model(
                 input_ids=batch[0],
                 token_type_ids=batch[2],
-                attention_mask=batch[1],
-                output_all_encoded_layers=self.config["mode"] == "weighted")
+                attention_mask=batch[1])
+            encoded_layers = encoded_layers[-1]
             if self.config["mode"] == "weighted":
                 encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
                 encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)

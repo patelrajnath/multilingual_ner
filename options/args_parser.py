@@ -15,6 +15,16 @@ def get_parser(desc, default_task='ner'):
     return parser
 
 
+def get_parser_bert(desc, default_task='ner'):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_dir', type=str, default='data/ubuntu')
+    parser.add_argument('--train', type=str, default='ubuntu_train_text.txt.csv')
+    parser.add_argument('--dev', type=str, default=None)
+    parser.add_argument('--test', type=str, default='ubuntu_test_text.txt.csv')
+    parser.add_argument('--idx2labels', type=str, default='idx2labels.txt')
+    return parser
+
+
 def add_training_args(parser):
     group = parser.add_argument_group('Model training')
     group.add_argument('--max_sts_score', type=int, default=32)
@@ -34,12 +44,21 @@ def add_training_args(parser):
     group.add_argument('--max_steps', type=int, default=1500)
     group.add_argument('--patience', type=int, default=100)
     group.add_argument('--eval_each_epoch', type=bool, default=False)
+    group.add_argument('--model_name', type=str, default='distilbert-base-multilingual-cased')
+    group.add_argument('--mode', type=str, default='weighted')
+    group.add_argument('--is_freeze', type=bool, default=True)
 
     return group
 
 
 def get_training_options(default_task='NER'):
     parser = get_parser('Preprocessing', default_task)
+    add_training_args(parser)
+    return parser
+
+
+def get_training_options_bert(default_task='NER'):
+    parser = get_parser_bert('Preprocessing', default_task)
     add_training_args(parser)
     return parser
 

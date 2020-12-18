@@ -10,7 +10,7 @@ from eval.iob_utils import offset_from_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
-from models.ner import Net, loss_fn
+from models.ner import BasicNER, loss_fn
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
 from prepare_data import prepare
@@ -30,7 +30,7 @@ def train(options):
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
-    model = Net(params=params)
+    model = BasicNER(params=params)
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters())
@@ -80,17 +80,13 @@ def train(options):
 
     print('Training time:{}'.format(time.time()-start_time))
 
-
     def get_idx_to_tag(label_ids):
         return [idx_to_tag.get(idx) for idx in label_ids]
-
 
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-
     updates = load_model_state(f'{out_dir}/{data_type}_best_model.pt', model)
-
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
