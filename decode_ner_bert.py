@@ -1,12 +1,11 @@
 import os
 import torch
 
-from model_utils import set_seed, save_state, load_model_state
+from models.model_utils import set_seed, load_model_state
 from models import bert_data, tqdm
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
-from analyze_utils.utils import bert_labels2tokens, voting_choicer
-from analyze_utils.plot_metrics import get_bert_span_report
+from analyze_utils.utils import bert_labels2tokens
 from models.ner_bert import BertNER
 from options.args_parser import get_training_options_bert
 from options.model_params import HParamSet
