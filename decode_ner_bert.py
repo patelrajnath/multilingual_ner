@@ -33,52 +33,13 @@ def train(options):
     device = torch.device("cuda:0" if use_cuda else "cpu")
     model = BertNER(model_params, options, device=device)
     model = model.to(device)
-    model.train()
-
-    optimizer = torch.optim.Adam(model.parameters())
-
-    updates = 1
-    total_loss = 0
-    best_loss = +inf
-    stop_training = False
+    model.eval()
     output_dir = options.output_dir
     try:
         os.makedirs(output_dir)
     except:
         pass
-
     prefix = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
-
-    start = time.time()
-    for epoch in range(model_params.epochs):
-        for batch in data.train_dl:
-            updates += 1
-            optimizer.zero_grad()
-            input_, labels_mask, input_type_ids, labels = batch
-            labels = labels.view(-1).to(device)
-            labels_mask = labels_mask.view(-1).to(device)
-
-            output = model(batch)
-            loss = loss_fn(output, labels, labels_mask)
-
-            loss.backward()
-            optimizer.step()
-            total_loss += loss.data
-
-            if updates % model_params.patience == 0:
-                print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
-                if best_loss > total_loss:
-                    save_state(f'{output_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
-                    best_loss = total_loss
-                total_loss = 0
-
-            if updates % model_params.max_steps == 0:
-                stop_training = True
-                break
-
-        if stop_training:
-            break
-    print(f'Training time: {time.time() - start}')
 
     def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):
         preds_cpu = []
