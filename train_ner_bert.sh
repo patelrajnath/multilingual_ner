@@ -6,7 +6,7 @@ python train_ner_bert.py \
     --test eng.testa.dev.csv \
     --embedding 768 \
     --hidden_layer_size 1024 \
-    --num_hidden_layers 2 \
+    --num_hidden_layers 1 \
     --max_steps 15000 \
     --epochs 30
 #     --data_dir data/conll2003-de \
