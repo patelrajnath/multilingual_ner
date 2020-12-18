@@ -50,7 +50,7 @@ class AttnBertNER(nn.Module):
         self.lstm = nn.LSTM(self.model_params.embedding_dim, self.model_params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
 
-        self.attn = TransformerBlock(self.params.hidden_layer_size, heads=4, multihead_shared_emb=True)
+        self.attn = TransformerBlock(self.model_params.hidden_layer_size, heads=4, multihead_shared_emb=True)
 
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.model_params.hidden_layer_size, self.model_params.number_of_tags)
