@@ -51,6 +51,6 @@ def get_biluo(bio_tags):
 
 
 if __name__ == '__main__':
-    bio = "B_O B_O B_O B_O B_hms B_O B_O B_user I_user B_O B_user I_user".split()
+    # bio = "B_O B_O B_O B_O B_hms B_O B_O B_user I_user B_O B_user I_user".split()
     bio = ['O', 'O', 'O', 'O', 'U-hms', 'O', 'O', 'B-user', 'L-user', 'O', 'I-user']
     print(get_biluo(bio))

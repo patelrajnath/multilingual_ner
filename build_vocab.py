@@ -1,5 +1,4 @@
 import json
-import sys
 
 vocab = {}
 data_type = 'snips'

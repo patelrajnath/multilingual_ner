@@ -1,4 +1,4 @@
-from document.doc import Doc
+from datautils.document.doc import Doc
 
 
 class Span(object):

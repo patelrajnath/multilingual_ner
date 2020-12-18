@@ -1,7 +1,7 @@
 from typing import Iterable, Tuple, Union, List
 
-from document.doc import Doc
-from document.span import Span
+from datautils import Doc
+from datautils import Span
 
 
 def biluo_from_offset(doc: Doc, entities: Iterable[Tuple[int, int, Union[str, int]]], missing: str = 'O'):

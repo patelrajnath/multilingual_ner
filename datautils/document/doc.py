@@ -1,4 +1,4 @@
-from document.token import Token
+from datautils.document.token import Token
 
 
 class Doc(object):

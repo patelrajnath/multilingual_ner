@@ -1,6 +1,3 @@
-from typing import Iterable, Tuple, Union, List
-
-
 class Token(object):
     def __init__(self, text, idx, i):
         self.text = text

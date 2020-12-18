@@ -3,17 +3,17 @@ import time
 from math import inf
 import numpy as np
 import torch
-from batchers import SamplingBatcher
-from document.doc import Doc
-from eval.biluo_from_predictions import get_biluo
-from eval.iob_utils import offset_from_biluo
+from datautils.batchers import SamplingBatcher
+from datautils import Doc
+from datautils.biluo_from_predictions import get_biluo
+from datautils.iob_utils import offset_from_biluo
 from model_utils import save_state, load_model_state, set_seed
 
 # Set seed to have consistent results
 from models.ner import BasicNER, loss_fn
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
-from prepare_data import prepare
+from datautils.prepare_data import prepare
 
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
@@ -49,7 +49,8 @@ def train(options):
     except:
         pass
 
-    prefix = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
+    prefix = options.train_text.split('_')[0] if len(options.train_text.split('_')) > 1 \
+        else options.train_text.split('.')[0]
 
     start_time = time.time()
     for epoch in range(params.epochs):

@@ -1,9 +1,9 @@
 import argparse
 import os
 
-from document.doc import Doc
-from eval.biluo_from_predictions import get_biluo
-from eval.iob_utils import offset_from_biluo
+from datautils import Doc
+from datautils.biluo_from_predictions import get_biluo
+from datautils.iob_utils import offset_from_biluo
 
 
 def eval_(output_dir, t_labels, p_labels, text):
