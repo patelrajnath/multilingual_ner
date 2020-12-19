@@ -1,4 +1,3 @@
-import torch
 from torch import nn
 
 from models.embedders import BERTEmbedder
@@ -69,7 +68,7 @@ class AttnBertNER(nn.Module):
         s, _ = self.lstm(s)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
         # Apply attn to get better word dependencies
-        s = self.attn(s)
+        s, _ = self.attn(s, s, s, None)
 
         # reshape the Variable so that each row contains one token
         s = s.reshape(-1, s.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
