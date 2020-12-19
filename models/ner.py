@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from models.layers import MultiHeadAttention
+from models.attn import MultiHeadAttention
 
 
 class BasicNER(nn.Module):

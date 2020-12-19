@@ -1,11 +1,10 @@
 import torch
 from torch import nn
 
-from models.attn import TransformerBlock
 from models.embedders import BERTEmbedder
 from torch.nn import functional as F
 
-from models.layers import MultiHeadAttention
+from models.attn import MultiHeadAttention
 
 
 class BertNER(nn.Module):
