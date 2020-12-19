@@ -7,6 +7,7 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
+from models.crf import CRFNet
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
@@ -32,7 +33,7 @@ def train(options):
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
     # model = BasicNER(params=params)
-    model = AttnNER(model_params=model_params, options=options)
+    model = CRFNet(model_params, tag_to_idx, device)
     model = model.to(device)
 
     # optimizer = torch.optim.Adam(model.parameters())
@@ -66,8 +67,7 @@ def train(options):
             batch_data = batch_data.to(device)
             batch_labels = batch_labels.to(device)
             mask_y = mask_y.to(device)
-            output_batch = model(batch_data)
-            loss = loss_fn(output_batch, batch_labels, mask_y)
+            loss = model.neg_log_likelihood(batch_data, batch_labels)
 
             loss.backward()
             optimizer.step()
@@ -108,14 +108,11 @@ def train(options):
                 cnt += 1
                 text_tensor = torch.LongTensor(text).unsqueeze(0).to(device)
                 labels = torch.LongTensor(label).unsqueeze(0).to(device)
-                predict = model(text_tensor)
-                predict_labels = predict.argmax(dim=1)
-                predict_labels = predict_labels.view(-1)
+                score, predict_labels = model(text_tensor)
                 labels = labels.view(-1)
 
-                predicted_labels = predict_labels.cpu().data.tolist()
                 true_labels = labels.cpu().data.tolist()
-                tag_labels_predicted = get_idx_to_tag(predicted_labels)
+                tag_labels_predicted = get_idx_to_tag(predict_labels)
                 tag_labels_true = get_idx_to_tag(true_labels)
                 text_ = get_idx_to_word(text)
 
