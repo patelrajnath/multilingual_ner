@@ -7,7 +7,7 @@ from datautils.iob_utils import offset_from_biluo
 from models.model_utils import load_model_state, set_seed
 
 # Set seed to have consistent results
-from models.ner import BasicNER
+from models.ner import BasicNER, AttnNER
 from options.args_parser import get_training_options
 from options.model_params import HParamSet
 from datautils.prepare_data import prepare
@@ -19,13 +19,14 @@ np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 def train(options):
     idx_to_word, idx_to_tag, _, _, test_sentences, test_labels = prepare(options)
 
-    params = HParamSet(options)
-    params.vocab_size = len(idx_to_word)
-    params.number_of_tags = len(idx_to_tag)
+    model_params = HParamSet(options)
+    model_params.vocab_size = len(idx_to_word)
+    model_params.number_of_tags = len(idx_to_tag)
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
-    model = BasicNER(params=params)
+    # model = BasicNER(params=params)
+    model = AttnNER(model_params=model_params, options=options)
     model = model.to(device)
     output_dir = options.output_dir
     try:
