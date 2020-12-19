@@ -44,14 +44,18 @@ class AttnBertNER(nn.Module):
         # maps each token to an embedding_dim vector
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
         self.embeddings = BERTEmbedder.create(model_name=options.model_name,
-                                              device=device, mode=options.mode, is_freeze=options.is_freeze)
+                                              device=device, mode=options.mode,
+                                              is_freeze=options.freeze_bert_weights)
 
         # the LSTM takens embedded sentence
         self.lstm = nn.LSTM(self.model_params.embedding_dim, self.model_params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
 
-        self.attn = TransformerBlock(self.model_params.hidden_layer_size, heads=4, multihead_shared_emb=True)
-
+        self.attn = TransformerBlock(self.model_params.hidden_layer_size,
+                                     ff=options.attn_ff,
+                                     heads=options.attn_num_heads,
+                                     dropout=options.attn_dropout,
+                                     multihead_shared_emb=options.multihead_shared_emb)
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.model_params.hidden_layer_size, self.model_params.number_of_tags)
 

@@ -28,7 +28,7 @@ def get_parser_bert(desc, default_task='ner'):
 def add_training_args(parser):
     group = parser.add_argument_group('Model training')
     group.add_argument('--max_sts_score', type=int, default=32)
-    group.add_argument('--balance_data', type=bool, default=False)
+    group.add_argument('--balance_data', action='store_true')
     group.add_argument('--output_size', type=int, default=None)
     group.add_argument('--batch_size', type=int, default=32)
     group.add_argument('--activation', type=str, default='relu')
@@ -43,11 +43,15 @@ def add_training_args(parser):
     group.add_argument('--seed', type=int, default=999)
     group.add_argument('--max_steps', type=int, default=1500)
     group.add_argument('--patience', type=int, default=100)
-    group.add_argument('--eval_each_epoch', type=bool, default=False)
+    group.add_argument('--eval_each_epoch', action='store_true')
     group.add_argument('--model_name', type=str, default='bert-base-multilingual-cased')
     group.add_argument('--mode', type=str, default='weighted')
-    group.add_argument('--is_freeze', type=bool, default=True)
+    group.add_argument('--freeze_bert_weights', action='store_true')
     group.add_argument('--output_dir', type=str, default='outputs')
+    group.add_argument('--attn_ff', type=int, default=4)
+    group.add_argument('--attn_num_heads', type=int, default=4)
+    group.add_argument('--attn_dropout', type=int, default=0.1)
+    group.add_argument('--multihead_shared_emb', action='store_true')
 
     return group
 

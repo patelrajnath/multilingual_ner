@@ -8,7 +8,7 @@ from models.attn import TransformerBlock
 
 
 class BasicNER(nn.Module):
-    def __init__(self, params):
+    def __init__(self, params, options=None):
         super(BasicNER, self).__init__()
         self.params = params
         # maps each token to an embedding_dim vector
@@ -38,19 +38,23 @@ class BasicNER(nn.Module):
 
 
 class AttnNER(nn.Module):
-    def __init__(self, params):
+    def __init__(self, model_params, options):
         super(AttnNER, self).__init__()
-        self.params = params
+        self.model_params = model_params
         # maps each token to an embedding_dim vector
-        self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
+        self.embedding = nn.Embedding(model_params.vocab_size, model_params.embedding_dim)
         # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
 
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.model_params.embedding_dim, self.model_params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
-        self.attn = TransformerBlock(self.params.hidden_layer_size, heads=4, multihead_shared_emb=True)
+        self.attn = TransformerBlock(self.model_params.hidden_layer_size,
+                                     ff=options.attn_ff,
+                                     heads=options.attn_num_heads,
+                                     dropout=options.attn_dropout,
+                                     multihead_shared_emb=options.multihead_shared_emb)
         # fc layer transforms the output to give the final output layer
-        self.fc = nn.Linear(self.params.hidden_layer_size, self.params.number_of_tags)
+        self.fc = nn.Linear(self.model_params.hidden_layer_size, self.model_params.number_of_tags)
 
     def forward(self, s):
         # apply the embedding layer that maps each token to its embedding

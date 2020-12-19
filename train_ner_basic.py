@@ -32,7 +32,7 @@ def train(options):
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
     # model = BasicNER(params=params)
-    model = AttnNER(params=model_params)
+    model = AttnNER(model_params=model_params, options=options)
     model = model.to(device)
 
     # optimizer = torch.optim.Adam(model.parameters())
