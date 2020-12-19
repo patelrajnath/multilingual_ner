@@ -5,6 +5,8 @@ from models.attn import TransformerBlock
 from models.embedders import BERTEmbedder
 from torch.nn import functional as F
 
+from models.layers import MultiHeadAttention
+
 
 class BertNER(nn.Module):
     def __init__(self, model_params, options, device):
@@ -51,11 +53,12 @@ class AttnBertNER(nn.Module):
         self.lstm = nn.LSTM(self.model_params.embedding_dim, self.model_params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
 
-        self.attn = TransformerBlock(self.model_params.hidden_layer_size,
-                                     ff=options.attn_ff,
-                                     heads=options.attn_num_heads,
-                                     dropout=options.attn_dropout,
-                                     multihead_shared_emb=options.multihead_shared_emb)
+        self.attn = MultiHeadAttention(d_v=options.attn_dim_val,
+                                       d_k=options.attn_dim_key,
+                                       d_model=self.model_params.hidden_layer_size,
+                                       n_heads=options.attn_num_heads,
+                                       dropout=options.attn_dropout)
+
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.model_params.hidden_layer_size, self.model_params.number_of_tags)
 
