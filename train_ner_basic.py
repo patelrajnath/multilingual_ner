@@ -13,7 +13,7 @@ from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 # Set seed to have consistent results
 from models.ner import BasicNER, AttnNER
 from models.optimization import BertAdam
-from options.args_parser import get_training_options
+from options.args_parser import get_training_options, update_args_arch
 from datautils.prepare_data import prepare
 
 set_seed(seed_value=999)
@@ -167,4 +167,5 @@ def train(args):
 if __name__ == '__main__':
     parser = get_training_options()
     args = parser.parse_args()
+    args = update_args_arch(args)
     train(args)

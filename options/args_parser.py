@@ -55,18 +55,26 @@ def add_args_arch(parser: argparse.ArgumentParser):
         parser (ArgumentParser): the parse
     """
     args, leftovers = parser.parse_known_args()
+    model_specific_group = parser.add_argument_group(
+        "Model-specific configuration",
+        # Only include attributes which are explicitly given as command-line
+        # arguments or which have default values.
+        argument_default=argparse.SUPPRESS,
+    )
     if args.arch in ARCH_MODEL_REGISTRY:
-        ARCH_MODEL_REGISTRY[args.arch].add_args(parser)
+        ARCH_MODEL_REGISTRY[args.arch].add_args(model_specific_group)
     elif args.arch in MODEL_REGISTRY:
-        MODEL_REGISTRY[args.arch].add_args(parser)
+        MODEL_REGISTRY[args.arch].add_args(model_specific_group)
     else:
         raise RuntimeError()
 
 
 def update_args_arch(args):
     # Apply architecture configuration.
+    print(ARCH_CONFIG_REGISTRY[args.arch])
     if hasattr(args, "arch") and args.arch in ARCH_CONFIG_REGISTRY:
         ARCH_CONFIG_REGISTRY[args.arch](args)
+        print(ARCH_CONFIG_REGISTRY[args.arch])
     return args
 
 

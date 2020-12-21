@@ -39,15 +39,15 @@ class BasicNER(BaseModel):
     def add_args(parser):
         """Add model-specific arguments to the parser."""
         group = parser.add_argument_group('Model Options')
-        group.add_argument('--hidden_layer_size', type=int, default=512,
+        group.add_argument('--hidden_layer_size', type=int,
                             help='Hidden layer size.')
-        group.add_argument('--num_hidden_layers', type=int, default=1,
+        group.add_argument('--num_hidden_layers', type=int,
                             help='Number of hidden layers.')
-        group.add_argument('--embedding_dim', type=int, default=256,
+        group.add_argument('--embedding_dim', type=int,
                             help='Word embedding size..')
-        group.add_argument('--activation', type=str, default='relu',
+        group.add_argument('--activation', type=str,
                             help='The activation function.')
-        group.add_argument('--dropout', type=float, default=0.1,
+        group.add_argument('--dropout', type=float,
                             help='The value of the dropout.')
         return group
 
@@ -92,23 +92,23 @@ class AttnNER(BaseModel):
     def add_args(parser):
         """Add model-specific arguments to the parser."""
         group = parser.add_argument_group('Model Options')
-        group.add_argument('--hidden_layer_size', type=int, default=512,
+        group.add_argument('--hidden_layer_size', type=int,
                             help='Hidden layer size.')
-        group.add_argument('--num_hidden_layers', type=int, default=1,
+        group.add_argument('--num_hidden_layers', type=int,
                             help='Number of hidden layers.')
-        group.add_argument('--embedding_dim', type=int, default=256,
+        group.add_argument('--embedding_dim', type=int,
                             help='Word embedding size..')
-        group.add_argument('--activation', type=str, default='relu',
+        group.add_argument('--activation', type=str,
                             help='The activation function.')
-        group.add_argument('--dropout', type=float, default=0.1,
+        group.add_argument('--dropout', type=float,
                             help='The value of the dropout.')
-        group.add_argument('--attn_dropout', type=float, default=0.3,
+        group.add_argument('--attn_dropout', type=float,
                             help='Attn dropout.')
-        group.add_argument('--attn_num_heads', type=int, default=1,
+        group.add_argument('--attn_num_heads', type=int,
                             help='Attn heads.')
-        group.add_argument('--attn_dim_val', type=int, default=64,
+        group.add_argument('--attn_dim_val', type=int,
                             help='Attn dimension of values.')
-        group.add_argument('--attn_dim_key', type=int, default=64,
+        group.add_argument('--attn_dim_key', type=int,
                             help='Attn dimension of Keys.')
         return group
 
@@ -142,7 +142,7 @@ class AttnNER(BaseModel):
 
 
 @register_model_architecture('ner', 'ner_tiny')
-def ner_tiny(args):
+def ner_tiny_architecture(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 64)
@@ -183,7 +183,7 @@ def attn_ner_tiny(args):
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
-    ner_tiny(args)
+    ner_tiny_architecture(args)
 
 
 @register_model_architecture('attn_ner', 'attn_ner_small')
