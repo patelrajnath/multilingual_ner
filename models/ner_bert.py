@@ -35,6 +35,25 @@ class BertNER(BaseModel):
 
         return cls(args)
 
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int, default=512,
+                           help='Hidden layer size.')
+        group.add_argument('--num_hidden_layers', type=int, default=1,
+                           help='Number of hidden layers.')
+        group.add_argument('--embedding_dim', type=int, default=256,
+                           help='Word embedding size..')
+        group.add_argument('--activation', type=str, default='relu',
+                           help='The activation function.')
+        group.add_argument('--dropout', type=float, default=0.1,
+                           help='The value of the dropout.')
+        group.add_argument('--model_name', type=str, default='bert-base-multilingual-cased')
+        group.add_argument('--mode', type=str, default='weighted')
+        group.add_argument('--freeze_bert_weights', type=str, default=True)
+        return group
+
     def forward(self, tensor):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
@@ -84,6 +103,33 @@ class AttnBertNER(BaseModel):
         """
         bert_ner_base(args)
         return cls(args)
+
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int, default=512,
+                           help='Hidden layer size.')
+        group.add_argument('--num_hidden_layers', type=int, default=1,
+                           help='Number of hidden layers.')
+        group.add_argument('--embedding_dim', type=int, default=256,
+                           help='Word embedding size..')
+        group.add_argument('--activation', type=str, default='relu',
+                           help='The activation function.')
+        group.add_argument('--dropout', type=float, default=0.1,
+                           help='The value of the dropout.')
+        group.add_argument('--model_name', type=str, default='bert-base-multilingual-cased')
+        group.add_argument('--mode', type=str, default='weighted')
+        group.add_argument('--freeze_bert_weights', type=str, default=True)
+        group.add_argument('--attn_dropout', type=float, default=0.3,
+                           help='Attn dropout.')
+        group.add_argument('--attn_num_heads', type=int, default=1,
+                           help='Attn heads.')
+        group.add_argument('--attn_dim_val', type=int, default=64,
+                           help='Attn dimension of values.')
+        group.add_argument('--attn_dim_key', type=int, default=64,
+                           help='Attn dimension of Keys.')
+        return group
 
     def forward(self, tensor):
         # apply the embedding layer that maps each token to its embedding
