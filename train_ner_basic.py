@@ -30,8 +30,9 @@ def train(options):
     model_params.number_of_tags = len(idx_to_tag)
 
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
-    # model = BasicNER(params=params)
+    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
+
+    # model = BasicNER(params=model_params)
     model = AttnNER(model_params=model_params, options=options)
     model = model.to(device)
 

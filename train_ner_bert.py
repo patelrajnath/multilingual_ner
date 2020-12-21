@@ -30,7 +30,8 @@ def train(options):
 
     model_params.number_of_tags = len(data.train_ds.idx2label)
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
+    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
+
     # model = BertNER(model_params, options, device=device)
     model = AttnBertNER(model_params, options, device=device)
     model = model.to(device)
