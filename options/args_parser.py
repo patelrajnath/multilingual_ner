@@ -1,4 +1,5 @@
 import argparse
+from models import ARCH_MODEL_REGISTRY
 
 
 def get_parser(desc, default_task='ner'):
@@ -31,11 +32,6 @@ def add_training_args(parser):
     group.add_argument('--balance_data', action='store_true')
     group.add_argument('--output_size', type=int, default=None)
     group.add_argument('--batch_size', type=int, default=32)
-    group.add_argument('--activation', type=str, default='relu')
-    group.add_argument('--hidden_layer_size', type=int, default=512)
-    group.add_argument('--num_hidden_layers', type=int, default=1)
-    group.add_argument('--embedding_dim', type=int, default=256)
-    group.add_argument('--dropout', type=float, default=0.1)
     group.add_argument('--optimizer', type=str, default='sgd')
     group.add_argument('--learning_rate', type=float, default=0.001)
     group.add_argument('--lr_decay_pow', type=int, default=1)
@@ -44,15 +40,11 @@ def add_training_args(parser):
     group.add_argument('--max_steps', type=int, default=1500)
     group.add_argument('--patience', type=int, default=100)
     group.add_argument('--eval_each_epoch', action='store_true')
-    group.add_argument('--model_name', type=str, default='bert-base-multilingual-cased')
-    group.add_argument('--mode', type=str, default='weighted')
-    group.add_argument('--freeze_bert_weights', action='store_true')
     group.add_argument('--output_dir', type=str, default='outputs')
-    group.add_argument('--attn_dim_val', type=int, default=64)
-    group.add_argument('--attn_dim_key', type=int, default=64)
-    group.add_argument('--attn_num_heads', type=int, default=1)
-    group.add_argument('--attn_dropout', type=int, default=0.3)
     group.add_argument('--cpu', action='store_true')
+    group.add_argument('--arch', '-a', default='ner', metavar='ARCH', required=True,
+                       choices=ARCH_MODEL_REGISTRY.keys(),
+                       help='Model Architecture')
 
     return group
 

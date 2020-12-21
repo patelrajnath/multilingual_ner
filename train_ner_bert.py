@@ -4,58 +4,54 @@ from math import inf
 import torch
 
 from models.model_utils import set_seed, save_state, load_model_state, loss_fn
-from models import bert_data, tqdm
+from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
 from models.ner_bert import BertNER, AttnBertNER
 from models.optimization import BertAdam
 from options.args_parser import get_training_options_bert
-from options.model_params import HParamSet
 
 set_seed(seed_value=999)
 
 
-def train(options):
-    model_params = HParamSet(options)
+def train(args):
     data = bert_data.LearnData.create(
-        train_df_path=os.path.join(options.data_dir, options.train),
-        valid_df_path=os.path.join(options.data_dir, options.test),
-        idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
+        train_df_path=os.path.join(args.data_dir, args.train),
+        valid_df_path=os.path.join(args.data_dir, args.test),
+        idx2labels_path=os.path.join(args.data_dir, args.idx2labels),
         clear_cache=True,
-        model_name=options.model_name,
-        batch_size=model_params.batch_size,
+        model_name='bert-base-multilingual-cased',
+        batch_size=args.batch_size,
         markup='BIO'
     )
 
-    model_params.number_of_tags = len(data.train_ds.idx2label)
+    args.number_of_tags = len(data.train_ds.idx2label)
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
-
-    # model = BertNER(model_params, options, device=device)
-    model = AttnBertNER(model_params, options, device=device)
+    device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
+    args.device = device
+    model = build_model(args)
     model = model.to(device)
     model.train()
 
-    # optimizer = torch.optim.Adam(model.parameters())
     betas = (0.9, 0.999)
     eps = 1e-8
-    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1], e=eps)
+    optimizer = BertAdam(model, lr=args.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
     updates = 1
     total_loss = 0
     best_loss = +inf
     stop_training = False
-    output_dir = options.output_dir
+    output_dir = args.output_dir
     try:
         os.makedirs(output_dir)
     except:
         pass
 
-    prefix = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
+    prefix = args.train.split('_')[0] if len(args.train.split('_')) > 1 else args.train.split('.')[0]
 
     start = time.time()
-    for epoch in range(model_params.epochs):
+    for epoch in range(args.epochs):
         for batch in data.train_dl:
             updates += 1
             optimizer.zero_grad()
@@ -70,14 +66,14 @@ def train(options):
             optimizer.step()
             total_loss += loss.data
 
-            if updates % model_params.patience == 0:
+            if updates % args.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
                     save_state(f'{output_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
 
-            if updates % model_params.max_steps == 0:
+            if updates % args.max_steps == 0:
                 stop_training = True
                 break
 
@@ -150,7 +146,7 @@ def train(options):
         return preds_cpu
 
     updates = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', model)
-    dl = get_data_loader_for_predict(data, df_path=os.path.join(options.data_dir, options.test))
+    dl = get_data_loader_for_predict(data, df_path=os.path.join(args.data_dir, args.test))
 
     with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
             open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
