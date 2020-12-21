@@ -141,6 +141,24 @@ class AttnNER(BaseModel):
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
 
+@register_model_architecture('ner', 'ner_tiny')
+def ner_tiny(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 64)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+
+
+@register_model_architecture('ner', 'ner_small')
+def ner_small(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 256)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 128)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+
+
 @register_model_architecture('ner', 'ner')
 def base_architecture(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
@@ -151,7 +169,7 @@ def base_architecture(args):
 
 
 @register_model_architecture('ner', 'ner_medium')
-def medium_architecture(args):
+def ner_medium(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
     args.embedding_dim = getattr(args, 'embedding_dim', 512)
@@ -159,8 +177,26 @@ def medium_architecture(args):
     args.dropout = getattr(args, 'dropout', 0.1)
 
 
+@register_model_architecture('attn_ner', 'attn_ner_tiny')
+def attn_ner_tiny(args):
+    args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
+    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    ner_tiny(args)
+
+
+@register_model_architecture('attn_ner', 'attn_ner_small')
+def attn_ner_small(args):
+    args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
+    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    ner_small(args)
+
+
 @register_model_architecture('attn_ner', 'attn_ner')
-def atn_architecture(args):
+def attn_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
@@ -169,9 +205,9 @@ def atn_architecture(args):
 
 
 @register_model_architecture('attn_ner', 'attn_ner_medium')
-def atn_architecture_medium(args):
+def attn_ner_medium(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 3)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 128)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 128)
-    medium_architecture(args)
+    ner_medium(args)

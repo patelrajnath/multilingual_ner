@@ -7,7 +7,7 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
-from models import build_model, ARCH_MODEL_REGISTRY
+from models import build_model
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
