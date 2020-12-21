@@ -1,5 +1,8 @@
 import ast
+import logging
 import os
+
+logger = logging.getLogger(__name__)
 
 
 def prepare(options):
@@ -86,7 +89,7 @@ def prepare(options):
         for t, l in zip(test_sentences, test_labels):
             count += 1
             if len(t) != len(l):
-                print(f'Error:{len(t)}, {len(l)}, {count}')
+                logger.warning(f'WARNING: Token and tags length is different: {len(t)}, {len(l)}, {count}')
             else:
                 test_sentences_fixed.append(t)
                 test_labels_fixed.append(l)
