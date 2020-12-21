@@ -165,5 +165,6 @@ def train(args):
 
 
 if __name__ == '__main__':
-    args = get_training_options()
+    parser = get_training_options()
+    args = parser.parse_args()
     train(args)

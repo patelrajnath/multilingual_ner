@@ -49,12 +49,12 @@ def add_training_args(parser):
     return group
 
 
-def parse_args_and_arch(parser: argparse.ArgumentParser):
+def add_args_arch(parser: argparse.ArgumentParser):
     """
     Args:
         parser (ArgumentParser): the parse
     """
-    args = parser.parse_args()
+    args, leftovers = parser.parse_known_args()
     if args.arch in ARCH_MODEL_REGISTRY:
         ARCH_MODEL_REGISTRY[args.arch].add_args(parser)
     elif args.arch in MODEL_REGISTRY:
@@ -62,6 +62,8 @@ def parse_args_and_arch(parser: argparse.ArgumentParser):
     else:
         raise RuntimeError()
 
+
+def update_args_arch(args):
     # Apply architecture configuration.
     if hasattr(args, "arch") and args.arch in ARCH_CONFIG_REGISTRY:
         ARCH_CONFIG_REGISTRY[args.arch](args)
@@ -71,13 +73,14 @@ def parse_args_and_arch(parser: argparse.ArgumentParser):
 def get_training_options(default_task='NER'):
     parser = get_parser('Preprocessing', default_task)
     add_training_args(parser)
-    return parse_args_and_arch(parser)
+    add_args_arch(parser)
+    return parser
 
 
 def get_training_options_bert(default_task='NER'):
     parser = get_parser_bert('Preprocessing', default_task)
     add_training_args(parser)
-    parse_args_and_arch(parser)
+    add_args_arch(parser)
     return parser
 
 

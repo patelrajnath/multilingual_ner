@@ -38,16 +38,18 @@ class BasicNER(BaseModel):
     @staticmethod
     def add_args(parser):
         """Add model-specific arguments to the parser."""
-        parser.add_argument('--hidden_layer_size', type=int, default=512,
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int, default=512,
                             help='Hidden layer size.')
-        parser.add_argument('--num_hidden_layers', type=int, default=1,
+        group.add_argument('--num_hidden_layers', type=int, default=1,
                             help='Number of hidden layers.')
-        parser.add_argument('--embedding_dim', type=int, default=256,
+        group.add_argument('--embedding_dim', type=int, default=256,
                             help='Word embedding size..')
-        parser.add_argument('--activation', type=str, default='relu',
+        group.add_argument('--activation', type=str, default='relu',
                             help='The activation function.')
-        parser.add_argument('--dropout', type=float, default=0.1,
+        group.add_argument('--dropout', type=float, default=0.1,
                             help='The value of the dropout.')
+        return group
 
     def forward(self, tensor):
         # apply the embedding layer that maps each token to its embedding
@@ -89,24 +91,26 @@ class AttnNER(BaseModel):
     @staticmethod
     def add_args(parser):
         """Add model-specific arguments to the parser."""
-        parser.add_argument('--hidden_layer_size', type=int, default=512,
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int, default=512,
                             help='Hidden layer size.')
-        parser.add_argument('--num_hidden_layers', type=int, default=1,
+        group.add_argument('--num_hidden_layers', type=int, default=1,
                             help='Number of hidden layers.')
-        parser.add_argument('--embedding_dim', type=int, default=256,
+        group.add_argument('--embedding_dim', type=int, default=256,
                             help='Word embedding size..')
-        parser.add_argument('--activation', type=str, default='relu',
+        group.add_argument('--activation', type=str, default='relu',
                             help='The activation function.')
-        parser.add_argument('--dropout', type=float, default=0.1,
+        group.add_argument('--dropout', type=float, default=0.1,
                             help='The value of the dropout.')
-        parser.add_argument('--attn_dropout', type=float, default=0.3,
+        group.add_argument('--attn_dropout', type=float, default=0.3,
                             help='Attn dropout.')
-        parser.add_argument('--attn_num_heads', type=int, default=1,
+        group.add_argument('--attn_num_heads', type=int, default=1,
                             help='Attn heads.')
-        parser.add_argument('--attn_dim_val', type=int, default=64,
+        group.add_argument('--attn_dim_val', type=int, default=64,
                             help='Attn dimension of values.')
-        parser.add_argument('--attn_dim_key', type=int, default=64,
+        group.add_argument('--attn_dim_key', type=int, default=64,
                             help='Attn dimension of Keys.')
+        return group
 
     @classmethod
     def build_model(cls, args):
