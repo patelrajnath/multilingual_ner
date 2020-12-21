@@ -7,7 +7,7 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
-from models import build_model
+from models import build_model, ARCH_MODEL_REGISTRY
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
@@ -32,6 +32,7 @@ def train(args):
     device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
 
     model = build_model(args)
+    print(model)
     model = model.to(device)
 
     # optimizer = torch.optim.Adam(model.parameters())
@@ -164,6 +165,5 @@ def train(args):
 
 
 if __name__ == '__main__':
-    parser = get_training_options()
-    args = parser.parse_args()
+    args = get_training_options()
     train(args)

@@ -1,5 +1,5 @@
 import argparse
-from models import ARCH_MODEL_REGISTRY
+from models import ARCH_MODEL_REGISTRY, MODEL_REGISTRY, ARCH_CONFIG_REGISTRY
 
 
 def get_parser(desc, default_task='ner'):
@@ -49,15 +49,35 @@ def add_training_args(parser):
     return group
 
 
+def parse_args_and_arch(parser: argparse.ArgumentParser):
+    """
+    Args:
+        parser (ArgumentParser): the parse
+    """
+    args = parser.parse_args()
+    if args.arch in ARCH_MODEL_REGISTRY:
+        ARCH_MODEL_REGISTRY[args.arch].add_args(parser)
+    elif args.arch in MODEL_REGISTRY:
+        MODEL_REGISTRY[args.arch].add_args(parser)
+    else:
+        raise RuntimeError()
+
+    # Apply architecture configuration.
+    if hasattr(args, "arch") and args.arch in ARCH_CONFIG_REGISTRY:
+        ARCH_CONFIG_REGISTRY[args.arch](args)
+    return args
+
+
 def get_training_options(default_task='NER'):
     parser = get_parser('Preprocessing', default_task)
     add_training_args(parser)
-    return parser
+    return parse_args_and_arch(parser)
 
 
 def get_training_options_bert(default_task='NER'):
     parser = get_parser_bert('Preprocessing', default_task)
     add_training_args(parser)
+    parse_args_and_arch(parser)
     return parser
 
 
@@ -69,4 +89,4 @@ def get_preprocessing_options(default_task='NER'):
 if __name__ == '__main__':
     parser = get_training_options()
     options = parser.parse_args()
-    print(options.data_dir)
+    print(options)

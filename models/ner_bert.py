@@ -31,7 +31,8 @@ class BertNER(BaseModel):
         :param args:
         :return:
         """
-        base_architecture(args)
+        bert_ner_base(args)
+
         return cls(args)
 
     def forward(self, tensor):
@@ -81,7 +82,7 @@ class AttnBertNER(BaseModel):
         :param args:
         :return:
         """
-        base_architecture(args)
+        bert_ner_base(args)
         return cls(args)
 
     def forward(self, tensor):
@@ -104,16 +105,19 @@ class AttnBertNER(BaseModel):
 
 
 @register_model_architecture('bert_ner', 'bert_ner')
-def base_architecture(args):
+def bert_ner_base(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 768)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_medium')
-def base_architecture(args):
+def bert_ner_medium(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 1024)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
     args.embedding_dim = getattr(args, 'embedding_dim', 768)
@@ -125,32 +129,18 @@ def base_architecture(args):
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner')
-def base_architecture(args):
-    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
-    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
-    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+def attn_bert_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
-    args.activation = getattr(args, 'activation', 'relu')
-    args.dropout = getattr(args, 'dropout', 0.1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
-    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
-    args.mode = getattr(args, 'mode', 'weighted')
-    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    bert_ner_base(args)
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner_medium')
-def base_architecture(args):
-    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 1024)
-    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
-    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+def attn_bert_ner_medium(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 3)
-    args.activation = getattr(args, 'activation', 'relu')
-    args.dropout = getattr(args, 'dropout', 0.1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 128)
-    args.attn_dim_val = getattr(args, 'attn_dim_val', 128)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
-    args.mode = getattr(args, 'mode', 'weighted')
-    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 128)
+    bert_ner_medium(args)

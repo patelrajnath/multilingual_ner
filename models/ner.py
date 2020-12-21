@@ -35,6 +35,20 @@ class BasicNER(BaseModel):
 
         return cls(args)
 
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        parser.add_argument('--hidden_layer_size', type=int, default=512,
+                            help='Hidden layer size.')
+        parser.add_argument('--num_hidden_layers', type=int, default=1,
+                            help='Number of hidden layers.')
+        parser.add_argument('--embedding_dim', type=int, default=256,
+                            help='Word embedding size..')
+        parser.add_argument('--activation', type=str, default='relu',
+                            help='The activation function.')
+        parser.add_argument('--dropout', type=float, default=0.1,
+                            help='The value of the dropout.')
+
     def forward(self, tensor):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embedding(tensor)  # dim: batch_size x batch_max_len x embedding_dim
@@ -72,6 +86,28 @@ class AttnNER(BaseModel):
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.args.hidden_layer_size, self.args.number_of_tags)
 
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        parser.add_argument('--hidden_layer_size', type=int, default=512,
+                            help='Hidden layer size.')
+        parser.add_argument('--num_hidden_layers', type=int, default=1,
+                            help='Number of hidden layers.')
+        parser.add_argument('--embedding_dim', type=int, default=256,
+                            help='Word embedding size..')
+        parser.add_argument('--activation', type=str, default='relu',
+                            help='The activation function.')
+        parser.add_argument('--dropout', type=float, default=0.1,
+                            help='The value of the dropout.')
+        parser.add_argument('--attn_dropout', type=float, default=0.3,
+                            help='Attn dropout.')
+        parser.add_argument('--attn_num_heads', type=int, default=1,
+                            help='Attn heads.')
+        parser.add_argument('--attn_dim_val', type=int, default=64,
+                            help='Attn dimension of values.')
+        parser.add_argument('--attn_dim_key', type=int, default=64,
+                            help='Attn dimension of Keys.')
+
     @classmethod
     def build_model(cls, args):
         """
@@ -79,6 +115,7 @@ class AttnNER(BaseModel):
         :return:
         """
         base_architecture(args)
+
         return cls(args)
 
     def forward(self, tensor):
@@ -110,7 +147,7 @@ def base_architecture(args):
 
 
 @register_model_architecture('ner', 'ner_medium')
-def base_architecture(args):
+def medium_architecture(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
     args.embedding_dim = getattr(args, 'embedding_dim', 512)
@@ -119,26 +156,18 @@ def base_architecture(args):
 
 
 @register_model_architecture('attn_ner', 'attn_ner')
-def base_architecture(args):
-    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
-    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
-    args.embedding_dim = getattr(args, 'embedding_dim', 256)
+def atn_architecture(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
-    args.activation = getattr(args, 'activation', 'relu')
-    args.dropout = getattr(args, 'dropout', 0.1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
-    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    base_architecture(args)
 
 
 @register_model_architecture('attn_ner', 'attn_ner_medium')
-def base_architecture(args):
-    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
-    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
-    args.embedding_dim = getattr(args, 'embedding_dim', 512)
+def atn_architecture_medium(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 3)
-    args.activation = getattr(args, 'activation', 'relu')
-    args.dropout = getattr(args, 'dropout', 0.1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 128)
-    args.attn_dim_val = getattr(args, 'attn_dim_val', 128)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 128)
+    medium_architecture(args)

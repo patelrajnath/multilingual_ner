@@ -10,6 +10,7 @@ MODEL_REGISTRY = {}
 ARCH_MODEL_REGISTRY = {}
 ARCH_MODEL_INV_REGISTRY = {}
 ARCH_CONFIG_REGISTRY = {}
+ARCH_MODEL_NAME_REGISTRY = {}
 
 
 def build_model(args):
@@ -79,6 +80,7 @@ def register_model_architecture(model_name, arch_name):
         if not callable(fn):
             raise ValueError('Model architecture must be callable ({})'.format(arch_name))
         ARCH_MODEL_REGISTRY[arch_name] = MODEL_REGISTRY[model_name]
+        ARCH_MODEL_NAME_REGISTRY[arch_name] = model_name
         ARCH_MODEL_INV_REGISTRY.setdefault(model_name, []).append(arch_name)
         ARCH_CONFIG_REGISTRY[arch_name] = fn
         return fn
