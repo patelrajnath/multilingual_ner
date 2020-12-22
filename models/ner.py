@@ -31,7 +31,7 @@ class BasicNER(BaseModel):
         "Helper: Construct a model from hyperparameters."
 
         # make sure all arguments are present in older models
-        base_architecture(args)
+        ner_base(args)
 
         return cls(args)
 
@@ -118,7 +118,9 @@ class AttnNER(BaseModel):
         :param args:
         :return:
         """
-        base_architecture(args)
+        "Helper: Construct a model from hyperparameters."
+        # make sure all arguments are present in older models
+        attn_ner_base(args)
 
         return cls(args)
 
@@ -160,7 +162,7 @@ def ner_small(args):
 
 
 @register_model_architecture('ner', 'ner')
-def base_architecture(args):
+def ner_base(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 256)
@@ -196,12 +198,12 @@ def attn_ner_small(args):
 
 
 @register_model_architecture('attn_ner', 'attn_ner')
-def attn_ner(args):
+def attn_ner_base(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
-    base_architecture(args)
+    ner_base(args)
 
 
 @register_model_architecture('attn_ner', 'attn_ner_medium')
