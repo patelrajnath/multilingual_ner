@@ -200,7 +200,7 @@ def attn_ner_small(args):
 @register_model_architecture('attn_ner', 'attn_ner')
 def attn_ner_base(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
-    args.attn_num_heads = getattr(args, 'attn_num_heads', 3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
     ner_base(args)
@@ -209,7 +209,7 @@ def attn_ner_base(args):
 @register_model_architecture('attn_ner', 'attn_ner_medium')
 def attn_ner_medium(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
-    args.attn_num_heads = getattr(args, 'attn_num_heads', 3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
     ner_medium(args)
