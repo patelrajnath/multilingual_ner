@@ -54,7 +54,8 @@ def prepare(options):
         for t, l in zip(train_sentences, train_labels):
             count += 1
             if len(t) != len(l):
-                logger.warning(f'WARNING: Token and tags length is different: {len(t)}, {len(l)}, {count}')
+                logger.warning(f'WARNING: Token counts:{len(t)} and Tag counts:{len(l)} '
+                               f'are different at line no. {count}, will be ignored in training.')
             else:
                 train_sentences_fixed.append(t)
                 train_labels_fixed.append(l)
@@ -89,7 +90,8 @@ def prepare(options):
         for t, l in zip(test_sentences, test_labels):
             count += 1
             if len(t) != len(l):
-                logger.warning(f'WARNING: Token and tags length is different: {len(t)}, {len(l)}, {count}')
+                logger.warning(f'WARNING: Token counts:{len(t)} and Tag counts:{len(l)} '
+                               f'are different at line no. {count}, will be ignored in training.')
             else:
                 test_sentences_fixed.append(t)
                 test_labels_fixed.append(l)
