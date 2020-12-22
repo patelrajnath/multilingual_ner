@@ -1,7 +1,8 @@
 import json
+import sys
 
+data_type = sys.argv[1]
 vocab = {}
-data_type = 'snips'
 with open("data/{0}/{0}_train_text.txt".format(data_type), encoding='utf8') as inp:
     for line in inp:
         words = line.split()

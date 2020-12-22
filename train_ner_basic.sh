@@ -1,17 +1,49 @@
 #!/bin/bash
 
 python train_ner_basic.py \
---data_dir data/nlu \
---train_text nlu_train_text.txt \
---train_label nlu_train_labels.txt \
---test_text nlu_test_text.txt \
---test_label nlu_test_labels.txt \
+--data_dir data/alliance \
+--train_text alliance_train_text.txt \
+--train_label alliance_train_labels.txt \
+--test_text alliance_test_text.txt \
+--test_label alliance_test_labels.txt \
 --vocab words.txt --tag_set tags.txt \
 --batch_size 32 \
 --arch attn_ner_medium \
 --max_steps 1500 \
---attn_num_heads 1 \
---cpu
+--cpu \
+
+# --data_dir data/conll2003 \
+# --train_text conll2003_train_text.txt \
+# --train_label conll2003_train_labels.txt \
+# --test_text conll2003_test_text.txt \
+# --test_label conll2003_test_labels.txt \
+# --vocab words.txt --tag_set tags.txt \
+# --batch_size 32 \
+# --arch attn_ner_medium \
+# --max_steps 1500 \
+# --cpu \
+
+# --data_dir data/conll2003-de \
+# --train_text conll2003_train_text.txt \
+# --train_label conll2003_train_labels.txt \
+# --test_text conll2003_test_text.txt \
+# --test_label conll2003_test_labels.txt \
+# --vocab words.txt --tag_set tags.txt \
+# --batch_size 32 \
+# --arch attn_ner_medium \
+# --max_steps 1500 \
+# --cpu \
+
+# --data_dir data/accounts \
+# --train_text accounts_train_text.txt \
+# --train_label accounts_train_labels.txt \
+# --test_text accounts_test_text.txt \
+# --test_label accounts_test_labels.txt \
+# --vocab words.txt --tag_set tags.txt \
+# --batch_size 16 \
+# --arch attn_ner \
+# --max_steps 1500 \
+# --cpu
 
 # --data_dir data/alliance \
 # --train_text alliance_train_text.txt \
@@ -43,17 +75,6 @@ python train_ner_basic.py \
 # --vocab words.txt --tag_set tags.txt \
 # --batch_size 16 \
 # --arch ner \
-# --max_steps 1500 \
-# --cpu
-
-# --data_dir data/accounts \
-# --train_text accounts_train_text.txt \
-# --train_label accounts_train_labels.txt \
-# --test_text accounts_test_text.txt \
-# --test_label accounts_test_labels.txt \
-# --vocab words.txt --tag_set tags.txt \
-# --batch_size 16 \
-# --arch attn_ner \
 # --max_steps 1500 \
 # --cpu
 
