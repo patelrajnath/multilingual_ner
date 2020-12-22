@@ -54,7 +54,7 @@ class BertNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=str, default=True)
         return group
 
-    def forward(self, tensor):
+    def forward(self, tensor, mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -131,7 +131,7 @@ class AttnBertNER(BaseModel):
                            help='Attn dimension of Keys.')
         return group
 
-    def forward(self, tensor):
+    def forward(self, tensor, mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -139,7 +139,7 @@ class AttnBertNER(BaseModel):
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
         # Apply attn to get better word dependencies
-        tensor, _ = self.attn(tensor, tensor, tensor, None)
+        tensor, _ = self.attn(tensor, tensor, tensor, mask)
 
         # reshape the Variable so that each row contains one token
         tensor = tensor.reshape(-1, tensor.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim

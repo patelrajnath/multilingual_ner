@@ -3,14 +3,14 @@ import time
 from math import inf
 import torch
 
-from models.model_utils import set_seed, save_state, load_model_state, loss_fn
+from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask
 from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
 from models.ner_bert import BertNER, AttnBertNER
 from models.optimization import BertAdam
-from options.args_parser import get_training_options_bert
+from options.args_parser import get_training_options_bert, update_args_arch
 
 set_seed(seed_value=999)
 
@@ -38,6 +38,7 @@ def train(args):
     eps = 1e-8
     optimizer = BertAdam(model, lr=args.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
+    pad_id = 0  # This is pad_id of BERT model
     updates = 1
     total_loss = 0
     best_loss = +inf
@@ -58,8 +59,9 @@ def train(args):
             input_, labels_mask, input_type_ids, labels = batch
             labels = labels.view(-1).to(device)
             labels_mask = labels_mask.view(-1).to(device)
-
-            output = model(batch)
+            # Create attn mask
+            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+            output = model(batch, attn_mask)
             loss = loss_fn(output, labels, labels_mask)
 
             loss.backward()
@@ -168,4 +170,5 @@ def train(args):
 if __name__ == '__main__':
     parser = get_training_options_bert()
     args = parser.parse_args()
+    args = update_args_arch(args)
     train(args)
