@@ -1,14 +1,14 @@
 #!/bin/bash
 
 python train_ner_basic.py \
---data_dir data/alliance \
---train_text alliance_train_text.txt \
---train_label alliance_train_labels.txt \
---test_text alliance_test_text.txt \
---test_label alliance_test_labels.txt \
+--data_dir data/wallet \
+--train_text wallet_train_text.txt \
+--train_label wallet_train_labels.txt \
+--test_text wallet_test_text.txt \
+--test_label wallet_test_labels.txt \
 --vocab words.txt --tag_set tags.txt \
 --batch_size 32 \
---arch attn_ner_medium \
+--arch ner_tiny \
 --max_steps 1500 \
 --cpu \
 
@@ -24,10 +24,10 @@ python train_ner_basic.py \
 # --cpu \
 
 # --data_dir data/conll2003-de \
-# --train_text conll2003_train_text.txt \
-# --train_label conll2003_train_labels.txt \
-# --test_text conll2003_test_text.txt \
-# --test_label conll2003_test_labels.txt \
+# --train_text conll2003-de_train_text.txt \
+# --train_label conll2003-de_train_labels.txt \
+# --test_text conll2003-de_testa_text.txt \
+# --test_label conll2003-de_testa_labels.txt \
 # --vocab words.txt --tag_set tags.txt \
 # --batch_size 32 \
 # --arch attn_ner_medium \
