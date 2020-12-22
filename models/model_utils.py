@@ -79,3 +79,22 @@ def loss_fn(outputs, labels, mask):
 
     # cross entropy loss for all non 'PAD' tokens
     return -torch.sum(outputs)/num_labels
+
+
+def get_attn_pad_mask(seq_q, seq_k, pad_id):
+    assert seq_q.dim() == 2 and seq_k.dim() == 2
+    b_size, len_q = seq_q.size()
+    b_size, len_k = seq_k.size()
+    pad_attn_mask = seq_k.data.eq(pad_id).unsqueeze(1)  # b_size x 1 x len_k
+    return pad_attn_mask.expand(b_size, len_q, len_k)  # b_size x len_q x len_k
+
+
+def get_attn_subsequent_mask(seq):
+    assert seq.dim() == 2
+    attn_shape = [seq.size(0), seq.size(1), seq.size(1)]
+    subsequent_mask = np.triu(np.ones(attn_shape), k=1)
+    subsequent_mask = torch.from_numpy(subsequent_mask).byte()
+    if seq.is_cuda:
+        subsequent_mask = subsequent_mask.cuda()
+
+    return subsequent_mask

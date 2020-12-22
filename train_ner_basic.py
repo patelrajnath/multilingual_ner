@@ -8,7 +8,7 @@ from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from models import build_model
-from models.model_utils import save_state, load_model_state, set_seed, loss_fn
+from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask
 
 # Set seed to have consistent results
 from models.ner import BasicNER, AttnNER
@@ -39,9 +39,9 @@ def train(args):
     betas = (0.9, 0.999)
     eps = 1e-8
     optimizer = BertAdam(model, lr=args.learning_rate, b1=betas[0], b2=betas[1], e=eps)
-
+    pad_id = word_to_idx['PAD']
     batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
-                              batch_size=args.batch_size, pad_id=word_to_idx['PAD'])
+                              batch_size=args.batch_size, pad_id=pad_id)
 
     updates = 1
     total_loss = 0
@@ -66,7 +66,8 @@ def train(args):
             batch_data = batch_data.to(device)
             batch_labels = batch_labels.to(device)
             mask_y = mask_y.to(device)
-            output_batch = model(batch_data, mask_x)
+            attn_attn = get_attn_pad_mask(batch_data, batch_data, pad_id)
+            output_batch = model(batch_data, attn_attn)
             loss = loss_fn(output_batch, batch_labels, mask_y)
 
             loss.backward()
