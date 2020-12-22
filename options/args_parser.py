@@ -71,10 +71,8 @@ def add_args_arch(parser: argparse.ArgumentParser):
 
 def update_args_arch(args):
     # Apply architecture configuration.
-    print(ARCH_CONFIG_REGISTRY[args.arch])
     if hasattr(args, "arch") and args.arch in ARCH_CONFIG_REGISTRY:
         ARCH_CONFIG_REGISTRY[args.arch](args)
-        print(ARCH_CONFIG_REGISTRY[args.arch])
     return args
 
 
