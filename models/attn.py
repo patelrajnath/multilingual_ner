@@ -86,9 +86,11 @@ class ScaledDotProductAttention(nn.Module):
         # v: [b_size x len_v x d_v] note: (len_k == len_v)
         attn = torch.bmm(q, k.transpose(1, 2)) / self.scale_factor  # attn: [b_size x len_q x len_k]
         if attn_mask is not None:
-            print(attn_mask.size(), attn.size())
+            attn_mask = attn_mask.squeeze().unsqueeze(1)
+            b_size, len_q, len_k = attn.size()
+            attn_mask = attn_mask.expand(b_size, len_q, len_k)
             assert attn_mask.size() == attn.size()
-            attn.data.masked_fill_(attn_mask, -float('inf'))
+            attn.data.masked_fill_(attn_mask == False, -float('inf'))
 
         attn = self.softmax(attn)
         attn = self.dropout(attn)

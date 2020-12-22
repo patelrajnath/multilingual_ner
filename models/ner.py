@@ -5,6 +5,25 @@ from models import register_model_architecture, register_model, BaseModel
 from models.attn import MultiHeadAttention
 
 
+def get_attn_pad_mask(seq_q, seq_k):
+    assert seq_q.dim() == 2 and seq_k.dim() == 2
+    b_size, len_q = seq_q.size()
+    b_size, len_k = seq_k.size()
+    pad_attn_mask = seq_k.data.eq(data_utils.PAD).unsqueeze(1)  # b_size x 1 x len_k
+    return pad_attn_mask.expand(b_size, len_q, len_k)  # b_size x len_q x len_k
+
+
+def get_attn_subsequent_mask(seq):
+    assert seq.dim() == 2
+    attn_shape = [seq.size(0), seq.size(1), seq.size(1)]
+    subsequent_mask = np.triu(np.ones(attn_shape), k=1)
+    subsequent_mask = torch.from_numpy(subsequent_mask).byte()
+    if seq.is_cuda:
+        subsequent_mask = subsequent_mask.cuda()
+
+    return subsequent_mask
+
+
 @register_model('ner')
 class BasicNER(BaseModel):
     def __init__(self, args):
@@ -51,7 +70,7 @@ class BasicNER(BaseModel):
                             help='The value of the dropout.')
         return group
 
-    def forward(self, tensor):
+    def forward(self, tensor, mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embedding(tensor)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -124,7 +143,7 @@ class AttnNER(BaseModel):
 
         return cls(args)
 
-    def forward(self, tensor):
+    def forward(self, tensor, mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embedding(tensor)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -132,7 +151,7 @@ class AttnNER(BaseModel):
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
         # Apply attn to get better word dependencies
-        tensor, _ = self.attn(tensor, tensor, tensor, None)
+        tensor, _ = self.attn(tensor, tensor, tensor, mask)
 
         # reshape the Variable so that each row contains one token
         tensor = tensor.reshape(-1, tensor.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim

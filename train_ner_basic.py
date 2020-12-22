@@ -66,7 +66,7 @@ def train(args):
             batch_data = batch_data.to(device)
             batch_labels = batch_labels.to(device)
             mask_y = mask_y.to(device)
-            output_batch = model(batch_data)
+            output_batch = model(batch_data, mask_x)
             loss = loss_fn(output_batch, batch_labels, mask_y)
 
             loss.backward()
