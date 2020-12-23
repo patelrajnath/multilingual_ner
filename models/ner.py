@@ -144,7 +144,7 @@ class AttnNER(BaseModel):
 
 
 @register_model_architecture('ner', 'ner_tiny')
-def ner_tiny_architecture(args):
+def ner_tiny(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 64)
@@ -185,7 +185,7 @@ def attn_ner_tiny(args):
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
     args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
     args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
-    ner_tiny_architecture(args)
+    ner_tiny(args)
 
 
 @register_model_architecture('attn_ner', 'attn_ner_small')
