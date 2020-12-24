@@ -7,6 +7,7 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
+from datautils.vocab import load_vocabs
 from models import build_model
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask
 
@@ -21,9 +22,10 @@ np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 
 
 def train(args):
-    idx_to_word, idx_to_tag, train_sentences, train_labels, test_sentences, test_labels = prepare(args)
-    word_to_idx = {idx_to_word[key]: key for key in idx_to_word}
-    tag_to_idx = {idx_to_tag[key]: key for key in idx_to_tag}
+    vocab_path = os.path.join(args.data_dir, args.vocab)
+    tag_path = os.path.join(args.data_dir, args.tag_set)
+    word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
+    train_sentences, train_labels, test_sentences, test_labels = prepare(args, word_to_idx, tag_to_idx)
 
     args.vocab_size = len(idx_to_word)
     args.number_of_tags = len(idx_to_tag)
@@ -77,7 +79,8 @@ def train(args):
             if updates % args.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
-                    save_state(f'{output_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer, updates)
+                    save_state(f'{output_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer,
+                               updates, args=args)
                     best_loss = total_loss
                 total_loss = 0
             if updates % args.max_steps == 0:
@@ -95,7 +98,7 @@ def train(args):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-    updates = load_model_state(f'{output_dir}/{prefix}_best_model.pt', model)
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []

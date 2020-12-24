@@ -1,45 +1,29 @@
-import ast
 import logging
 import os
 
 logger = logging.getLogger(__name__)
 
 
-def prepare(options):
-    train_path_text = os.path.join(options.data_dir, options.train_text)
-    train_path_label = os.path.join(options.data_dir, options.train_label)
-    test_path_text = os.path.join(options.data_dir, options.test_text)
-    test_path_label = os.path.join(options.data_dir, options.test_label)
-    vocab_path = os.path.join(options.data_dir, options.vocab)
-    tag_path = os.path.join(options.data_dir, options.tag_set)
-
-    vocab = {'UNK': 0, 'PAD': 1}
-    num_specials_tokens = len(vocab)
-    with open(vocab_path, encoding='utf8') as f:
-        words = ast.literal_eval(f.read()).keys()
-        for i, l in enumerate(words):
-            vocab[l] = i + num_specials_tokens
-
-    idx_to_word = {vocab[key]: key for key in vocab}
-
-    START_TAG = "<START>"
-    STOP_TAG = "<STOP>"
-    tag_to_idx = {START_TAG: 0, STOP_TAG: 1}
-    num_specials_tags = len(tag_to_idx)
-    with open(tag_path, encoding='utf8') as f:
-        words = ast.literal_eval(f.read()).keys()
-        for i, l in enumerate(words):
-            tag_to_idx[l] = i + num_specials_tags
-
-    idx_to_tag = {tag_to_idx[key]: key for key in tag_to_idx}
+def prepare(options, word_to_idx, tag_to_idx):
+    train_path_text = None
+    train_path_label = None
+    test_path_text = None
+    test_path_label = None
+    if hasattr(options, 'train_text'):
+        train_path_text = os.path.join(options.data_dir, options.train_text)
+        train_path_label = os.path.join(options.data_dir, options.train_label)
+    if hasattr(options, 'test_text'):
+        test_path_text = os.path.join(options.data_dir, options.test_text)
+        test_path_label = os.path.join(options.data_dir, options.test_label)
 
     train_sentences = []
     train_labels = []
-    if os.path.exists(train_path_text) and os.path.exists(train_path_label):
+    if train_path_text and os.path.exists(train_path_text) and \
+            train_path_label and os.path.exists(train_path_label):
         with open(train_path_text, encoding='utf8') as f:
             for sentence in f:
                 # replace each token by its index if it is in vocab else use index of UNK
-                s = [vocab[token] if token in vocab else vocab['UNK'] for token in sentence.strip().split()]
+                s = [word_to_idx[token] if token in word_to_idx else word_to_idx['UNK'] for token in sentence.strip().split()]
                 train_sentences.append(s)
 
         with open(train_path_label, encoding='utf8') as f:
@@ -70,11 +54,12 @@ def prepare(options):
 
     test_sentences = []
     test_labels = []
-    if os.path.exists(test_path_text) and os.path.exists(test_path_label):
+    if test_path_text and os.path.exists(test_path_text) and \
+            test_path_label and os.path.exists(test_path_label):
         with open(test_path_text, encoding='utf8') as f:
             for sentence in f:
                 # replace each token by its index if it is in vocab else use index of UNK
-                s = [vocab[token] if token in vocab else vocab['UNK']
+                s = [word_to_idx[token] if token in word_to_idx else word_to_idx['UNK']
                      for token in sentence.strip().split()]
                 test_sentences.append(s)
 
@@ -98,4 +83,4 @@ def prepare(options):
         test_sentences = test_sentences_fixed
         test_labels = test_labels_fixed
 
-    return idx_to_word, idx_to_tag, train_sentences, train_labels, test_sentences, test_labels
+    return train_sentences, train_labels, test_sentences, test_labels

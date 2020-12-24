@@ -1,41 +1,41 @@
 import os
 import numpy as np
 import torch
+
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
+from datautils.vocab import load_vocabs
 from models.model_utils import load_model_state, set_seed
 
 # Set seed to have consistent results
-from models.ner import BasicNER, AttnNER
-from options.args_parser import get_training_options
-from options.model_params import HParamSet
+from options.args_parser import get_prediction_options
 from datautils.prepare_data import prepare
 
 set_seed(seed_value=999)
 np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 
 
-def train(options):
-    idx_to_word, idx_to_tag, _, _, test_sentences, test_labels = prepare(options)
-
-    model_params = HParamSet(options)
-    model_params.vocab_size = len(idx_to_word)
-    model_params.number_of_tags = len(idx_to_tag)
+def decode(options):
+    prefix = options.test_text.split('_')[0] if len(options.test_text.split('_')) > 1 \
+        else options.test_text.split('.')[0]
 
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
-    # model = BasicNER(params=params)
-    model = AttnNER(args=model_params, options=options)
-    model = model.to(device)
+    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
+
     output_dir = options.output_dir
     try:
         os.makedirs(output_dir)
     except:
         pass
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
+    model = model.to(device)
 
-    prefix = options.test_text.split('_')[0] if len(options.test_text.split('_')) > 1 \
-        else options.test_text.split('.')[0]
+    vocab_path = os.path.join(model_args.data_dir, model_args.vocab)
+    tag_path = os.path.join(model_args.data_dir, model_args.tag_set)
+    word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
+
+    _, _, test_sentences, test_labels = prepare(options, word_to_idx, tag_to_idx)
 
     def get_idx_to_tag(label_ids):
         return [idx_to_tag.get(idx) for idx in label_ids]
@@ -43,7 +43,6 @@ def train(options):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-    updates = load_model_state(f'{output_dir}/{prefix}_best_model.pt', model)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
@@ -114,6 +113,6 @@ def train(options):
 
 
 if __name__ == '__main__':
-    parser = get_training_options()
+    parser = get_prediction_options()
     args = parser.parse_args()
-    train(args)
+    decode(args)

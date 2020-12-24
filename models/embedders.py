@@ -41,7 +41,7 @@ class BERTEmbedder(torch.nn.Module):
         }
         model = BertModel.from_pretrained(model_name, output_hidden_states=True)
         model.to(device)
-        model.train()
+        model.decode()
         self = cls(model, config)
         if is_freeze:
             self.freeze()

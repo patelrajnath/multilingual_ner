@@ -16,6 +16,15 @@ def get_parser(desc, default_task='ner'):
     return parser
 
 
+def get_parser_prediction(desc, default_task='ner'):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_dir', type=str, default='data/ubuntu')
+    parser.add_argument('--test_text', type=str, default='ubuntu_test_text.txt')
+    parser.add_argument('--test_label', type=str, default='ubuntu_test_labels.txt')
+    parser.add_argument('--output_dir', type=str, default='outputs')
+    return parser
+
+
 def get_parser_bert(desc, default_task='ner'):
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_dir', type=str, default='data/ubuntu')
@@ -92,6 +101,11 @@ def get_training_options_bert(default_task='NER'):
 
 def get_preprocessing_options(default_task='NER'):
     parser = get_parser('Preprocessing', default_task)
+    return parser
+
+
+def get_prediction_options(default_task='NER'):
+    parser = get_parser_prediction('Prediction', default_task)
     return parser
 
 

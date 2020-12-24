@@ -1,10 +1,15 @@
+import json
 import os
 import random
 import traceback
+from types import SimpleNamespace
+
 import torch
 from torch.serialization import default_restore_location
 import logging
 import numpy as np
+
+from models import build_model
 
 
 def torch_persistent_save(*args, **kwargs):
@@ -17,7 +22,7 @@ def torch_persistent_save(*args, **kwargs):
 
 
 def save_state(filename, model, criterion, optimizer,
-               num_updates, optim_history=None, extra_state=None):
+               num_updates, optim_history=None, extra_state=None, args=None):
     if optim_history is None:
         optim_history = []
     if extra_state is None:
@@ -34,13 +39,26 @@ def save_state(filename, model, criterion, optimizer,
         ],
         'extra_state': extra_state,
     }
+    if args:
+        basedir = os.path.dirname(filename)
+        with open(os.path.join(basedir, 'config.json'), 'w') as f:
+            json.dump(vars(args), f, indent=4)
     torch_persistent_save(state_dict, filename)
 
 
-def load_model_state(filename, model, data_parallel=False):
+def load_model_state(filename, data_parallel=False):
     if not os.path.exists(filename):
         print("Starting training from scratch.")
         return 0
+
+    def dict_to_sns(d):
+        return SimpleNamespace(**d)
+
+    basedir = os.path.dirname(filename)
+    with open(os.path.join(basedir, 'config.json')) as f:
+        args_dict = json.load(f, object_hook=dict_to_sns)
+
+    model = build_model(args_dict)
 
     print("Loading model from checkpoints", filename)
     state = torch.load(filename, map_location=lambda s, l: default_restore_location(s, 'cpu'))
@@ -60,7 +78,7 @@ def load_model_state(filename, model, data_parallel=False):
     except Exception:
         raise Exception('Cannot load model parameters from checkpoint, '
                         'please ensure that the architectures match')
-    return state['num_updates']
+    return model, args_dict
 
 
 def set_seed(seed_value=1234):

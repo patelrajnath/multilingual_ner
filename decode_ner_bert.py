@@ -16,7 +16,7 @@ set_seed(seed_value=999)
 def decode(options):
     model_params = HParamSet(options)
     data = bert_data.LearnData.create(
-        train_df_path=os.path.join(options.data_dir, options.train),
+        train_df_path=os.path.join(options.data_dir, options.decode),
         valid_df_path=os.path.join(options.data_dir, options.dev),
         idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
         clear_cache=True,
@@ -36,7 +36,7 @@ def decode(options):
         os.makedirs(output_dir)
     except:
         pass
-    prefix = options.train.split('_')[0] if len(options.train.split('_')) > 1 else options.train.split('.')[0]
+    prefix = options.decode.split('_')[0] if len(options.decode.split('_')) > 1 else options.decode.split('.')[0]
 
     def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):
         preds_cpu = []

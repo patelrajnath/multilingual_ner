@@ -17,7 +17,7 @@ set_seed(seed_value=999)
 
 def train(args):
     data = bert_data.LearnData.create(
-        train_df_path=os.path.join(args.data_dir, args.train),
+        train_df_path=os.path.join(args.data_dir, args.decode),
         valid_df_path=os.path.join(args.data_dir, args.test),
         idx2labels_path=os.path.join(args.data_dir, args.idx2labels),
         clear_cache=True,
@@ -32,7 +32,7 @@ def train(args):
     args.device = device
     model = build_model(args)
     model = model.to(device)
-    model.train()
+    model.decode()
 
     betas = (0.9, 0.999)
     eps = 1e-8
@@ -49,7 +49,7 @@ def train(args):
     except:
         pass
 
-    prefix = args.train.split('_')[0] if len(args.train.split('_')) > 1 else args.train.split('.')[0]
+    prefix = args.decode.split('_')[0] if len(args.decode.split('_')) > 1 else args.decode.split('.')[0]
 
     start = time.time()
     for epoch in range(args.epochs):
@@ -71,7 +71,8 @@ def train(args):
             if updates % args.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
-                    save_state(f'{output_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer, updates)
+                    save_state(f'{output_dir}/{prefix}_best_model_bert.pt', model, loss_fn, optimizer,
+                               updates, args=args)
                     best_loss = total_loss
                 total_loss = 0
 
@@ -147,7 +148,7 @@ def train(args):
             return preds_cpu, preds_cpu_cls
         return preds_cpu
 
-    updates = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', model)
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
     dl = get_data_loader_for_predict(data, df_path=os.path.join(args.data_dir, args.test))
 
     with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
