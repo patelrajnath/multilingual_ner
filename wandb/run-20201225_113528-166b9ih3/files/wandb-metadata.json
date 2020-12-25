@@ -1,0 +1,31 @@
+{
+    "os": "Windows-10-10.0.18362-SP0",
+    "python": "3.7.0",
+    "heartbeatAt": "2020-12-25T11:35:29.948810",
+    "startedAt": "2020-12-25T11:35:28.263322",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "--model_name_or_path",
+        "bert-base-uncased",
+        "--output_dir",
+        "test-ner",
+        "--dataset_name",
+        "conll2003",
+        "--do_train",
+        "--do_eval"
+    ],
+    "state": "running",
+    "codePath": "bert_example.py",
+    "program": "D:/PycharmProjects/multilingual_ner/bert_example.py",
+    "git": {
+        "remote": "https://github.com/patelrajnath/multilingual_ner.git",
+        "commit": "ba35d4aaa6483957e94206effc6506f7e02ba95d"
+    },
+    "email": "raj.nath.patel@huawei.com",
+    "root": "D:/PycharmProjects/multilingual_ner",
+    "host": "A191269145",
+    "username": "rWX917587",
+    "executable": "D:\\PycharmProjects\\multilingual_ner\\venv\\Scripts\\python.exe"
+}
