@@ -7,14 +7,13 @@ from datautils.batchers import SamplingBatcher
 from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
+from datautils.vocab import load_vocabs
 from models.crf import CRFNet
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results
-from models.ner import BasicNER, AttnNER
 from models.optimization import BertAdam
-from options.args_parser import get_training_options
-from options.model_params import HParamSet
+from options.args_parser import get_training_options, update_args_arch
 from datautils.prepare_data import prepare
 
 set_seed(seed_value=999)
@@ -22,27 +21,27 @@ np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
 
 
 def train(options):
-    idx_to_word, idx_to_tag, train_sentences, train_labels, test_sentences, test_labels = prepare(options)
-    word_to_idx = {idx_to_word[key]: key for key in idx_to_word}
-    tag_to_idx = {idx_to_tag[key]: key for key in idx_to_tag}
+    vocab_path = os.path.join(options.data_dir, options.vocab)
+    tag_path = os.path.join(options.data_dir, options.tag_set)
+    word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
+    train_sentences, train_labels, test_sentences, test_labels = prepare(options, word_to_idx, tag_to_idx)
 
-    model_params = HParamSet(options)
-    model_params.vocab_size = len(idx_to_word)
-    model_params.number_of_tags = len(idx_to_tag)
+    options.vocab_size = len(idx_to_word)
+    options.number_of_tags = len(idx_to_tag)
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda else "cpu")
     # model = BasicNER(params=params)
-    model = CRFNet(model_params, tag_to_idx, device)
+    model = CRFNet(options, tag_to_idx, device)
     model = model.to(device)
 
     # optimizer = torch.optim.Adam(model.parameters())
     betas = (0.9, 0.999)
     eps = 1e-8
-    optimizer = BertAdam(model, lr=model_params.learning_rate, b1=betas[0], b2=betas[1], e=eps)
+    optimizer = BertAdam(model, lr=options.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
     batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
-                              batch_size=model_params.batch_size, pad_id=word_to_idx['PAD'])
+                              batch_size=options.batch_size, pad_id=word_to_idx['PAD'])
 
     updates = 1
     total_loss = 0
@@ -59,7 +58,7 @@ def train(options):
         else options.train_text.split('.')[0]
 
     start_time = time.time()
-    for epoch in range(model_params.epochs):
+    for epoch in range(options.epochs):
         for batch in batcher:
             updates += 1
             batch_data, batch_labels, batch_len, mask_x, mask_y = batch
@@ -73,13 +72,13 @@ def train(options):
             optimizer.step()
 
             total_loss += loss.data
-            if updates % model_params.patience == 0:
+            if updates % options.patience == 0:
                 print(f'Epoch: {epoch}, Updates:{updates}, Loss: {total_loss}')
                 if best_loss > total_loss:
                     save_state(f'{output_dir}/{prefix}_best_model.pt', model, loss_fn, optimizer, updates)
                     best_loss = total_loss
                 total_loss = 0
-            if updates % model_params.max_steps == 0:
+            if updates % options.max_steps == 0:
                 stop_training = True
                 break
 
@@ -164,4 +163,5 @@ def train(options):
 if __name__ == '__main__':
     parser = get_training_options()
     args = parser.parse_args()
+    args = update_args_arch(args)
     train(args)

@@ -1,7 +1,7 @@
 import ast
 
 
-def load_vocabs(vocab_path, tag_path = None):
+def load_vocabs(vocab_path, tag_path=None):
     word_to_idx = {'UNK': 0, 'PAD': 1}
     num_specials_tokens = len(word_to_idx)
     with open(vocab_path, encoding='utf8') as f:
