@@ -8,7 +8,7 @@ from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
-from models.crf import CRFNet
+from models.layers.crf import CRFNet
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn
 
 # Set seed to have consistent results

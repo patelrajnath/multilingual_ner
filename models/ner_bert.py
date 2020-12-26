@@ -6,6 +6,7 @@ from models.embedders import BERTEmbedder
 from torch.nn import functional as F
 
 from models.attn import MultiHeadAttention
+from models.layers.decoders import CRFDecoder
 
 
 @register_model('bert_ner')
@@ -18,6 +19,7 @@ class BertNER(BaseModel):
         bert_model = BertModel.from_pretrained(args.model_name)
         self.embeddings = bert_model.get_input_embeddings()
         self.embeddings.weight.requires_grad = False
+        bert_model = None
         # self.embeddings = BERTEmbedder.create(model_name=args.model_name,
         #                                       device=args.device, mode=args.mode,
         #                                       is_freeze=args.freeze_bert_weights)
@@ -74,6 +76,81 @@ class BertNER(BaseModel):
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
 
+@register_model('bert_crf_ner')
+class BertCRFNER(BaseModel):
+    def __init__(self, args):
+        super(BertCRFNER, self).__init__()
+        self.args = args
+        # maps each token to an embedding_dim vector
+        # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
+        bert_model = BertModel.from_pretrained(args.model_name)
+        self.embeddings = bert_model.get_input_embeddings()
+        self.embeddings.weight.requires_grad = False
+        bert_model = None
+        # self.embeddings = BERTEmbedder.create(model_name=args.model_name,
+        #                                       device=args.device, mode=args.mode,
+        #                                       is_freeze=args.freeze_bert_weights)
+        # the LSTM takens embedded sentence
+        self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
+
+        self.lstm = nn.LSTM(self.args.projection_dim, self.args.hidden_layer_size // 2,
+                            batch_first=True, bidirectional=True)
+        # CRF layer transforms the output to give the final output layer
+        self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size)
+
+    @classmethod
+    def build_model(cls, args):
+        """
+
+        :param args:
+        :return:
+        """
+        bert_ner_base(args)
+
+        return cls(args)
+
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int, help='Hidden layer size.')
+        group.add_argument('--num_hidden_layers', type=int, help='Number of hidden layers.')
+        group.add_argument('--embedding_dim', type=int, help='Word embedding size..')
+        group.add_argument('--projection_dim', type=int, help='Bert embedding projection dimension.')
+        group.add_argument('--activation', type=str, help='The activation function.')
+        group.add_argument('--dropout', type=float, help='The value of the dropout.')
+        group.add_argument('--model_name', type=str)
+        group.add_argument('--mode', type=str,)
+        group.add_argument('--freeze_bert_weights', type=str)
+        return group
+
+    def forward(self, batch, mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
+        # apply the embedding layer that maps each token to its embedding
+        tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # Project the bert embeddings to lower dimensions
+        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
+
+        # run the LSTM along the sentences of length batch_max_len
+        tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
+
+        return self.crf.forward(tensor, labels_mask)
+
+    def score(self, batch):
+        input_, labels_mask, input_type_ids, labels = batch
+        # apply the embedding layer that maps each token to its embedding
+        tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # Project the bert embeddings to lower dimensions
+        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
+
+        # run the LSTM along the sentences of length batch_max_len
+        tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
+
+        return self.crf.score(tensor, labels_mask, labels)  # dim: batch_size*batch_max_len x num_tags
+
+
 @register_model('attn_bert_ner')
 class AttnBertNER(BaseModel):
     def __init__(self, args):
@@ -83,6 +160,7 @@ class AttnBertNER(BaseModel):
         bert_model = BertModel.from_pretrained(args.model_name)
         self.embeddings = bert_model.get_input_embeddings()
         self.embeddings.weight.requires_grad = False
+        bert_model = None
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
         # self.embeddings = BERTEmbedder.create(model_name=args.model_name, device=args.device, mode=args.mode,
         #                                       is_freeze=args.freeze_bert_weights)
@@ -154,6 +232,45 @@ class AttnBertNER(BaseModel):
         tensor = self.fc(tensor)  # dim: batch_size*batch_max_len x num_tags
 
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
+
+
+@register_model_architecture('bert_crf_ner', 'bert_crf_ner_tiny')
+def bert_crf_ner_tiny(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 64)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+
+
+@register_model_architecture('bert_crf_ner', 'bert_crf_ner_small')
+def bert_ner_small(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 256)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 128)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+
+
+@register_model_architecture('bert_crf_ner', 'bert_crf_ner')
+def bert_ner_base(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 256)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_tiny')

@@ -61,8 +61,8 @@ def train(args):
             labels_mask = labels_mask.view(-1).to(device)
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            output = model(input_, attn_mask)
-            loss = loss_fn(output, labels, labels_mask)
+            loss = model.score(batch)
+            # loss = loss_fn(output, labels, labels_mask)
 
             loss.backward()
             optimizer.step()
@@ -136,8 +136,9 @@ def train(args):
             input_, labels_mask, input_type_ids, labels_ids = batch
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            preds = model(input_, attn_mask)
-            preds = preds.argmax(dim=1)
+            # preds = model(input_, attn_mask)
+            preds = model(batch)
+            # preds = preds.argmax(dim=1)
             preds = preds.view(labels_mask.shape)
             if id2cls is not None:
                 preds, preds_cls = preds
