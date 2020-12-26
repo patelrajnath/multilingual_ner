@@ -5,6 +5,8 @@ python train_ner_bert.py \
     --train eng.train.train.csv \
     --test eng.testa.dev.csv \
     --arch bert_ner \
+    --epochs 0 \
+#     --cpu
 
 #     --data_dir data/accounts \
 #     --train accounts_train_text.txt.csv \
