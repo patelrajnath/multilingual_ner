@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# prefix='eng'
-# prefix='deuutf'
-prefix='alliance'
+prefix='eng'
+prefix='deuutf'
+# prefix='alliance'
 # prefix='wallet'
 # prefix='accounts'
 # prefix='ubuntu'
@@ -10,7 +10,7 @@ prefix='alliance'
 # prefix='snips'
 
 postfix='_bert'
-postfix=''
+# postfix=''
 
 python eval_ner.py --output_dir outputs \
     --t_labels ${prefix}_label${postfix}.txt \
