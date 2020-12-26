@@ -22,7 +22,9 @@ class BertNER(BaseModel):
         #                                       device=args.device, mode=args.mode,
         #                                       is_freeze=args.freeze_bert_weights)
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(self.args.embedding_dim, self.args.hidden_layer_size // 2,
+        self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
+
+        self.lstm = nn.LSTM(self.args.projection_dim, self.args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.args.hidden_layer_size, self.args.number_of_tags)
@@ -45,6 +47,7 @@ class BertNER(BaseModel):
         group.add_argument('--hidden_layer_size', type=int, help='Hidden layer size.')
         group.add_argument('--num_hidden_layers', type=int, help='Number of hidden layers.')
         group.add_argument('--embedding_dim', type=int, help='Word embedding size..')
+        group.add_argument('--projection_dim', type=int, help='Bert embedding projection dimension.')
         group.add_argument('--activation', type=str, help='The activation function.')
         group.add_argument('--dropout', type=float, help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
@@ -55,6 +58,9 @@ class BertNER(BaseModel):
     def forward(self, tensor, mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # Project the bert embeddings to lower dimensions
+        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
@@ -106,26 +112,26 @@ class AttnBertNER(BaseModel):
     def add_args(parser):
         """Add model-specific arguments to the parser."""
         group = parser.add_argument_group('Model Options')
-        group.add_argument('--hidden_layer_size', type=int, default=512,
+        group.add_argument('--hidden_layer_size', type=int,
                            help='Hidden layer size.')
-        group.add_argument('--num_hidden_layers', type=int, default=1,
+        group.add_argument('--num_hidden_layers', type=int,
                            help='Number of hidden layers.')
-        group.add_argument('--embedding_dim', type=int, default=256,
+        group.add_argument('--embedding_dim', type=int,
                            help='Word embedding size..')
-        group.add_argument('--activation', type=str, default='relu',
+        group.add_argument('--activation', type=str,
                            help='The activation function.')
-        group.add_argument('--dropout', type=float, default=0.1,
+        group.add_argument('--dropout', type=float,
                            help='The value of the dropout.')
-        group.add_argument('--model_name', type=str, default='bert-base-multilingual-cased')
-        group.add_argument('--mode', type=str, default='weighted')
-        group.add_argument('--freeze_bert_weights', type=str, default=True)
-        group.add_argument('--attn_dropout', type=float, default=0.3,
+        group.add_argument('--model_name', type=str)
+        group.add_argument('--mode', type=str)
+        group.add_argument('--freeze_bert_weights', type=str)
+        group.add_argument('--attn_dropout', type=float,
                            help='Attn dropout.')
-        group.add_argument('--attn_num_heads', type=int, default=1,
+        group.add_argument('--attn_num_heads', type=int,
                            help='Attn heads.')
-        group.add_argument('--attn_dim_val', type=int, default=64,
+        group.add_argument('--attn_dim_val', type=int,
                            help='Attn dimension of values.')
-        group.add_argument('--attn_dim_key', type=int, default=64,
+        group.add_argument('--attn_dim_key', type=int,
                            help='Attn dimension of Keys.')
         return group
 
@@ -148,11 +154,38 @@ class AttnBertNER(BaseModel):
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
 
-@register_model_architecture('bert_ner', 'bert_ner')
-def bert_ner_base(args):
-    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
+@register_model_architecture('bert_ner', 'bert_ner_tiny')
+def bert_ner_tiny(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 64)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+
+
+@register_model_architecture('bert_ner', 'bert_ner_small')
+def bert_ner_small(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 256)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 128)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+
+
+@register_model_architecture('bert_ner', 'bert_ner')
+def bert_ner_base(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 256)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
     args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
@@ -165,6 +198,7 @@ def bert_ner_medium(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 1024)
     args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
     args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 768)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
     args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')

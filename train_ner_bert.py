@@ -8,7 +8,6 @@ from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
-from models.ner_bert import BertNER, AttnBertNER
 from models.optimization import BertAdam
 from options.args_parser import get_training_options_bert, update_args_arch
 
@@ -174,4 +173,5 @@ if __name__ == '__main__':
     parser = get_training_options_bert()
     args = parser.parse_args()
     args = update_args_arch(args)
+    print(args)
     train(args)
