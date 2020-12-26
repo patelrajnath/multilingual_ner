@@ -1,11 +1,35 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --data_dir data/snips \
-    --train snips_train_text.txt.csv \
-    --test snips_test_text.txt.csv \
-    --arch attn_bert_ner \
+    --data_dir data/accounts \
+    --train accounts_train_text.txt.csv \
+    --test accounts_test_text.txt.csv \
+    --arch bert_ner_small \
     --cpu
+    
+#     --data_dir data/alliance \
+#     --train alliance_train_text.txt.csv \
+#     --test alliance_test_text.txt.csv \
+#     --arch attn_bert_ner \
+#     --cpu
+
+#     --data_dir data/accounts \
+#     --train accounts_train_text.txt.csv \
+#     --test accounts_test_text.txt.csv \
+#     --arch attn_bert_ner \
+#     --cpu
+
+#     --data_dir data/wallet \
+#     --train wallet_train_text.txt.csv \
+#     --test wallet_test_text.txt.csv \
+#     --arch attn_bert_ner \
+#     --cpu
+
+#     --data_dir data/snips \
+#     --train snips_train_text.txt.csv \
+#     --test snips_test_text.txt.csv \
+#     --arch attn_bert_ner \
+#     --cpu
 
 #     --data_dir data/nlu \
 #     --train nlu_train_text.txt.csv \
