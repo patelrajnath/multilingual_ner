@@ -1,11 +1,11 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --data_dir data/conll2003 \
-    --train eng.train.train.csv \
-    --test eng.testa.dev.csv \
-    --arch attn_bert_ner \
-    --max_steps 15000
+    --data_dir data/accounts \
+    --train accounts_train_text.txt.csv \
+    --test accounts_test_text.txt.csv \
+    --arch bert_ner_tiny \
+    --batch_size 8
 
 #     --data_dir data/alliance \
 #     --train alliance_train_text.txt.csv \

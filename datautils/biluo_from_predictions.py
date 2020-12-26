@@ -4,7 +4,7 @@ def get_biluo(bio_tags):
     last_tag = None
     while i < len(bio_tags):
         item = bio_tags[i]
-
+        
         if item == 'O':
             biluo_tags.append(item)
             last_tag = item
@@ -12,6 +12,13 @@ def get_biluo(bio_tags):
             continue
 
         suffix = item[2:]
+        
+        if suffix == '':
+            item = 'O'
+            biluo_tags.append(item)
+            last_tag = item
+            i += 1
+            continue
 
         # In case the input text has the B-O notations
         if suffix == 'O':

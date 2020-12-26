@@ -18,7 +18,6 @@ def eval_(output_dir, t_labels, p_labels, text):
             predicted_labels = predicted_labels.strip().replace('_', '-').split()
             biluo_tags_true = get_biluo(true_labels)
             biluo_tags_predicted = get_biluo(predicted_labels)
-
             doc = Doc(text.strip())
             offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
             offset_predicted_labels = offset_from_biluo(doc, biluo_tags_predicted)
