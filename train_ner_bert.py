@@ -151,6 +151,7 @@ def train(args):
         return preds_cpu
 
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
+    model = model.to(device)
     dl = get_data_loader_for_predict(data, df_path=os.path.join(args.data_dir, args.test))
 
     with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
