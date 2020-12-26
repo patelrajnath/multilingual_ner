@@ -332,7 +332,7 @@ class LearnData(object):
                train_df=None,
                valid_df=None,
                # DataLoader params
-               device="cuda", batch_size=16):
+               device=None, batch_size=16):
         train_ds = None
         train_dl = None
         valid_ds = None

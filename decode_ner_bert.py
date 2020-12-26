@@ -31,7 +31,9 @@ def decode(options):
         df_path=os.path.join(options.data_dir, options.test),
         idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
         model_name=model_args.model_name,
-        markup='BIO')
+        markup='BIO',
+        max_sequence_length=100
+    )
     dl = TextDataLoader(ds, device=device, batch_size=options.batch_size, shuffle=False)
 
     def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):

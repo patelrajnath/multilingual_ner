@@ -25,7 +25,8 @@ def train(args):
         model_name='bert-base-multilingual-cased',
         batch_size=args.batch_size,
         device=device,
-        markup='BIO'
+        markup='BIO',
+        max_sequence_length=100
     )
 
     args.number_of_tags = len(data.train_ds.idx2label)
