@@ -32,6 +32,7 @@ def get_parser_prediction_bert(desc, default_task='ner'):
     parser.add_argument('--idx2labels', type=str, default='idx2labels.txt')
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--output_dir', type=str, default='outputs')
+    parser.add_argument('--model', type=str, default='outputs/ubuntu_best_model_bert.pt')
 
     return parser
 

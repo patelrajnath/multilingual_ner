@@ -23,7 +23,7 @@ def decode(options):
 
     prefix = options.test.split('_')[0] if len(options.test.split('_')) > 1 else options.test.split('.')[0]
     # Load the trained model
-    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
+    model, model_args = load_model_state(options.model)
     model = model.to(device)
     model.eval()
 
