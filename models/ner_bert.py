@@ -206,6 +206,24 @@ def bert_ner_medium(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
 
+@register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
+def attn_bert_ner(args):
+    args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
+    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    bert_ner_tiny(args)
+
+
+@register_model_architecture('attn_bert_ner', 'attn_bert_ner_small')
+def attn_bert_ner(args):
+    args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
+    args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
+    args.attn_dim_val = getattr(args, 'attn_dim_val', 64)
+    args.attn_dim_key = getattr(args, 'attn_dim_key', 64)
+    bert_ner_small(args)
+
+
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner')
 def attn_bert_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
