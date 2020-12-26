@@ -31,7 +31,7 @@ def get_parser_prediction_bert(desc, default_task='ner'):
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_dir', type=str, default='data/ubuntu')
     parser.add_argument('--test', type=str, default='ubuntu_test_text.txt.csv')
-    parser.add_argument('--idx2labels', type=str, default='idx2labels.txt')
+    parser.add_argument('--idx2labels', type=str, default='data/ubuntu/idx2labels.txt')
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--output_dir', type=str, default='outputs')
     parser.add_argument('--cpu', action='store_true')

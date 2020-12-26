@@ -1,9 +1,13 @@
 #!/bin/bash
 
 python eval_ner.py --output_dir outputs \
-    --t_labels alliance_label_bert.txt \
-    --p_labels alliance_predict_bert.txt \
-    --text alliance_text_bert.txt
+    --t_labels deuutf_label_bert.txt \
+    --p_label deuutf_predict_bert.txt \
+    --text deuutf_text_bert.txt
+
+#     --t_labels alliance_label_bert.txt \
+#     --p_labels alliance_predict_bert.txt \
+#     --text alliance_text_bert.txt
 
 #     --t_labels wallet_label_bert.txt \
 #     --p_labels wallet_predict_bert.txt \

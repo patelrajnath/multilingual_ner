@@ -13,7 +13,7 @@ set_seed(seed_value=999)
 
 def decode(options):
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
+    device = torch.device("cuda:1" if use_cuda and not options.cpu else "cpu")
 
     output_dir = options.output_dir
     try:
@@ -29,7 +29,7 @@ def decode(options):
 
     ds = TextDataSet.create(
         df_path=os.path.join(options.data_dir, options.test),
-        idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
+        idx2labels_path=options.idx2labels,
         model_name=model_args.model_name,
         markup='BIO',
         max_sequence_length=100
