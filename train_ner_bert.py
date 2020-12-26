@@ -17,7 +17,7 @@ set_seed(seed_value=999)
 
 def train(args):
     data = bert_data.LearnData.create(
-        train_df_path=os.path.join(args.data_dir, args.decode),
+        train_df_path=os.path.join(args.data_dir, args.train),
         valid_df_path=os.path.join(args.data_dir, args.test),
         idx2labels_path=os.path.join(args.data_dir, args.idx2labels),
         clear_cache=True,
@@ -29,10 +29,10 @@ def train(args):
     args.number_of_tags = len(data.train_ds.idx2label)
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
-    args.device = device
+    # args.device = device
     model = build_model(args)
     model = model.to(device)
-    model.decode()
+    model.train()
 
     betas = (0.9, 0.999)
     eps = 1e-8
@@ -49,7 +49,7 @@ def train(args):
     except:
         pass
 
-    prefix = args.decode.split('_')[0] if len(args.decode.split('_')) > 1 else args.decode.split('.')[0]
+    prefix = args.train.split('_')[0] if len(args.train.split('_')) > 1 else args.train.split('.')[0]
 
     start = time.time()
     for epoch in range(args.epochs):
@@ -61,7 +61,7 @@ def train(args):
             labels_mask = labels_mask.view(-1).to(device)
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            output = model(batch, attn_mask)
+            output = model(input_, attn_mask)
             loss = loss_fn(output, labels, labels_mask)
 
             loss.backward()
@@ -133,8 +133,10 @@ def train(args):
         preds_cpu_cls = []
         for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
             idx += 1
-            labels_mask, labels_ids = batch[1], batch[3]
-            preds = model(batch)
+            input_, labels_mask, input_type_ids, labels_ids = batch
+            # Create attn mask
+            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+            preds = model(input_, attn_mask)
             preds = preds.argmax(dim=1)
             preds = preds.view(labels_mask.shape)
             if id2cls is not None:

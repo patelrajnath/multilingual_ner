@@ -9,3 +9,4 @@ outputs
 bert_multilingual_embeddings
 *.pt
 runs
+wandb

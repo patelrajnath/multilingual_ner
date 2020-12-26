@@ -9,6 +9,9 @@ from tokenizer.word_piece import BasicTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 model = BertModel.from_pretrained('bert-base-uncased')
 
+embeddings = model.get_input_embeddings()
+print(embeddings.weight.data.size())
+embeddings.weight.requires_grad = False
 # inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
 # outputs = model(**inputs)
 
@@ -40,3 +43,4 @@ if do_basic_tokenize:
 else:
     split_tokens = wordpiece_tokenizer.tokenize(text)
 print(split_tokens)
+
