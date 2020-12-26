@@ -1,11 +1,16 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --data_dir data/conll2003 \
-    --train eng.train.train.csv \
-    --test eng.testa.dev.csv \
-    --arch bert_ner \
-    --epochs 0 \
+    --data_dir data/snips \
+    --train snips_train_text.txt.csv \
+    --test snips_test_text.txt.csv \
+    --arch attn_bert_ner \
+    --cpu
+
+#     --data_dir data/nlu \
+#     --train nlu_train_text.txt.csv \
+#     --test nlu_test_text.txt.csv \
+#     --arch attn_bert_ner \
 #     --cpu
 
 #     --data_dir data/accounts \
