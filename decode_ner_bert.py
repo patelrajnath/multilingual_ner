@@ -1,42 +1,38 @@
 import os
 import torch
 
-from models.model_utils import set_seed, load_model_state
-from models import bert_data, tqdm
-from models.bert_data import get_data_loader_for_predict
+from models.model_utils import set_seed, load_model_state, get_attn_pad_mask
+from models import tqdm
+from models.bert_data import TextDataLoader, TextDataSet
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
-from models.ner_bert import BertNER
-from options.args_parser import get_training_options_bert
-from options.model_params import HParamSet
+from options.args_parser import get_prediction_options_bert
 
 set_seed(seed_value=999)
 
 
 def decode(options):
-    model_params = HParamSet(options)
-    data = bert_data.LearnData.create(
-        train_df_path=os.path.join(options.data_dir, options.decode),
-        valid_df_path=os.path.join(options.data_dir, options.dev),
-        idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
-        clear_cache=True,
-        model_name=options.model_name,
-        batch_size=model_params.batch_size,
-        markup='BIO'
-    )
-
-    model_params.number_of_tags = len(data.train_ds.idx2label)
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda else "cpu")
-    model = BertNER(model_params, options, device=device)
-    model = model.to(device)
-    model.eval()
+    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
+
     output_dir = options.output_dir
     try:
         os.makedirs(output_dir)
     except:
         pass
-    prefix = options.decode.split('_')[0] if len(options.decode.split('_')) > 1 else options.decode.split('.')[0]
+
+    prefix = options.test.split('_')[0] if len(options.test.split('_')) > 1 else options.test.split('.')[0]
+    # Load the trained model
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
+    model = model.to(device)
+    model.eval()
+
+    ds = TextDataSet.create(
+        df_path=os.path.join(options.data_dir, options.test),
+        idx2labels_path=os.path.join(options.data_dir, options.idx2labels),
+        model_name=model_args.model_name,
+        markup='BIO')
+    dl = TextDataLoader(ds, device=device, batch_size=options.batch_size, shuffle=False)
 
     def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):
         preds_cpu = []
@@ -83,12 +79,15 @@ def decode(options):
     def predict(dl, model, id2label, id2cls=None):
         model.eval()
         idx = 0
+        pad_id = 0
         preds_cpu = []
         preds_cpu_cls = []
         for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
             idx += 1
-            labels_mask, labels_ids = batch[1], batch[3]
-            preds = model(batch)
+            input_, labels_mask, input_type_ids, labels_ids = batch
+            # Create attn mask
+            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+            preds = model(input_, attn_mask)
             preds = preds.argmax(dim=1)
             preds = preds.view(labels_mask.shape)
             if id2cls is not None:
@@ -102,26 +101,17 @@ def decode(options):
             return preds_cpu, preds_cpu_cls
         return preds_cpu
 
-    # Load the trained model
-    updates = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', model)
-
-    # Get the prefix from test-file
-    test_file = os.path.basename(options.test)
-    prefix_text = test_file.split('_')[0] if len(test_file.split('_')) > 1 \
-        else test_file.split('.')[0]
-    dl = get_data_loader_for_predict(data, df_path=options.test)
-
-    with open(f'{output_dir}/{prefix_text}_label_bert.txt', 'w') as t, \
-            open(f'{output_dir}/{prefix_text}_predict_bert.txt', 'w') as p, \
-            open(f'{output_dir}/{prefix_text}_text_bert.txt', 'w') as textf:
+    with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
+            open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
+            open(f'{output_dir}/{prefix}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
-            preds = predict(dl, model, data.train_ds.idx2label)
+            preds = predict(dl, model, ds.idx2label)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
             true_tokens, true_labels = bert_labels2tokens(dl, [x.bert_labels for x in dl.dataset])
-            # print(true_tokens, true_labels)
+
             assert pred_tokens == true_tokens
             tokens_report = flat_classification_report(true_labels, pred_labels,
-                                                       labels=data.train_ds.idx2label[4:], digits=4)
+                                                       labels=ds.idx2label[4:], digits=4)
             print(tokens_report)
             t.write('\n'.join([' '.join([item for item in t_label]) for t_label in true_labels]) + '\n')
             p.write('\n'.join([' '.join([item for item in p_label]) for p_label in pred_labels]) + '\n')
@@ -129,6 +119,7 @@ def decode(options):
 
 
 if __name__ == '__main__':
-    parser = get_training_options_bert()
+    parser = get_prediction_options_bert()
     args = parser.parse_args()
+    print(args)
     decode(args)
