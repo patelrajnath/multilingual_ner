@@ -16,6 +16,8 @@ set_seed(seed_value=999)
 
 
 def train(args):
+    use_cuda = torch.cuda.is_available()
+    device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(args.data_dir, args.train),
         valid_df_path=os.path.join(args.data_dir, args.test),
@@ -23,13 +25,11 @@ def train(args):
         clear_cache=True,
         model_name='bert-base-multilingual-cased',
         batch_size=args.batch_size,
+        device=device,
         markup='BIO'
     )
 
     args.number_of_tags = len(data.train_ds.idx2label)
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
-    # args.device = device
     model = build_model(args)
     model = model.to(device)
     model.train()

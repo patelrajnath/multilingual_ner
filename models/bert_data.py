@@ -62,7 +62,7 @@ class TextDataLoader(DataLoader):
             shuffle=shuffle,
             batch_size=batch_size
         )
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        self.device = device
 
     def collate_fn(self, data):
         res = []
