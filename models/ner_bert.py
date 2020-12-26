@@ -80,10 +80,12 @@ class AttnBertNER(BaseModel):
         super(AttnBertNER, self).__init__()
         self.args = args
         # maps each token to an embedding_dim vector
+        bert_model = BertModel.from_pretrained(args.model_name)
+        self.embeddings = bert_model.get_input_embeddings()
+        self.embeddings.weight.requires_grad = False
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
-        self.embeddings = BERTEmbedder.create(model_name=args.model_name,
-                                              device=args.device, mode=args.mode,
-                                              is_freeze=args.freeze_bert_weights)
+        # self.embeddings = BERTEmbedder.create(model_name=args.model_name, device=args.device, mode=args.mode,
+        #                                       is_freeze=args.freeze_bert_weights)
 
         # the LSTM takens embedded sentence
         self.lstm = nn.LSTM(args.embedding_dim, args.hidden_layer_size // 2,
