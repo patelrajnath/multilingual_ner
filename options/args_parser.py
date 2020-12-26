@@ -21,6 +21,8 @@ def get_parser_prediction(desc, default_task='ner'):
     parser.add_argument('--data_dir', type=str, default='data/ubuntu')
     parser.add_argument('--test_text', type=str, default='ubuntu_test_text.txt')
     parser.add_argument('--test_label', type=str, default='ubuntu_test_labels.txt')
+    parser.add_argument('--cpu', action='store_true')
+    parser.add_argument('--model', type=str, default='outputs/ubuntu_best_model.pt')
     parser.add_argument('--output_dir', type=str, default='outputs')
     return parser
 
@@ -32,6 +34,7 @@ def get_parser_prediction_bert(desc, default_task='ner'):
     parser.add_argument('--idx2labels', type=str, default='idx2labels.txt')
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--output_dir', type=str, default='outputs')
+    parser.add_argument('--cpu', action='store_true')
     parser.add_argument('--model', type=str, default='outputs/ubuntu_best_model_bert.pt')
 
     return parser
