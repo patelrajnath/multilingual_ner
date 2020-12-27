@@ -24,7 +24,8 @@ class SamplingBatcher(abc.Iterator):
             examples_a: np.ndarray,
             examples_b: np.ndarray,
             batch_size: int,
-            pad_id = int
+            pad_id: int,
+            pad_id_labels: int,
     ):
         """Create a new BalancedBatcher.
 
@@ -37,6 +38,7 @@ class SamplingBatcher(abc.Iterator):
         self._examples_b = examples_b
         self._num_items = examples_a.shape[0]
         self._pad_id = pad_id
+        self.pad_id_labels = pad_id_labels
         self._batch_size = batch_size
         self._indices = np.arange(self._num_items)
         self.rnd = np.random.RandomState(0)
@@ -64,34 +66,31 @@ class SamplingBatcher(abc.Iterator):
             # prepare a numpy array with the data, initializing the data with 'PAD'
             # and all labels with -1; initializing labels to -1 differentiates tokens
             # with tags from 'PAD' tokens
-            batch_data = self._pad_id * np.ones((len(batch_sentences), batch_max_len))
-            batch_labels = -1 * np.ones((len(batch_sentences), batch_max_len))
+            input_ = self._pad_id * np.ones((len(batch_sentences), batch_max_len))
+            labels = self.pad_id_labels * np.ones((len(batch_sentences), batch_max_len))
 
             # copy the data to the numpy array
             data_len = []
             for j in range(len(batch_sentences)):
                 cur_len = len(batch_sentences[j])
                 data_len.append(cur_len)
-                batch_data[j][:cur_len] = batch_sentences[j]
-                batch_labels[j][:cur_len] = batch_tags[j]
+                input_[j][:cur_len] = batch_sentences[j]
+                labels[j][:cur_len] = batch_tags[j]
 
             # since all data are indices, we convert them to torch LongTensors
-            batch_data = torch.LongTensor(batch_data)
-            batch_labels = torch.LongTensor(batch_labels)
+            input_ = torch.LongTensor(input_)
+            labels = torch.LongTensor(labels)
 
             data_len = np.asarray(data_len)
             batch_len = torch.LongTensor(data_len)
 
-            maxlen = batch_data.shape[1]
-            mask_x = torch.arange(maxlen)[None, :] < batch_len[:, None]
+            maxlen = input_.shape[1]
+            input_mask = torch.arange(maxlen)[None, :] < batch_len[:, None]
 
-            # reshape labels to give a flat vector of length batch_size*seq_len
-            # batch_labels = batch_labels.view(-1)
+            # For labels we use 0 for padding
+            labels_mask = (labels > 0).long()
 
-            # For labels we use -1 for padding
-            mask_y = (batch_labels >= 0).long()
-
-            return batch_data, batch_labels, batch_len, mask_x, mask_y
+            return input_, labels, batch_len, input_mask, labels_mask
 
     def __iter__(self):
         """Gets an iterator for this iterable

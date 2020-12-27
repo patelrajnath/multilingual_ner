@@ -12,6 +12,8 @@ class BasicNER(BaseModel):
     def __init__(self, args):
         super(BasicNER, self).__init__()
         self.params = args
+        self.device = get_device(args)
+
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
         # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
@@ -81,23 +83,22 @@ class BasicNER(BaseModel):
         return logits.argmax(dim=1)
 
 
-@register_model('ner_crf')
+@register_model('crf_ner')
 class BasicCRFNER(BaseModel):
     def __init__(self, args):
         super(BasicCRFNER, self).__init__()
-        self.params = args
+        self.args = args
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
+        self.embedding = nn.Embedding(self.args.vocab_size, self.args.embedding_dim)
         # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
 
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.args.embedding_dim, self.args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
-        # CRF decoder
-        self.crf = CRFDecoder.create(self.params.number_of_tags, self.params.hidden_layer_size,
-                                     device=self.device)
+        # CRF layer transforms the output to give the final output layer
+        self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size, self.device)
 
     @classmethod
     def build_model(cls, args):
@@ -108,9 +109,8 @@ class BasicCRFNER(BaseModel):
         :return:
         """
         "Helper: Construct a model from hyperparameters."
-
         # make sure all arguments are present in older models
-        ner_base(args)
+        ner_crf(args)
 
         return cls(args)
 
@@ -137,7 +137,7 @@ class BasicCRFNER(BaseModel):
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
-        return tensor  # dim: batch_size*batch_max_len x num_tags
+        return tensor
 
     def forward(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
@@ -238,6 +238,42 @@ class AttnNER(BaseModel):
         input_, labels, input_len, input_mask, labels_mask = batch
         logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
+
+
+@register_model_architecture('crf_ner', 'crf_ner_tiny')
+def ner_crf_tiny(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 64)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+
+
+@register_model_architecture('crf_ner', 'crf_ner_small')
+def ner_crf_small(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 256)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 128)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+
+
+@register_model_architecture('crf_ner', 'crf_ner')
+def ner_crf(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 512)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 256)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+
+
+@register_model_architecture('crf_ner', 'crf_ner_medium')
+def ner_crf_medium(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 2)
+    args.embedding_dim = getattr(args, 'embedding_dim', 512)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
 
 
 @register_model_architecture('ner', 'ner_tiny')

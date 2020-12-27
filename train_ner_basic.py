@@ -43,8 +43,12 @@ def train(args):
     eps = 1e-8
     optimizer = BertAdam(model, lr=args.learning_rate, b1=betas[0], b2=betas[1], e=eps)
     pad_id = word_to_idx['PAD']
-    batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object), np.asarray(train_labels, dtype=object),
-                              batch_size=args.batch_size, pad_id=pad_id)
+    pad_id_labels = tag_to_idx['PAD']
+    batcher = SamplingBatcher(np.asarray(train_sentences, dtype=object),
+                              np.asarray(train_labels, dtype=object),
+                              batch_size=args.batch_size,
+                              pad_id=pad_id,
+                              pad_id_labels=pad_id_labels)
 
     updates = 1
     total_loss = 0
@@ -122,7 +126,8 @@ def train(args):
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
     batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
                                    np.asarray(test_labels, dtype=object),
-                              batch_size=args.batch_size, pad_id=pad_id)
+                                   batch_size=args.batch_size, pad_id=pad_id,
+                                   pad_id_labels=pad_id_labels)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
