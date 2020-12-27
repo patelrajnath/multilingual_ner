@@ -10,7 +10,7 @@ def log_sum_exp(tensor, dim=0):
     return m + torch.log(torch.sum(torch.exp(tensor - m_exp), dim))
 
 
-def sequence_mask(lens, max_len=None):
+def sequence_mask(lens, max_len=None, device=None):
     batch_size = lens.size(0)
 
     if max_len is None:
@@ -19,8 +19,8 @@ def sequence_mask(lens, max_len=None):
     ranges = torch.arange(0, max_len).long()
     ranges = ranges.unsqueeze(0).expand(batch_size, max_len)
 
-    if lens.data.is_cuda:
-        ranges = ranges.cuda()
+    if lens.data.is_cuda and device:
+        ranges = ranges.to(device)
 
     lens_exp = lens.unsqueeze(1).expand_as(ranges)
     mask = ranges < lens_exp
@@ -32,9 +32,9 @@ class CRF(nn.Module):
     def forward(self, *input_):
         return self.viterbi_decode(*input_)
 
-    def __init__(self, label_size):
+    def __init__(self, label_size, device):
         super(CRF, self).__init__()
-
+        self.device = device
         self.label_size = label_size
         self.start = self.label_size - 2
         self.end = self.label_size - 1
@@ -64,7 +64,7 @@ class CRF(nn.Module):
         labels_ext = labels.new_empty((batch_size, seq_len + 2))
         labels_ext[:, 0] = self.start
         labels_ext[:, 1:-1] = labels
-        mask = sequence_mask(lens + 1, max_len=(seq_len + 2)).long()
+        mask = sequence_mask(lens + 1, max_len=(seq_len + 2), device=self.device).long()
         # pad_stop = Variable(labels.data.new(1).fill_(self.end))
         pad_stop = labels.new_full((1,), self.end, requires_grad=False)
         pad_stop = pad_stop.unsqueeze(-1).expand(batch_size, seq_len + 2)
@@ -81,17 +81,16 @@ class CRF(nn.Module):
         trn_scr = torch.gather(trn_row, 2, lbl_lexp)
         trn_scr = trn_scr.squeeze(-1)
 
-        mask = sequence_mask(lens + 1).float()
+        mask = sequence_mask(lens + 1, device=self.device).float()
         trn_scr = trn_scr * mask
         score = trn_scr
 
         return score
 
-    @staticmethod
-    def calc_unary_score(logits, labels, lens):
+    def calc_unary_score(self, logits, labels, lens):
         labels_exp = labels.unsqueeze(-1)
         scores = torch.gather(logits, 2, labels_exp).squeeze(-1)
-        mask = sequence_mask(lens).float()
+        mask = sequence_mask(lens, device=self.device).float()
         scores = scores * mask
         return scores
 

@@ -8,9 +8,10 @@ from .ncrf import NCRF
 
 
 class CRFDecoder(nn.Module):
-    def __init__(self, crf, label_size, input_dim, input_dropout=0.5):
+    def __init__(self, crf, label_size, input_dim, device, input_dropout=0.5):
         super(CRFDecoder, self).__init__()
         self.input_dim = input_dim
+        self.device = device
         self.input_dropout = nn.Dropout(p=input_dropout)
         self.linear = Linears(in_features=input_dim,
                               out_features=label_size,
@@ -44,8 +45,8 @@ class CRFDecoder(nn.Module):
         return -loglik.mean()
 
     @classmethod
-    def create(cls, label_size, input_dim, input_dropout=0.5):
-        return cls(CRF(label_size + 2), label_size, input_dim, input_dropout)
+    def create(cls, label_size, input_dim, device, input_dropout=0.5):
+        return cls(CRF(label_size + 2, device), label_size, input_dim, input_dropout)
 
 
 class NMTDecoder(nn.Module):

@@ -4,8 +4,8 @@ python train_ner_bert.py \
     --data_dir data/accounts \
     --train accounts_train_text.txt.csv \
     --test accounts_test_text.txt.csv \
-    --arch bert_ner_tiny \
-    --batch_size 8
+    --arch bert_crf_ner \
+    --batch_size 32 \
 
 #     --data_dir data/alliance \
 #     --train alliance_train_text.txt.csv \

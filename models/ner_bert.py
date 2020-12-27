@@ -1,3 +1,4 @@
+import torch
 from torch import nn
 from transformers import BertModel
 
@@ -81,6 +82,8 @@ class BertCRFNER(BaseModel):
     def __init__(self, args):
         super(BertCRFNER, self).__init__()
         self.args = args
+        use_cuda = torch.cuda.is_available()
+        self.device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
         # maps each token to an embedding_dim vector
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
         bert_model = BertModel.from_pretrained(args.model_name)
@@ -96,7 +99,7 @@ class BertCRFNER(BaseModel):
         self.lstm = nn.LSTM(self.args.projection_dim, self.args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
         # CRF layer transforms the output to give the final output layer
-        self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size)
+        self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size, self.device)
 
     @classmethod
     def build_model(cls, args):
