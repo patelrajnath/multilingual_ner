@@ -68,7 +68,7 @@ def train(args):
     for epoch in range(args.epochs):
         for batch in batcher:
             updates += 1
-            input_, labels, input_mask, labels_mask, labels_mask = batch
+            input_, _, _, _, _ = batch
             optimizer.zero_grad()
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
             loss = model.score(batch, attn_mask)
@@ -105,7 +105,7 @@ def train(args):
         preds_cpu_cls = []
         for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
             idx += 1
-            input_, labels, input_len, input_mask, labels_mask = batch
+            input_, _, _, _, labels_mask = batch
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
 
