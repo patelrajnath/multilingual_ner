@@ -135,15 +135,15 @@ def train(args):
             open(f'{output_dir}/{prefix}_predict.txt', 'w', encoding='utf8') as p, \
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
+            # predict() method returns final labels not the label_ids
             preds = predict(batcher_test, model, idx_to_tag)
             cnt = 0
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
-                tag_labels_predicted = predict_labels
                 tag_labels_true = get_idx_to_tag(labels)
                 text_ = get_idx_to_word(text)
 
-                tag_labels_predicted = ' '.join(tag_labels_predicted)
+                tag_labels_predicted = ' '.join(predict_labels)
                 tag_labels_true = ' '.join(tag_labels_true)
                 text_ = ' '.join(text_)
                 p.write(tag_labels_predicted + '\n')
