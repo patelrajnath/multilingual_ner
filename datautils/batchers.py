@@ -86,10 +86,10 @@ class SamplingBatcher(abc.Iterator):
             mask_x = torch.arange(maxlen)[None, :] < batch_len[:, None]
 
             # reshape labels to give a flat vector of length batch_size*seq_len
-            batch_labels = batch_labels.view(-1)
+            # batch_labels = batch_labels.view(-1)
 
             # For labels we use -1 for padding
-            mask_y = (batch_labels >= 0).float()
+            mask_y = (batch_labels >= 0).long()
 
             return batch_data, batch_labels, batch_len, mask_x, mask_y
 
@@ -100,3 +100,6 @@ class SamplingBatcher(abc.Iterator):
             self because the class is an iterator itself
         """
         return self
+
+    def __len__(self):
+        return self._num_items

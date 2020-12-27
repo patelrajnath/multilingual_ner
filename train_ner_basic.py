@@ -8,8 +8,9 @@ from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
-from models import build_model
-from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask
+from models import build_model, tqdm
+from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask, \
+    transformed_result_cls, transformed_result
 
 # Set seed to have consistent results
 from models.ner import BasicNER, AttnNER
@@ -63,15 +64,10 @@ def train(args):
     for epoch in range(args.epochs):
         for batch in batcher:
             updates += 1
-            batch_data, batch_labels, batch_len, mask_x, mask_y = batch
+            input_, labels, input_mask, labels_mask, labels_mask = batch
             optimizer.zero_grad()
-            batch_data = batch_data.to(device)
-            batch_labels = batch_labels.to(device)
-            mask_y = mask_y.to(device)
-            attn_mask = get_attn_pad_mask(batch_data, batch_data, pad_id)
-            output_batch = model(batch_data, attn_mask)
-            loss = loss_fn(output_batch, batch_labels, mask_y)
-
+            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+            loss = model.score(batch, attn_mask)
             loss.backward()
             optimizer.step()
 
@@ -98,7 +94,35 @@ def train(args):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
+    def predict(dl, model, id2label, id2cls=None):
+        model.eval()
+        idx = 0
+        preds_cpu = []
+        preds_cpu_cls = []
+        for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
+            idx += 1
+            input_, labels, input_len, input_mask, labels_mask = batch
+            # Create attn mask
+            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+
+            preds = model(batch, attn_mask=attn_mask)
+            preds = preds.view(labels_mask.shape)
+
+            if id2cls is not None:
+                preds, preds_cls = preds
+                preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
+                preds_cpu_cls.extend(preds_cpu_)
+
+            preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
+            preds_cpu.extend(preds_cpu_)
+        if id2cls is not None:
+            return preds_cpu, preds_cpu_cls
+        return preds_cpu
+
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
+    batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
+                                   np.asarray(test_labels, dtype=object),
+                              batch_size=args.batch_size, pad_id=pad_id)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
@@ -106,21 +130,12 @@ def train(args):
             open(f'{output_dir}/{prefix}_predict.txt', 'w', encoding='utf8') as p, \
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
-            model.eval()
+            preds = predict(batcher_test, model, idx_to_tag)
             cnt = 0
-            for text, label in zip(test_sentences, test_labels):
+            for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
-                text_tensor = torch.LongTensor(text).unsqueeze(0).to(device)
-                labels = torch.LongTensor(label).unsqueeze(0).to(device)
-                predict = model(text_tensor)
-                predict_labels = predict.argmax(dim=1)
-                predict_labels = predict_labels.view(-1)
-                labels = labels.view(-1)
-
-                predicted_labels = predict_labels.cpu().data.tolist()
-                true_labels = labels.cpu().data.tolist()
-                tag_labels_predicted = get_idx_to_tag(predicted_labels)
-                tag_labels_true = get_idx_to_tag(true_labels)
+                tag_labels_predicted = predict_labels
+                tag_labels_true = get_idx_to_tag(labels)
                 text_ = get_idx_to_word(text)
 
                 tag_labels_predicted = ' '.join(tag_labels_predicted)
@@ -129,7 +144,6 @@ def train(args):
                 p.write(tag_labels_predicted + '\n')
                 t.write(tag_labels_true + '\n')
                 textf.write(text_ + '\n')
-
                 tag_labels_true = tag_labels_true.strip().replace('_', '-').split()
                 tag_labels_predicted = tag_labels_predicted.strip().replace('_', '-').split()
                 biluo_tags_true = get_biluo(tag_labels_true)

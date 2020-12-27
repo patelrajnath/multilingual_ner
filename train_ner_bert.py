@@ -3,7 +3,8 @@ import time
 from math import inf
 import torch
 
-from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, get_device
+from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, get_device, \
+    transformed_result_cls, transformed_result
 from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
@@ -79,48 +80,6 @@ def train(args):
         if stop_training:
             break
     print(f'Training time: {time.time() - start}')
-
-    def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):
-        preds_cpu = []
-        targets_cpu = []
-        lc = len(id2label)
-        if target_all is not None:
-            for batch_p, batch_t, batch_m in zip(preds, target_all, mask):
-                for pred, true_, bm in zip(batch_p, batch_t, batch_m):
-                    sent = []
-                    sent_t = []
-                    bm = bm.sum().cpu().data.tolist()
-                    for p, t in zip(pred[:bm], true_[:bm]):
-                        p = p.cpu().data.tolist()
-                        p = p if p < lc else pad_idx
-                        sent.append(p)
-                        sent_t.append(t.cpu().data.tolist())
-                    preds_cpu.append([id2label[w] for w in sent])
-                    targets_cpu.append([id2label[w] for w in sent_t])
-        else:
-            for batch_p, batch_m in zip(preds, mask):
-
-                for pred, bm in zip(batch_p, batch_m):
-                    assert len(pred) == len(bm)
-                    bm = bm.sum().cpu().data.tolist()
-                    sent = pred[:bm].cpu().data.tolist()
-                    preds_cpu.append([id2label[w] for w in sent])
-        if target_all is not None:
-            return preds_cpu, targets_cpu
-        else:
-            return preds_cpu
-
-    def transformed_result_cls(preds, target_all, cls2label, return_target=True):
-        preds_cpu = []
-        targets_cpu = []
-        for batch_p, batch_t in zip(preds, target_all):
-            for pred, true_ in zip(batch_p, batch_t):
-                preds_cpu.append(cls2label[pred.cpu().data.tolist()])
-                if return_target:
-                    targets_cpu.append(cls2label[true_.cpu().data.tolist()])
-        if return_target:
-            return preds_cpu, targets_cpu
-        return preds_cpu
 
     def predict(dl, model, id2label, id2cls=None):
         model.eval()

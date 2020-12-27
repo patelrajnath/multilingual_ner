@@ -3,6 +3,8 @@ import torch.nn.functional as F
 
 from models import register_model_architecture, register_model, BaseModel
 from models.attn import MultiHeadAttention
+from models.layers.decoders import CRFDecoder
+from models.model_utils import get_device, loss_fn
 
 
 @register_model('ner')
@@ -51,9 +53,9 @@ class BasicNER(BaseModel):
                             help='The value of the dropout.')
         return group
 
-    def forward(self, tensor, mask=None):
+    def get_logits(self, input_, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding
-        tensor = self.embedding(tensor)  # dim: batch_size x batch_max_len x embedding_dim
+        tensor = self.embedding(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
@@ -66,12 +68,95 @@ class BasicNER(BaseModel):
 
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
+    def score(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        logits = self.get_logits(input_, attn_mask)
+        labels = labels.view(-1).to(self.device)
+        labels_mask = labels_mask.view(-1).to(self.device)
+        return loss_fn(logits, labels, labels_mask)
+
+    def forward(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        logits = self.get_logits(input_, attn_mask)
+        return logits.argmax(dim=1)
+
+
+@register_model('ner_crf')
+class BasicCRFNER(BaseModel):
+    def __init__(self, args):
+        super(BasicCRFNER, self).__init__()
+        self.params = args
+        self.device = get_device(args)
+
+        # maps each token to an embedding_dim vector
+        self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
+        # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
+
+        # the LSTM takens embedded sentence
+        self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
+                            batch_first=True, bidirectional=True)
+        # CRF decoder
+        self.crf = CRFDecoder.create(self.params.number_of_tags, self.params.hidden_layer_size,
+                                     device=self.device)
+
+    @classmethod
+    def build_model(cls, args):
+        """
+        :param self:
+        :param args:
+        :param options:
+        :return:
+        """
+        "Helper: Construct a model from hyperparameters."
+
+        # make sure all arguments are present in older models
+        ner_base(args)
+
+        return cls(args)
+
+    @staticmethod
+    def add_args(parser):
+        """Add model-specific arguments to the parser."""
+        group = parser.add_argument_group('Model Options')
+        group.add_argument('--hidden_layer_size', type=int,
+                            help='Hidden layer size.')
+        group.add_argument('--num_hidden_layers', type=int,
+                            help='Number of hidden layers.')
+        group.add_argument('--embedding_dim', type=int,
+                            help='Word embedding size..')
+        group.add_argument('--activation', type=str,
+                            help='The activation function.')
+        group.add_argument('--dropout', type=float,
+                            help='The value of the dropout.')
+        return group
+
+    def lstm_output(self, input_, attn_mask=None):
+        # apply the embedding layer that maps each token to its embedding
+        tensor = self.embedding(input_)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # run the LSTM along the sentences of length batch_max_len
+        tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
+
+        return tensor  # dim: batch_size*batch_max_len x num_tags
+
+    def forward(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        tensor = self.lstm_output(input_, attn_mask)
+        return self.crf.forward(tensor, labels_mask)
+
+    def score(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        tensor = self.lstm_output(input_, attn_mask)
+        return self.crf.score(tensor, labels_mask, labels)
+
 
 @register_model('attn_ner')
 class AttnNER(BaseModel):
     def __init__(self, args):
         super(AttnNER, self).__init__()
         self.args = args
+        self.device = get_device(args)
+
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
         # self.embedding = Embeddings(params.vocab_size, params.embedding_dim)
@@ -124,7 +209,7 @@ class AttnNER(BaseModel):
 
         return cls(args)
 
-    def forward(self, tensor, mask=None):
+    def get_logits(self, tensor, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embedding(tensor)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -132,7 +217,7 @@ class AttnNER(BaseModel):
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
         # Apply attn to get better word dependencies
-        tensor, _ = self.attn(tensor, tensor, tensor, mask)
+        tensor, _ = self.attn(tensor, tensor, tensor, attn_mask)
 
         # reshape the Variable so that each row contains one token
         tensor = tensor.reshape(-1, tensor.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
@@ -141,6 +226,18 @@ class AttnNER(BaseModel):
         tensor = self.fc(tensor)  # dim: batch_size*batch_max_len x num_tags
 
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
+
+    def score(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        logits = self.get_logits(input_, attn_mask)
+        labels = labels.view(-1).to(self.device)
+        labels_mask = labels_mask.view(-1).to(self.device)
+        return loss_fn(logits, labels, labels_mask)
+
+    def forward(self, batch, attn_mask=None):
+        input_, labels, input_len, input_mask, labels_mask = batch
+        logits = self.get_logits(input_, attn_mask)
+        return logits.argmax(dim=1)
 
 
 @register_model_architecture('ner', 'ner_tiny')

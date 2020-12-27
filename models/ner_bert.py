@@ -60,7 +60,7 @@ class BertNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
-    def lstm_output(self, input_, attn_mask=None):
+    def get_logits(self, input_, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -80,12 +80,12 @@ class BertNER(BaseModel):
 
     def forward(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.lstm_output(input_, attn_mask)
+        logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.lstm_output(input_, attn_mask)
+        logits = self.get_logits(input_, attn_mask)
         labels = labels.view(-1).to(self.device)
         labels_mask = labels_mask.view(-1).to(self.device)
         return loss_fn(logits, labels, labels_mask)
@@ -141,8 +141,7 @@ class BertCRFNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
-    def forward(self, batch, attn_mask=None):
-        input_, labels_mask, input_type_ids, labels = batch
+    def lstm_output(self, input_, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -152,20 +151,17 @@ class BertCRFNER(BaseModel):
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
+        return tensor
+
+    def forward(self, batch, attn_mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
+        tensor = self.lstm_output(input_, attn_mask)
         return self.crf.forward(tensor, labels_mask)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        # apply the embedding layer that maps each token to its embedding
-        tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
-
-        # Project the bert embeddings to lower dimensions
-        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
-
-        # run the LSTM along the sentences of length batch_max_len
-        tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
-
-        return self.crf.score(tensor, labels_mask, labels)  # dim: batch_size*batch_max_len x num_tags
+        tensor = self.lstm_output(input_, attn_mask)
+        return self.crf.score(tensor, labels_mask, labels)
 
 
 @register_model('attn_bert_ner')
@@ -238,7 +234,7 @@ class AttnBertNER(BaseModel):
                            help='Attn dimension of Keys.')
         return group
 
-    def lsmt_output(self, input_, attn_mask=None):
+    def get_logits(self, input_, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -261,12 +257,12 @@ class AttnBertNER(BaseModel):
 
     def forward(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.lsmt_output(input_, attn_mask)
+        logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.lsmt_output(input_, attn_mask)
+        logits = self.get_logits(input_, attn_mask)
         labels = labels.view(-1).to(self.device)
         labels_mask = labels_mask.view(-1).to(self.device)
         return loss_fn(logits, labels, labels_mask)
