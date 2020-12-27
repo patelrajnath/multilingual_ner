@@ -3,7 +3,7 @@ import time
 from math import inf
 import torch
 
-from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask
+from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, get_device
 from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
@@ -15,8 +15,7 @@ set_seed(seed_value=999)
 
 
 def train(args):
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+    device = get_device(args)
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(args.data_dir, args.train),
         valid_df_path=os.path.join(args.data_dir, args.test),

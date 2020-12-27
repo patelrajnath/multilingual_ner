@@ -116,3 +116,9 @@ def get_attn_subsequent_mask(seq):
         subsequent_mask = subsequent_mask.cuda()
 
     return subsequent_mask
+
+
+def get_device(args):
+    use_cuda = torch.cuda.is_available()
+    device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+    return device
