@@ -8,6 +8,7 @@ from torch.nn import functional as F
 
 from models.attn import MultiHeadAttention
 from models.layers.decoders import CRFDecoder
+from models.model_utils import loss_fn
 
 
 @register_model('bert_ner')
@@ -15,6 +16,10 @@ class BertNER(BaseModel):
     def __init__(self, args):
         super(BertNER, self).__init__()
         self.args = args
+
+        use_cuda = torch.cuda.is_available()
+        self.device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+
         # maps each token to an embedding_dim vector
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
         bert_model = BertModel.from_pretrained(args.model_name)
@@ -58,9 +63,10 @@ class BertNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
-    def forward(self, tensor, mask=None):
+    def forward(self, batch, attn_mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
         # apply the embedding layer that maps each token to its embedding
-        tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
+        tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
         # Project the bert embeddings to lower dimensions
         tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
@@ -76,6 +82,13 @@ class BertNER(BaseModel):
 
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
+    def score(self, batch, attn_mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
+        logits = self.forward(batch, attn_mask)
+        labels = labels.view(-1).to(self.device)
+        labels_mask = labels_mask.view(-1).to(self.device)
+        return loss_fn(logits, labels, labels_mask)
+
 
 @register_model('bert_crf_ner')
 class BertCRFNER(BaseModel):
@@ -84,6 +97,7 @@ class BertCRFNER(BaseModel):
         self.args = args
         use_cuda = torch.cuda.is_available()
         self.device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+
         # maps each token to an embedding_dim vector
         # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
         bert_model = BertModel.from_pretrained(args.model_name)
@@ -127,7 +141,7 @@ class BertCRFNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
-    def forward(self, batch, mask=None):
+    def forward(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
@@ -140,7 +154,7 @@ class BertCRFNER(BaseModel):
 
         return self.crf.forward(tensor, labels_mask)
 
-    def score(self, batch):
+    def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
@@ -159,6 +173,10 @@ class AttnBertNER(BaseModel):
     def __init__(self, args):
         super(AttnBertNER, self).__init__()
         self.args = args
+
+        use_cuda = torch.cuda.is_available()
+        self.device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+
         # maps each token to an embedding_dim vector
         bert_model = BertModel.from_pretrained(args.model_name)
         self.embeddings = bert_model.get_input_embeddings()
@@ -168,8 +186,10 @@ class AttnBertNER(BaseModel):
         # self.embeddings = BERTEmbedder.create(model_name=args.model_name, device=args.device, mode=args.mode,
         #                                       is_freeze=args.freeze_bert_weights)
 
+        self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
+
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(args.embedding_dim, args.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.args.projection_dim, args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
 
         self.attn = MultiHeadAttention(d_v=args.attn_dim_val,
@@ -201,6 +221,8 @@ class AttnBertNER(BaseModel):
                            help='Number of hidden layers.')
         group.add_argument('--embedding_dim', type=int,
                            help='Word embedding size..')
+        group.add_argument('--projection_dim', type=int,
+                           help='Bert embedding projection dimension.')
         group.add_argument('--activation', type=str,
                            help='The activation function.')
         group.add_argument('--dropout', type=float,
@@ -218,15 +240,16 @@ class AttnBertNER(BaseModel):
                            help='Attn dimension of Keys.')
         return group
 
-    def forward(self, tensor, mask=None):
+    def forward(self, batch, attn_mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
         # apply the embedding layer that maps each token to its embedding
-        tensor = self.embeddings(tensor)  # dim: batch_size x batch_max_len x embedding_dim
+        tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
+
+        # Project the bert embeddings to lower dimensions
+        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
-
-        # Apply attn to get better word dependencies
-        tensor, _ = self.attn(tensor, tensor, tensor, mask)
 
         # reshape the Variable so that each row contains one token
         tensor = tensor.reshape(-1, tensor.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
@@ -235,6 +258,13 @@ class AttnBertNER(BaseModel):
         tensor = self.fc(tensor)  # dim: batch_size*batch_max_len x num_tags
 
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
+
+    def score(self, batch, attn_mask=None):
+        input_, labels_mask, input_type_ids, labels = batch
+        logits = self.forward(batch, attn_mask)
+        labels = labels.view(-1).to(self.device)
+        labels_mask = labels_mask.view(-1).to(self.device)
+        return loss_fn(logits, labels, labels_mask)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_tiny')
