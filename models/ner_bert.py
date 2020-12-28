@@ -307,6 +307,19 @@ def bert_ner_base(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
 
+@register_model_architecture('bert_crf_ner', 'bert_crf_ner_medium')
+def bert_ner_base(args):
+    args.hidden_layer_size = getattr(args, 'hidden_layer_size', 768)
+    args.num_hidden_layers = getattr(args, 'num_hidden_layers', 1)
+    args.embedding_dim = getattr(args, 'embedding_dim', 768)
+    args.projection_dim = getattr(args, 'projection_dim', 512)
+    args.activation = getattr(args, 'activation', 'relu')
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.mode = getattr(args, 'mode', 'weighted')
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+
+
 @register_model_architecture('bert_ner', 'bert_ner_tiny')
 def bert_ner_tiny(args):
     args.hidden_layer_size = getattr(args, 'hidden_layer_size', 128)
