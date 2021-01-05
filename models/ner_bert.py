@@ -1,6 +1,4 @@
-import torch
 from torch import nn
-from transformers import BertModel
 
 from models import BaseModel, register_model, register_model_architecture
 from models.embedders import PretrainedEmbedder
@@ -58,7 +56,7 @@ class BertNER(BaseModel):
         group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str)
         group.add_argument('--freeze_bert_weights', type=bool)
-        group.add_argument('--only_embedding', type=bool)
+        group.add_argument('--only_embedding', action='store_true')
         return group
 
     def _get_inputs_dict(self, batch):
@@ -360,7 +358,7 @@ def bert_ner_tiny(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_small')
@@ -375,7 +373,7 @@ def bert_ner_small(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner')
@@ -390,7 +388,7 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_medium')
@@ -406,7 +404,7 @@ def bert_ner_medium(args):
     args.model_type = getattr(args, '', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
