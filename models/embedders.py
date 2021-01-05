@@ -223,7 +223,7 @@ class PretrainedEmbedder(torch.nn.Module):
             data[3]: list, bert labels ids
         """
         if self.caching:
-            sentences = input_[0]
+            sentences = input_["input_ids"]
             missing_sentences = []
             for sentence in sentences:
                 sentence_key = " ".join([str(item) for item in sentence.tolist()])
