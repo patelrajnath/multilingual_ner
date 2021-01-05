@@ -3,7 +3,7 @@ from torch import nn
 from transformers import BertModel
 
 from models import BaseModel, register_model, register_model_architecture
-from models.embedders import BERTEmbedder
+from models.embedders import BERTEmbedder, PretrainedEmbedder
 from torch.nn import functional as F
 
 from models.attn import MultiHeadAttention
@@ -17,15 +17,11 @@ class BertNER(BaseModel):
         super(BertNER, self).__init__()
         self.args = args
         self.device = get_device(args)
+
         # maps each token to an embedding_dim vector
-        # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
-        bert_model = BertModel.from_pretrained(args.model_name)
-        self.embeddings = bert_model.get_input_embeddings()
-        self.embeddings.weight.requires_grad = False
-        bert_model = None
-        # self.embeddings = BERTEmbedder.create(model_name=args.model_name,
-        #                                       device=args.device, mode=args.mode,
-        #                                       is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
+                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
+
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
@@ -56,11 +52,28 @@ class BertNER(BaseModel):
         group.add_argument('--activation', type=str, help='The activation function.')
         group.add_argument('--dropout', type=float, help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
+        group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str,)
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
+    def _get_inputs_dict(self, batch):
+        inputs = {
+            "input_ids": batch[0],
+            "attention_mask": batch[1],
+        }
+        # XLM, DistilBERT, RoBERTa, and XLM-RoBERTa don't use segment_ids
+        if self.args.model_type in ["bert", "xlnet", "albert", "layoutlm"]:
+            inputs["token_type_ids"] = batch[2]
+
+        if self.args.model_type == "layoutlm":
+            inputs["bbox"] = batch[4]
+
+        return inputs
+
     def get_logits(self, input_, attn_mask=None):
+        input_ = self._get_inputs_dict(input_)
+
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -79,13 +92,12 @@ class BertNER(BaseModel):
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
     def forward(self, batch, attn_mask=None):
-        input_, labels_mask, input_type_ids, labels = batch
-        logits = self.get_logits(input_, attn_mask)
+        logits = self.get_logits(batch, attn_mask)
         return logits.argmax(dim=1)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.get_logits(input_, attn_mask)
+        logits = self.get_logits(batch, attn_mask)
         labels = labels.view(-1).to(self.device)
         labels_mask = labels_mask.view(-1).to(self.device)
         return loss_fn(logits, labels, labels_mask)
@@ -99,14 +111,9 @@ class BertCRFNER(BaseModel):
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
-        bert_model = BertModel.from_pretrained(args.model_name)
-        self.embeddings = bert_model.get_input_embeddings()
-        self.embeddings.weight.requires_grad = False
-        bert_model = None
-        # self.embeddings = BERTEmbedder.create(model_name=args.model_name,
-        #                                       device=args.device, mode=args.mode,
-        #                                       is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
+                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
+
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
@@ -137,11 +144,14 @@ class BertCRFNER(BaseModel):
         group.add_argument('--activation', type=str, help='The activation function.')
         group.add_argument('--dropout', type=float, help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
+        group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str,)
         group.add_argument('--freeze_bert_weights', type=str)
         return group
 
     def lstm_output(self, input_, attn_mask=None):
+        input_ = self._get_inputs_dict(input_)
+
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -155,12 +165,12 @@ class BertCRFNER(BaseModel):
 
     def forward(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        tensor = self.lstm_output(input_, attn_mask)
+        tensor = self.lstm_output(batch, attn_mask)
         return self.crf.forward(tensor, labels_mask)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        tensor = self.lstm_output(input_, attn_mask)
+        tensor = self.lstm_output(batch, attn_mask)
         return self.crf.score(tensor, labels_mask, labels)
 
 
@@ -172,13 +182,8 @@ class AttnBertNER(BaseModel):
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        bert_model = BertModel.from_pretrained(args.model_name)
-        self.embeddings = bert_model.get_input_embeddings()
-        self.embeddings.weight.requires_grad = False
-        bert_model = None
-        # self.embedding = nn.Embedding(params.vocab_size, params.embedding_dim)
-        # self.embeddings = BERTEmbedder.create(model_name=args.model_name, device=args.device, mode=args.mode,
-        #                                       is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
+                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
 
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
@@ -222,6 +227,7 @@ class AttnBertNER(BaseModel):
         group.add_argument('--dropout', type=float,
                            help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
+        group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str)
         group.add_argument('--freeze_bert_weights', type=str)
         group.add_argument('--attn_dropout', type=float,
@@ -235,6 +241,8 @@ class AttnBertNER(BaseModel):
         return group
 
     def get_logits(self, input_, attn_mask=None):
+        input_ = self._get_inputs_dict(input_)
+
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
@@ -256,13 +264,12 @@ class AttnBertNER(BaseModel):
         return F.log_softmax(tensor, dim=1)  # dim: batch_size*batch_max_len x num_tags
 
     def forward(self, batch, attn_mask=None):
-        input_, labels_mask, input_type_ids, labels = batch
-        logits = self.get_logits(input_, attn_mask)
+        logits = self.get_logits(batch, attn_mask)
         return logits.argmax(dim=1)
 
     def score(self, batch, attn_mask=None):
         input_, labels_mask, input_type_ids, labels = batch
-        logits = self.get_logits(input_, attn_mask)
+        logits = self.get_logits(batch, attn_mask)
         labels = labels.view(-1).to(self.device)
         labels_mask = labels_mask.view(-1).to(self.device)
         return loss_fn(logits, labels, labels_mask)
@@ -276,7 +283,8 @@ def bert_crf_ner_tiny(args):
     args.projection_dim = getattr(args, 'projection_dim', 64)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -289,7 +297,8 @@ def bert_ner_small(args):
     args.projection_dim = getattr(args, 'projection_dim', 128)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -302,7 +311,8 @@ def bert_ner_base(args):
     args.projection_dim = getattr(args, 'projection_dim', 256)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -315,7 +325,8 @@ def bert_ner_base(args):
     args.projection_dim = getattr(args, 'projection_dim', 512)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -328,7 +339,8 @@ def bert_ner_tiny(args):
     args.projection_dim = getattr(args, 'projection_dim', 64)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -341,7 +353,8 @@ def bert_ner_small(args):
     args.projection_dim = getattr(args, 'projection_dim', 128)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -354,7 +367,8 @@ def bert_ner_base(args):
     args.projection_dim = getattr(args, 'projection_dim', 256)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 
@@ -367,7 +381,8 @@ def bert_ner_medium(args):
     args.projection_dim = getattr(args, 'projection_dim', 768)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
-    args.model_name = getattr(args, 'model_name', 'bert-base-multilingual-cased')
+    args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
+    args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
 

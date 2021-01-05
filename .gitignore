@@ -10,3 +10,4 @@ bert_multilingual_embeddings
 *.pt
 runs
 wandb
+transformers

@@ -1,6 +1,7 @@
 from torch.utils.data import DataLoader
 import torch
-from transformers import BertTokenizer
+
+from models.constants import MODEL_CLASSES
 from models.utils import read_config, if_none
 from models import tqdm
 import pandas as pd
@@ -94,7 +95,8 @@ class TextDataSet(object):
                idx2cls=None,
                idx2cls_path=None,
                min_char_len=1,
-               model_name="bert-base-multilingual-cased",
+               model_name=None,
+               model_type=None,
                max_sequence_length=424,
                pad_idx=0,
                clear_cache=False,
@@ -102,7 +104,8 @@ class TextDataSet(object):
                markup="IO",
                df=None, tokenizer=None):
         if tokenizer is None:
-            tokenizer = BertTokenizer.from_pretrained(model_name)
+            config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
+            tokenizer = tokenizer_class.from_pretrained(model_name)
         config = {
             "min_char_len": min_char_len,
             "model_name": model_name,
@@ -323,7 +326,8 @@ class LearnData(object):
                idx2cls=None,
                idx2cls_path=None,
                min_char_len=1,
-               model_name="bert-base-multilingual-cased",
+               model_type=None,
+               model_name=None,
                max_sequence_length=424,
                pad_idx=0,
                clear_cache=False,
@@ -346,6 +350,7 @@ class LearnData(object):
                 idx2cls_path=idx2cls_path,
                 min_char_len=min_char_len,
                 model_name=model_name,
+                model_type=model_type,
                 max_sequence_length=max_sequence_length,
                 pad_idx=pad_idx,
                 clear_cache=clear_cache,
