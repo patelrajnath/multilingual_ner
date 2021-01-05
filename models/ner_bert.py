@@ -59,20 +59,6 @@ class BertNER(BaseModel):
         group.add_argument('--only_embedding', action='store_true')
         return group
 
-    def _get_inputs_dict(self, batch):
-        inputs = {
-            "input_ids": batch[0],
-            "attention_mask": batch[1],
-        }
-        # XLM, DistilBERT, RoBERTa, and XLM-RoBERTa don't use segment_ids
-        if self.args.model_type in ["bert", "xlnet", "albert", "layoutlm"]:
-            inputs["token_type_ids"] = batch[2]
-
-        if self.args.model_type == "layoutlm":
-            inputs["bbox"] = batch[4]
-
-        return inputs
-
     def get_logits(self, input_, attn_mask=None):
         input_ = self._get_inputs_dict(input_)
 
