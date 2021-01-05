@@ -235,9 +235,6 @@ class PretrainedEmbedder(torch.nn.Module):
             if missing_sentences:
                 encoded_layers = self.model(**input_)
                 encoded_layers = encoded_layers[-1]
-                if self.mode == "weighted":
-                    encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
-                    encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
                 for sentence, encoding in zip(missing_sentences,
                                               encoded_layers):
                     sentence_key = " ".join([str(item) for item in sentence.tolist()])
@@ -246,6 +243,10 @@ class PretrainedEmbedder(torch.nn.Module):
 
             encoded_layers = torch.stack([self._encodings_dict[" ".join([str(item) for item in sentence.tolist()])]
                                           for sentence in sentences])
+            if self.mode == "weighted":
+                encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
+                encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
+
             return encoded_layers
         else:
             encoded_layers = self.model(**input_)
