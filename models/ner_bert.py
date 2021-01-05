@@ -3,7 +3,7 @@ from torch import nn
 from transformers import BertModel
 
 from models import BaseModel, register_model, register_model_architecture
-from models.embedders import BERTEmbedder, PretrainedEmbedder
+from models.embedders import PretrainedEmbedder
 from torch.nn import functional as F
 
 from models.attn import MultiHeadAttention
@@ -19,8 +19,11 @@ class BertNER(BaseModel):
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
-                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
+                                             device=self.device,
+                                             mode=args.mode,
+                                             only_embedding=args.only_embedding,
+                                             is_freeze=args.freeze_bert_weights)
 
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
@@ -53,8 +56,9 @@ class BertNER(BaseModel):
         group.add_argument('--dropout', type=float, help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
         group.add_argument('--model_type', type=str)
-        group.add_argument('--mode', type=str,)
-        group.add_argument('--freeze_bert_weights', type=str)
+        group.add_argument('--mode', type=str)
+        group.add_argument('--freeze_bert_weights', type=bool)
+        group.add_argument('--only_embedding', type=bool)
         return group
 
     def _get_inputs_dict(self, batch):
@@ -111,8 +115,11 @@ class BertCRFNER(BaseModel):
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
-                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
+                                             device=self.device,
+                                             mode=args.mode,
+                                             only_embedding=args.only_embedding,
+                                             is_freeze=args.freeze_bert_weights)
 
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
@@ -145,8 +152,10 @@ class BertCRFNER(BaseModel):
         group.add_argument('--dropout', type=float, help='The value of the dropout.')
         group.add_argument('--model_name', type=str)
         group.add_argument('--model_type', type=str)
-        group.add_argument('--mode', type=str,)
-        group.add_argument('--freeze_bert_weights', type=str)
+        group.add_argument('--mode', type=str)
+        group.add_argument('--freeze_bert_weights', type=bool)
+        group.add_argument('--only_embedding', type=bool)
+
         return group
 
     def lstm_output(self, input_, attn_mask=None):
@@ -182,8 +191,11 @@ class AttnBertNER(BaseModel):
         self.device = get_device(args)
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name, device=self.device,
-                                             mode=args.mode, is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
+                                             device=self.device,
+                                             mode=args.mode,
+                                             only_embedding=args.only_embedding,
+                                             is_freeze=args.freeze_bert_weights)
 
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
@@ -229,7 +241,8 @@ class AttnBertNER(BaseModel):
         group.add_argument('--model_name', type=str)
         group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str)
-        group.add_argument('--freeze_bert_weights', type=str)
+        group.add_argument('--freeze_bert_weights', type=bool)
+        group.add_argument('--only_embedding', type=bool)
         group.add_argument('--attn_dropout', type=float,
                            help='Attn dropout.')
         group.add_argument('--attn_num_heads', type=int,
@@ -287,6 +300,7 @@ def bert_crf_ner_tiny(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_small')
@@ -301,6 +315,7 @@ def bert_ner_small(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner')
@@ -315,6 +330,7 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_medium')
@@ -329,6 +345,7 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_tiny')
@@ -343,6 +360,7 @@ def bert_ner_tiny(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_small')
@@ -357,6 +375,7 @@ def bert_ner_small(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner')
@@ -371,6 +390,7 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_medium')
@@ -383,8 +403,10 @@ def bert_ner_medium(args):
     args.dropout = getattr(args, 'dropout', 0.1)
     args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
     args.model_type = getattr(args, 'model_type', 'distilbert')
+    args.model_type = getattr(args, '', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.only_embedding = getattr(args, 'only_embedding', True)
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
