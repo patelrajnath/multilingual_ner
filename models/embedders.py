@@ -168,7 +168,7 @@ class PretrainedEmbedder(torch.nn.Module):
                  only_embedding=True,
                  cache_dir='./',
                  encoder_id='bert_multilingual_embeddings',
-                 caching=False):
+                 caching=True):
         super(PretrainedEmbedder, self).__init__()
 
         config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
