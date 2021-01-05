@@ -229,6 +229,7 @@ class PretrainedEmbedder(torch.nn.Module):
                 sentence_key = " ".join([str(item) for item in sentence.tolist()])
                 if sentence_key not in self._encodings_dict:
                     missing_sentences.append(sentence)
+                    break
             if len(sentences) != len(missing_sentences):
                 glog.info(f"{len(sentences) - len(missing_sentences)} cached "
                           f"sentences will not be encoded")
