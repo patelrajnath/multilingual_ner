@@ -147,6 +147,7 @@ class BasicCRFNER(BaseModel):
         input_, labels, input_len, input_mask, labels_mask = batch
         input_ = input_.to(self.device)
         attn_mask = attn_mask.to(self.device)
+        labels_mask = labels_mask.to(self.device)
         tensor = self.lstm_output(input_, attn_mask)
         return self.crf.forward(tensor, labels_mask)
 
@@ -154,6 +155,8 @@ class BasicCRFNER(BaseModel):
         input_, labels, input_len, input_mask, labels_mask = batch
         input_ = input_.to(self.device)
         attn_mask = attn_mask.to(self.device)
+        labels_mask = labels_mask.to(self.device)
+        labels = labels.to(self.device)
         tensor = self.lstm_output(input_, attn_mask)
         return self.crf.score(tensor, labels_mask, labels)
 
