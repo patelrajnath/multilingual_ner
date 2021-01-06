@@ -107,7 +107,6 @@ def train(args):
             input_, _, _, _, labels_mask = batch
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-
             preds = model(batch, attn_mask=attn_mask)
             preds = preds.view(labels_mask.shape)
 
@@ -123,6 +122,7 @@ def train(args):
         return preds_cpu
 
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
+    model = model.to(device)
     batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
                                    np.asarray(test_labels, dtype=object),
                                    batch_size=args.batch_size, pad_id=pad_id,
