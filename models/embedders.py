@@ -6,6 +6,7 @@ from transformers import BertModel
 import torch
 
 from models.constants import MODEL_CLASSES
+from models.modeling_bert import BertTokenEmbedder
 
 glog = logging.getLogger(__name__)
 
@@ -121,45 +122,6 @@ class BERTEmbedder(torch.nn.Module):
             param.requires_grad = False
 
 
-class TokenEmbedder(torch.nn.Module):
-    def __init__(self, model_class, model_name,
-                 only_embedding=True):
-        super(TokenEmbedder, self).__init__()
-        self.only_embedding = only_embedding
-        if self.only_embedding:
-            bert_model = model_class.from_pretrained(model_name)
-            self.model = bert_model.get_input_embeddings()
-            self.model.weight.requires_grad = False
-            bert_model = None
-        else:
-            self.model = model_class.from_pretrained(model_name, output_hidden_states=True)
-
-    def forward(
-        self,
-        input_ids=None,
-        attention_mask=None,
-        head_mask=None,
-        inputs_embeds=None,
-        output_attentions=None,
-        output_hidden_states=None,
-        return_dict=None,
-    ):
-        # Use only the embedding layer
-        if self.only_embedding:
-            return self.model(input_ids)
-
-        # Use the the model as encoder
-        return self.model(
-            input_ids,
-            attention_mask=attention_mask,
-            head_mask=head_mask,
-            inputs_embeds=inputs_embeds,
-            output_attentions=output_attentions,
-            output_hidden_states=output_hidden_states,
-            return_dict=return_dict,
-        )
-
-
 class PretrainedEmbedder(torch.nn.Module):
     def __init__(self, model_type, model_name,
                  device="cuda",
@@ -175,10 +137,11 @@ class PretrainedEmbedder(torch.nn.Module):
         self.only_embedding = only_embedding
         self.config = config_class.from_pretrained(model_name)
 
-        self.model = TokenEmbedder(model_class, model_name, only_embedding)
+        self.model = model_class(self.config, model_name, self.only_embedding)
         self.mode = mode
         self.model.to(device)
         self.model.eval()
+        self.device = device
 
         self.caching = caching
         self._encodings_dict_path = os.path.join(cache_dir, encoder_id)
@@ -222,7 +185,7 @@ class PretrainedEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        if not self.only_embedding and self.caching:
+        if not self.device and not self.only_embedding and self.caching:
             sentences = input_["input_ids"]
             missing_sentences = []
             for sentence in sentences:
