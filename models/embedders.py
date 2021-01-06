@@ -222,7 +222,7 @@ class PretrainedEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        if self.caching:
+        if not self.only_embedding and self.caching:
             sentences = input_["input_ids"]
             missing_sentences = []
             for sentence in sentences:
@@ -235,19 +235,19 @@ class PretrainedEmbedder(torch.nn.Module):
                           f"sentences will not be encoded")
             if missing_sentences:
                 encoded_layers = self.model(**input_)
-                encoded_layers = encoded_layers[-1]
-                for sentence, encoding in zip(missing_sentences,
+                encoded_layers = torch.stack(encoded_layers[-1])
+                encoded_layers = torch.sum(encoded_layers, dim=0)
+                # Weighting average can not be used with caching
+                # if self.mode == "weighted":
+                #     encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
+                #     encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
+                for sentence, encoding in zip(sentences,
                                               encoded_layers):
                     sentence_key = " ".join([str(item) for item in sentence.tolist()])
                     self._encodings_dict[sentence_key] = encoding
                 # self._save_encodings_dict()
-
             encoded_layers = torch.stack([self._encodings_dict[" ".join([str(item) for item in sentence.tolist()])]
                                           for sentence in sentences])
-            if self.mode == "weighted":
-                encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
-                encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
-
             return encoded_layers
         else:
             encoded_layers = self.model(**input_)
