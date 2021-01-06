@@ -1,7 +1,7 @@
-from transformers import BertPreTrainedModel, DistilBertModel
+from transformers import DistilBertModel, DistilBertPreTrainedModel
 
 
-class DistilBertTokenEmbedder(BertPreTrainedModel):
+class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
     def __init__(self, config, model_name, only_embedding=True, output_hidden_states=True):
         super(DistilBertTokenEmbedder, self).__init__(config)
         self.config = config

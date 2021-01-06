@@ -1,13 +1,12 @@
-from transformers import BertPreTrainedModel, BertModel
+from transformers import XLMRobertaModel, XLMPreTrainedModel
 
 
-class BertTokenEmbedder(BertPreTrainedModel):
+class XLMTokenEmbedder(XLMPreTrainedModel):
     def __init__(self, config, model_name, only_embedding=True, output_hidden_states=True):
-        super(BertTokenEmbedder, self).__init__(config)
-
+        super(XLMTokenEmbedder, self).__init__(config)
+        self.config = config
         self.only_embedding = only_embedding
-        self.model_name = model_name
-        self.model = BertModel.from_pretrained(model_name, output_hidden_states=output_hidden_states)
+        self.model = XLMRobertaModel.from_pretrained(model_name, output_hidden_states=output_hidden_states)
         if self.only_embedding:
             self.model = self.model.get_input_embeddings()
             self.model.weight.requires_grad = False
@@ -16,8 +15,11 @@ class BertTokenEmbedder(BertPreTrainedModel):
             self,
             input_ids=None,
             attention_mask=None,
+            langs=None,
             token_type_ids=None,
             position_ids=None,
+            lengths=None,
+            cache=None,
             head_mask=None,
             inputs_embeds=None,
             output_attentions=None,
@@ -32,8 +34,11 @@ class BertTokenEmbedder(BertPreTrainedModel):
         return self.model(
             input_ids,
             attention_mask=attention_mask,
+            langs=langs,
             token_type_ids=token_type_ids,
             position_ids=position_ids,
+            lengths=lengths,
+            cache=cache,
             head_mask=head_mask,
             inputs_embeds=inputs_embeds,
             output_attentions=output_attentions,
