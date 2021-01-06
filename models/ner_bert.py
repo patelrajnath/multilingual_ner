@@ -150,7 +150,7 @@ class BertCRFNER(BaseModel):
         group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str)
         group.add_argument('--freeze_bert_weights', type=bool)
-        group.add_argument('--only_embedding', type=bool)
+        group.add_argument('--only_embedding', action='store_true')
         group.add_argument('--use_projection', action='store_true')
 
         return group
