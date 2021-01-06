@@ -4,7 +4,7 @@ from math import inf
 import torch
 
 from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, get_device, \
-    transformed_result_cls, transformed_result
+    transformed_result_cls, transformed_result, predict
 from models import bert_data, tqdm, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
@@ -82,29 +82,6 @@ def train(args):
             break
     print(f'Training time: {time.time() - start}')
 
-    def predict(dl, model, id2label, id2cls=None):
-        model.eval()
-        idx = 0
-        preds_cpu = []
-        preds_cpu_cls = []
-        for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
-            idx += 1
-            input_, labels_mask, input_type_ids, labels_ids = batch
-            # Create attn mask
-            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            preds = model(batch, attn_mask=attn_mask)
-            preds = preds.view(labels_mask.shape)
-            if id2cls is not None:
-                preds, preds_cls = preds
-                preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
-                preds_cpu_cls.extend(preds_cpu_)
-
-            preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
-            preds_cpu.extend(preds_cpu_)
-        if id2cls is not None:
-            return preds_cpu, preds_cpu_cls
-        return preds_cpu
-
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
     model = model.to(device)
     dl = get_data_loader_for_predict(data, df_path=os.path.join(args.data_dir, args.test))
@@ -113,7 +90,7 @@ def train(args):
             open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
             open(f'{output_dir}/{prefix}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
-            preds = predict(dl, model, data.train_ds.idx2label)
+            preds = predict(dl, model, data.train_ds.idx2label, pad_id=pad_id)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
             true_tokens, true_labels = bert_labels2tokens(dl, [x.bert_labels for x in dl.dataset])
             # print(true_tokens, true_labels)

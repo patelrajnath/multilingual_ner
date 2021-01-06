@@ -8,12 +8,11 @@ from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
-from models import build_model, tqdm
-from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask, \
-    transformed_result_cls, transformed_result, get_device
+from models import build_model
+from models.model_utils import save_state, load_model_state, set_seed, loss_fn, \
+    get_attn_pad_mask, get_device, predict
 
 # Set seed to have consistent results
-from models.ner import BasicNER, AttnNER
 from models.optimization import BertAdam
 from options.args_parser import get_training_options, update_args_arch
 from datautils.prepare_data import prepare
@@ -97,30 +96,6 @@ def train(args):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-    def predict(dl, model, id2label, id2cls=None):
-        model.eval()
-        idx = 0
-        preds_cpu = []
-        preds_cpu_cls = []
-        for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
-            idx += 1
-            input_, _, _, _, labels_mask = batch
-            # Create attn mask
-            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            preds = model(batch, attn_mask=attn_mask)
-            preds = preds.view(labels_mask.shape)
-
-            if id2cls is not None:
-                preds, preds_cls = preds
-                preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
-                preds_cpu_cls.extend(preds_cpu_)
-
-            preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
-            preds_cpu.extend(preds_cpu_)
-        if id2cls is not None:
-            return preds_cpu, preds_cpu_cls
-        return preds_cpu
-
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
     model = model.to(device)
     batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
@@ -135,7 +110,7 @@ def train(args):
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
             # predict() method returns final labels not the label_ids
-            preds = predict(batcher_test, model, idx_to_tag)
+            preds = predict(batcher_test, model, idx_to_tag, pad_id=pad_id)
             cnt = 0
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1

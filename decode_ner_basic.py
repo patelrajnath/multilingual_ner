@@ -3,10 +3,11 @@ import numpy as np
 import torch
 
 from datautils import Doc
+from datautils.batchers import SamplingBatcher
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
-from models.model_utils import load_model_state, set_seed, get_device
+from models.model_utils import load_model_state, set_seed, get_device, predict
 
 # Set seed to have consistent results
 from options.args_parser import get_prediction_options
@@ -41,6 +42,12 @@ def decode(options):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
+    pad_id = word_to_idx['PAD']
+    pad_id_labels = tag_to_idx['PAD']
+    batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
+                                   np.asarray(test_labels, dtype=object),
+                                   batch_size=args.batch_size, pad_id=pad_id,
+                                   pad_id_labels=pad_id_labels)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
@@ -48,24 +55,14 @@ def decode(options):
             open(f'{output_dir}/{prefix}_predict.txt', 'w', encoding='utf8') as p, \
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
-            model.eval()
+            preds = predict(batcher_test, model, idx_to_tag, pad_id=pad_id)
             cnt = 0
-            for text, label in zip(test_sentences, test_labels):
+            for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
-                text_tensor = torch.LongTensor(text).unsqueeze(0).to(device)
-                lable = torch.LongTensor(label).unsqueeze(0).to(device)
-                predict = model(text_tensor)
-                predict_labels = predict.argmax(dim=1)
-                predict_labels = predict_labels.view(-1)
-                lable = lable.view(-1)
-
-                predicted_labels = predict_labels.cpu().data.tolist()
-                true_labels = lable.cpu().data.tolist()
-                tag_labels_predicted = get_idx_to_tag(predicted_labels)
-                tag_labels_true = get_idx_to_tag(true_labels)
+                tag_labels_true = get_idx_to_tag(labels)
                 text_ = get_idx_to_word(text)
 
-                tag_labels_predicted = ' '.join(tag_labels_predicted)
+                tag_labels_predicted = ' '.join(predict_labels)
                 tag_labels_true = ' '.join(tag_labels_true)
                 text_ = ' '.join(text_)
                 p.write(tag_labels_predicted + '\n')

@@ -1,7 +1,7 @@
 import os
 import torch
 
-from models.model_utils import set_seed, load_model_state, get_attn_pad_mask
+from models.model_utils import set_seed, load_model_state, get_attn_pad_mask, predict
 from models import tqdm
 from models.bert_data import TextDataLoader, TextDataSet
 from sklearn_crfsuite.metrics import flat_classification_report
@@ -36,78 +36,13 @@ def decode(options):
         max_sequence_length=model_args.max_seq_len
     )
     dl = TextDataLoader(ds, device=device, batch_size=options.batch_size, shuffle=False)
-
-    def transformed_result(preds, mask, id2label, target_all=None, pad_idx=0):
-        preds_cpu = []
-        targets_cpu = []
-        lc = len(id2label)
-        if target_all is not None:
-            for batch_p, batch_t, batch_m in zip(preds, target_all, mask):
-                for pred, true_, bm in zip(batch_p, batch_t, batch_m):
-                    sent = []
-                    sent_t = []
-                    bm = bm.sum().cpu().data.tolist()
-                    for p, t in zip(pred[:bm], true_[:bm]):
-                        p = p.cpu().data.tolist()
-                        p = p if p < lc else pad_idx
-                        sent.append(p)
-                        sent_t.append(t.cpu().data.tolist())
-                    preds_cpu.append([id2label[w] for w in sent])
-                    targets_cpu.append([id2label[w] for w in sent_t])
-        else:
-            for batch_p, batch_m in zip(preds, mask):
-
-                for pred, bm in zip(batch_p, batch_m):
-                    assert len(pred) == len(bm)
-                    bm = bm.sum().cpu().data.tolist()
-                    sent = pred[:bm].cpu().data.tolist()
-                    preds_cpu.append([id2label[w] for w in sent])
-        if target_all is not None:
-            return preds_cpu, targets_cpu
-        else:
-            return preds_cpu
-
-    def transformed_result_cls(preds, target_all, cls2label, return_target=True):
-        preds_cpu = []
-        targets_cpu = []
-        for batch_p, batch_t in zip(preds, target_all):
-            for pred, true_ in zip(batch_p, batch_t):
-                preds_cpu.append(cls2label[pred.cpu().data.tolist()])
-                if return_target:
-                    targets_cpu.append(cls2label[true_.cpu().data.tolist()])
-        if return_target:
-            return preds_cpu, targets_cpu
-        return preds_cpu
-
-    def predict(dl, model, id2label, id2cls=None):
-        model.eval()
-        idx = 0
-        pad_id = 0
-        preds_cpu = []
-        preds_cpu_cls = []
-        for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
-            idx += 1
-            input_, labels_mask, input_type_ids, labels_ids = batch
-            # Create attn mask
-            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            preds = model(batch, attn_mask)
-            preds = preds.view(labels_mask.shape)
-            if id2cls is not None:
-                preds, preds_cls = preds
-                preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
-                preds_cpu_cls.extend(preds_cpu_)
-
-            preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
-            preds_cpu.extend(preds_cpu_)
-        if id2cls is not None:
-            return preds_cpu, preds_cpu_cls
-        return preds_cpu
+    pad_id = 0
 
     with open(f'{output_dir}/{prefix}_label_bert.txt', 'w') as t, \
             open(f'{output_dir}/{prefix}_predict_bert.txt', 'w') as p, \
             open(f'{output_dir}/{prefix}_text_bert.txt', 'w') as textf:
         with torch.no_grad():
-            preds = predict(dl, model, ds.idx2label)
+            preds = predict(dl, model, ds.idx2label, pad_id=pad_id)
             pred_tokens, pred_labels = bert_labels2tokens(dl, preds)
             true_tokens, true_labels = bert_labels2tokens(dl, [x.bert_labels for x in dl.dataset])
 

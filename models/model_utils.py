@@ -9,7 +9,7 @@ from torch.serialization import default_restore_location
 import logging
 import numpy as np
 
-from models import build_model
+from models import build_model, tqdm
 
 
 def torch_persistent_save(*args, **kwargs):
@@ -165,4 +165,29 @@ def transformed_result_cls(preds, target_all, cls2label, return_target=True):
                 targets_cpu.append(cls2label[true_.cpu().data.tolist()])
     if return_target:
         return preds_cpu, targets_cpu
+    return preds_cpu
+
+
+def predict(dl, model, id2label, pad_id, id2cls=None):
+    model.eval()
+    idx = 0
+    preds_cpu = []
+    preds_cpu_cls = []
+    for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
+        idx += 1
+        input_, _, _, _, labels_mask = batch
+        # Create attn mask
+        attn_mask = get_attn_pad_mask(input_, input_, pad_id)
+        preds = model(batch, attn_mask=attn_mask)
+        preds = preds.view(labels_mask.shape)
+
+        if id2cls is not None:
+            preds, preds_cls = preds
+            preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
+            preds_cpu_cls.extend(preds_cpu_)
+
+        preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
+        preds_cpu.extend(preds_cpu_)
+    if id2cls is not None:
+        return preds_cpu, preds_cpu_cls
     return preds_cpu
