@@ -175,7 +175,7 @@ def predict(dl, model, id2label, pad_id, id2cls=None):
     preds_cpu_cls = []
     for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
         idx += 1
-        input_, _, _, _, labels_mask = batch
+        input_, *temp, labels_mask = batch
         # Create attn mask
         attn_mask = get_attn_pad_mask(input_, input_, pad_id)
         preds = model(batch, attn_mask=attn_mask)
