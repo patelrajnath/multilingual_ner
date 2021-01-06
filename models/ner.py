@@ -82,6 +82,7 @@ class BasicNER(BaseModel):
     def forward(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
         input_ = input_.to(self.device)
+        attn_mask = attn_mask.to(self.device)
         logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
 
@@ -152,6 +153,7 @@ class BasicCRFNER(BaseModel):
     def score(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
         input_ = input_.to(self.device)
+        attn_mask = attn_mask.to(self.device)
         tensor = self.lstm_output(input_, attn_mask)
         return self.crf.score(tensor, labels_mask, labels)
 
@@ -245,6 +247,7 @@ class AttnNER(BaseModel):
     def forward(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
         input_ = input_.to(self.device)
+        attn_mask = attn_mask.to(self.device)
         logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
 
