@@ -72,6 +72,7 @@ class BasicNER(BaseModel):
 
     def score(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
+        input_ = input_.to(self.device)
         logits = self.get_logits(input_, attn_mask)
         labels = labels.view(-1).to(self.device)
         labels_mask = labels_mask.view(-1).to(self.device)
@@ -79,6 +80,7 @@ class BasicNER(BaseModel):
 
     def forward(self, batch, attn_mask=None):
         input_, labels, input_len, input_mask, labels_mask = batch
+        input_ = input_.to(self.device)
         logits = self.get_logits(input_, attn_mask)
         return logits.argmax(dim=1)
 
