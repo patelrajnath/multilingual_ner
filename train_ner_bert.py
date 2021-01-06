@@ -27,7 +27,7 @@ def train(args):
         batch_size=args.batch_size,
         device=device,
         markup='BIO',
-        max_sequence_length=100
+        max_sequence_length=args.max_seq_len
     )
 
     args.number_of_tags = len(data.train_ds.idx2label)

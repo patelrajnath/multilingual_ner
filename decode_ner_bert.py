@@ -33,7 +33,7 @@ def decode(options):
         model_name=model_args.model_name,
         model_type=model_args.model_type,
         markup='BIO',
-        max_sequence_length=100
+        max_sequence_length=model_args.max_seq_len
     )
     dl = TextDataLoader(ds, device=device, batch_size=options.batch_size, shuffle=False)
 

@@ -47,6 +47,7 @@ def get_parser_bert(desc, default_task='ner'):
     parser.add_argument('--dev', type=str, default=None)
     parser.add_argument('--test', type=str, default='ubuntu_test_text.txt.csv')
     parser.add_argument('--idx2labels', type=str, default='idx2labels.txt')
+    parser.add_argument('--max_seq_len', type=int, default=100)
     return parser
 
 
