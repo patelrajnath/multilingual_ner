@@ -1,16 +1,16 @@
 #!/bin/bash
 
 python train_ner_basic.py \
---data_dir data/ubuntu \
---train_text ubuntu_train_text.txt \
---train_label ubuntu_train_labels.txt \
---test_text ubuntu_test_text.txt \
---test_label ubuntu_test_labels.txt \
---vocab words.txt --tag_set tags.txt \
---batch_size 16 \
---arch ner_tiny \
+--arch crf_ner \
 --max_steps 1500 \
---cpu \
+--data_dir data/conll2003 \
+--train_text conll2003_train_text.txt \
+--train_label conll2003_train_labels.txt \
+--test_text conll2003_testa_text.txt \
+--test_label conll2003_testa_labels.txt \
+--vocab words.txt --tag_set tags.txt \
+--batch_size 32 \
+# --cpu \
 
 # --data_dir data/conll2003 \
 # --train_text conll2003_train_text.txt \
