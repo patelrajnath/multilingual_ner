@@ -31,6 +31,7 @@ def decode(options):
         df_path=os.path.join(options.data_dir, options.test),
         idx2labels_path=options.idx2labels,
         model_name=model_args.model_name,
+        model_type=model_args.model_type,
         markup='BIO',
         max_sequence_length=100
     )
@@ -89,8 +90,7 @@ def decode(options):
             input_, labels_mask, input_type_ids, labels_ids = batch
             # Create attn mask
             attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-            preds = model(input_, attn_mask)
-            preds = preds.argmax(dim=1)
+            preds = model(batch, attn_mask)
             preds = preds.view(labels_mask.shape)
             if id2cls is not None:
                 preds, preds_cls = preds
