@@ -34,7 +34,7 @@ def decode(options):
     tag_path = os.path.join(model_args.data_dir, model_args.tag_set)
     word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
 
-    _, _, test_sentences, test_labels = prepare(options, word_to_idx, tag_to_idx)
+    *_, test_sentences, test_labels = prepare(options, word_to_idx, tag_to_idx)
 
     def get_idx_to_tag(label_ids):
         return [idx_to_tag.get(idx) for idx in label_ids]
