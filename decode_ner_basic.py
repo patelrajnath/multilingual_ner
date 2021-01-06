@@ -6,7 +6,7 @@ from datautils import Doc
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
-from models.model_utils import load_model_state, set_seed
+from models.model_utils import load_model_state, set_seed, get_device
 
 # Set seed to have consistent results
 from options.args_parser import get_prediction_options
@@ -20,9 +20,7 @@ def decode(options):
     prefix = options.test_text.split('_')[0] if len(options.test_text.split('_')) > 1 \
         else options.test_text.split('.')[0]
 
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda and not options.cpu else "cpu")
-
+    device = get_device(args)
     output_dir = options.output_dir
     try:
         os.makedirs(output_dir)

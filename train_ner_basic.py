@@ -10,7 +10,7 @@ from datautils.iob_utils import offset_from_biluo
 from datautils.vocab import load_vocabs
 from models import build_model, tqdm
 from models.model_utils import save_state, load_model_state, set_seed, loss_fn, get_attn_pad_mask, \
-    transformed_result_cls, transformed_result
+    transformed_result_cls, transformed_result, get_device
 
 # Set seed to have consistent results
 from models.ner import BasicNER, AttnNER
@@ -31,8 +31,7 @@ def train(args):
     args.vocab_size = len(idx_to_word)
     args.number_of_tags = len(idx_to_tag)
 
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
+    device = get_device(args)
 
     model = build_model(args)
     print(model)
