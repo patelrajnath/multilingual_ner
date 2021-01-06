@@ -16,6 +16,11 @@ class BertNER(BaseModel):
         self.args = args
         self.device = get_device(args)
 
+        if self.args.use_projection:
+            self.lstm_input_dim = self.args.projection_dim
+        else:
+            self.lstm_input_dim = self.args.embedding_dim
+
         # maps each token to an embedding_dim vector
         self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
                                              device=self.device,
@@ -26,7 +31,7 @@ class BertNER(BaseModel):
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
-        self.lstm = nn.LSTM(self.args.projection_dim, self.args.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.lstm_input_dim, self.args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
         # fc layer transforms the output to give the final output layer
         self.fc = nn.Linear(self.args.hidden_layer_size, self.args.number_of_tags)
@@ -57,6 +62,7 @@ class BertNER(BaseModel):
         group.add_argument('--mode', type=str)
         group.add_argument('--freeze_bert_weights', type=bool)
         group.add_argument('--only_embedding', action='store_true')
+        group.add_argument('--use_projection', action='store_true')
         return group
 
     def get_logits(self, input_, attn_mask=None):
@@ -65,8 +71,9 @@ class BertNER(BaseModel):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
-        # Project the bert embeddings to lower dimensions
-        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
+        if self.args.use_projection:
+            # Project the bert embeddings to lower dimensions
+            tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
@@ -98,6 +105,11 @@ class BertCRFNER(BaseModel):
         self.args = args
         self.device = get_device(args)
 
+        if self.args.use_projection:
+            self.lstm_input_dim = self.args.projection_dim
+        else:
+            self.lstm_input_dim = self.args.embedding_dim
+
         # maps each token to an embedding_dim vector
         self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
                                              device=self.device,
@@ -108,7 +120,7 @@ class BertCRFNER(BaseModel):
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
-        self.lstm = nn.LSTM(self.args.projection_dim, self.args.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.lstm_input_dim, self.args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
         # CRF layer transforms the output to give the final output layer
         self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size, self.device)
@@ -139,6 +151,7 @@ class BertCRFNER(BaseModel):
         group.add_argument('--mode', type=str)
         group.add_argument('--freeze_bert_weights', type=bool)
         group.add_argument('--only_embedding', type=bool)
+        group.add_argument('--use_projection', action='store_true')
 
         return group
 
@@ -148,8 +161,9 @@ class BertCRFNER(BaseModel):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
-        # Project the bert embeddings to lower dimensions
-        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
+        if self.args.use_projection:
+            # Project the bert embeddings to lower dimensions
+            tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
@@ -174,6 +188,11 @@ class AttnBertNER(BaseModel):
         self.args = args
         self.device = get_device(args)
 
+        if self.args.use_projection:
+            self.lstm_input_dim = self.args.projection_dim
+        else:
+            self.lstm_input_dim = self.args.embedding_dim
+
         # maps each token to an embedding_dim vector
         self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
                                              device=self.device,
@@ -184,7 +203,7 @@ class AttnBertNER(BaseModel):
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
         # the LSTM takens embedded sentence
-        self.lstm = nn.LSTM(self.args.projection_dim, args.hidden_layer_size // 2,
+        self.lstm = nn.LSTM(self.lstm_input_dim, args.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
 
         self.attn = MultiHeadAttention(d_v=args.attn_dim_val,
@@ -225,8 +244,10 @@ class AttnBertNER(BaseModel):
         group.add_argument('--model_name', type=str)
         group.add_argument('--model_type', type=str)
         group.add_argument('--mode', type=str)
-        group.add_argument('--freeze_bert_weights', type=bool)
-        group.add_argument('--only_embedding', type=bool)
+        group.add_argument('--freeze_bert_weights', action='store_true')
+        group.add_argument('--only_embedding', action='store_true')
+        group.add_argument('--use_projection', action='store_true')
+
         group.add_argument('--attn_dropout', type=float,
                            help='Attn dropout.')
         group.add_argument('--attn_num_heads', type=int,
@@ -243,8 +264,9 @@ class AttnBertNER(BaseModel):
         # apply the embedding layer that maps each token to its embedding
         tensor = self.embeddings(input_)  # dim: batch_size x batch_max_len x embedding_dim
 
-        # Project the bert embeddings to lower dimensions
-        tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
+        if self.args.use_projection:
+            # Project the bert embeddings to lower dimensions
+            tensor = self.bert_projection(tensor)  # dim: batch_size x batch_max_len x bert_projection
 
         # run the LSTM along the sentences of length batch_max_len
         tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
@@ -284,7 +306,8 @@ def bert_crf_ner_tiny(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_small')
@@ -299,7 +322,8 @@ def bert_ner_small(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner')
@@ -314,7 +338,8 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_medium')
@@ -329,7 +354,8 @@ def bert_ner_base(args):
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
-    args.only_embedding = getattr(args, 'only_embedding', True)
+    args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_tiny')
@@ -345,6 +371,7 @@ def bert_ner_tiny(args):
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_small')
@@ -360,6 +387,7 @@ def bert_ner_small(args):
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner')
@@ -375,6 +403,7 @@ def bert_ner_base(args):
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_medium')
@@ -391,6 +420,7 @@ def bert_ner_medium(args):
     args.mode = getattr(args, 'mode', 'weighted')
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
+    args.use_projection = getattr(args, 'use_projection', False)
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
