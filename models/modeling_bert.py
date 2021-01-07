@@ -87,7 +87,8 @@ class BertTokenEmbedder(BertPreTrainedModel):
 
         # Use the the onnx model as encoder
         if self.options.onnx:
-            inputs_onnx = {"input_ids": input_ids, "attention_mask": attention_mask}
+            inputs_onnx = {"input_ids": input_ids, "attention_mask": attention_mask,
+                           "token_type_ids":token_type_ids}
             tokens = {name: np.atleast_2d(value.cpu()) for name, value in inputs_onnx.items()}
             out = self.onnx_model.run(None, tokens)
             out = out[1:]  # the first vector is CLS output
