@@ -1,14 +1,15 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --arch bert_ner \
+    --arch bert_ner_tiny \
     --batch_size 16 \
     --onnx \
-    --cpu \
     --shuffle \
+    --use_projection
+
+#     --cpu \
 #     --cache_features \
 #     --max_seq_len 50 \
-#     --use_projection
 #     --data_dir data/alliance \
 #     --train alliance_train_text.txt.csv \
 #     --test alliance_test_text.txt.csv \

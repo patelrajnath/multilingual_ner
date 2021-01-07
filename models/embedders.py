@@ -134,7 +134,7 @@ class PretrainedEmbedder(torch.nn.Module):
         config_class, model_class, tokenizer_class = MODEL_CLASSES[self.args.model_type]
         self.config = config_class.from_pretrained(self.args.model_name)
         self.tokenizer = tokenizer_class.from_pretrained(self.args.model_name)
-        self.model = model_class(self.config, self.args, self.tokenizer)
+        self.model = model_class(self.config, self.args, self.tokenizer, device)
 
         self.mode = self.args.mode
         self.model.to(device)

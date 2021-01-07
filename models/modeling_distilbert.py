@@ -10,13 +10,14 @@ from onnxruntime import InferenceSession, SessionOptions, ExecutionMode
 
 
 class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
-    def __init__(self, config, options, tokenizer, output_hidden_states=True):
+    def __init__(self, config, options, tokenizer, device, output_hidden_states=True):
         super(DistilBertTokenEmbedder, self).__init__(config)
 
         self.output_hidden_states = output_hidden_states
         self.config = config
         self.options = options
         self.tokenizer = tokenizer
+        self._device = device
         self.only_embedding = self.options.only_embedding
         self.model = DistilBertModel.from_pretrained(self.options.model_name, output_hidden_states=output_hidden_states)
 
@@ -88,10 +89,10 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
         # Use the the onnx model as encoder
         if self.options.onnx:
             inputs_onnx = {"input_ids": input_ids, "attention_mask": attention_mask}
-            tokens = {name: np.atleast_2d(value) for name, value in inputs_onnx.items()}
+            tokens = {name: np.atleast_2d(value.cpu()) for name, value in inputs_onnx.items()}
             out = self.onnx_model.run(None, tokens)
             out = out[1:] # the first vector is CLS output
-            return [[torch.from_numpy(a) for a in out]]
+            return [[torch.from_numpy(a).to(self._device) for a in out]]
 
         # Use the the model as encoder
         return self.model(
