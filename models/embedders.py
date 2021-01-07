@@ -123,10 +123,10 @@ class BERTEmbedder(torch.nn.Module):
 
 class PretrainedEmbedder(torch.nn.Module):
     def __init__(self, args,
-                 device="cuda",
+                 device="cpu",
                  cache_dir='./',
-                 encoder_id='bert_multilingual_embeddings',
-                 caching=True):
+                 encoder_id='bert_multilingual_embeddings'
+                 ):
         super(PretrainedEmbedder, self).__init__()
         self.args = args
 
@@ -140,9 +140,8 @@ class PretrainedEmbedder(torch.nn.Module):
         self.model.eval()
         self.device = device
 
-        self.caching = caching
         self._encodings_dict_path = os.path.join(cache_dir, encoder_id)
-        if self.caching:
+        if self.args.cache_features:
             self._encodings_dict = self._load_or_create_encodings_dict()
 
         if self.args.freeze_bert_weights:
