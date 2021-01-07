@@ -88,6 +88,7 @@ class BERTEmbedder(torch.nn.Module):
                 glog.info(f"{len(sentences) - len(missing_sentences)} cached "
                           f"sentences will not be encoded")
             if missing_sentences:
+                print('Missing segements...')
                 encoded_layers = self.model(
                     input_ids=batch[0],
                     token_type_ids=batch[2],
@@ -181,7 +182,8 @@ class PretrainedEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        if not self.device and not self.only_embedding and self.args.cache_features:
+        use_cuda = True if torch.cuda.is_available() and not self.args.cpu else False
+        if not use_cuda and not self.args.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
             missing_sentences = []
             for sentence in sentences:

@@ -1,12 +1,35 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --data_dir data/conll2003 \
-    --train eng.train.train.csv \
-    --test eng.testa.dev.csv \
     --arch bert_ner \
-    --batch_size 32 \
-    --only_embedding
+    --batch_size 16 \
+    --onnx \
+    --cpu \
+    --shuffle \
+#     --cache_features \
+#     --max_seq_len 50 \
+#     --use_projection
+#     --data_dir data/alliance \
+#     --train alliance_train_text.txt.csv \
+#     --test alliance_test_text.txt.csv \
+    
+#     --model_type electra \
+#     --model_name google/electra-base-discriminator \
+#     --embedding_dim 1024 \
+#     --only_embedding
+
+#     --model_type electra \
+#     --model_name google/electra-base-discriminator \
+#     --model_type distilbert \
+#     --model_name bert-base-multilingual-cased \
+#     --model_type distilbert \
+#     --model_name distilbert-base-multilingual-cased \
+#     --model_type roberta \
+#     --model_name sentence-transformers/roberta-base-nli-stsb-mean-tokens \
+#     --model_type roberta \
+#     --model_name roberta-base \
+#     --model_type xlmroberta \
+#     --model_name deepset/xlm-roberta-large-squad2
 
 #     --data_dir data/alliance \
 #     --train alliance_train_text.txt.csv \

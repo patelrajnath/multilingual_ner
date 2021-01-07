@@ -2,10 +2,10 @@
 
 prefix='eng'
 prefix='deuutf'
-# prefix='alliance'
+prefix='alliance'
 # prefix='wallet'
 # prefix='accounts'
-#  prefix='ubuntu'
+ prefix='ubuntu'
 # prefix='nlu'
 # prefix='snips'
 
