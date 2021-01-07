@@ -68,6 +68,8 @@ def add_training_args(parser):
     group.add_argument('--eval_each_epoch', action='store_true')
     group.add_argument('--output_dir', type=str, default='outputs')
     group.add_argument('--cpu', action='store_true')
+    group.add_argument('--shuffle', action='store_true')
+    group.add_argument('--cache_features', action='store_true')
     group.add_argument('--arch', '-a', default='ner', metavar='ARCH', required=True,
                        choices=ARCH_MODEL_REGISTRY.keys(),
                        help='Model Architecture')

@@ -6,7 +6,6 @@ from transformers import BertModel
 import torch
 
 from models.constants import MODEL_CLASSES
-from models.modeling_bert import BertTokenEmbedder
 
 glog = logging.getLogger(__name__)
 
@@ -15,7 +14,7 @@ class BERTEmbedder(torch.nn.Module):
     def __init__(self, model, config,
                  cache_dir='./',
                  encoder_id='bert_multilingual_embeddings',
-                 caching=False):
+                 caching=True):
         super(BERTEmbedder, self).__init__()
         self.caching = caching
         self.config = config
@@ -127,7 +126,7 @@ class PretrainedEmbedder(torch.nn.Module):
                  device="cuda",
                  cache_dir='./',
                  encoder_id='bert_multilingual_embeddings',
-                 caching=False):
+                 caching=True):
         super(PretrainedEmbedder, self).__init__()
         self.args = args
 
@@ -183,7 +182,7 @@ class PretrainedEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        if not self.device and not self.only_embedding and self.caching:
+        if not self.device and not self.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
             missing_sentences = []
             for sentence in sentences:

@@ -6,6 +6,7 @@ import torch
 import numpy as np
 from transformers import DistilBertModel, DistilBertPreTrainedModel
 from transformers.convert_graph_to_onnx import convert
+from onnxruntime import InferenceSession, SessionOptions, ExecutionMode
 
 
 class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
@@ -59,16 +60,14 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
                     pipeline_name="ner",
                     opset=11,
                 )
+            self.tokenizer.save_pretrained(onnx_output_dir)
+            self.config.save_pretrained(onnx_output_dir)
 
-        self.tokenizer.save_pretrained(onnx_output_dir)
-        self.config.save_pretrained(onnx_output_dir)
-
-        from onnxruntime import InferenceSession, SessionOptions
         onnx_options = SessionOptions()
         use_cuda = True if torch.cuda.is_available() and not self.options.cpu else False
         onnx_execution_provider = "CUDAExecutionProvider" if use_cuda else "CPUExecutionProvider"
-        onnx_options.intra_op_num_threads = 1
-
+        onnx_options.intra_op_num_threads = 2
+        onnx_options.execution_mode = ExecutionMode.ORT_SEQUENTIAL
         model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
         return InferenceSession(model_path, onnx_options, providers=[onnx_execution_provider])
 
@@ -86,14 +85,15 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
         if self.only_embedding:
             return self.model(input_ids)
 
-        # Use the the model as encoder
+        # Use the the onnx model as encoder
         if self.options.onnx:
             inputs_onnx = {"input_ids": input_ids, "attention_mask": attention_mask}
             tokens = {name: np.atleast_2d(value) for name, value in inputs_onnx.items()}
             out = self.onnx_model.run(None, tokens)
-            out = out[1:]
+            out = out[1:] # the first vector is CLS output
             return [[torch.from_numpy(a) for a in out]]
 
+        # Use the the model as encoder
         return self.model(
             input_ids,
             attention_mask=attention_mask,

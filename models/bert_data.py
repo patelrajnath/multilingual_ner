@@ -335,6 +335,7 @@ class LearnData(object):
                markup="IO",
                train_df=None,
                valid_df=None,
+               shuffle=False,
                # DataLoader params
                device=None, batch_size=16):
         train_ds = None
@@ -358,7 +359,7 @@ class LearnData(object):
                 markup=markup,
                 df=train_df)
             if len(train_ds):
-                train_dl = TextDataLoader(train_ds, device=device, shuffle=True, batch_size=batch_size)
+                train_dl = TextDataLoader(train_ds, device=device, shuffle=shuffle, batch_size=batch_size)
         if valid_df_path is not None:
             valid_ds = TextDataSet.create(
                 idx2labels_path,

@@ -3,9 +3,9 @@ import time
 from math import inf
 import torch
 
-from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, get_device, \
-    transformed_result_cls, transformed_result, predict
-from models import bert_data, tqdm, build_model
+from models.model_utils import set_seed, save_state, load_model_state, loss_fn, get_attn_pad_mask, \
+    get_device, predict
+from models import bert_data, build_model
 from models.bert_data import get_data_loader_for_predict
 from sklearn_crfsuite.metrics import flat_classification_report
 from analyze_utils.utils import bert_labels2tokens
@@ -17,6 +17,10 @@ set_seed(seed_value=999)
 
 def train(args):
     device = get_device(args)
+
+    if args.cache_features:
+        args.shuffle = False
+
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(args.data_dir, args.train),
         valid_df_path=os.path.join(args.data_dir, args.test),
@@ -27,7 +31,8 @@ def train(args):
         batch_size=args.batch_size,
         device=device,
         markup='BIO',
-        max_sequence_length=args.max_seq_len
+        max_sequence_length=args.max_seq_len,
+        shuffle=args.shuffle,
     )
 
     args.number_of_tags = len(data.train_ds.idx2label)
