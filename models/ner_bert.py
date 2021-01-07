@@ -369,7 +369,7 @@ def bert_ner_tiny(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
-    args.onnx = getattr(args, 'onnx', True)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_small')
