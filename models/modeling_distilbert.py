@@ -13,7 +13,6 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
     def __init__(self, config, options, tokenizer, device, output_hidden_states=True):
         super(DistilBertTokenEmbedder, self).__init__(config)
 
-        self.output_hidden_states = output_hidden_states
         self.config = config
         self.options = options
         self.tokenizer = tokenizer
