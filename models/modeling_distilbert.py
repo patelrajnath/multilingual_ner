@@ -66,7 +66,7 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
         onnx_options = SessionOptions()
         use_cuda = True if torch.cuda.is_available() and not self.options.cpu else False
         onnx_execution_provider = "CUDAExecutionProvider" if use_cuda else "CPUExecutionProvider"
-        onnx_options.intra_op_num_threads = 2
+        onnx_options.intra_op_num_threads = 1
         onnx_options.execution_mode = ExecutionMode.ORT_SEQUENTIAL
         model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
         return InferenceSession(model_path, onnx_options, providers=[onnx_execution_provider])
