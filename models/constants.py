@@ -1,7 +1,6 @@
 from transformers import BertConfig, BertTokenizer, \
     DistilBertConfig, DistilBertTokenizer, XLMRobertaTokenizer, XLMRobertaConfig, \
-    RobertaConfig, RobertaTokenizer, BertweetTokenizer, ElectraConfig, ElectraTokenizer, LongformerConfig, \
-    LongformerTokenizer, CamembertConfig, CamembertTokenizer
+    RobertaConfig, RobertaTokenizer, BertweetTokenizer, ElectraConfig, ElectraTokenizer
 
 from models.modeling_bert import BertTokenEmbedder
 from models.modeling_distilbert import DistilBertTokenEmbedder

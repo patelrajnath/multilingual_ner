@@ -123,22 +123,20 @@ class BERTEmbedder(torch.nn.Module):
 
 
 class PretrainedEmbedder(torch.nn.Module):
-    def __init__(self, model_type, model_name,
+    def __init__(self, args,
                  device="cuda",
-                 mode="weighted",
-                 is_freeze=True,
-                 only_embedding=True,
                  cache_dir='./',
                  encoder_id='bert_multilingual_embeddings',
-                 caching=True):
+                 caching=False):
         super(PretrainedEmbedder, self).__init__()
+        self.args = args
 
-        config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
-        self.only_embedding = only_embedding
-        self.config = config_class.from_pretrained(model_name)
+        config_class, model_class, tokenizer_class = MODEL_CLASSES[self.args.model_type]
+        self.config = config_class.from_pretrained(self.args.model_name)
+        self.tokenizer = tokenizer_class.from_pretrained(self.args.model_name)
+        self.model = model_class(self.config, self.args, self.tokenizer)
 
-        self.model = model_class(self.config, model_name, self.only_embedding)
-        self.mode = mode
+        self.mode = self.args.mode
         self.model.to(device)
         self.model.eval()
         self.device = device
@@ -148,7 +146,7 @@ class PretrainedEmbedder(torch.nn.Module):
         if self.caching:
             self._encodings_dict = self._load_or_create_encodings_dict()
 
-        if is_freeze:
+        if self.args.freeze_bert_weights:
             self.freeze()
 
         if self.mode == "weighted":
@@ -214,7 +212,7 @@ class PretrainedEmbedder(torch.nn.Module):
             return encoded_layers
         else:
             encoded_layers = self.model(**input_)
-            if self.only_embedding:
+            if self.args.only_embedding:
                 return encoded_layers
 
             encoded_layers = encoded_layers[-1]

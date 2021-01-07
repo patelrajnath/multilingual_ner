@@ -1,15 +1,76 @@
+import os
+import tempfile
+from pathlib import Path
+
+import torch
+import numpy as np
 from transformers import DistilBertModel, DistilBertPreTrainedModel
+from transformers.convert_graph_to_onnx import convert
 
 
 class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
-    def __init__(self, config, model_name, only_embedding=True, output_hidden_states=True):
+    def __init__(self, config, options, tokenizer, output_hidden_states=True):
         super(DistilBertTokenEmbedder, self).__init__(config)
+
+        self.output_hidden_states = output_hidden_states
         self.config = config
-        self.only_embedding = only_embedding
-        self.model = DistilBertModel.from_pretrained(model_name, output_hidden_states=output_hidden_states)
+        self.options = options
+        self.tokenizer = tokenizer
+        self.only_embedding = self.options.only_embedding
+        self.model = DistilBertModel.from_pretrained(self.options.model_name, output_hidden_states=output_hidden_states)
+
+        if self.options.onnx:
+            self.onnx_model = self.convert_to_onnx()
+
         if self.only_embedding:
             self.model = self.model.get_input_embeddings()
             self.model.weight.requires_grad = False
+
+    def save_model(self, output_dir=None, model=None):
+        if not output_dir:
+            output_dir = self.options.output_dir
+        os.makedirs(output_dir, exist_ok=True)
+        model_to_save = model.module if hasattr(model, "module") else model
+        model_to_save.save_pretrained(output_dir)
+
+    def convert_to_onnx(self, onnx_output_dir=None, set_onnx_arg=True):
+        """Convert the model to ONNX format and save to output_dir
+        Args:
+            onnx_output_dir (str, optional): If specified, ONNX model will be saved to output_dir (else args.output_dir will be used). Defaults to None.
+            set_onnx_arg (bool, optional): Updates the model args to set onnx=True. Defaults to True.
+        """  # noqa
+        if not onnx_output_dir:
+            onnx_output_dir = os.path.join(self.options.output_dir, self.options.model_type,
+                                           self.options.model_name, "onnx")
+        os.makedirs(onnx_output_dir, exist_ok=True)
+
+        if not os.listdir(onnx_output_dir):
+            onnx_model_name = os.path.join(onnx_output_dir, "onnx_model.onnx")
+            with tempfile.TemporaryDirectory() as temp_dir:
+                basedir = os.path.basename(temp_dir)
+                temp_dir = os.path.join(self.options.output_dir, basedir)
+                self.save_model(output_dir=temp_dir, model=self.model)
+
+                convert(
+                    framework="pt",
+                    model=temp_dir,
+                    tokenizer=self.tokenizer,
+                    output=Path(onnx_model_name),
+                    pipeline_name="ner",
+                    opset=11,
+                )
+
+        self.tokenizer.save_pretrained(onnx_output_dir)
+        self.config.save_pretrained(onnx_output_dir)
+
+        from onnxruntime import InferenceSession, SessionOptions
+        onnx_options = SessionOptions()
+        use_cuda = True if torch.cuda.is_available() and not self.options.cpu else False
+        onnx_execution_provider = "CUDAExecutionProvider" if use_cuda else "CPUExecutionProvider"
+        onnx_options.intra_op_num_threads = 1
+
+        model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
+        return InferenceSession(model_path, onnx_options, providers=[onnx_execution_provider])
 
     def forward(
         self,
@@ -26,6 +87,13 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
             return self.model(input_ids)
 
         # Use the the model as encoder
+        if self.options.onnx:
+            inputs_onnx = {"input_ids": input_ids, "attention_mask": attention_mask}
+            tokens = {name: np.atleast_2d(value) for name, value in inputs_onnx.items()}
+            out = self.onnx_model.run(None, tokens)
+            out = out[1:]
+            return [[torch.from_numpy(a) for a in out]]
+
         return self.model(
             input_ids,
             attention_mask=attention_mask,

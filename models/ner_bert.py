@@ -22,11 +22,7 @@ class BertNER(BaseModel):
             self.lstm_input_dim = self.args.embedding_dim
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
-                                             device=self.device,
-                                             mode=args.mode,
-                                             only_embedding=args.only_embedding,
-                                             is_freeze=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(self.args, device=self.device)
 
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
@@ -63,6 +59,7 @@ class BertNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=bool)
         group.add_argument('--only_embedding', action='store_true')
         group.add_argument('--use_projection', action='store_true')
+        group.add_argument('--onnx', action='store_true')
         return group
 
     def get_logits(self, input_, attn_mask=None):
@@ -115,7 +112,7 @@ class BertCRFNER(BaseModel):
                                              device=self.device,
                                              mode=args.mode,
                                              only_embedding=args.only_embedding,
-                                             is_freeze=args.freeze_bert_weights)
+                                             freeze_bert_weights=args.freeze_bert_weights)
 
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
@@ -198,7 +195,7 @@ class AttnBertNER(BaseModel):
                                              device=self.device,
                                              mode=args.mode,
                                              only_embedding=args.only_embedding,
-                                             is_freeze=args.freeze_bert_weights)
+                                             freeze_bert_weights=args.freeze_bert_weights)
 
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 
@@ -372,6 +369,7 @@ def bert_ner_tiny(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', True)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_small')
