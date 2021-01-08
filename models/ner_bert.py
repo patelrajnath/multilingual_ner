@@ -146,6 +146,7 @@ class BertCRFNER(BaseModel):
         group.add_argument('--freeze_bert_weights', type=bool)
         group.add_argument('--only_embedding', action='store_true')
         group.add_argument('--use_projection', action='store_true')
+        group.add_argument('--onnx', action='store_true')
 
         return group
 
@@ -238,6 +239,7 @@ class AttnBertNER(BaseModel):
         group.add_argument('--freeze_bert_weights', action='store_true')
         group.add_argument('--only_embedding', action='store_true')
         group.add_argument('--use_projection', action='store_true')
+        group.add_argument('--onnx', action='store_true')
 
         group.add_argument('--attn_dropout', type=float,
                            help='Attn dropout.')
