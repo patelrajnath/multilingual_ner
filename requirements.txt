@@ -2,6 +2,8 @@ matplotlib
 sklearn_crfsuite
 bson
 pandas
+onnx
+onnxruntime
 transformers
 sentence-transformers
 
