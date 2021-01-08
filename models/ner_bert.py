@@ -108,11 +108,7 @@ class BertCRFNER(BaseModel):
             self.lstm_input_dim = self.args.embedding_dim
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
-                                             device=self.device,
-                                             mode=args.mode,
-                                             only_embedding=args.only_embedding,
-                                             freeze_bert_weights=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(self.args, device=self.device)
 
         # the LSTM takens embedded sentence
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
@@ -191,11 +187,7 @@ class AttnBertNER(BaseModel):
             self.lstm_input_dim = self.args.embedding_dim
 
         # maps each token to an embedding_dim vector
-        self.embeddings = PretrainedEmbedder(model_type=args.model_type, model_name=args.model_name,
-                                             device=self.device,
-                                             mode=args.mode,
-                                             only_embedding=args.only_embedding,
-                                             freeze_bert_weights=args.freeze_bert_weights)
+        self.embeddings = PretrainedEmbedder(self.args, device=self.device)
 
         self.bert_projection = nn.Linear(self.args.embedding_dim, self.args.projection_dim)
 

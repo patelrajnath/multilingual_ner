@@ -1,7 +1,7 @@
 import os
 import torch
 
-from models.model_utils import set_seed, load_model_state, get_attn_pad_mask, predict
+from models.model_utils import set_seed, load_model_state, get_attn_pad_mask, predict, get_device
 from models import tqdm
 from models.bert_data import TextDataLoader, TextDataSet
 from sklearn_crfsuite.metrics import flat_classification_report
@@ -12,9 +12,7 @@ set_seed(seed_value=999)
 
 
 def decode(options):
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:1" if use_cuda and not options.cpu else "cpu")
-
+    device = get_device(options)
     output_dir = options.output_dir
     try:
         os.makedirs(output_dir)
