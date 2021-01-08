@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from models import register_model_architecture, register_model, BaseModel
 from models.attn import MultiHeadAttention
 from models.layers.decoders import CRFDecoder
-from models.model_utils import get_device, loss_fn
+from models.model_utils import loss_fn
 
 
 @register_model('ner')
