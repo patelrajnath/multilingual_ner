@@ -70,11 +70,13 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
         onnx_options.intra_op_num_threads = 1
         onnx_options.execution_mode = ExecutionMode.ORT_SEQUENTIAL
         onnx_model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
-        # Append "-quantized" at the end of the model's name
-        quantized_model_path = generate_identified_filename(Path(onnx_model_path), "-quantized")
         if self.options.dynamic_quantize:
+            # Append "-quantized" at the end of the model's name
+            quantized_model_path = generate_identified_filename(Path(onnx_model_path), "-quantized")
             quantize_dynamic(Path(onnx_model_path), quantized_model_path)
-        return InferenceSession(quantized_model_path.as_posix(), onnx_options,
+            onnx_model_path = quantized_model_path.as_posix()
+
+        return InferenceSession(onnx_model_path, onnx_options,
                                 providers=[onnx_execution_provider])
 
     def forward(
