@@ -46,7 +46,7 @@ def save_state(filename, model, criterion, optimizer,
     torch_persistent_save(state_dict, filename)
 
 
-def load_model_state(filename, data_parallel=False):
+def load_model_state(filename, device, data_parallel=False):
     if not os.path.exists(filename):
         print("Starting training from scratch.")
         return 0
@@ -58,7 +58,7 @@ def load_model_state(filename, data_parallel=False):
     with open(os.path.join(basedir, 'config.json')) as f:
         args_dict = json.load(f, object_hook=dict_to_sns)
 
-    model = build_model(args_dict)
+    model = build_model(args_dict, device)
 
     print("Loading model from checkpoints", filename)
     state = torch.load(filename, map_location=lambda s, l: default_restore_location(s, 'cpu'))

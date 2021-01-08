@@ -12,7 +12,7 @@ class BaseModel(nn.Module):
         pass
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """Build a new model instance."""
         raise NotImplementedError('Model must implement the build_model method')
 

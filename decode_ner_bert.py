@@ -14,6 +14,7 @@ set_seed(seed_value=999)
 def decode(options):
     device = get_device(options)
     output_dir = options.output_dir
+
     try:
         os.makedirs(output_dir)
     except:
@@ -21,7 +22,7 @@ def decode(options):
 
     prefix = options.test.split('_')[0] if len(options.test.split('_')) > 1 else options.test.split('.')[0]
     # Load the trained model
-    model, model_args = load_model_state(options.model)
+    model, model_args = load_model_state(options.model, device)
     model = model.to(device)
     model.eval()
 

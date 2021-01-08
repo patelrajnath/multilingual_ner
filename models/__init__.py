@@ -17,8 +17,8 @@ ARCH_CONFIG_REGISTRY = {}
 ARCH_MODEL_NAME_REGISTRY = {}
 
 
-def build_model(args):
-    return ARCH_MODEL_REGISTRY[args.arch].build_model(args)
+def build_model(args, device):
+    return ARCH_MODEL_REGISTRY[args.arch].build_model(args, device)
 
 
 def register_model(name):

@@ -11,10 +11,10 @@ from models.model_utils import loss_fn, get_device
 
 @register_model('bert_ner')
 class BertNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(BertNER, self).__init__()
         self.args = args
-        self.device = get_device(args)
+        self.device = device
 
         if self.args.use_projection:
             self.lstm_input_dim = self.args.projection_dim
@@ -33,15 +33,16 @@ class BertNER(BaseModel):
         self.fc = nn.Linear(self.args.hidden_layer_size, self.args.number_of_tags)
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
 
+        :param device:
         :param args:
         :return:
         """
         bert_ner_base(args)
 
-        return cls(args)
+        return cls(args, device)
 
     @staticmethod
     def add_args(parser):
@@ -97,10 +98,10 @@ class BertNER(BaseModel):
 
 @register_model('bert_crf_ner')
 class BertCRFNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(BertCRFNER, self).__init__()
         self.args = args
-        self.device = get_device(args)
+        self.device = device
 
         if self.args.use_projection:
             self.lstm_input_dim = self.args.projection_dim
@@ -119,7 +120,7 @@ class BertCRFNER(BaseModel):
         self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size, self.device)
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
 
         :param args:
@@ -127,7 +128,7 @@ class BertCRFNER(BaseModel):
         """
         bert_ner_base(args)
 
-        return cls(args)
+        return cls(args, device)
 
     @staticmethod
     def add_args(parser):
@@ -176,10 +177,10 @@ class BertCRFNER(BaseModel):
 
 @register_model('attn_bert_ner')
 class AttnBertNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(AttnBertNER, self).__init__()
         self.args = args
-        self.device = get_device(args)
+        self.device = device
 
         if self.args.use_projection:
             self.lstm_input_dim = self.args.projection_dim
@@ -205,14 +206,15 @@ class AttnBertNER(BaseModel):
         self.fc = nn.Linear(args.hidden_layer_size, args.number_of_tags)
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
 
+        :param device:
         :param args:
         :return:
         """
         bert_ner_base(args)
-        return cls(args)
+        return cls(args, device)
 
     @staticmethod
     def add_args(parser):

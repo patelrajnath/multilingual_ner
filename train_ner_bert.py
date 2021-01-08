@@ -36,7 +36,7 @@ def train(args):
     )
 
     args.number_of_tags = len(data.train_ds.idx2label)
-    model = build_model(args)
+    model = build_model(args, device)
     model = model.to(device)
     model.train()
 
