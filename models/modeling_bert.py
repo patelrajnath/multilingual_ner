@@ -5,8 +5,9 @@ from pathlib import Path
 import torch
 import numpy as np
 from onnxruntime import SessionOptions, ExecutionMode, InferenceSession
+from onnxruntime.quantization import quantize_dynamic
 from transformers import BertPreTrainedModel, BertModel
-from transformers.convert_graph_to_onnx import convert
+from transformers.convert_graph_to_onnx import convert, quantize, generate_identified_filename
 
 
 class BertTokenEmbedder(BertPreTrainedModel):
@@ -66,8 +67,13 @@ class BertTokenEmbedder(BertPreTrainedModel):
         onnx_execution_provider = "CUDAExecutionProvider" if use_cuda else "CPUExecutionProvider"
         onnx_options.intra_op_num_threads = 1
         onnx_options.execution_mode = ExecutionMode.ORT_SEQUENTIAL
-        model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
-        return InferenceSession(model_path, onnx_options, providers=[onnx_execution_provider])
+        onnx_model_path = os.path.join(onnx_output_dir, "onnx_model.onnx")
+        # Append "-quantized" at the end of the model's name
+        quantized_model_path = generate_identified_filename(Path(onnx_model_path), "-quantized")
+        if self.options.dynamic_quantize:
+            quantize_dynamic(Path(onnx_model_path), quantized_model_path)
+        return InferenceSession(quantized_model_path.as_posix(), onnx_options,
+                                providers=[onnx_execution_provider])
 
     def forward(
             self,
