@@ -305,6 +305,7 @@ def bert_crf_ner_tiny(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_small')
@@ -321,6 +322,7 @@ def bert_ner_small(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner')
@@ -337,6 +339,7 @@ def bert_ner_base(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_crf_ner', 'bert_crf_ner_medium')
@@ -353,6 +356,7 @@ def bert_ner_base(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_tiny')
@@ -386,6 +390,7 @@ def bert_ner_small(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner')
@@ -402,6 +407,7 @@ def bert_ner_base(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('bert_ner', 'bert_ner_medium')
@@ -419,6 +425,7 @@ def bert_ner_medium(args):
     args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
+    args.onnx = getattr(args, 'onnx', False)
 
 
 @register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
