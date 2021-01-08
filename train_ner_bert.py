@@ -87,7 +87,7 @@ def train(args):
             break
     print(f'Training time: {time.time() - start}')
 
-    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt')
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model_bert.pt', device)
     model = model.to(device)
     dl = get_data_loader_for_predict(data, df_path=os.path.join(args.data_dir, args.test))
 

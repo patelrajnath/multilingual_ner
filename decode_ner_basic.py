@@ -27,7 +27,7 @@ def decode(options):
         os.makedirs(output_dir)
     except:
         pass
-    model, model_args = load_model_state(options.model)
+    model, model_args = load_model_state(options.model, device)
     model = model.to(device)
 
     vocab_path = os.path.join(model_args.data_dir, model_args.vocab)

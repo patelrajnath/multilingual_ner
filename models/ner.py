@@ -9,10 +9,10 @@ from models.model_utils import get_device, loss_fn
 
 @register_model('ner')
 class BasicNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(BasicNER, self).__init__()
         self.params = args
-        self.device = get_device(args)
+        self.device = device
 
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
@@ -25,11 +25,10 @@ class BasicNER(BaseModel):
         self.fc = nn.Linear(self.params.hidden_layer_size, self.params.number_of_tags)
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
-        :param self:
+        :param device:
         :param args:
-        :param options:
         :return:
         """
         "Helper: Construct a model from hyperparameters."
@@ -37,7 +36,7 @@ class BasicNER(BaseModel):
         # make sure all arguments are present in older models
         ner_base(args)
 
-        return cls(args)
+        return cls(args, device)
 
     @staticmethod
     def add_args(parser):
@@ -89,10 +88,10 @@ class BasicNER(BaseModel):
 
 @register_model('crf_ner')
 class BasicCRFNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(BasicCRFNER, self).__init__()
         self.args = args
-        self.device = get_device(args)
+        self.device = device
 
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(self.args.vocab_size, self.args.embedding_dim)
@@ -105,18 +104,17 @@ class BasicCRFNER(BaseModel):
         self.crf = CRFDecoder.create(self.args.number_of_tags, self.args.hidden_layer_size, self.device)
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
-        :param self:
+        :param device:
         :param args:
-        :param options:
         :return:
         """
         "Helper: Construct a model from hyperparameters."
         # make sure all arguments are present in older models
         ner_crf(args)
 
-        return cls(args)
+        return cls(args, device)
 
     @staticmethod
     def add_args(parser):
@@ -163,10 +161,10 @@ class BasicCRFNER(BaseModel):
 
 @register_model('attn_ner')
 class AttnNER(BaseModel):
-    def __init__(self, args):
+    def __init__(self, args, device):
         super(AttnNER, self).__init__()
         self.args = args
-        self.device = get_device(args)
+        self.device = device
 
         # maps each token to an embedding_dim vector
         self.embedding = nn.Embedding(args.vocab_size, args.embedding_dim)
@@ -209,8 +207,9 @@ class AttnNER(BaseModel):
         return group
 
     @classmethod
-    def build_model(cls, args):
+    def build_model(cls, args, device):
         """
+        :param device:
         :param args:
         :return:
         """
@@ -218,7 +217,7 @@ class AttnNER(BaseModel):
         # make sure all arguments are present in older models
         attn_ner_base(args)
 
-        return cls(args)
+        return cls(args, device)
 
     def get_logits(self, tensor, attn_mask=None):
         # apply the embedding layer that maps each token to its embedding

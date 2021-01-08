@@ -65,7 +65,7 @@ class DistilBertTokenEmbedder(DistilBertPreTrainedModel):
             self.config.save_pretrained(onnx_output_dir)
 
         onnx_options = SessionOptions()
-        use_cuda = True if self._device != 'cpu' else False
+        use_cuda = True if self._device.type != 'cpu' else False
         onnx_execution_provider = "CUDAExecutionProvider" if use_cuda else "CPUExecutionProvider"
         onnx_options.intra_op_num_threads = 1
         onnx_options.execution_mode = ExecutionMode.ORT_SEQUENTIAL

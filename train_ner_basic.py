@@ -32,7 +32,7 @@ def train(args):
 
     device = get_device(args)
 
-    model = build_model(args)
+    model = build_model(args, device)
     print(model)
     model = model.to(device)
 
@@ -96,7 +96,7 @@ def train(args):
     def get_idx_to_word(words_ids):
         return [idx_to_word.get(idx) for idx in words_ids]
 
-    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt')
+    model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt', device)
     model = model.to(device)
     batcher_test = SamplingBatcher(np.asarray(test_sentences, dtype=object),
                                    np.asarray(test_labels, dtype=object),
