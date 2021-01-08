@@ -123,10 +123,7 @@ class BERTEmbedder(torch.nn.Module):
 
 
 class PretrainedEmbedder(torch.nn.Module):
-    def __init__(self, args,
-                 device="cpu",
-                 cache_dir='./',
-                 encoder_id='bert_multilingual_embeddings'
+    def __init__(self, args, device, cache_dir='./', encoder_id='cache_encodings'
                  ):
         super(PretrainedEmbedder, self).__init__()
         self.args = args
