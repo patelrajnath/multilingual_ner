@@ -1,12 +1,17 @@
 #!/bin/bash
 
 python train_ner_bert.py \
-    --arch bert_ner_tiny \
-    --batch_size 16 \
-    --onnx \
+    --arch bert_ner \
+    --batch_size 32 \
     --shuffle \
-    --use_projection
-
+    --cache_features \
+    --save_cache_features \
+    --data_dir data/conll2003 \
+    --train eng.train.train.csv \
+    --test eng.testa.dev.csv \
+    --onnx \
+    
+#     --use_projection
 #     --cpu \
 #     --cache_features \
 #     --max_seq_len 50 \
