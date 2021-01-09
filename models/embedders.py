@@ -200,6 +200,8 @@ class PretrainedEmbedder(torch.nn.Module):
         if self.device.type == 'cpu' and not self.args.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
             attn_masks = input_["attention_mask"]
+            bs, seq_len = sentences.size()
+
             token_type_ids = None
             if "token_type_ids" in input_:
                 token_type_ids = input_["token_type_ids"]
@@ -208,8 +210,10 @@ class PretrainedEmbedder(torch.nn.Module):
             missing_token_type_ids = []
 
             if "token_type_ids" in input_:
-                for sentence, attn_mask, token_type_id in  zip(sentences, attn_masks, token_type_ids):
+                for sentence, attn_mask, token_type_id in zip(sentences, attn_masks, token_type_ids):
                     sentence_len = int(torch.sum(attn_mask).item())
+                    if not self.args.shuffle:
+                        sentence_len = seq_len
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     if sentence_key not in self._encodings_dict:
                         missing_sentences.append(sentence)
@@ -218,6 +222,8 @@ class PretrainedEmbedder(torch.nn.Module):
             else:
                 for sentence, attn_mask in zip(sentences, attn_masks):
                     sentence_len = int(torch.sum(attn_mask).item())
+                    if not self.args.shuffle:
+                        sentence_len = seq_len
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     if sentence_key not in self._encodings_dict:
                         missing_sentences.append(sentence)
@@ -241,15 +247,19 @@ class PretrainedEmbedder(torch.nn.Module):
                 encoded_layers = torch.sum(encoded_layers, dim=0)
                 for sentence, attn_mask, encoding in zip(missing_sentences, missing_attn_masks, encoded_layers):
                     sentence_len = int(torch.sum(attn_mask).item())
+                    if not self.args.shuffle:
+                        sentence_len = seq_len
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     self._encodings_dict[sentence_key] = encoding[:sentence_len]
 
             sentence_encoding = []
-            bs, seq_len = sentences.size()
-            target = torch.zeros(seq_len, self.args.embedding_dim)
             for sentence, attn_mask in zip(sentences, attn_masks):
                 sentence_len = int(torch.sum(attn_mask).item())
-                encoding = self._encodings_dict[" ".join([str(item) for item in sentence.tolist()[:sentence_len]])]
+                if not self.args.shuffle:
+                    sentence_len = seq_len
+                sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
+                encoding = self._encodings_dict[sentence_key]
+                target = torch.zeros(seq_len, self.args.embedding_dim)
                 target[:sentence_len] = encoding
                 sentence_encoding.append(target)
             encoded_layers = torch.stack(sentence_encoding)
