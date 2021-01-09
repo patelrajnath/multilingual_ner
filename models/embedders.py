@@ -140,15 +140,14 @@ class PretrainedEmbedder(torch.nn.Module):
 
         self._encodings_dict_path = os.path.join(cache_dir, encoder_id)
         if self.args.cache_features:
-            if self.reset_cache:
+            if self.args.in_memory_cache or self.args.reset_cache:
                 self._encodings_dict = {}
             else:
                 self._encodings_dict = self._load_or_create_encodings_dict()
 
         # Save the cached features
-        if self.args.save_cache_features:
-            # self._save_encodings_dict()
-            # At exit save dict
+        if self.args.save_cache_features and not self.args.in_memory_cache:
+            # At exit save cache dictionary
             atexit.register(self._save_encodings_dict)
 
         if self.args.freeze_bert_weights:
