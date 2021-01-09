@@ -225,7 +225,10 @@ class PretrainedEmbedder(torch.nn.Module):
                     sentence_len = int(torch.sum(attn_mask).item())
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     self._encodings_dict[sentence_key] = encoding[:sentence_len]
-                self._save_encodings_dict()
+
+                # Save the cached features
+                if self.args.save_cache_features:
+                    self._save_encodings_dict()
 
             sentence_encoding = []
             bs, seq_len = sentences.size()
