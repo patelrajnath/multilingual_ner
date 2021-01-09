@@ -2,6 +2,8 @@ import logging
 import os
 import pickle
 
+import numpy
+from torch import from_numpy
 from transformers import BertModel
 import torch
 
@@ -182,6 +184,7 @@ class PretrainedEmbedder(torch.nn.Module):
         use_cuda = True if torch.cuda.is_available() and not self.args.cpu else False
         if not use_cuda and not self.args.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
+            attn_masks = input_["attention_mask"]
             missing_sentences = []
             for sentence in sentences:
                 sentence_key = " ".join([str(item) for item in sentence.tolist()])
@@ -199,13 +202,21 @@ class PretrainedEmbedder(torch.nn.Module):
                 # if self.mode == "weighted":
                 #     encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
                 #     encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
-                for sentence, encoding in zip(sentences,
-                                              encoded_layers):
-                    sentence_key = " ".join([str(item) for item in sentence.tolist()])
-                    self._encodings_dict[sentence_key] = encoding
+                for sentence, attn_mask, encoding in zip(sentences, attn_masks, encoded_layers):
+                    sentence_len = int(torch.sum(attn_mask).item())
+                    sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
+                    self._encodings_dict[sentence_key] = encoding[:sentence_len]
                 # self._save_encodings_dict()
-            encoded_layers = torch.stack([self._encodings_dict[" ".join([str(item) for item in sentence.tolist()])]
-                                          for sentence in sentences])
+            sentence_encoding = []
+            bs, seq_len = sentences.size()
+            for sentence, attn_mask in zip(sentences, attn_masks):
+                sentence_len = int(torch.sum(attn_mask).item())
+                encoding = self._encodings_dict[" ".join([str(item) for item in sentence.tolist()[:sentence_len]])]
+                _, emb = encoding.size()
+                target = torch.zeros(seq_len, emb)
+                target[:sentence_len] = encoding
+                sentence_encoding.append(target)
+            encoded_layers = torch.stack(sentence_encoding)
             return encoded_layers
         else:
             encoded_layers = self.model(**input_)
