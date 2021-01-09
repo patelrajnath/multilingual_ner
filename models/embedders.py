@@ -185,24 +185,51 @@ class PretrainedEmbedder(torch.nn.Module):
         if not use_cuda and not self.args.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
             attn_masks = input_["attention_mask"]
+            token_type_ids = None
+            if "token_type_ids" in input_:
+                token_type_ids = input_["token_type_ids"]
             missing_sentences = []
-            for sentence in sentences:
-                sentence_key = " ".join([str(item) for item in sentence.tolist()])
-                if sentence_key not in self._encodings_dict:
-                    missing_sentences.append(sentence)
-                    break
+            missing_attn_masks = []
+            missing_token_type_ids = []
+
+            if "token_type_ids" in input_:
+                for sentence, attn_mask, token_type_id in  zip(sentences, attn_masks, token_type_ids):
+                    sentence_len = int(torch.sum(attn_mask).item())
+                    sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
+                    if sentence_key not in self._encodings_dict:
+                        missing_sentences.append(sentence)
+                        missing_attn_masks.append(attn_mask)
+                        missing_token_type_ids.append(token_type_id)
+            else:
+                for sentence, attn_mask in zip(sentences, attn_masks):
+                    sentence_len = int(torch.sum(attn_mask).item())
+                    sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
+                    if sentence_key not in self._encodings_dict:
+                        missing_sentences.append(sentence)
+                        missing_attn_masks.append(attn_mask)
+
             if len(sentences) != len(missing_sentences):
                 glog.info(f"{len(sentences) - len(missing_sentences)} cached "
                           f"sentences will not be encoded")
             if missing_sentences:
-                encoded_layers = self.model(**input_)
+
+                if "token_type_ids" in input_:
+                    missing_input_ = {"input_ids": torch.stack(missing_sentences),
+                                      "attention_mask": torch.stack(missing_attn_masks),
+                                      "token_type_ids": torch.stack(missing_token_type_ids)
+                                      }
+                else:
+                    missing_input_ = {"input_ids": torch.stack(missing_sentences),
+                                      "attention_mask": torch.stack(missing_attn_masks)}
+
+                encoded_layers = self.model(**missing_input_)
                 encoded_layers = torch.stack(encoded_layers[-1])
                 encoded_layers = torch.sum(encoded_layers, dim=0)
                 # Weighting average can not be used with caching
                 # if self.mode == "weighted":
                 #     encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
                 #     encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
-                for sentence, attn_mask, encoding in zip(sentences, attn_masks, encoded_layers):
+                for sentence, attn_mask, encoding in zip(missing_sentences, missing_attn_masks, encoded_layers):
                     sentence_len = int(torch.sum(attn_mask).item())
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     self._encodings_dict[sentence_key] = encoding[:sentence_len]
