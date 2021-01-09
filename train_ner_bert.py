@@ -17,6 +17,10 @@ set_seed(seed_value=999)
 
 def train(args):
     device = get_device(args)
+
+    if args.cache_features:
+        args.shuffle = False
+
     data = bert_data.LearnData.create(
         train_df_path=os.path.join(args.data_dir, args.train),
         valid_df_path=os.path.join(args.data_dir, args.test),
