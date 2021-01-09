@@ -197,8 +197,7 @@ class PretrainedEmbedder(torch.nn.Module):
             data[2]: list, tokens type ids (for bert)
             data[3]: list, bert labels ids
         """
-        use_cuda = True if torch.cuda.is_available() and not self.args.cpu else False
-        if not use_cuda and not self.args.only_embedding and self.args.cache_features:
+        if self.device.type == 'cpu' and not self.args.only_embedding and self.args.cache_features:
             sentences = input_["input_ids"]
             attn_masks = input_["attention_mask"]
             token_type_ids = None
