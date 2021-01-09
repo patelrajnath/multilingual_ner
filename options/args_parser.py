@@ -54,13 +54,9 @@ def get_parser_bert(desc, default_task='ner'):
 
 def add_training_args(parser):
     group = parser.add_argument_group('Model training')
-    group.add_argument('--max_sts_score', type=int, default=5)
-    group.add_argument('--balance_data', action='store_true')
-    group.add_argument('--output_size', type=int, default=None)
     group.add_argument('--batch_size', type=int, default=32)
     group.add_argument('--optimizer', type=str, default='sgd')
     group.add_argument('--learning_rate', type=float, default=0.001)
-    group.add_argument('--lr_decay_pow', type=int, default=1)
     group.add_argument('--epochs', type=int, default=100)
     group.add_argument('--seed', type=int, default=999)
     group.add_argument('--max_steps', type=int, default=1500)
