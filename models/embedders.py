@@ -26,6 +26,11 @@ class BERTEmbedder(torch.nn.Module):
 
         self._encodings_dict_path = os.path.join(
             cache_dir, encoder_id)
+        try:
+            # Create cache dir if doesn't exist
+            os.makedirs(cache_dir, exist_ok=True)
+        except:
+            pass
         if self.caching:
             self._encodings_dict = self._load_or_create_encodings_dict()
 
@@ -139,6 +144,11 @@ class PretrainedEmbedder(torch.nn.Module):
         self.device = device
 
         self._encodings_dict_path = os.path.join(cache_dir, encoder_id)
+        try:
+            # Create cache dir if doesn't exist
+            os.makedirs(cache_dir, exist_ok=True)
+        except:
+            pass
         if self.args.cache_features:
             if self.args.in_memory_cache or self.args.reset_cache:
                 self._encodings_dict = {}
