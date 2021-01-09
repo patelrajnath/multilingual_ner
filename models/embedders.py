@@ -246,11 +246,10 @@ class PretrainedEmbedder(torch.nn.Module):
 
             sentence_encoding = []
             bs, seq_len = sentences.size()
+            target = torch.zeros(seq_len, self.args.embedding_dim)
             for sentence, attn_mask in zip(sentences, attn_masks):
                 sentence_len = int(torch.sum(attn_mask).item())
                 encoding = self._encodings_dict[" ".join([str(item) for item in sentence.tolist()[:sentence_len]])]
-                _, emb = encoding.size()
-                target = torch.zeros(seq_len, emb)
                 target[:sentence_len] = encoding
                 sentence_encoding.append(target)
             encoded_layers = torch.stack(sentence_encoding)

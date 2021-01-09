@@ -58,23 +58,26 @@ model = model_class.from_pretrained(pretrained_weights)
 # First example
 batch_id = [[101, 1996, 3035, 2038, 2741, 1037, 1056, 28394, 2102, 2000, 1996, 3035, 2012, 17836, 4186, 2000, 8439, 2014, 3938, 2705, 5798, 102]]
 batch_id = torch.tensor(batch_id)
-max_seq_len = max(len(a) for a in batch_id)
-pad_len = max_seq_len - len(batch_id[0])
+seq_len = max(len(a) for a in batch_id)
+pad_len = seq_len - len(batch_id[0])
 attn_mask = torch.tensor([[1] * len(batch_id[0]) + [0] * pad_len])
 with torch.no_grad():
-    last_hidden_states = model(batch_id, attn_mask)[0].cpu().numpy()
+    last_hidden_states = model(batch_id, attn_mask)[0]
 print(last_hidden_states[0])
 
 # Second example
-batch_id = [[101, 1996, 3035, 2038, 2741, 1037, 1056, 28394, 2102, 2000, 1996, 3035, 2012, 17836, 4186, 2000, 8439, 2014, 3938, 2705, 5798, 102, 0, 0]]
+batch_id = [[101, 1996, 3035, 2038, 2741, 1037, 1056, 28394, 2102, 2000, 1996, 3035, 2012, 17836,
+             4186, 2000, 8439, 2014, 3938, 2705, 5798, 102, 0, 0, 0, 0]]
 batch_id = torch.tensor(batch_id)
 print(len(batch_id[0]))
-pad_len = 2
-attn_mask = torch.tensor([[1] * max_seq_len + [0] * pad_len])
+pad_len = 4
+attn_mask = torch.tensor([[1] * seq_len + [0] * pad_len])
 
 with torch.no_grad():
-    last_hidden_states = model(batch_id, attn_mask)[0].cpu().numpy()
-print(last_hidden_states[0][:max_seq_len])
-padded = last_hidden_states[0][:max_seq_len]
-padded = numpy.pad(padded, (0, pad_len))
-print(padded.shape)
+    last_hidden_states = model(batch_id, attn_mask)[0]
+print(last_hidden_states[0])
+padded = last_hidden_states[0][:seq_len]
+embedding_dim = 768
+target = torch.zeros(seq_len+pad_len, embedding_dim)
+target[:seq_len] = padded
+print(target, target.size())
