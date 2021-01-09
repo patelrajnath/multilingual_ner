@@ -1,9 +1,6 @@
 import logging
 import os
 import pickle
-
-import numpy
-from torch import from_numpy
 from transformers import BertModel
 import torch
 
@@ -125,7 +122,7 @@ class BERTEmbedder(torch.nn.Module):
 
 
 class PretrainedEmbedder(torch.nn.Module):
-    def __init__(self, args, device, cache_dir='./', encoder_id='cache_encodings'
+    def __init__(self, args, device, cache_dir='./cache', encoder_id='cache_encodings'
                  ):
         super(PretrainedEmbedder, self).__init__()
         self.args = args
@@ -212,8 +209,7 @@ class PretrainedEmbedder(torch.nn.Module):
                 glog.info(f"{len(sentences) - len(missing_sentences)} cached "
                           f"sentences will not be encoded")
             if missing_sentences:
-
-                if "token_type_ids" in input_:
+                if missing_token_type_ids:
                     missing_input_ = {"input_ids": torch.stack(missing_sentences),
                                       "attention_mask": torch.stack(missing_attn_masks),
                                       "token_type_ids": torch.stack(missing_token_type_ids)
@@ -225,15 +221,12 @@ class PretrainedEmbedder(torch.nn.Module):
                 encoded_layers = self.model(**missing_input_)
                 encoded_layers = torch.stack(encoded_layers[-1])
                 encoded_layers = torch.sum(encoded_layers, dim=0)
-                # Weighting average can not be used with caching
-                # if self.mode == "weighted":
-                #     encoded_layers = torch.stack([a * b for a, b in zip(encoded_layers, self.bert_weights)])
-                #     encoded_layers = self.bert_gamma * torch.sum(encoded_layers, dim=0)
                 for sentence, attn_mask, encoding in zip(missing_sentences, missing_attn_masks, encoded_layers):
                     sentence_len = int(torch.sum(attn_mask).item())
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     self._encodings_dict[sentence_key] = encoding[:sentence_len]
-                # self._save_encodings_dict()
+                self._save_encodings_dict()
+
             sentence_encoding = []
             bs, seq_len = sentences.size()
             for sentence, attn_mask in zip(sentences, attn_masks):
