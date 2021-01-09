@@ -3,6 +3,7 @@ import os
 import pickle
 from transformers import BertModel
 import torch
+import atexit
 
 from models.constants import MODEL_CLASSES
 
@@ -141,6 +142,12 @@ class PretrainedEmbedder(torch.nn.Module):
         if self.args.cache_features:
             self._encodings_dict = self._load_or_create_encodings_dict()
 
+        # Save the cached features
+        if self.args.save_cache_features:
+            # self._save_encodings_dict()
+            # At exit save dict
+            atexit.register(self._save_encodings_dict)
+
         if self.args.freeze_bert_weights:
             self.freeze()
 
@@ -225,10 +232,6 @@ class PretrainedEmbedder(torch.nn.Module):
                     sentence_len = int(torch.sum(attn_mask).item())
                     sentence_key = " ".join([str(item) for item in sentence.tolist()[:sentence_len]])
                     self._encodings_dict[sentence_key] = encoding[:sentence_len]
-
-                # Save the cached features
-                if self.args.save_cache_features:
-                    self._save_encodings_dict()
 
             sentence_encoding = []
             bs, seq_len = sentences.size()
