@@ -1,6 +1,6 @@
 import sys
 
-prefix = sys.argv[0]
+prefix = sys.argv[1]
 with open(f'../outputs/{prefix}_text_bert.txt') as ftext, \
         open(f'../outputs/{prefix}_label_bert.txt') as flabel, \
         open(f'../outputs/{prefix}_predict_bert.txt') as fpredict, \
