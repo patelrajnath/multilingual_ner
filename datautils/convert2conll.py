@@ -11,7 +11,9 @@ with open(f'outputs/{prefix}_text_bert.txt') as ftext, \
         wordsp = linep.split()
         for wt, wl, wp in zip(wordst, wordsl, wordsp):
             wl = wl.replace('B_O', 'O')
-            wp = wp.replace('B_O', ')')
+            wp = wp.replace('B_O', 'O')
+            wl = wl.replace('_', '-')
+            wp = wp.replace('_', '-')
             line = ' '.join([wt, wl, wp]) + '\n'
             outfile.write(line)
         outfile.write('\n')
