@@ -1,7 +1,10 @@
-with open('../outputs/ubuntu_text_bert.txt') as ftext, \
-        open('../outputs/ubuntu_label_bert.txt') as flabel, \
-        open('../outputs/ubuntu_predict_bert.txt') as fpredict, \
-        open('../outputs/ubuntu_conlleval.txt', 'w', encoding='utf-8') as outfile:
+import sys
+
+prefix = sys.argv[0]
+with open(f'../outputs/{prefix}_text_bert.txt') as ftext, \
+        open(f'../outputs/{prefix}_label_bert.txt') as flabel, \
+        open(f'../outputs/{prefix}_predict_bert.txt') as fpredict, \
+        open(f'../outputs/{prefix}_conlleval.txt', 'w', encoding='utf-8') as outfile:
     for linet, linel, linep in zip(ftext, flabel, fpredict):
         wordst = linet.split()
         wordsl = linel.split()
