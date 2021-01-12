@@ -176,7 +176,7 @@ class BertCRFNER(BaseModel):
         return self.crf.score(tensor, labels_mask, labels)
 
 
-@register_model('attn_bert_ner')
+@register_model('bert_attn_ner')
 class AttnBertNER(BaseModel):
     def __init__(self, args, device):
         super(AttnBertNER, self).__init__()
@@ -424,7 +424,7 @@ def bert_ner_medium(args):
     args.onnx = getattr(args, 'onnx', False)
 
 
-@register_model_architecture('attn_bert_ner', 'attn_bert_ner_tiny')
+@register_model_architecture('bert_attn_ner', 'bert_attn_ner_tiny')
 def attn_bert_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
@@ -433,7 +433,7 @@ def attn_bert_ner(args):
     bert_ner_tiny(args)
 
 
-@register_model_architecture('attn_bert_ner', 'attn_bert_ner_small')
+@register_model_architecture('bert_attn_ner', 'bert_attn_ner_small')
 def attn_bert_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
@@ -442,7 +442,7 @@ def attn_bert_ner(args):
     bert_ner_small(args)
 
 
-@register_model_architecture('attn_bert_ner', 'attn_bert_ner')
+@register_model_architecture('bert_attn_ner', 'bert_attn_ner')
 def attn_bert_ner(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
@@ -451,7 +451,7 @@ def attn_bert_ner(args):
     bert_ner_base(args)
 
 
-@register_model_architecture('attn_bert_ner', 'attn_bert_ner_medium')
+@register_model_architecture('bert_attn_ner', 'bert_attn_ner_medium')
 def attn_bert_ner_medium(args):
     args.attn_dropout = getattr(args, 'attn_dropout', 0.3)
     args.attn_num_heads = getattr(args, 'attn_num_heads', 1)
