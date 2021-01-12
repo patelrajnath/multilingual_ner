@@ -1,0 +1,13 @@
+[PAD]
+[CLS]
+[SEP]
+X
+B_O
+B_PER
+I_PER
+B_LOC
+B_MISC
+I_MISC
+B_ORG
+I_ORG
+I_LOC
