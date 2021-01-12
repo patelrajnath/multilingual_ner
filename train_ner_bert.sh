@@ -3,16 +3,17 @@
 python train_ner_bert.py \
     --arch bert_ner \
     --batch_size 32 \
-    --shuffle \
-    --cpu \
     --data_dir data/conll2003 \
     --train eng.train.train.csv \
     --test eng.testa.dev.csv \
-    --cache_features \
-    --save_cache_features \
-    --in_memory_cache \
-    --onnx \
+    --shuffle \
+    --cpu \
 
+#     --cache_features \
+#     --in_memory_cache \
+
+#     --save_cache_features \
+#     --onnx \
 #     --use_projection
 #     --cpu \
 #     --cache_features \
