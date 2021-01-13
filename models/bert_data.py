@@ -1,5 +1,6 @@
 from torch.utils.data import DataLoader
 import torch
+from transformers import AutoTokenizer
 
 from models.constants import MODEL_CLASSES
 from models.utils import read_config, if_none
@@ -104,8 +105,8 @@ class TextDataSet(object):
                markup="IO",
                df=None, tokenizer=None):
         if tokenizer is None:
-            config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
-            tokenizer = tokenizer_class.from_pretrained(model_name)
+            # Creates automatically tokenizer from the model name
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
         config = {
             "min_char_len": min_char_len,
             "model_name": model_name,
