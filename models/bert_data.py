@@ -2,7 +2,6 @@ from torch.utils.data import DataLoader
 import torch
 from transformers import AutoTokenizer
 
-from models.constants import MODEL_CLASSES
 from models.utils import read_config, if_none
 from models import tqdm
 import pandas as pd
@@ -97,7 +96,6 @@ class TextDataSet(object):
                idx2cls_path=None,
                min_char_len=1,
                model_name=None,
-               model_type=None,
                max_sequence_length=424,
                pad_idx=0,
                clear_cache=False,

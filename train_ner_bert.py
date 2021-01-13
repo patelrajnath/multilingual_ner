@@ -27,7 +27,6 @@ def train(args):
         idx2labels_path=os.path.join(args.data_dir, args.idx2labels),
         clear_cache=True,
         model_name=args.model_name,
-        model_type=args.model_type,
         batch_size=args.batch_size,
         device=device,
         markup='BIO',
