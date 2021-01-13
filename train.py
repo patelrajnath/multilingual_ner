@@ -95,4 +95,3 @@ for e in range(epochs):
         optimizer.step()
         epoch_loss += output.data
     print(epoch_loss)
-
