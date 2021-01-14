@@ -55,6 +55,11 @@ pretrained_weights = 'bert-base-uncased'
 tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
 model = model_class.from_pretrained(pretrained_weights)
 
+# for param_name, param in model.named_parameters():
+#     print(param_name)
+#     param.requires_grad = False
+# exit()
+
 # First example
 batch_id = [[101, 1996, 3035, 2038, 2741, 1037, 1056, 28394, 2102, 2000, 1996, 3035, 2012, 17836, 4186, 2000, 8439, 2014, 3938, 2705, 5798, 102]]
 batch_id = torch.tensor(batch_id)
