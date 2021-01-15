@@ -350,7 +350,6 @@ class LearnData(object):
                 idx2cls_path=idx2cls_path,
                 min_char_len=min_char_len,
                 model_name=model_name,
-                model_type=model_type,
                 max_sequence_length=max_sequence_length,
                 pad_idx=pad_idx,
                 clear_cache=clear_cache,
