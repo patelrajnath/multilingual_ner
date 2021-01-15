@@ -332,7 +332,7 @@ def bert_ner_base(args):
     args.model_name = getattr(args, 'model_name', 'distilbert-base-multilingual-cased')
     args.model_type = getattr(args, 'model_type', 'distilbert')
     args.mode = getattr(args, 'mode', 'weighted')
-    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', True)
+    args.freeze_bert_weights = getattr(args, 'freeze_bert_weights', False)
     args.only_embedding = getattr(args, 'only_embedding', False)
     args.use_projection = getattr(args, 'use_projection', False)
     args.onnx = getattr(args, 'onnx', False)
