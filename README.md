@@ -73,7 +73,7 @@ Raj Nath Patel (patelrajnath@gmail.com)
 Linkedin: https://www.linkedin.com/in/raj-nath-patel-2262b024/
 
 ### LICENSE
-Copyright Raj Nath Patel 2017 - present
+Copyright Raj Nath Patel 2020 - present
 
 ***multilingual_ner*** is free software: you can redistribute 
 it and/or modify it under the terms of the GNU General Public 
