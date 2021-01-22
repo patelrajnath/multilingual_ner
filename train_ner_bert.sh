@@ -6,7 +6,8 @@ python train_ner_bert.py \
     --data_dir data/conll2003 \
     --train eng.train.train.csv \
     --test eng.testa.dev.csv \
-    --shuffle \
+    --cache_features \
+    --in_memory_cache \
     --cpu \
 
 #     --cache_features \
