@@ -33,14 +33,14 @@ $bash decode_ner_basic.sh
 
 #### Train BERT model (multilingual)
 Change the data in shell script 
-(by default it usage conll2003 English data). The default model 
-used in Distil-Bert.
+(by default it usage conll2003 English data). 
 ```bash
 $bash train_ner_bert.sh
 ```
 
-Change the model using `--model_type`, and `--model_name`. 
-For example, to use `roberta` model use the following-
+The default model used in Distil-Bert. 
+Change the model using `--model_type`, and `--model_name` options. 
+For example, to change to `roberta` model use the following-
 ```bash
 python train_ner_bert.py \
     --arch bert_ner \
