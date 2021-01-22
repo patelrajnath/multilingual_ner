@@ -33,10 +33,28 @@ $bash decode_ner_basic.sh
 
 #### Train BERT model (multilingual)
 Change the data in shell script 
-(by default it usage conll2003 English data)
+(by default it usage conll2003 English data). The default model 
+used in Distil-Bert.
 ```bash
 $bash train_ner_bert.sh
 ```
+
+Change the model using `--model_type`, and `--model_name`. 
+For example, to use `roberta` model use the following-
+```bash
+python train_ner_bert.py \
+    --arch bert_ner \
+    --batch_size 32 \
+    --data_dir data/conll2003 \
+    --train eng.train.train.csv \
+    --test eng.testa.dev.csv \
+    --model_type roberta \
+    --model_name roberta-base \
+    --cache_features \
+    --in_memory_cache \
+    --cpu \
+```
+
 
 #### Decode BERT model (multilingual)
 The default test data is conll2003 German "testa" partition.
