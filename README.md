@@ -17,7 +17,8 @@ Contextualized Language Models.
 $pip install -r requirements.txt
 ```
 
-### Train model
+### Train and Test NER Models
+
 #### Train Simple model
 Change the data in shell script 
 (by default it usage conll2003 English data)
