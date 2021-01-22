@@ -9,7 +9,7 @@ Contextualized Language Models.
 #### Prerequisites
 
 * python (3.7+)
-* Linux OS (For Windows you need to install pip)
+* Linux OS (For Windows use WSL)
 
 #### Install dependencies-
 
