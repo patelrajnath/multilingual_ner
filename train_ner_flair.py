@@ -1,11 +1,8 @@
 import os
 import time
 from math import inf
-from typing import List
 
-import flair
 import torch
-from flair.data import Sentence
 from flair.embeddings import FlairEmbeddings, TransformerWordEmbeddings, StackedEmbeddings
 import numpy as np
 
