@@ -106,7 +106,7 @@ def prepare_text(options, tag_to_idx):
             train_path_label and os.path.exists(train_path_label):
         with open(train_path_text, encoding='utf8') as f:
             for sentence in f:
-                train_sentences.append(Sentence(sentence))
+                train_sentences.append(Sentence(sentence.strip()))
 
         with open(train_path_label, encoding='utf8') as f:
             for sentence in f:
@@ -140,7 +140,7 @@ def prepare_text(options, tag_to_idx):
             test_path_label and os.path.exists(test_path_label):
         with open(test_path_text, encoding='utf8') as f:
             for sentence in f:
-                test_sentences.append(Sentence(sentence))
+                test_sentences.append(Sentence(sentence.strip()))
         with open(test_path_label, encoding='utf8') as f:
             for sentence in f:
                 # replace each label by its index

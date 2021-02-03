@@ -35,8 +35,19 @@ def train(args):
         embeddings=[flair_forward_embedding, flair_backward_embedding])
 
     # Embed words in the train and test sentence
-    embeddings.embed(train_sentences)
-    embeddings.embed(test_sentences)
+    start_idx = 0
+    n_samples = len(train_sentences)
+    while start_idx < n_samples + args.batch_size:
+        batch_slice = train_sentences[start_idx:min(start_idx + args.batch_size, n_samples)]
+        start_idx += args.batch_size
+        embeddings.embed(batch_slice)
+
+    start_idx = 0
+    n_samples = len(test_sentences)
+    while start_idx <= n_samples + args.batch_size:
+        batch_slice = test_sentences[start_idx:min(start_idx + args.batch_size, n_samples)]
+        start_idx += args.batch_size
+        embeddings.embed(batch_slice)
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
