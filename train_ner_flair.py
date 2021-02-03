@@ -36,8 +36,10 @@ def train(args):
     # now create the StackedEmbedding object that combines all embeddings
     embeddings = StackedEmbeddings(
         embeddings=[flair_forward_embedding, flair_backward_embedding])
-    # embed words in the sentence
+
+    # Embed words in the train and test sentence
     embeddings.embed(train_sentences)
+    embeddings.embed(test_sentences)
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
@@ -121,7 +123,7 @@ def train(args):
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
             # predict() method returns final labels not the label_ids
-            preds = predict(batcher_test, model, idx_to_tag, pad_id=pad_id)
+            preds = predict(batcher_test, model, idx_to_tag, pad_id=pad_id, has_embeddings=True)
             cnt = 0
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
