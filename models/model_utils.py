@@ -107,14 +107,6 @@ def get_attn_pad_mask(seq_q, seq_k, pad_id):
     return pad_attn_mask.expand(b_size, len_q, len_k)  # b_size x len_q x len_k
 
 
-def get_attn_pad_mask_has_embeddings(seq_q, seq_k, pad_id):
-    assert seq_q.dim() == 3 and seq_k.dim() == 3
-    b_size, len_q, emb_dim = seq_q.size()
-    b_size, len_k, emb_dim = seq_k.size()
-    pad_attn_mask = seq_k.data.eq(pad_id).unsqueeze(1)  # b_size x 1 x len_k
-    return pad_attn_mask.expand(b_size, len_q, len_k)  # b_size x len_q x len_k
-
-
 def get_attn_subsequent_mask(seq):
     assert seq.dim() == 2
     attn_shape = [seq.size(0), seq.size(1), seq.size(1)]
@@ -176,7 +168,7 @@ def transformed_result_cls(preds, target_all, cls2label, return_target=True):
     return preds_cpu
 
 
-def predict(dl, model, id2label, pad_id, id2cls=None, has_embeddings=False):
+def predict(dl, model, id2label, pad_id, id2cls=None):
     model.eval()
     idx = 0
     preds_cpu = []
@@ -185,12 +177,32 @@ def predict(dl, model, id2label, pad_id, id2cls=None, has_embeddings=False):
         idx += 1
         input_, *_, labels_mask = batch
         # Create attn mask
-        if has_embeddings:
-            attn_mask = get_attn_pad_mask_has_embeddings(input_, input_, pad_id)
-        else:
-            attn_mask = get_attn_pad_mask(input_, input_, pad_id)
-
+        attn_mask = get_attn_pad_mask(input_, input_, pad_id)
         preds = model(batch, attn_mask=attn_mask)
+        preds = preds.view(labels_mask.shape)
+
+        if id2cls is not None:
+            preds, preds_cls = preds
+            preds_cpu_ = transformed_result_cls([preds_cls], [preds_cls], id2cls, False)
+            preds_cpu_cls.extend(preds_cpu_)
+
+        preds_cpu_ = transformed_result([preds], [labels_mask], id2label)
+        preds_cpu.extend(preds_cpu_)
+    if id2cls is not None:
+        return preds_cpu, preds_cpu_cls
+    return preds_cpu
+
+
+def predict_no_attn(dl, model, id2label, id2cls=None):
+    model.eval()
+    idx = 0
+    preds_cpu = []
+    preds_cpu_cls = []
+    for batch in tqdm(dl, total=len(dl), leave=False, desc="Predicting"):
+        idx += 1
+        input_, *_, labels_mask = batch
+        # Create attn mask
+        preds = model(batch)
         preds = preds.view(labels_mask.shape)
 
         if id2cls is not None:

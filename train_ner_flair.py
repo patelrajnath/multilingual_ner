@@ -14,7 +14,7 @@ from datautils.iob_utils import offset_from_biluo
 from datautils.prepare_data import prepare_text
 from datautils.vocab import load_vocabs
 from models import build_model
-from models.model_utils import get_device, loss_fn, save_state, load_model_state, predict
+from models.model_utils import get_device, loss_fn, save_state, load_model_state, predict_no_attn
 from options.args_parser import get_training_options, update_args_arch
 
 
@@ -120,7 +120,7 @@ def train(args):
             open(f'{output_dir}/{prefix}_text.txt', 'w', encoding='utf8') as textf:
         with torch.no_grad():
             # predict() method returns final labels not the label_ids
-            preds = predict(batcher_test, model, idx_to_tag, pad_id=pad_id, has_embeddings=True)
+            preds = predict_no_attn(batcher_test, model, idx_to_tag)
             cnt = 0
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
