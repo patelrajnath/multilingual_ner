@@ -72,8 +72,7 @@ class FlairNER(BaseModel):
     def forward(self, batch, attn_mask=None):
         input_, labels, labels_mask = batch
         input_ = input_.to(self.device)
-        attn_mask = attn_mask.to(self.device)
-        logits = self.get_logits(input_, attn_mask)
+        logits = self.get_logits(input_)
         return logits.argmax(dim=1)
 
 
