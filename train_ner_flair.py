@@ -125,14 +125,15 @@ def train(args):
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
                 tag_labels_true = get_idx_to_tag(labels)
-                text_ = get_idx_to_word(text)
+                text_ = text.to_original_text()
 
                 tag_labels_predicted = ' '.join(predict_labels)
                 tag_labels_true = ' '.join(tag_labels_true)
-                text_ = ' '.join(text_)
+
                 p.write(tag_labels_predicted + '\n')
                 t.write(tag_labels_true + '\n')
                 textf.write(text_ + '\n')
+
                 tag_labels_true = tag_labels_true.strip().replace('_', '-').split()
                 tag_labels_predicted = tag_labels_predicted.strip().replace('_', '-').split()
                 biluo_tags_true = get_biluo(tag_labels_true)
