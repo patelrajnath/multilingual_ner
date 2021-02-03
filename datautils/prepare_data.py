@@ -25,7 +25,8 @@ def prepare(options, word_to_idx, tag_to_idx):
         with open(train_path_text, encoding='utf8') as f:
             for sentence in f:
                 # replace each token by its index if it is in vocab else use index of UNK
-                s = [word_to_idx[token] if token in word_to_idx else word_to_idx['UNK'] for token in sentence.strip().split()]
+                s = [word_to_idx[token] if token in word_to_idx else word_to_idx['UNK'] for token in
+                     sentence.strip().split()]
                 train_sentences.append(s)
 
         with open(train_path_label, encoding='utf8') as f:
@@ -106,7 +107,7 @@ def prepare_text(options, tag_to_idx):
             train_path_label and os.path.exists(train_path_label):
         with open(train_path_text, encoding='utf8') as f:
             for sentence in f:
-                train_sentences.append(Sentence(sentence.strip()))
+                train_sentences.append(Sentence(sentence, use_tokenizer=False))
 
         with open(train_path_label, encoding='utf8') as f:
             for sentence in f:
@@ -140,7 +141,7 @@ def prepare_text(options, tag_to_idx):
             test_path_label and os.path.exists(test_path_label):
         with open(test_path_text, encoding='utf8') as f:
             for sentence in f:
-                test_sentences.append(Sentence(sentence.strip()))
+                test_sentences.append(Sentence(sentence, use_tokenizer=False))
         with open(test_path_label, encoding='utf8') as f:
             for sentence in f:
                 # replace each label by its index
@@ -153,6 +154,8 @@ def prepare_text(options, tag_to_idx):
         for t, l in zip(test_sentences, test_labels):
             count += 1
             if len(t) != len(l):
+                print(t)
+                print(l)
                 logger.warning(f'WARNING: Token counts:{len(t)} and Tag counts:{len(l)} '
                                f'are different at line no. {count}, will be ignored in training.')
             else:
@@ -162,4 +165,3 @@ def prepare_text(options, tag_to_idx):
         test_labels = test_labels_fixed
 
     return train_sentences, train_labels, test_sentences, test_labels
-
