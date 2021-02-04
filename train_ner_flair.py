@@ -12,7 +12,7 @@ from datautils import Doc
 from datautils.batchers import SamplingBatcherFlair
 from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
-from datautils.prepare_data import prepare_text
+from datautils.prepare_data import prepare_flair
 from datautils.vocab import load_vocabs
 from models import build_model
 from models.model_utils import get_device, loss_fn, save_state, load_model_state, predict_no_attn
@@ -23,7 +23,7 @@ def train(args):
     vocab_path = os.path.join(args.data_dir, args.vocab)
     tag_path = os.path.join(args.data_dir, args.tag_set)
     word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
-    train_sentences, train_labels, test_sentences, test_labels = prepare_text(args, tag_to_idx)
+    train_sentences, train_labels, test_sentences, test_labels = prepare_flair(args, tag_to_idx)
 
     device = get_device(args)
     flair.device = device
