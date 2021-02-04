@@ -25,6 +25,7 @@ def train(args):
     train_sentences, train_labels, test_sentences, test_labels = prepare_text(args, tag_to_idx)
 
     device = get_device(args)
+    start = time.time()
     bert_embedding1 = TransformerWordEmbeddings('distilbert-base-multilingual-cased',
                                                 layers='-1',
                                                 batch_size=args.batch_size)
@@ -37,6 +38,8 @@ def train(args):
 
     train_sentences_encoded = encoder.encode(train_sentences)
     test_sentences_encoded = encoder.encode(test_sentences)
+
+    print(f'The encoding time:{time.time()-start}')
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
