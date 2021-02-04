@@ -125,7 +125,7 @@ def train(args):
             for text, labels, predict_labels in zip(test_sentences, test_labels, preds):
                 cnt += 1
                 tag_labels_true = get_idx_to_tag(labels)
-                text_ = text.to_original_text()
+                text_ = text
 
                 tag_labels_predicted = ' '.join(predict_labels)
                 tag_labels_true = ' '.join(tag_labels_true)
