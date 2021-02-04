@@ -28,15 +28,16 @@ def train(args):
     device = get_device(args)
     flair.device = device
 
+    start = time.time()
     flair_forward_embedding = FlairEmbeddings('multi-forward')
     flair_backward_embedding = FlairEmbeddings('multi-backward')
 
     # init multilingual BERT
-    bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased')
+    bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased', layers='-1')
 
     # now create the StackedEmbedding object that combines all embeddings
     embeddings = StackedEmbeddings(
-        embeddings=[flair_forward_embedding, flair_backward_embedding])
+        embeddings=[bert_embedding])
 
     # Embed words in the train and test sentence
     start_idx = 0
@@ -52,6 +53,8 @@ def train(args):
         batch_slice = test_sentences[start_idx:min(start_idx + args.batch_size, n_samples)]
         start_idx += args.batch_size
         embeddings.embed(batch_slice)
+
+    print(f'Encoding time:{time.time()-start}')
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
