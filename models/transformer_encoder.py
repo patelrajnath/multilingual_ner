@@ -247,15 +247,14 @@ class TransformerWordEmbeddings(object):
                 # for each token, get embedding
                 sentence_embeddings = []
                 for token_idx, (token, number_of_subtokens) in enumerate(zip(sentence, subtoken_lengths)):
+                    subtoken_embeddings: List[torch.FloatTensor] = []
 
                     # some tokens have no subtokens at all (if omitted by BERT tokenizer) so return zero vector
                     if number_of_subtokens == 0:
-                        token.set_embedding(self.name, torch.zeros(self.embedding_length))
+                        subtoken_embeddings.append(torch.zeros(self.embedding_length))
                         continue
 
                     subword_end_idx = subword_start_idx + number_of_subtokens
-
-                    subtoken_embeddings: List[torch.FloatTensor] = []
 
                     # get states from all selected layers, aggregate with pooling operation
                     for layer in self.layer_indexes:
