@@ -36,7 +36,7 @@ def train(args):
     encoder = StackTransformerEmbeddings([bert_embedding1, bert_embedding2])
 
     train_sentences_encoded = encoder.encode(train_sentences)
-    test_sentences_encoded = encoder.encode(train_sentences)
+    test_sentences_encoded = encoder.encode(test_sentences)
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
@@ -108,7 +108,8 @@ def train(args):
     model = model.to(device)
     batcher_test = SamplingBatcherStackedTransformers(np.asarray(test_sentences_encoded, dtype=object),
                                                       np.asarray(test_labels, dtype=object),
-                                                      batch_size=args.batch_size, pad_id=pad_id,
+                                                      batch_size=args.batch_size,
+                                                      pad_id=pad_id,
                                                       pad_id_labels=pad_id_labels,
                                                       embedding_length=encoder.embedding_length)
     ne_class_list = set()
