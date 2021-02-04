@@ -24,22 +24,26 @@ def train(args):
     tag_path = os.path.join(args.data_dir, args.tag_set)
     word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
     train_sentences, train_labels, test_sentences, test_labels = prepare_text(args, tag_to_idx)
-    
+
     device = get_device(args)
     flair.device = device
 
     start = time.time()
-    flair_forward_embedding = FlairEmbeddings('multi-forward')
-    flair_backward_embedding = FlairEmbeddings('multi-backward')
-
+    # flair_forward_embedding = FlairEmbeddings('multi-forward')
+    # flair_backward_embedding = FlairEmbeddings('multi-backward')
     # init multilingual BERT
-    bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased',
-                                               layers='-1',
-                                               batch_size=args.batch_size)
-
+    # bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased',
+    #                                            layers='-1',
+    #                                            batch_size=args.batch_size)
+    bert_embedding1 = TransformerWordEmbeddings('sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
+                                                layers='-1',
+                                                batch_size=args.batch_size)
+    bert_embedding2 = TransformerWordEmbeddings('sentence-transformers/quora-distilbert-multilingual',
+                                                layers='-1',
+                                                batch_size=args.batch_size)
     # now create the StackedEmbedding object that combines all embeddings
     embeddings = StackedEmbeddings(
-        embeddings=[bert_embedding])
+        embeddings=[bert_embedding1, bert_embedding2])
 
     # Embed words in the train and test sentence
     start_idx = 0
@@ -56,7 +60,7 @@ def train(args):
         start_idx += args.batch_size
         embeddings.embed(batch_slice)
 
-    print(f'Encoding time:{time.time()-start}')
+    print(f'Encoding time:{time.time() - start}')
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
