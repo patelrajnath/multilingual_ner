@@ -120,7 +120,7 @@ def get_attn_subsequent_mask(seq):
 
 def get_device(args):
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda:1" if use_cuda and not args.cpu else "cpu")
+    device = torch.device("cuda:0" if use_cuda and not args.cpu else "cpu")
     return device
 
 

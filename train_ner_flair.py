@@ -3,6 +3,7 @@ import time
 from math import inf
 
 import torch
+import flair
 from flair.embeddings import FlairEmbeddings, TransformerWordEmbeddings, StackedEmbeddings
 import numpy as np
 
@@ -23,6 +24,9 @@ def train(args):
     tag_path = os.path.join(args.data_dir, args.tag_set)
     word_to_idx, idx_to_word, tag_to_idx, idx_to_tag = load_vocabs(vocab_path, tag_path)
     train_sentences, train_labels, test_sentences, test_labels = prepare_text(args, tag_to_idx)
+    
+    device = get_device(args)
+    flair.device = device
 
     flair_forward_embedding = FlairEmbeddings('multi-forward')
     flair_backward_embedding = FlairEmbeddings('multi-backward')
@@ -53,7 +57,6 @@ def train(args):
     args.vocab_size = len(idx_to_word)
     args.number_of_tags = len(idx_to_tag)
 
-    device = get_device(args)
     model = build_model(args, device)
     print(model)
     model = model.to(device)
