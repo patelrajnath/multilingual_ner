@@ -29,7 +29,7 @@ def train(args):
                                                 layers='-1',
                                                 batch_size=args.batch_size)
 
-    bert_embedding2 = TransformerWordEmbeddings('distilbert-base-multilingual-cased',
+    bert_embedding2 = TransformerWordEmbeddings('bert-base-multilingual-cased',
                                                 layers='-1',
                                                 batch_size=args.batch_size)
 
