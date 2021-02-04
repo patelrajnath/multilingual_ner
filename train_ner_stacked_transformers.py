@@ -107,10 +107,10 @@ def train(args):
     model, model_args = load_model_state(f'{output_dir}/{prefix}_best_model.pt', device)
     model = model.to(device)
     batcher_test = SamplingBatcherStackedTransformers(np.asarray(test_sentences_encoded, dtype=object),
-                                        np.asarray(test_labels, dtype=object),
-                                        batch_size=args.batch_size, pad_id=pad_id,
-                                        pad_id_labels=pad_id_labels,
-                                        embedding_length=encoder.embedding_length)
+                                                      np.asarray(test_labels, dtype=object),
+                                                      batch_size=args.batch_size, pad_id=pad_id,
+                                                      pad_id_labels=pad_id_labels,
+                                                      embedding_length=encoder.embedding_length)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
