@@ -398,6 +398,7 @@ class TransformerWordEmbeddings(object):
 class StackTransformerEmbeddings(object):
     def __init__(self, encoders: List[TransformerWordEmbeddings]):
         self.encoders = encoders
+        self.embedding_length = 0
 
     def encode(self, segments):
         segments_encoded = [encoder.encode(segments) for encoder in self.encoders]
@@ -405,4 +406,7 @@ class StackTransformerEmbeddings(object):
         for emb in zip(*segments_encoded):
             emb_cat = torch.cat(emb, dim=-1)
             segments_enc.append(emb_cat)
+
+        # Get the first segments and its embedding dim
+        self.embedding_length = segments_enc[0].shape[1]
         return segments_enc
