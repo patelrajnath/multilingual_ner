@@ -32,18 +32,19 @@ def train(args):
     # flair_forward_embedding = FlairEmbeddings('multi-forward')
     # flair_backward_embedding = FlairEmbeddings('multi-backward')
     # init multilingual BERT
-    # bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased',
-    #                                            layers='-1',
-    #                                            batch_size=args.batch_size)
-    bert_embedding1 = TransformerWordEmbeddings('sentence-transformers/distilbert-multilingual-nli-stsb-quora-ranking',
-                                                layers='-1',
-                                                batch_size=args.batch_size)
-    bert_embedding2 = TransformerWordEmbeddings('sentence-transformers/quora-distilbert-multilingual',
-                                                layers='-1',
-                                                batch_size=args.batch_size)
+    bert_embedding = TransformerWordEmbeddings('distilbert-base-multilingual-cased',
+                                               layers='-1',
+                                               batch_size=args.batch_size)
+    # bert_embedding1 = TransformerWordEmbeddings('sentence-transformers/'
+    #                                             'distilbert-multilingual-nli-stsb-quora-ranking',
+    #                                             layers='-1',
+    #                                             batch_size=args.batch_size)
+    # bert_embedding2 = TransformerWordEmbeddings('sentence-transformers/quora-distilbert-multilingual',
+    #                                             layers='-1',
+    #                                             batch_size=args.batch_size)
     # now create the StackedEmbedding object that combines all embeddings
     embeddings = StackedEmbeddings(
-        embeddings=[bert_embedding1, bert_embedding2])
+        embeddings=[bert_embedding])
 
     # Embed words in the train and test sentence
     start_idx = 0
