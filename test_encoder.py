@@ -1,19 +1,4 @@
-import torch
-
-from models.transformer_encoder import TransformerWordEmbeddings
-
-
-class StackTransformerEmbeddings(object):
-    def __init__(self, encoders):
-        self.encoders = encoders
-
-    def encode(self, segments):
-        segments_encoded = [encoder.encode(segments) for encoder in self.encoders]
-        segments_enc = []
-        for emb in zip(*segments_encoded):
-            emb_cat = torch.cat(emb, dim=-1)
-            segments_enc.append(emb_cat)
-        return segments_enc
+from models.transformer_encoder import TransformerWordEmbeddings, StackTransformerEmbeddings
 
 
 bert_embedding1 = TransformerWordEmbeddings('distilbert-base-multilingual-cased',

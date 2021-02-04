@@ -146,7 +146,7 @@ class TransformerWordEmbeddings(object):
 
         for sentence in sentences:
             tokenized_string = sentence
-            print(sentence)
+
             # method 1: subtokenize sentence
             # subtokenized_sentence = self.tokenizer.encode(tokenized_string, add_special_tokens=True)
 
@@ -393,3 +393,16 @@ class TransformerWordEmbeddings(object):
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         except:
             pass
+
+
+class StackTransformerEmbeddings(object):
+    def __init__(self, encoders: List[TransformerWordEmbeddings]):
+        self.encoders = encoders
+
+    def encode(self, segments):
+        segments_encoded = [encoder.encode(segments) for encoder in self.encoders]
+        segments_enc = []
+        for emb in zip(*segments_encoded):
+            emb_cat = torch.cat(emb, dim=-1)
+            segments_enc.append(emb_cat)
+        return segments_enc
