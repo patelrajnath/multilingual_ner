@@ -33,7 +33,9 @@ def train(args):
     flair_backward_embedding = FlairEmbeddings('multi-backward')
 
     # init multilingual BERT
-    bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased', layers='-1')
+    bert_embedding = TransformerWordEmbeddings('bert-base-multilingual-cased',
+                                               layers='-1',
+                                               batch_size=args.batch_size)
 
     # now create the StackedEmbedding object that combines all embeddings
     embeddings = StackedEmbeddings(
