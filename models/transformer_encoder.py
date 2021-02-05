@@ -405,13 +405,15 @@ class StackTransformerEmbeddings(object):
         segments_encoded = [encoder.encode(segments) for encoder in self.encoders]
         segments_enc = []
         discarded = 0
+        i = 0
         for emb in zip(*segments_encoded):
+            i += 1
             try:
                 emb_cat = torch.cat(emb, dim=-1)
                 segments_enc.append(emb_cat)
             except:
                 discarded += 1
-                print(segments)
+                print("The index is:", i)
                 exit()
         print(f'Number of samples discarded: {discarded}')
 
