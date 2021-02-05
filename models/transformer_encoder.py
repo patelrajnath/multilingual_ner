@@ -411,6 +411,8 @@ class StackTransformerEmbeddings(object):
                 segments_enc.append(emb_cat)
             except:
                 discarded += 1
+                print(segments)
+                exit()
         print(f'Number of samples discarded: {discarded}')
 
         # Get the first segments and its embedding dim
