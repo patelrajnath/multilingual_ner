@@ -59,8 +59,8 @@ def train(args):
                                                  batch_size=args.batch_size,
                                                  pad_id=pad_id,
                                                  pad_id_labels=pad_id_labels,
-                                                 embedding_length=encoder.embedding_length
-                                                 )
+                                                 embedding_length=encoder.embedding_length,
+                                                 device=device)
 
     updates = 1
     total_loss = 0
@@ -114,7 +114,8 @@ def train(args):
                                                       batch_size=args.batch_size,
                                                       pad_id=pad_id,
                                                       pad_id_labels=pad_id_labels,
-                                                      embedding_length=encoder.embedding_length)
+                                                      embedding_length=encoder.embedding_length,
+                                                      device=device)
     ne_class_list = set()
     true_labels_for_testing = []
     results_of_prediction = []
