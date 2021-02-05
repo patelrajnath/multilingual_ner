@@ -409,7 +409,7 @@ class StackTransformerEmbeddings(object):
             try:
                 emb_cat = torch.cat(emb, dim=-1)
                 segments_enc.append(emb_cat)
-            except IndexError:
+            except:
                 discarded += 1
         print(f'Number of samples discarded: {discarded}')
 
