@@ -238,6 +238,7 @@ class SamplingBatcherStackedTransformers(abc.Iterator):
             pad_id: int,
             pad_id_labels: int,
             embedding_length: int,
+            device: str,
     ):
         """Create a new BalancedBatcher.
 
@@ -256,6 +257,7 @@ class SamplingBatcherStackedTransformers(abc.Iterator):
         self.rnd = np.random.RandomState(0)
         self.ptr = 0
         self.embedding_length = embedding_length
+        self.device = device
 
     def __next__(self):
         """Generates the next batch.
@@ -285,7 +287,7 @@ class SamplingBatcherStackedTransformers(abc.Iterator):
                 (self.embedding_length * longest_token_sequence_in_batch,),
                 self._pad_id,
                 dtype=torch.float,
-                device=flair.device,
+                device=self.device,
             )
 
             all_embs: List[torch.Tensor] = list()
