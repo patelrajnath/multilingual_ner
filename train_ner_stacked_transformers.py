@@ -12,6 +12,7 @@ from datautils.prepare_data import prepare_text
 from datautils.vocab import load_vocabs
 from models import build_model
 from models.model_utils import get_device, loss_fn, save_state, load_model_state, predict_no_attn
+from models.optimization import BertAdam
 from models.transformer_encoder import TransformerWordEmbeddings, StackTransformerEmbeddings
 import numpy as np
 
@@ -56,7 +57,10 @@ def train(args):
     print(model)
     model = model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters())
+    # optimizer = torch.optim.Adam(model.parameters())
+    betas = (0.9, 0.999)
+    eps = 1e-8
+    optimizer = BertAdam(model, lr=args.learning_rate, b1=betas[0], b2=betas[1], e=eps)
 
     pad_id = word_to_idx['PAD']
     pad_id_labels = tag_to_idx['PAD']

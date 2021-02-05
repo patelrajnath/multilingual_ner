@@ -12,6 +12,8 @@ class FlairNER(BaseModel):
         self.params = args
         self.device = device
 
+        self.dropout = nn.Dropout(args.dropout)
+
         # the LSTM takens embedded sentence
         self.lstm = nn.LSTM(self.params.embedding_dim, self.params.hidden_layer_size // 2,
                             batch_first=True, bidirectional=True)
@@ -49,9 +51,11 @@ class FlairNER(BaseModel):
         return group
 
     def get_logits(self, input_, attn_mask=None):
+        # Apply dropouts
+        tensor = self.dropout(input_)
 
         # run the LSTM along the sentences of length batch_max_len
-        tensor, _ = self.lstm(input_)  # dim: batch_size x batch_max_len x lstm_hidden_dim
+        tensor, _ = self.lstm(tensor)  # dim: batch_size x batch_max_len x lstm_hidden_dim
 
         # reshape the Variable so that each row contains one token
         tensor = tensor.reshape(-1, tensor.shape[2])  # dim: batch_size*batch_max_len x lstm_hidden_dim
