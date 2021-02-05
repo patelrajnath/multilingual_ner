@@ -29,27 +29,33 @@ def train(args):
     start = time.time()
     bert_embedding1 = TransformerWordEmbeddings('distilbert-base-multilingual-cased',
                                                 layers='-1',
-                                                batch_size=args.batch_size)
+                                                batch_size=args.batch_size,
+                                                pooling_operation=args.pooling_operation,
+                                                )
 
     bert_embedding2 = TransformerWordEmbeddings('distilroberta-base',
                                                 layers='-1',
-                                                batch_size=args.batch_size)
-    
+                                                batch_size=args.batch_size,
+                                                pooling_operation=args.pooling_operation,
+                                                )
+
     bert_embedding3 = TransformerWordEmbeddings('sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens',
                                                 layers='-1',
-                                                batch_size=args.batch_size)
+                                                batch_size=args.batch_size,
+                                                pooling_operation=args.pooling_operation
+                                                )
 
     encoder = StackTransformerEmbeddings([bert_embedding1, bert_embedding2, bert_embedding3])
 
     train_sentences_encoded = encoder.encode(train_sentences)
     test_sentences_encoded = encoder.encode(test_sentences)
 
-    print(f'Encoding time:{time.time()-start}')
+    print(f'Encoding time:{time.time() - start}')
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)
     args.number_of_tags = len(idx_to_tag)
-    
+
     # Update the embedding dim
     args.embedding_dim = encoder.embedding_length
 

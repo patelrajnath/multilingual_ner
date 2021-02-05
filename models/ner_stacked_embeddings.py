@@ -1,3 +1,5 @@
+from random import choices
+
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -39,15 +41,18 @@ class FlairNER(BaseModel):
         """Add model-specific arguments to the parser."""
         group = parser.add_argument_group('Model Options')
         group.add_argument('--hidden_layer_size', type=int,
-                            help='Hidden layer size.')
+                           help='Hidden layer size.')
         group.add_argument('--num_hidden_layers', type=int,
-                            help='Number of hidden layers.')
+                           help='Number of hidden layers.')
         group.add_argument('--embedding_dim', type=int,
-                            help='Word embedding size..')
+                           help='Word embedding size..')
         group.add_argument('--activation', type=str,
-                            help='The activation function.')
+                           help='The activation function.')
         group.add_argument('--dropout', type=float,
-                            help='The value of the dropout.')
+                           help='The value of the dropout.')
+        group.add_argument('--pooling_operation', type=str,
+                           choices=['first', 'last', 'first_last', 'mean'],
+                           help='The value of the dropout.')
         return group
 
     def get_logits(self, input_, attn_mask=None):
@@ -87,3 +92,4 @@ def ner_base(args):
     args.embedding_dim = getattr(args, 'embedding_dim', 4096)
     args.activation = getattr(args, 'activation', 'relu')
     args.dropout = getattr(args, 'dropout', 0.1)
+    args.pooling_operation = getattr(args, 'pooling_operation', 'mean')
