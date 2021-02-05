@@ -1,16 +1,17 @@
 #!/bin/bash
 
-python train_ner_flair.py \
+python train_ner_stacked_transformers.py \
 --arch flair_ner \
---max_steps 1500 \
---data_dir data/conll2003 \
---train_text conll2003_train_text.txt \
---train_label conll2003_train_labels.txt \
---test_text conll2003_testa_text.txt \
---test_label conll2003_testa_labels.txt \
+--max_steps 3000 \
+--data_dir data/nlu \
+--train_text nlu_train_text.txt \
+--train_label nlu_train_labels.txt \
+--test_text nlu_test_text.txt \
+--test_label nlu_test_labels.txt \
 --vocab words.txt --tag_set tags.txt \
---batch_size 16 \
+--batch_size 32 \
 --cpu \
+--embedding_dim 1536
 
 # --data_dir data/conll2003 \
 # --train_text conll2003_train_text.txt \
