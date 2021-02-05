@@ -39,7 +39,7 @@ def train(args):
     train_sentences_encoded = encoder.encode(train_sentences)
     test_sentences_encoded = encoder.encode(test_sentences)
 
-    print(f'The encoding time:{time.time()-start}')
+    print(f'Encoding time:{time.time()-start}')
 
     # Update the Namespace
     args.vocab_size = len(idx_to_word)

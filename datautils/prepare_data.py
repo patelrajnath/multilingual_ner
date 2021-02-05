@@ -154,8 +154,6 @@ def prepare_flair(options, tag_to_idx):
         for t, l in zip(test_sentences, test_labels):
             count += 1
             if len(t) != len(l):
-                print(t)
-                print(l)
                 logger.warning(f'WARNING: Token counts:{len(t)} and Tag counts:{len(l)} '
                                f'are different at line no. {count}, will be ignored in training.')
             else:
@@ -243,4 +241,3 @@ def prepare_text(options, tag_to_idx):
         test_labels = test_labels_fixed
 
     return train_sentences, train_labels, test_sentences, test_labels
-

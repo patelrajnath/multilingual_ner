@@ -7,6 +7,8 @@ import torch
 from transformers import AutoTokenizer, AutoConfig, AutoModel, GPT2Tokenizer
 from transformers.tokenization_auto import XLNetTokenizer, T5Tokenizer
 
+from models import tqdm
+
 log = logging.getLogger("ner")
 
 
@@ -103,7 +105,7 @@ class TransformerWordEmbeddings(object):
 
         # embed each micro-batch
         sentences_encoded = []
-        for batch in sentence_batches:
+        for batch in tqdm(sentence_batches, total=len(sentence_batches), leave=False, desc=f"Encoding {self.name}"):
             sentences_encoded.extend(self._add_embeddings_to_sentences(batch))
         return sentences_encoded
 
