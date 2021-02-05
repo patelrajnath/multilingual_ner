@@ -404,9 +404,14 @@ class StackTransformerEmbeddings(object):
     def encode(self, segments):
         segments_encoded = [encoder.encode(segments) for encoder in self.encoders]
         segments_enc = []
+        discarded = 0
         for emb in zip(*segments_encoded):
-            emb_cat = torch.cat(emb, dim=-1)
-            segments_enc.append(emb_cat)
+            try:
+                emb_cat = torch.cat(emb, dim=-1)
+                segments_enc.append(emb_cat)
+            except IndexError:
+                discarded += 1
+        print(f'Number of samples discarded: {discarded}')
 
         # Get the first segments and its embedding dim
         self.embedding_length = segments_enc[0].shape[1]
