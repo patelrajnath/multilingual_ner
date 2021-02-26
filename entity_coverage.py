@@ -6,11 +6,11 @@ from datautils.biluo_from_predictions import get_biluo
 from datautils.iob_utils import offset_from_biluo
 
 
-vocab_file = "D:\Downloads\ent_vocab_custom"
+vocab_file = "D:\\Downloads\\ent_vocab_custom_all_filtered"
 lookup_table = {}
 with open(vocab_file, "r") as f:
-    entities_json = [json.loads(line) for line in f]
-    for item in entities_json:
+    for line in f:
+        item = json.loads(line)
         for title, language in item["entities"]:
             value = item["info_box"]
             if value:
@@ -18,11 +18,11 @@ with open(vocab_file, "r") as f:
 
 # data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
-# data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
+data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/alliance/alliance_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/nlu/nlu_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/snips/snips_train_text.txt.csv', sep='\t')
-data_df = pandas.read_csv('data/ubuntu/ubuntu_train_text.txt.csv', sep='\t')
+# data_df = pandas.read_csv('data/ubuntu/ubuntu_train_text.txt.csv', sep='\t')
 ent_count = 0
 ent_coverage = 0
 for index, row in data_df.iterrows():
