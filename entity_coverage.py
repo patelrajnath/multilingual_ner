@@ -16,9 +16,11 @@ with open(vocab_file, "r") as f:
             if value:
                 lookup_table[title.lower()] = value
 
-# data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
+data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
+# data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
+data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
-data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
+# data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/alliance/alliance_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/nlu/nlu_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/snips/snips_train_text.txt.csv', sep='\t')
@@ -35,7 +37,6 @@ for index, row in data_df.iterrows():
         ent_count += 1
         ent_text = row.text[start:end].lower()
         if ent_text in lookup_table:
-
             ent_coverage += 1
 
 print(ent_count, ent_coverage, ent_coverage/ent_count)
