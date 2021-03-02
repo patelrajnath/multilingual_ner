@@ -57,5 +57,5 @@ with open('feats_stats', 'w', encoding='utf-8') as fout:
                     feats_count[key] = 1
         print(feats_count)
         sorted_value = {k: v for k, v in sorted(feats_count.items(), key=lambda item: item[1], reverse=True)}
-        json.dump(item, fout, default=str)
+        json.dump({'tag': tag, 'features': sorted_value}, fout, default=str)
         fout.write('\n')
