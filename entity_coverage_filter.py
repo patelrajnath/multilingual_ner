@@ -34,12 +34,17 @@ data_df = pandas.read_csv('data/tweeter_nlp/ner.txt.train.csv', sep='\t')
 ent_count = 0
 ent_coverage = 0
 tag_features = {}
+ignored = 0
 for index, row in data_df.iterrows():
     doc = Doc(row.text)
+    words = row.text.split()
     tag_labels_true = row.labels.strip().replace('_', '-').split()
+    if len(words) != len(tag_labels_true):
+        ignored += 1
+        print(index, row.text)
+        continue
     biluo_tags_true = get_biluo(tag_labels_true)
     offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
-    print(row.text)
     for start, end, tag in offset_true_labels:
         ent_count += 1
         ent_text = row.text[start:end].lower()
@@ -51,6 +56,7 @@ for index, row in data_df.iterrows():
                 tag_features[tag] = [lookup_table[ent_text]]
 
 print(ent_count, ent_coverage, ent_coverage / ent_count)
+print(f'Number of samples ignored:{ignored}')
 
 with open('feats_stats', 'w', encoding='utf-8') as fout:
     for tag in tag_features:
