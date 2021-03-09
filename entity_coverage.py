@@ -15,9 +15,9 @@ with open(vocab_file, "r") as f:
             if value:
                 lookup_table[title.lower()] = value
 
-data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
+# data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 # data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
-# data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
+data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/alliance/alliance_train_text.txt.csv', sep='\t')
@@ -27,35 +27,61 @@ data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 ent_count = 0
 ent_coverage = 0
 tag_features = {}
+new_texts = []
+updated_labels = []
 for index, row in data_df.iterrows():
-    doc = Doc(row.text)
-    tag_labels_true = row.labels.strip().replace('_', '-').split()
+    text_ = row.text
+    doc = Doc(text_)
+    labels = row.labels
+    tag_labels_true = labels.strip().replace('_', '-').split()
     biluo_tags_true = get_biluo(tag_labels_true)
     offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
-    print(row.text)
-    for start, end, tag in offset_true_labels:
-        ent_count += 1
-        ent_text = row.text[start:end].lower()
-        if ent_text in lookup_table:
-            ent_coverage += 1
-            try:
-                tag_features[tag].append(lookup_table[ent_text])
-            except:
-                tag_features[tag] = [lookup_table[ent_text]]
+    new_labels = labels.split()
+
+    chunk_start = 0
+    chunks = []
+    # Convert text into chunks
+    for start, end, _ in offset_true_labels:
+        chunk_text = text_[chunk_start: start].strip()
+        chunk_entity = text_[start: end].strip()
+        chunk_start = end
+
+        if chunk_text:
+            chunks.append(chunk_text)
+
+        if chunk_entity:
+            chunks.append(chunk_entity)
+
+    # Append the last chunk if not empty
+    last_chunk = text_[chunk_start:].strip()
+    if last_chunk:
+        chunks.append(last_chunk)
+    offset = 0
+    has_overlap = False
+    for chunk in chunks:
+        has_kg = False
+        chunk = chunk.lower()
+        num_words = len(chunk.split())
+        if chunk in lookup_table:
+            has_kg = True
+            has_overlap = True
+        if not has_kg:
+            for j in range(offset, num_words):
+                new_labels[j] = 'O'
+        offset += num_words
+    if has_overlap:
+        print(labels)
+        updated_labels.append(' '.join(new_labels))
+        new_texts.append(text_)
+        print(text_)
+        print(index)
+        ent_coverage += 1
+    ent_count += 1
 
 print(ent_count, ent_coverage, ent_coverage / ent_count)
 
-with open('feats_stats', 'w', encoding='utf-8') as fout:
-    for tag in tag_features:
-        feats_count = {}
-        feats = tag_features[tag]
-        for feat in feats:
-            for key, value in feat.items():
-                try:
-                    feats_count[key] += 1
-                except:
-                    feats_count[key] = 1
-        print(feats_count)
-        sorted_value = {k: v for k, v in sorted(feats_count.items(), key=lambda item: item[1], reverse=True)}
-        json.dump({'tag': tag, 'features': sorted_value}, fout, default=str)
-        fout.write('\n')
+data = {'labels': updated_labels, 'text': new_texts}
+df = pandas.DataFrame(data)
+# df.to_csv('data/conll2003/eng.train.train_filtered.csv', sep='\t', index=False)
+# df.to_csv('data/conll2003/eng.testa.dev_filtered.csv', sep='\t', index=False)
+df.to_csv('data/conll2003/eng.testb.dev_filtered.csv', sep='\t', index=False)
