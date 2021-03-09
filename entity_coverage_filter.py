@@ -15,7 +15,7 @@ with open(vocab_file, "r") as f:
             if value:
                 lookup_table[title.lower()] = value
 
-data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
+# data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 # data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
@@ -24,6 +24,13 @@ data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 # data_df = pandas.read_csv('data/nlu/nlu_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/snips/snips_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/ubuntu/ubuntu_train_text.txt.csv', sep='\t')
+
+# Get NER coverage on NEW Data sets
+# data_df = pandas.read_csv('data/GMB/ner.csv', sep='\t')
+# data_df = pandas.read_csv('data/kaggle-ner/ner.csv', sep=',')
+# data_df = pandas.read_csv('data/wiki-ner/train.train.csv', sep='\t')
+data_df = pandas.read_csv('data/tweeter_nlp/ner.txt.train.csv', sep='\t')
+
 ent_count = 0
 ent_coverage = 0
 tag_features = {}
