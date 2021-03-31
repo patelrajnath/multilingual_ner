@@ -27,9 +27,9 @@ with open(vocab_file, "r") as f:
 
 # Get NER coverage on NEW Data sets
 # data_df = pandas.read_csv('data/GMB/ner.csv', sep='\t')
-# data_df = pandas.read_csv('data/kaggle-ner/ner.csv', sep=',')
+data_df = pandas.read_csv('data/kaggle-ner/ner.csv', sep=',')
 # data_df = pandas.read_csv('data/wiki-ner/train.train.csv', sep='\t')
-data_df = pandas.read_csv('data/tweeter_nlp/ner.txt.train.csv', sep='\t')
+# data_df = pandas.read_csv('data/tweeter_nlp/ner.txt.train.csv', sep='\t')
 
 ent_count = 0
 ent_coverage = 0
@@ -41,7 +41,7 @@ for index, row in data_df.iterrows():
     tag_labels_true = row.labels.strip().replace('_', '-').split()
     if len(words) != len(tag_labels_true):
         ignored += 1
-        print(index, row.text)
+        # print(index, row.text)
         continue
     biluo_tags_true = get_biluo(tag_labels_true)
     offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
@@ -68,7 +68,7 @@ with open('feats_stats', 'w', encoding='utf-8') as fout:
                     feats_count[key] += 1
                 except:
                     feats_count[key] = 1
-        print(feats_count)
+        # print(feats_count)
         sorted_value = {k: v for k, v in sorted(feats_count.items(), key=lambda item: item[1], reverse=True)}
         json.dump({'tag': tag, 'features': sorted_value}, fout, default=str)
         fout.write('\n')

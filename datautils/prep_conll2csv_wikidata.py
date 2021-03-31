@@ -24,7 +24,7 @@ def conll2003_preprocess(
     test_.to_csv(os.path.join(data_dir, "{}.dev.csv".format(test_name)), index=False, sep="\t")
 
 
-def read_data(input_file):
+def read_data(input_file, sep=' '):
     """Reads a BIO data."""
     with open(input_file, "r", encoding="utf-8") as f:
         lines = []
@@ -33,11 +33,11 @@ def read_data(input_file):
         f_lines = f.readlines()
         for line in tqdm(f_lines, total=len(f_lines), desc="Process {}".format(input_file)):
             contents = line.strip()
-            word = line.strip().split('\t')[0]
+            word = line.strip().split(sep)[0]
             word_with_lang = word.split(':')
             if len(word_with_lang) == 2:
                 word = word_with_lang[1]
-            label = line.strip().split('\t')[-1]
+            label = line.strip().split(sep)[-1]
             print(label, word)
 
             if len(contents) == 0 and not len(words):
