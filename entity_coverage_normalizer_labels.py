@@ -17,23 +17,33 @@ with open(vocab_file, "r") as f:
 
 # data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
 # data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
-data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
+# data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/alliance/alliance_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/nlu/nlu_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/snips/snips_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/ubuntu/ubuntu_train_text.txt.csv', sep='\t')
+# data_df = pandas.read_csv('data/tweeter_nlp/ner.txt.train.csv', sep='\t')
+# data_df = pandas.read_csv('data/GMB/ner.csv', sep='\t')
+data_df = pandas.read_csv('data/kaggle-ner/ner.csv', sep=',')
+
 ent_count = 0
-ent_coverage = 0
+selected = 0
+ignored = 0
 tag_features = {}
 new_texts = []
 updated_labels = []
 for index, row in data_df.iterrows():
     text_ = row.text
+    words = text_.split()
     doc = Doc(text_)
     labels = row.labels
     tag_labels_true = labels.strip().replace('_', '-').split()
+    if len(words) != len(tag_labels_true):
+        ignored += 1
+        # print(index, row.text)
+        continue
     biluo_tags_true = get_biluo(tag_labels_true)
     offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
     new_labels = labels.split()
@@ -75,13 +85,16 @@ for index, row in data_df.iterrows():
         new_texts.append(text_)
         print(text_)
         print(index)
-        ent_coverage += 1
+        selected += 1
     ent_count += 1
 
-print(ent_count, ent_coverage, ent_coverage / ent_count)
+print(ent_count, selected, selected / ent_count)
 
 data = {'labels': updated_labels, 'text': new_texts}
 df = pandas.DataFrame(data)
 # df.to_csv('data/conll2003/eng.train.train_filtered.csv', sep='\t', index=False)
 # df.to_csv('data/conll2003/eng.testa.dev_filtered.csv', sep='\t', index=False)
-df.to_csv('data/conll2003/eng.testb.dev_filtered.csv', sep='\t', index=False)
+# df.to_csv('data/conll2003/eng.testb.dev_filtered.csv', sep='\t', index=False)
+# df.to_csv('data/tweeter_nlp/ner.txt.train_filtered.csv', sep='\t', index=False)
+# df.to_csv('data/GMB/ner_filtered.csv', sep='\t', index=False)
+df.to_csv('data/kaggle-ner/ner_filtered.csv', sep='\t', index=False)
