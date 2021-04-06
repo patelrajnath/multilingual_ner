@@ -16,8 +16,8 @@ with open(vocab_file, "r") as f:
                 lookup_table[title.lower()] = value
 
 # data_df = pandas.read_csv('data/conll2003/eng.train.train.csv', sep='\t')
-# data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
-data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
+data_df = pandas.read_csv('data/conll2003/eng.testa.dev.csv', sep='\t')
+# data_df = pandas.read_csv('data/conll2003/eng.testb.dev.csv', sep='\t')
 # data_df = pandas.read_csv('data/wallet/wallet_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/accounts/accounts_train_text.txt.csv', sep='\t')
 # data_df = pandas.read_csv('data/alliance/alliance_train_text.txt.csv', sep='\t')
@@ -46,6 +46,10 @@ for index, row in data_df.iterrows():
         continue
     biluo_tags_true = get_biluo(tag_labels_true)
     offset_true_labels = offset_from_biluo(doc, biluo_tags_true)
+    # if index == 49:
+    # print(text_)
+    # print(tag_labels_true)
+    # print(offset_true_labels)
     new_labels = labels.split()
 
     chunk_start = 0
@@ -66,6 +70,7 @@ for index, row in data_df.iterrows():
     last_chunk = text_[chunk_start:].strip()
     if last_chunk:
         chunks.append(last_chunk)
+    print(chunks)
     offset = 0
     has_overlap = False
     for chunk in chunks:
@@ -76,25 +81,30 @@ for index, row in data_df.iterrows():
             has_kg = True
             has_overlap = True
         if not has_kg:
-            for j in range(offset, num_words):
-                new_labels[j] = new_labels[j] + '_NO_KG'
+            for j in range(offset, offset + num_words):
+                # print(j)
+                # print(new_labels[j])
+                if new_labels[j] != 'O':
+                    new_labels[j] = new_labels[j] + '_NOKG'
         offset += num_words
     # if has_overlap:
-    print(labels)
+    #     print(new_labels)
     updated_labels.append(' '.join(new_labels))
     new_texts.append(text_)
-    print(text_)
-    print(index)
+    # print(text_)
+    # print(index)
     selected += 1
     ent_count += 1
+        # exit()
+
 
 print(ent_count, selected, selected / ent_count)
 
 data = {'labels': updated_labels, 'text': new_texts}
 df = pandas.DataFrame(data)
 # df.to_csv('data/conll2003/eng.train.train_normalized.csv', sep='\t', index=False)
-# df.to_csv('data/conll2003/eng.testa.dev_normalized.csv', sep='\t', index=False)
-df.to_csv('data/conll2003/eng.testb.dev_normalized.csv', sep='\t', index=False)
+df.to_csv('data/conll2003/eng.testa.dev_normalized.csv', sep='\t', index=False)
+# df.to_csv('data/conll2003/eng.testb.dev_normalized.csv', sep='\t', index=False)
 # df.to_csv('data/tweeter_nlp/ner.txt.train_filtered.csv', sep='\t', index=False)
 # df.to_csv('data/GMB/ner_filtered.csv', sep='\t', index=False)
 # df.to_csv('data/kaggle-ner/ner_filtered.csv', sep='\t', index=False)
