@@ -10,7 +10,7 @@ with open(text) as ftext, \
     counter = 0
     doc_marker = '-DOCSTART- -X- -X- O'
     for linet, linel in zip(ftext, flabel):
-        if counter % 100 == 0:
+        if counter % 5 == 0:
             outfile.write(doc_marker)
             outfile.write('\n\n')
 
