@@ -76,8 +76,9 @@ for index, row in data_df.iterrows():
             has_kg = True
             has_overlap = True
         if not has_kg:
-            for j in range(offset, num_words):
-                new_labels[j] = 'O'
+            for j in range(offset, offset + num_words):
+                if new_labels[j] != 'O':
+                    new_labels[j] = 'O'
         offset += num_words
     if has_overlap:
         print(labels)
